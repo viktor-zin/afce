@@ -61,7 +61,7 @@
     <message>
         <location filename="mainwindow.cpp" line="211"/>
         <source>&amp;Paste</source>
-        <translation>Вс&amp;тавть</translation>
+        <translation>Вс&amp;тавить</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="212"/>
