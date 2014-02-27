@@ -19,10 +19,12 @@
 #include <QtSvg>
 #include "qflowchartstyle.h"
 #include "zvcodegen.h"
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 
 QString afceVersion()
 {
-  return "0.9.0";
+  return "1.0.0";
 }
 
 
@@ -33,7 +35,7 @@ void AfcScrollArea::mousePressEvent(QMouseEvent *event)
 }
 
 
-MainWindow::MainWindow(QWidget *parent, Qt::WFlags flags)
+MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags), fDocument(0)
 {
   setupUi();
@@ -197,7 +199,7 @@ void MainWindow::createToolbox()
 
 void MainWindow::retranslateUi()
 {
-  QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1251"));
+//  QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1251"));
   dockTools->setWindowTitle(tr("Tools"));
   tbArrow->setText(tr("Select"));
   tbProcess->setText(tr("Process"));

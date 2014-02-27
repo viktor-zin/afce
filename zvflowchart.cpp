@@ -16,6 +16,7 @@
 #include "zvflowchart.h"
 #include <QtGui>
 #include <QDomDocument>
+#include <QApplication>
 
 QFlowChart::QFlowChart(QWidget *pObj /* = 0 */) : QWidget(pObj), fZoom(1)
 {

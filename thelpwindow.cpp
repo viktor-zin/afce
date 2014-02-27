@@ -15,6 +15,8 @@
 
 #include "thelpwindow.h"
 
+
+
 THelpWindow::THelpWindow()
 {
   fWidget = new QFrame(this);

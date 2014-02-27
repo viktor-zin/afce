@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     qDebug() << "Version: " << afceVersion();
     qDebug() << "Supported image formats to write: " << QImageWriter::supportedImageFormats();
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+//    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
     MainWindow w;
     w.show();
     return app.exec();

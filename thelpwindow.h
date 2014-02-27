@@ -16,7 +16,13 @@
 #ifndef THELPWINDOW_H
 #define THELPWINDOW_H
 
-#include <QtGui>
+//#include <QtGui>
+#include <QFrame>
+#include <QDockWidget>
+#include <QToolBar>
+#include <QTextBrowser>
+#include <QVBoxLayout>
+#include <QIcon>
 
 class THelpWindow : public QDockWidget
 {

@@ -1,6 +1,9 @@
 QT += gui \
     xml \
-    svg
+    svg \
+    widgets \
+    printsupport
+
 TARGET = afce
 TEMPLATE = app
 SOURCES += main.cpp \

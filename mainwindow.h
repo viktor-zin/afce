@@ -16,9 +16,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGui>
 #include "thelpwindow.h"
 #include "zvflowchart.h"
+
+#include <QtGui>
+#include <QMainWindow>
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QToolButton>
+#include <QComboBox>
+#include <QLabel>
+#include <QApplication>
+#include <QTextCodec>
 
 
 class AfcScrollArea : public QScrollArea
@@ -101,7 +111,7 @@ private:
   void createToolBar();
 
 public:
-    MainWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
+    MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~MainWindow();
 //    TAlgorithmBlock *root() const;
 //    void setRoot(TAlgorithmBlock *aRoot);
