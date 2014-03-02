@@ -375,7 +375,7 @@ QString xmlToC(const QString & xml)
   QDomDocument doc;
   if(doc.setContent(xml, false))
   {
-    return xmlToPascal(doc);
+    return xmlToC(doc);
   }
   else return QString();
 }

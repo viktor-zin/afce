@@ -585,7 +585,7 @@ void MainWindow::slotHelpAbout()
 {
   QDialog dlg;
   QPushButton *ok = new QPushButton(tr("&OK"));
-  QLabel *text = new QLabel("<html><h1>AFCE</h1><p>Algorithm Flowchart Editor</p><p>Copyright 2008-2009 Zinkevich Viktor. All rights reserved.</p><p>The program is provided AS IS with NO WARRANTY OF ANY KIND,<br> INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND<br> FITNESS FOR A PARTICULAR PURPOSE.</p></html>");
+  QLabel *text = new QLabel("<html><h1>AFCE</h1><p>Algorithm Flowchart Editor</p><p>Copyright 2008-2014 Zinkevich Viktor. All rights reserved.</p><p>The program is provided AS IS with NO WARRANTY OF ANY KIND,<br> INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND<br> FITNESS FOR A PARTICULAR PURPOSE.</p></html>");
   QLabel *ico = new QLabel();
   ico->setPixmap(QPixmap(":/images/icon.png"));
   QGridLayout *layout = new QGridLayout;
