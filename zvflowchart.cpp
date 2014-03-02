@@ -761,7 +761,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
     if (isBranch)
     {
       /* отрисовка ветви */
-      QLineF line(hcenter, y, hcenter, y + height);
+      QLineF line(hcenter, y-0.5, hcenter, y + height+0.5);
       canvas->drawLine(line);
     }
     else
@@ -775,8 +775,8 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         canvas->drawRoundedRect(oval, a/4, a/4);
         canvas->drawText(oval, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, tr("BEGIN"));
 //        drawCaption(canvas, oval, zoom(), tr("BEGIN"));
-        canvas->drawLine(QLineF(hcenter, y + a/2+lw, hcenter, body->y));
-        canvas->drawLine(QLineF(hcenter, body->y + body->height, hcenter, bottom - a/2-lw));
+        canvas->drawLine(QLineF(hcenter, y + a/2+lw, hcenter, body->y+0.5));
+        canvas->drawLine(QLineF(hcenter, body->y + body->height-0.5, hcenter, bottom - a/2-lw));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, bottom - a/2 - lw),
                                     QSize(6 * zoom(), 12 * zoom()));
 
@@ -788,29 +788,31 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
       else if(type() == "process")
       {
         /* процесс */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
+        QRectF textRect(hcenter - b/2 + 4 * zoom(), y + 20 * zoom(), b - 8 * zoom(), a - 8 * zoom());
         canvas->drawRect(rect);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, attributes.value("text", ""));
-        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom));
+        canvas->drawText(textRect, Qt::AlignCenter | Qt::TextWrapAnywhere, attributes.value("text", ""));
+        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
       }
       else if(type() == "assign")
       {
         /* присваивание */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
+        QRectF textRect(hcenter - b/2+4, y + 16 * zoom()+4, b-8, a-8);
         canvas->drawRect(rect);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1 := %2").arg(attributes.value("dest", ""), attributes.value("src", "")));
-        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom));
+        canvas->drawText(textRect, Qt::AlignCenter | Qt::TextWrapAnywhere, QString("%1 := %2").arg(attributes.value("dest", ""), attributes.value("src", "")));
+        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
       }
       else if(type() == "io")
       {
         /* ввод/вывод */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QPointF par[4];
@@ -819,14 +821,14 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[2] = QPointF(hcenter + b/2 - a/4, y + 16 * zoom() + a);
         par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
         canvas->drawPolygon(par, 4);
-        QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, attributes.value("text", ""));
-        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom));
+        QRectF textRect(hcenter - b/2 + a/4 +4, y + 16 * zoom()+4, b-a/2 - 8, a - 8);
+        canvas->drawText(textRect, Qt::AlignCenter | Qt::TextWrapAnywhere, attributes.value("text", ""));
+        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
       }
       else if(type() == "if")
       {
         /* ветвление */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QPointF par[4];
@@ -835,8 +837,8 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[2] = QPointF(hcenter + b/2, y + 16 * zoom() + a/2);
         par[3] = QPointF(hcenter      , y + 16 * zoom() + a  );
         canvas->drawPolygon(par, 4);
-        QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1?").arg(attributes.value("cond", "")));
+        QRectF textRect(hcenter - b/2 + a/4 + 20, y + 16 * zoom()+4 + a/8, b - a/2 - 40, a - 8 - a/4);
+        canvas->drawText(textRect, Qt::AlignCenter | Qt::TextWrapAnywhere, QString("%1?").arg(attributes.value("cond", "")));
         QBlock *left = item(0);
         Q_ASSERT_X(left != 0, "QBlock::paint()" ,"item(0) == 0. i.e. left branch of IF is nul.");
         QBlock *right = item(1);
@@ -864,12 +866,12 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         collector[2] = QPointF(right->x + right->width / 2, bottom - 8*zoom());
         collector[3] = QPointF(right->x + right->width / 2, right->y+right->height);
         canvas->drawPolyline(collector, 4);
-        canvas->drawLine(QLineF(hcenter, bottom-8*zoom(), hcenter, bottom));
+        canvas->drawLine(QLineF(hcenter, bottom-8*zoom(), hcenter, bottom+0.5));
       }
       else if(type() == "pre")
       {
         /* цикл с предусловием */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 32 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 32 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 32 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QPointF par[4];
@@ -879,7 +881,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter      , y + 32 * zoom() + a  );
         canvas->drawPolygon(par, 4);
         QRectF rect(hcenter - b/2, y + 32 * zoom(), b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1?").arg(attributes.value("cond", "")));
+        canvas->drawText(rect, Qt::AlignCenter | Qt::TextWrapAnywhere, QString("%1?").arg(attributes.value("cond", "")));
         QBlock *left = item(0);
         Q_ASSERT_X(left != 0, "QBlock::paint()" ,"item(0) == 0. i.e. body of PRE-loop is nul.");
         canvas->drawLine(QLineF(hcenter,y + 32 * zoom() + a,hcenter,left->y));
@@ -890,7 +892,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         line[1] = QPointF(x + width - 5*zoom(), y + 32 * zoom() + a/2);
         line[2] = QPointF(x + width - 5*zoom(), bottom - 4 * zoom());
         line[3] = QPointF(hcenter, bottom - 4 * zoom());
-        line[4] = QPointF(hcenter, bottom);
+        line[4] = QPointF(hcenter, bottom+0.5);
         canvas->drawPolyline(line, 5);
         canvas->drawText(QPointF(hcenter + 4*zoom(), y + 44 * zoom() + a), tr("Yes"));
         canvas->drawText(QPointF(hcenter + b/2 +5*zoom(), y + 28 * zoom() + a/2), tr("No"));
@@ -910,7 +912,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
       else if(type() == "post")
       {
         /* цикл с постусловием */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
         QBlock *left = item(0);
         Q_ASSERT_X(left != 0, "QBlock::paint()" ,"item(0) == 0. i.e. body of POST-loop is nul.");
         // верх ромба с входяящей стрелкой
@@ -927,7 +929,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter      , top + a  );
         canvas->drawPolygon(par, 4);
         QRectF rect(hcenter - b/2, top, b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1?").arg(attributes.value("cond", "")));
+        canvas->drawText(rect, Qt::AlignCenter | Qt::TextWrapAnywhere, QString("%1?").arg(attributes.value("cond", "")));
 
         canvas->drawText(QPointF(hcenter - b/2 - 24*zoom(), top - 4* zoom() + a/2), tr("Yes"));
         canvas->drawText(QPointF(hcenter  +4*zoom(), top + 16 * zoom() + a), tr("No"));
@@ -943,12 +945,12 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
                                     QSize(12 * zoom(), 6 * zoom()));
 
         // выход
-        canvas->drawLine(QLineF(hcenter, top + a, hcenter, bottom));
+        canvas->drawLine(QLineF(hcenter, top + a, hcenter, bottom+0.5));
       }
       else if(type() == "for")
       {
         /* цикл FOR */
-        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 32 * zoom()));
+        canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 32 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 32 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QPointF hex[6];
@@ -961,7 +963,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         canvas->drawPolygon(hex, 6);
 
         QRectF rect(hcenter - b/2, y + 32 * zoom(), b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1 := %2...%3").arg(attributes.value("var", ""), attributes.value("from", ""), attributes.value("to", "")));
+        canvas->drawText(rect, Qt::AlignCenter | Qt::TextWrapAnywhere, QString("%1 := %2...%3").arg(attributes.value("var", ""), attributes.value("from", ""), attributes.value("to", "")));
         QBlock *left = item(0);
         Q_ASSERT_X(left != 0, "QBlock::paint()" ,"item(0) == 0. i.e. body of PRE-loop is nul.");
         canvas->drawLine(QLineF(hcenter,y + 32 * zoom() + a,hcenter,left->y));
@@ -972,7 +974,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         line[1] = QPointF(x + width - 5*zoom(), y + 32 * zoom() + a/2);
         line[2] = QPointF(x + width - 5*zoom(), bottom - 4 * zoom());
         line[3] = QPointF(hcenter, bottom - 4 * zoom());
-        line[4] = QPointF(hcenter, bottom);
+        line[4] = QPointF(hcenter, bottom+0.5);
         canvas->drawPolyline(line, 5);
 
         // соединение

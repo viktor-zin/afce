@@ -1,6 +1,6 @@
 /****************************************************************************
 **                                                                         **
-** Copyright (C) 2009 Victor Zinkevich. All rights reserved.               **
+** Copyright (C) 2008-2014 Victor Zinkevich. All rights reserved.          **
 ** Contact: vicking@yandex.ru                                              **
 **                                                                         **
 ** This file is part of the Algorithm Flowchart Editor project.            **
@@ -32,10 +32,10 @@ int main(int argc, char *argv[])
 #endif
     app.installTranslator(&myappTranslator);
 
-
+    qDebug() << "Detected system locale: " << QLocale::system().name();
     qDebug() << "Version: " << afceVersion();
     qDebug() << "Supported image formats to write: " << QImageWriter::supportedImageFormats();
-//    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     MainWindow w;
     w.show();
     return app.exec();
