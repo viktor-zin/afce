@@ -22,6 +22,7 @@ THelpWindow::THelpWindow()
   fWidget = new QFrame(this);
   setWidget(fWidget);
   toolBar = new QToolBar;
+  toolBar->setObjectName("help_toolbar");
   textBrowser = new QTextBrowser;
   QVBoxLayout *vl = new QVBoxLayout;
   vl->addWidget(toolBar);
@@ -37,6 +38,11 @@ THelpWindow::THelpWindow()
   toolBar->addAction(QIcon(":/images/forward_16_h.png"), tr("Forward"), textBrowser, SLOT(forward()));
   toolBar->addSeparator();
   toolBar->addAction(QIcon(":/images/home_16_h.png"), tr("Home"), this, SLOT(home()));
+}
+
+void THelpWindow::hideEvent(QHideEvent *)
+{
+    emit windowVisibilityChanged();
 }
 
 void THelpWindow::home()

@@ -65,6 +65,7 @@ private:
   QToolButton *tbWhilePre;
   QToolButton *tbWhilePost;
   QToolButton *tbIo;
+  QToolButton *tbOu;
 //  QToolButton *tbCase;
   QToolButton *tbForCStyle;
   QToolButton *tbAssign;
@@ -89,15 +90,31 @@ private:
   QAction *actExport;
   QAction *actExportSVG;
   QAction *actPrint;
+  QAction *actTools;
+  QAction *actCode;
+  QAction *actToolsv;
+  QAction *actCodev;
+  QAction *actHelpv;
+ // QAction *actengv;
+  QAction *acteng;
+ // QAction *actrusv;
+  QAction *actrus;
+
+
 //  QAction *actPageSetup;
 
   QMenu *menuFile;
   QMenu *menuEdit;
   QMenu *menuHelp;
+  QMenu *menuWindow;
   QString fileName;
   QToolBar *toolBar;
   QLabel *codeLabel;
   QLabel *zoomLabel;
+  QLabel *zl;
+  QLabel *labelMenu;
+  //QLabel *labelFile;
+
 
   THelpWindow *helpWindow;
 
@@ -105,10 +122,17 @@ private:
   QStack<QString> redoStack;
 
   void setupUi();
+  void readSettings();
+  void writeSettings();
   void createMenu();
   void createActions();
   void createToolbox();
   void createToolBar();
+ //void closeEvent(QCloseEvent *event);
+  bool okToContinue();
+protected:
+
+void closeEvent(QCloseEvent *event);
 
 public:
     MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
@@ -136,7 +160,11 @@ public slots:
   void slotHelpHelp();
   void slotHelpAbout();
   void slotHelpAboutQt();
-
+  void slotTools();
+  void slotCode();
+  void slotToolsv();
+  void slotCodev();
+  void slotHelpv();
   void slotToolArrow();
   void slotToolProcess();
   void slotToolIf();
@@ -144,6 +172,7 @@ public slots:
   void slotToolWhilePre();
   void slotToolWhilePost();
   void slotToolIo();
+  void slotToolOu();
   void slotToolCase();
   void slotToolForCStyle();
   void slotToolAssing();
@@ -155,6 +184,9 @@ public slots:
   void updateActions();
   void generateCode();
   void codeLangChanged(int index);
+  void helpWindowHidden();
+  void docToolsVisibilityChanged(bool visible);
+  void docCodeVisibilityChanged(bool visible);
 
 signals:
   void documentLoaded();

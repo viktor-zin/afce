@@ -21,11 +21,25 @@
 QString xmlToPascal(const QDomDocument & xml);
 QString xmlToPascal(const QString & xml);
 
+QString xmlToCdef(const QDomDocument & xml);
+QString xmlToCdef(const QString & xml);
+
 QString xmlToC(const QDomDocument & xml);
 QString xmlToC(const QString & xml);
 
 QString xmlToE87(const QDomDocument & xml);
 QString xmlToE87(const QString & xml);
 
+QString xmlToPHP(const QDomDocument & xml);
+QString xmlToPHP(const QString & xml);
+
+QString xmlToJavaScript(const QDomDocument & xml);
+QString xmlToJavaScript(const QString & xml);
+
+QString xmlToPython(const QDomDocument & xml);
+QString xmlToPython(const QString & xml);
+
+QString xmlToI(const QDomDocument & xml);
+QString xmlToI(const QString & xml);
 
 #endif // ZVCODEGEN_H

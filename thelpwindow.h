@@ -26,14 +26,18 @@
 
 class THelpWindow : public QDockWidget
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+signals:
+    void windowVisibilityChanged();
+
+public:
     THelpWindow();
-  private:
+private:
     QFrame *fWidget;
     QToolBar *toolBar;
     QTextBrowser *textBrowser;
-  public slots:
+    void hideEvent(QHideEvent *);
+public slots:
     void home();
 };
 

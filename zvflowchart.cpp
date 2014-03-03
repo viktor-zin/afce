@@ -651,6 +651,15 @@ void QBlock::adjustSize(const double aZoom)
       clientWidth = 120 * aZoom;
       clientHeight = 60 * aZoom;
     }
+    else if (type() == "ou")
+    {
+      topMargin = 16 * aZoom;
+      bottomMargin = 10 * aZoom;
+      leftMargin = 20 * aZoom;
+      rightMargin = 20 * aZoom;
+      clientWidth = 120 * aZoom;
+      clientHeight = 60 * aZoom;
+    }
     else if (type() == "if")
     {
       topMargin = 92 * aZoom;
@@ -813,6 +822,22 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
       {
         /* ввод/вывод */
         canvas->drawLine(QLineF(hcenter, y-0.5, hcenter, y + 16 * zoom()));
+        QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
+                                    QSize(6 * zoom(), 12 * zoom()));
+        QPointF par[4];
+        par[0] = QPointF(hcenter - b/2 + a/4, y + 16 * zoom());
+        par[1] = QPointF(hcenter + b/2 + a/4, y + 16 * zoom());
+        par[2] = QPointF(hcenter + b/2 - a/4, y + 16 * zoom() + a);
+        par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
+        canvas->drawPolygon(par, 4);
+        QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
+        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1%2%3%4%5%6%7%8").arg(attributes.value("t1", ""), attributes.value("t2", ""), attributes.value("t3", ""), attributes.value("t4", ""), attributes.value("t5", ""), attributes.value("t6", ""), attributes.value("t7", ""), attributes.value("t8", "")));
+        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom));
+      }
+      else if(type() == "ou")
+      {
+        /* ввод/вывод */
+        canvas->drawLine(QLineF(hcenter, y, hcenter, y + 16 * zoom()));
         QFlowChart::drawBottomArrow(canvas, QPointF(hcenter, y + 16 * zoom()),
                                     QSize(6 * zoom(), 12 * zoom()));
         QPointF par[4];
