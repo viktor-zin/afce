@@ -35,7 +35,9 @@ int main(int argc, char *argv[])
     qDebug() << "Detected system locale: " << QLocale::system().name();
     qDebug() << "Version: " << afceVersion();
     qDebug() << "Supported image formats to write: " << QImageWriter::supportedImageFormats();
+#if QT_VERSION < 0x050000
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+#endif
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     MainWindow w;
     w.show();
