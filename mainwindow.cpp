@@ -1,13 +1,13 @@
 /****************************************************************************
 **                                                                         **
-** Copyright (C) 2009 Victor Zinkevich. All rights reserved.               **
+** Copyright (C) 2009-2014 Victor Zinkevich. All rights reserved.          **
 ** Contact: vicking@yandex.ru                                              **
 **                                                                         **
 ** This file is part of the Algorithm Flowchart Editor project.            **
 **                                                                         **
 ** This file may be used under the terms of the GNU                        **
 ** General Public License versions 2.0 or 3.0 as published by the Free     **
-** Software Foundation and appearing in the file LICENSE.TXT included in   **
+** Software Foundation and appearing in the file LICENSE included in       **
 ** the packaging of this file.                                             **
 ** You can find license at http://www.gnu.org/licenses/gpl.html            **
 **                                                                         **
@@ -20,12 +20,14 @@
 #include <QSettings>
 #include "qflowchartstyle.h"
 #include "zvcodegen.h"
-#include <QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
+#if QT_VERSION >= 0x050000
+    #include <QtPrintSupport/QPrinter>
+    #include <QtPrintSupport/QPrintDialog>
+#endif
 
 QString afceVersion()
 {
-    return "0.9.5";
+    return "0.9.6";
 }
 
 
@@ -256,7 +258,7 @@ void MainWindow::retranslateUi()
     tbOu->setText(tr("Output"));
     tbForCStyle->setText(tr("FOR loop (C/C++)"));
     actExit->setText(tr("E&xit"));
-    actExit->setStatusTip(tr("Exit program"));
+    actExit->setStatusTip(tr("Exit from program"));
     actOpen->setText(tr("&Open..."));
     actOpen->setStatusTip(tr("Open saved file"));
     actSave->setText(tr("&Save"));
@@ -316,10 +318,15 @@ void MainWindow::retranslateUi()
     actHelp->setShortcut(tr("F1"));
     actHelpv->setShortcut(tr("F1"));
     actPrint->setShortcut(tr("Ctrl+P"));
+    actToolsv->setShortcut(tr("F2"));
+    actTools->setShortcut(tr("F2"));
+    actCodev->setShortcut(tr("F3"));
+    actCode->setShortcut(tr("F3"));
 
     menuFile->setTitle(tr("&File"));
     menuEdit->setTitle(tr("&Edit"));
     menuHelp->setTitle(tr("&Help"));
+    menuWindow->setTitle(tr("&View"));
 
     toolBar->setWindowTitle(tr("Standard"));
     dockCode->setWindowTitle(tr("Source code"));
@@ -611,7 +618,7 @@ void MainWindow::slotFileSave()
 
 void MainWindow::slotFileSaveAs()
 {
-    QString fn = QFileDialog::getSaveFileName(this, "", "", tr("Algorithm flowcharts (*.afc)"));
+    QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to save"), "", tr("Algorithm flowcharts (*.afc)"));
     if (!fn.isEmpty())
     {
         fileName = fn;
@@ -623,7 +630,7 @@ void MainWindow::slotFileSaveAs()
 void MainWindow::slotFileExport()
 {
     QString filter = getWriteFormatFilter();
-    QString fn = QFileDialog::getSaveFileName(this, "", "", filter);
+    QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", filter);
     if(!fn.isEmpty())
     {
         double oldZoom = document()->zoom();
@@ -646,7 +653,7 @@ void MainWindow::slotFileExport()
 void MainWindow::slotFileExportSVG()
 {
     QString filter = getWriteFormatFilter();
-    QString fn = QFileDialog::getSaveFileName(this, "", "", getFilterFor("svg"));
+    QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", getFilterFor("svg"));
     if(!fn.isEmpty())
     {
         double oldZoom = document()->zoom();
@@ -786,10 +793,10 @@ void MainWindow::slotHelpAbout()
 {
     QDialog dlg;
     QPushButton *ok = new QPushButton(tr("&OK"));
-    QLabel *text = new QLabel("<html><h1>AFCE</h1><p>Algorithm Flowchart Editor</p><p>Copyright 2008-2014 Viktor Zinkevich. All rights reserved.</p> \
+    QLabel *text = new QLabel(tr("<html><h1>AFCE</h1><p>Algorithm Flowchart Editor</p><p>Copyright 2008-2014 Viktor Zinkevich. All rights reserved.</p> \
 <p>Contributors:  Sergey Ryabenko, Alexey Loginov</p> \
 <p>The program is provided AS IS with NO WARRANTY OF ANY KIND,<br> INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND<br> \
-FITNESS FOR A PARTICULAR PURPOSE.</p></html>");
+FITNESS FOR A PARTICULAR PURPOSE.</p></html>"));
     QLabel *ico = new QLabel();
     ico->setPixmap(QPixmap(":/images/icon.png"));
     QGridLayout *layout = new QGridLayout;
@@ -933,7 +940,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
         buttonLayout->addWidget(btnOk);
         buttonLayout->addWidget(btnCancel);
         dlg.setLayout(mainLayout);
-        if(aBlock->type() == "process" || aBlock->type() == "io"|| aBlock->type() == "if" || aBlock->type() == "pre" || aBlock->type() == "post" )
+        if(aBlock->type() == "process" || aBlock->type() == "if" || aBlock->type() == "pre" || aBlock->type() == "post" )
         {
 
             QLineEdit *text = new QLineEdit();
@@ -943,26 +950,22 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
             {
                 dlg.setWindowTitle(tr("Process"));
             }
-            else if (aBlock->type() == "io")
-            {
-                dlg.setWindowTitle(tr("Input/output"));
-            }
             else if (aBlock->type() == "if")
             {
                 dlg.setWindowTitle(tr("Branching"));
-                lab->setText("&Condition:");
+                lab->setText(tr("&Condition:"));
                 attr = "cond";
             }
             else if (aBlock->type() == "pre")
             {
                 dlg.setWindowTitle(tr("WHILE loop"));
-                lab->setText("&Condition:");
+                lab->setText(tr("&Condition:"));
                 attr = "cond";
             }
             else if (aBlock->type() == "post")
             {
                 dlg.setWindowTitle(tr("Post-condition loop"));
-                lab->setText("&Condition:");
+                lab->setText(tr("&Condition:"));
                 attr = "cond";
             }
             text->setText(aBlock->attributes.value(attr, ""));
@@ -1024,26 +1027,12 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
         {
             if (aBlock->type() == "io")
             {
-                if (actNew->text()=="&New")
-                {
                     dlg.setWindowTitle(tr("Input"));
                 }
-                else
-                {
-                    dlg.setWindowTitle(tr("Ввoд"));
-                }
-            }
             else if (aBlock->type() == "ou")
             {
-                if (actNew->text()=="&New")
-                {
                     dlg.setWindowTitle(tr("Output"));
                 }
-                else
-                {
-                    dlg.setWindowTitle(tr("Вывoд"));
-                }
-            }
             QGridLayout *gl = new QGridLayout();
             QLineEdit *t1 = new QLineEdit();
             QLineEdit *t2 = new QLineEdit();
@@ -1073,15 +1062,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
             l7 = new QLabel(tr("7:"));
             l8 = new QLabel(tr("8:"));
 
-            if (actNew->text()=="&New")
-            {
-                cont = new QLabel(tr("Content:"));
-            }
-            else
-            {
-                cont = new QLabel(tr("Coдepжимoe:"));
-            }
-
+            cont = new QLabel(tr("Content:"));
 
             gl->addWidget(numer, 0,0);
             gl->addWidget(cont, 0,1);
@@ -1182,7 +1163,7 @@ void MainWindow::slotToolAssing()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><assign dest=\"X\" src=\"0\"/></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><assign dest=\"x\" src=\"0\"/></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
@@ -1203,7 +1184,7 @@ void MainWindow::slotToolProcess()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><process text=\"doSomething()\"/></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><process text=\"z = x + y\"/></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
@@ -1216,7 +1197,7 @@ void MainWindow::slotToolIf()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><if cond=\"X &gt; 0\"><branch /><branch /></if></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><if cond=\"x &gt; 0\"><branch /><branch /></if></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
@@ -1242,7 +1223,7 @@ void MainWindow::slotToolWhilePre()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><pre cond=\"X &lt; n\"><branch /></pre></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><pre cond=\"x &lt; n\"><branch /></pre></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
@@ -1255,7 +1236,7 @@ void MainWindow::slotToolWhilePost()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><post cond=\"X &lt; n\"><branch /></post></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><post cond=\"x &lt; n\"><branch /></post></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);

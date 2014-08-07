@@ -7,7 +7,7 @@
 **                                                                         **
 ** This file may be used under the terms of the GNU                        **
 ** General Public License versions 2.0 or 3.0 as published by the Free     **
-** Software Foundation and appearing in the file LICENSE.TXT included in   **
+** Software Foundation and appearing in the file LICENSE included in       **
 ** the packaging of this file.                                             **
 ** You can find license at http://www.gnu.org/licenses/gpl.html            **
 **                                                                         **
@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     qDebug() << "Detected system locale: " << QLocale::system().name();
     qDebug() << "Version: " << afceVersion();
     qDebug() << "Supported image formats to write: " << QImageWriter::supportedImageFormats();
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     MainWindow w;
     w.show();

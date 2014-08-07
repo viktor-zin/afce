@@ -1,6 +1,6 @@
 SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
-OutFile "afce-0.9.0-50.i586.exe"
+OutFile "afce-0.9.6-50.i586.exe"
 InstallDir "$PROGRAMFILES\afce"
 ;BGGradient 0000FF 000000 FFFFFF
 ;MiscButtonText "< Назад" "Далее >" "Отмена" "Закрыть"
