@@ -9,7 +9,6 @@
         <file>images/for.png</file>
         <file>images/forc.png</file>
         <file>images/forward_16_h.png</file>
-        <file>images/help_32_h.png</file>
         <file>images/home_16_h.png</file>
         <file>images/icon.png</file>
         <file>images/if.png</file>
@@ -24,21 +23,19 @@
         <file>images/until.png</file>
         <file>images/while.png</file>
         <file>images/case.png</file>
-        <file>images/tools.png</file>
-        <file>images/code.png</file>
         <file>images/binary.png</file>
         <file>images/font.png</file>
-        <file>images/gvim.png</file>
-        <file>images/redo.png</file>
-        <file>images/tools1.png</file>
-        <file>images/gvimT.png</file>
         <file>images/restart-1.png</file>
         <file>images/restart-2.png</file>
         <file>images/restart-4.png</file>
         <file>images/restart-3.png</file>
-        <file>images/help_32_h2.png</file>
         <file>images/nogal.png</file>
         <file>images/gal.png</file>
         <file>images/ou.png</file>
+        <file>images/print_32_h.png</file>
+        <file>images/exit.png</file>
+        <file>images/source-code.png</file>
+        <file>images/toolbar.png</file>
+        <file>images/help-icon.png</file>
     </qresource>
 </RCC>

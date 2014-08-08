@@ -93,12 +93,7 @@ private:
   QAction *actPrint;
   QAction *actTools;
   QAction *actCode;
-  QAction *actToolsv;
-  QAction *actCodev;
-  QAction *actHelpv;
- // QAction *actengv;
   QAction *acteng;
- // QAction *actrusv;
   QAction *actrus;
 
 
@@ -158,14 +153,8 @@ public slots:
   void slotEditCut();
   void slotEditPaste();
   void slotEditDelete();
-  void slotHelpHelp();
   void slotHelpAbout();
   void slotHelpAboutQt();
-  void slotTools();
-  void slotCode();
-  void slotToolsv();
-  void slotCodev();
-  void slotHelpv();
   void slotToolArrow();
   void slotToolProcess();
   void slotToolIf();
@@ -188,7 +177,6 @@ public slots:
   void updateActions();
   void generateCode();
   void codeLangChanged(int index);
-  void helpWindowHidden();
   void docToolsVisibilityChanged(bool visible);
   void docCodeVisibilityChanged(bool visible);
 

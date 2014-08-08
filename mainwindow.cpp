@@ -153,7 +153,12 @@ void MainWindow::setupUi()
     codeLanguage = new QComboBox;
     codeText = new QTextEdit;
     codeLabel = new QLabel;
-    connect(dockCode, SIGNAL(visibilityChanged(bool)), this, SLOT(docCodeVisibilityChanged(bool)));
+    actCode->setCheckable(true);
+    actCode->setChecked(dockCode->isVisible());
+    connect(actCode, SIGNAL(triggered(bool)), dockCode, SLOT(setVisible(bool)));
+    connect(dockCode, SIGNAL(visibilityChanged(bool)), actCode, SLOT(setChecked(bool)));
+
+    //connect(dockCode, SIGNAL(visibilityChanged(bool)), this, SLOT(docCodeVisibilityChanged(bool)));
 
     codeWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
 
@@ -172,11 +177,17 @@ void MainWindow::setupUi()
     dockCode->setWidget(codeWidget);
 
     helpWindow = new THelpWindow();
-    connect(helpWindow, SIGNAL(windowVisibilityChanged()), this, SLOT(helpWindowHidden()));
     helpWindow->setObjectName("help_window");
     helpWindow->setAllowedAreas(Qt::AllDockWidgetAreas);
     addDockWidget(Qt::RightDockWidgetArea, helpWindow);
     helpWindow->hide();
+
+    actHelp->setCheckable(true);
+    actHelp->setChecked(helpWindow->isVisible());
+
+    connect(actHelp, SIGNAL(triggered(bool)), helpWindow, SLOT(setVisible(bool)));
+    connect(helpWindow, SIGNAL(visibilityChanged(bool)), actHelp, SLOT(setChecked(bool)));
+
 
 }
 
@@ -239,6 +250,13 @@ void MainWindow::createToolbox()
     tl->addStretch();
     toolsWidget->setLayout(tl);
     dockTools->setWidget(toolsWidget);
+
+    actTools->setCheckable(true);
+    actTools->setChecked(dockTools->isVisible());
+    connect(actTools, SIGNAL(triggered(bool)), dockTools, SLOT(setVisible(bool)));
+    connect(dockTools, SIGNAL(visibilityChanged(bool)), actTools, SLOT(setChecked(bool)));
+
+
 }
 
 void MainWindow::retranslateUi()
@@ -282,21 +300,15 @@ void MainWindow::retranslateUi()
     actDelete->setText(tr("&Delete"));
     actDelete->setStatusTip(tr("Delete the current selection"));
     actHelp->setText(tr("&Help"));
-    actHelp->setStatusTip(tr("Open Help window"));
-    actHelpv->setText(tr("&Help"));
-    actHelpv->setStatusTip(tr("Close Help window"));
+    actHelp->setStatusTip(tr("Toggle Help window"));
     actAbout->setText(tr("&About"));
     actAbout->setStatusTip(tr("Information about authors"));
     actAboutQt->setText(tr("About &Qt"));
     actAboutQt->setStatusTip(tr("Information about Qt"));
     actTools->setText(tr("&Tools"));
-    actTools->setStatusTip(tr("Hide the tool panel"));
+    actTools->setStatusTip(tr("Toggle the tool panel"));
     actCode->setText(tr("&Source code"));
-    actCode->setStatusTip(tr("Hide the source code panel"));
-    actToolsv->setText(tr("&Tools"));
-    actToolsv->setStatusTip(tr("Show the tool panel"));
-    actCodev->setText(tr("&Source code"));
-    actCodev->setStatusTip(tr("Show the source code panel"));
+    actCode->setStatusTip(tr("Toggle the source code panel"));
     zl->setText(tr("Zoom:"));
 
 
@@ -312,11 +324,8 @@ void MainWindow::retranslateUi()
     actPaste->setShortcut(tr("Ctrl+V"));
     actDelete->setShortcut(tr("Del"));
     actHelp->setShortcut(tr("F1"));
-    actHelpv->setShortcut(tr("F1"));
     actPrint->setShortcut(tr("Ctrl+P"));
-    actToolsv->setShortcut(tr("F2"));
     actTools->setShortcut(tr("F2"));
-    actCodev->setShortcut(tr("F3"));
     actCode->setShortcut(tr("F3"));
 
     menuFile->setTitle(tr("&File"));
@@ -336,7 +345,7 @@ void MainWindow::retranslateUi()
     codeLanguage->addItem(tr("Ershov's algorithm language"), "e87");
     codeLanguage->addItem(tr("PHP"), "php");
     codeLanguage->addItem(tr("JavaScript"), "js");
-    codeLanguage->addItem(tr("Python"), "pyt");
+    codeLanguage->addItem(tr("Python"), "py");
     if (i!=-1)
         codeLanguage->setCurrentIndex(i);
     else
@@ -383,13 +392,10 @@ void MainWindow::createMenu()
 
     menuWindow = menuBar()->addMenu("");
     menuWindow->addAction(actTools);
-    menuWindow->addAction(actToolsv);
     menuWindow->addAction(actCode);
-    menuWindow->addAction(actCodev);
 
     menuHelp = menuBar()->addMenu("");
     menuHelp->addAction(actHelp);
-    menuHelp->addAction(actHelpv);
     menuHelp->addSeparator();
     menuHelp->addAction(actAbout);
     menuHelp->addAction(actAboutQt);
@@ -414,45 +420,25 @@ void MainWindow::createToolBar()
     toolBar->addAction(actPaste);
     toolBar->addSeparator();
     toolBar->addAction(actHelp);
-    toolBar->addAction(actHelpv);
     toolBar->addSeparator();
     toolBar->addAction(actTools);
-    toolBar->addAction(actToolsv);
     toolBar->addAction(actCode);
-    toolBar->addAction(actCodev);
 }
 
-void MainWindow::helpWindowHidden()
-{
-    actHelp->setVisible(true);
-    actHelpv->setVisible(false);
-}
 
 void MainWindow::docToolsVisibilityChanged(bool visible)
 {
-    if (visible) {
-        actToolsv->setVisible(false);
-        actTools->setVisible(true);
-    } else {
-        actTools->setVisible(false);
-        actToolsv->setVisible(true);
-    }
+    actTools->setChecked(visible);
 }
 
 void MainWindow::docCodeVisibilityChanged(bool visible)
 {
-    if (visible) {
-        actCodev->setVisible(false);
-        actCode->setVisible(true);
-    } else {
-        actCode->setVisible(false);
-        actCodev->setVisible(true);
-    }
+    actCode->setChecked(visible);
 }
 
 void MainWindow::createActions()
 {
-    actExit = new QAction(this);
+    actExit = new QAction(QIcon(":/images/exit.png"), "", this);
     actOpen = new QAction(QIcon(":/images/open_document_32_h.png"), "", this);
     actNew = new QAction(QIcon(":/images/new_document_32_h.png"), "", this);
     actSave = new QAction(QIcon(":/images/save_32_h.png"), "", this);
@@ -467,15 +453,12 @@ void MainWindow::createActions()
     actDelete = new QAction(QIcon(":/images/delete_x_32_h.png"), "", this);
     actExport = new QAction(this);
     actExportSVG = new QAction(this);
-    actHelp = new QAction(QIcon(":/images/help_32_h.png"), "", this);
-    actHelpv = new QAction(QIcon(":/images/help_32_h2.png"), "", this);
+    actHelp = new QAction(QIcon(":/images/help-icon.png"), "", this);
     actAbout = new QAction(this);
     actAboutQt = new QAction(this);
-    actPrint = new QAction(this);
-    actTools = new QAction(QIcon(":/images/tools.png"), "", this);
-    actCode = new QAction(QIcon(":/images/gvim.png"), "", this);
-    actToolsv = new QAction(QIcon(":/images/tools1.png"), "", this);
-    actCodev = new QAction(QIcon(":/images/gvimT.png"), "", this);
+    actPrint = new QAction(QIcon(":/images/print_32_h.png"), "", this);
+    actTools = new QAction(QIcon(":/images/toolbar.png"), "", this);
+    actCode = new QAction(QIcon(":/images/source-code.png"), "", this);
 
 
     connect(actExit, SIGNAL(triggered()), this, SLOT(close()));
@@ -486,26 +469,19 @@ void MainWindow::createActions()
     connect(actExport, SIGNAL(triggered()), this, SLOT(slotFileExport()));
     connect(actExportSVG, SIGNAL(triggered()), this, SLOT(slotFileExportSVG()));
     connect(actPrint, SIGNAL(triggered()), this, SLOT(slotFilePrint()));
-
     connect(actCut, SIGNAL(triggered()), this, SLOT(slotEditCut()));
     connect(actCopy, SIGNAL(triggered()), this, SLOT(slotEditCopy()));
     connect(actPaste, SIGNAL(triggered()), this, SLOT(slotEditPaste()));
     connect(actDelete, SIGNAL(triggered()), this, SLOT(slotEditDelete()));
 
-    connect(actHelp, SIGNAL(triggered()), this, SLOT(slotHelpHelp()));
-    connect(actHelpv, SIGNAL(triggered()), this, SLOT(slotHelpv()));
+//    connect(actHelp, SIGNAL(triggered()), this, SLOT(slotHelpHelp()));
     connect(actAbout, SIGNAL(triggered()), this, SLOT(slotHelpAbout()));
     connect(actAboutQt, SIGNAL(triggered()), this, SLOT(slotHelpAboutQt()));
+
     /* ... */
-    connect(actTools, SIGNAL(triggered()), this, SLOT(slotTools()));
-    connect(actCode, SIGNAL(triggered()), this, SLOT(slotCode()));
-    connect(actToolsv, SIGNAL(triggered()), this, SLOT(slotToolsv()));
-    connect(actCodev, SIGNAL(triggered()), this, SLOT(slotCodev()));
+//    connect(actTools, SIGNAL(triggered()), this, SLOT(slotTools()));
 
 
-    actCodev->setVisible(false);
-    actToolsv->setVisible(false);
-    actHelpv->setVisible(false);
 
 
 }
@@ -748,54 +724,6 @@ void MainWindow::slotEditDelete()
     }
 }
 
-void MainWindow::slotHelpHelp()
-{
-    helpWindow->show();
-    actHelp->setVisible(false);
-    actHelpv->setVisible(true);
-}
-void MainWindow::slotHelpv()
-{
-    helpWindow->hide();
-    actHelp->setVisible(true);
-    actHelpv->setVisible(false);
-}
-void MainWindow::slotTools()                          /* *Icon tools, code* */
-{
-    bool sigstate = dockTools->blockSignals(true);
-
-    dockTools->hide();
-    dockTools->blockSignals(sigstate);
-    actTools->setVisible(false);
-    actToolsv->setVisible(true);
-}
-void MainWindow::slotCode()
-{
-    bool sigstate = dockCode->blockSignals(true);
-    dockCode->hide();
-    dockCode->blockSignals(sigstate);
-    actCode->setVisible(false);
-    actCodev->setVisible(true);
-
-
-}
-void MainWindow::slotToolsv()
-{
-    bool sigstate = dockTools->blockSignals(true);
-    dockTools->show();
-    dockTools->blockSignals(sigstate);
-    actToolsv->setVisible(false);
-    actTools->setVisible(true);
-}
-void MainWindow::slotCodev()
-{
-    bool sigstate = dockCode->blockSignals(true);
-    dockCode->show();
-    dockCode->blockSignals(sigstate);
-    actCode->setVisible(true);
-    actCodev->setVisible(false);
-
-}
 
 void MainWindow::slotHelpAbout()
 {
@@ -849,9 +777,6 @@ void MainWindow::updateActions()
         actCode->setEnabled(document()->status() != QFlowChart::Insertion);
         actTools->setEnabled(document()->status() != QFlowChart::Insertion);
         actHelp->setEnabled(document()->status() != QFlowChart::Insertion);
-        actCodev->setEnabled(document()->status() != QFlowChart::Insertion);
-        actToolsv->setEnabled(document()->status() != QFlowChart::Insertion);
-        actHelpv->setEnabled(document()->status() != QFlowChart::Insertion);
         actUndo->setEnabled(document()->canUndo() && document()->status() != QFlowChart::Insertion);
         actRedo->setEnabled(document()->canRedo() && document()->status() != QFlowChart::Insertion);
         actOpen->setEnabled(document()->status() != QFlowChart::Insertion);
