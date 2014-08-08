@@ -14,7 +14,7 @@
 ****************************************************************************/
 
 #include "thelpwindow.h"
-
+#include <QLocale>
 
 
 THelpWindow::THelpWindow()
@@ -28,7 +28,7 @@ THelpWindow::THelpWindow()
   vl->addWidget(toolBar);
   vl->addWidget(textBrowser);
   widget()->setLayout(vl);
-  textBrowser->setSearchPaths(QStringList() << "./doc");
+  textBrowser->setSearchPaths(QStringList() << "./doc/"+QLocale::system().name() << "./doc/en_US");
 #ifdef Q_WS_X11
   textBrowser->setSearchPaths(QStringList() << "/usr/share/doc/packages/afce");
 #endif
