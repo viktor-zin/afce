@@ -831,8 +831,16 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
         canvas->drawPolygon(par, 4);
         QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
-        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, QString("%1%2%3%4%5%6%7%8").arg(attributes.value("t1", ""), attributes.value("t2", ""), attributes.value("t3", ""), attributes.value("t4", ""), attributes.value("t5", ""), attributes.value("t6", ""), attributes.value("t7", ""), attributes.value("t8", "")));
-        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom));
+        QStringList ls;
+
+        for (int lindex = 1; lindex <= 8; ++lindex) {
+            if(attributes.value(QString("t%1").arg(lindex), "") != "") {
+                ls << attributes.value(QString("t%1").arg(lindex), "");
+            }
+        }
+        QString text = ls.join(", ");
+        canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, text);
+        canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
       }
       else if(type() == "ou")
       {
@@ -847,7 +855,14 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
         canvas->drawPolygon(par, 4);
         QRectF textRect(hcenter - b/2 + a/4 +4, y + 16 * zoom()+4, b-a/2 - 8, a - 8);
-        canvas->drawText(textRect, Qt::AlignCenter | Qt::TextWrapAnywhere, attributes.value("text", ""));
+        QStringList ls;
+        for (int lindex = 1; lindex <= 8; ++lindex) {
+            if(attributes.value(QString("t%1").arg(lindex), "") != "") {
+                ls << attributes.value(QString("t%1").arg(lindex), "");
+            }
+        }
+        QString text = ls.join(", ");
+        canvas->drawText(textRect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, text);
         canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
       }
       else if(type() == "if")
