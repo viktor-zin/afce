@@ -52,6 +52,7 @@ signals:
 private:
 //  TAlgorithmBlock *fRoot;
   QFlowChart *fDocument;
+  bool isSaved;
   QVBoxLayout *fVLayout;
   QHBoxLayout *fHLayout;
   AfcScrollArea *saScheme;
@@ -176,6 +177,9 @@ public slots:
   void slotToolCase();
   void slotToolForCStyle();
   void slotToolAssing();
+  void slotDocumentSaved();
+  void slotDocumentChanged();
+  void slotDocumentLoaded();
 
 
   void setZoom(int Percents);

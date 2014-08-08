@@ -76,6 +76,11 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     statusBar()->addWidget(labelMenu);
     labelMenu->setAlignment(Qt::AlignCenter);
 
+
+    isSaved = true; //Let's allow to close application if no modification were made in empty document
+    connect(document(), SIGNAL(changed()), SLOT(slotDocumentChanged()));
+    connect(this, SIGNAL(documentLoaded()), SLOT(slotDocumentLoaded()));
+    connect(this, SIGNAL(documentSaved()), SLOT(slotDocumentSaved()));
 }
 
 
@@ -508,20 +513,18 @@ void MainWindow::createActions()
 
 MainWindow::~MainWindow()
 {
-    writeSettings();
 }
 
 bool MainWindow::okToContinue()
 {
     int r;
-    if (close()) {
+    if (!isSaved) {
         r = QMessageBox::warning(this,
-                                 tr("Afce"), tr("Do you really want to close afce?"),
+                                 tr("Afce"), tr("There are unsaved changes. Do you really want to close afce?"),
                                  QMessageBox::Yes | QMessageBox::Default,
                                  QMessageBox::No | QMessageBox::Escape);
 
-        if (r == QMessageBox::Yes) {
-        } else if (r == QMessageBox::No) {
+        if (r != QMessageBox::Yes) {
             return false;
         }
     }
@@ -618,6 +621,19 @@ void MainWindow::slotFileSaveAs()
         slotFileSave();
     }
 }
+
+void MainWindow::slotDocumentSaved() {
+    isSaved = true;
+}
+
+void MainWindow::slotDocumentChanged() {
+    isSaved = false;
+}
+
+void MainWindow::slotDocumentLoaded() {
+    isSaved = true;
+}
+
 
 void MainWindow::slotFileExport()
 {
