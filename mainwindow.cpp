@@ -43,7 +43,6 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 {
     setupUi();
     readSettings();
-    writeSettings();
     retranslateUi();
 
     QFlowChart *fc = new QFlowChart(this);
@@ -82,16 +81,10 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 
 void MainWindow::writeSettings()
 {
-    QSettings settings("Moose Soft", "afce");
+    QSettings settings("afce", "application");
 
-    settings.beginGroup("MainWindow");
-    settings.setValue("size", size());
-    settings.setValue("pos", pos());
-
-
-    settings.setValue("geometry", saveGeometry());
+    settings.setValue("geometry", geometry());
     settings.setValue("windowState", saveState());
-    settings.endGroup();
 }
 void MainWindow::closeEvent(QCloseEvent *event)
 {
@@ -106,12 +99,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::readSettings()
 
 {
-    QSettings settings("Moose Soft", "afce");
+    QSettings settings("afce", "application");
 
-    settings.beginGroup("MainWindow");
-    resize(settings.value("size", QSize(900, 500)).toSize());
-    move(settings.value("pos", QPoint(200, 100)).toPoint());
-    settings.endGroup();
+    setGeometry(settings.value("geometry", QRect(100, 100, 800, 600)).toRect());
+    restoreState(settings.value("windowState").toByteArray());
 
 }
 void MainWindow::setupUi()
@@ -517,6 +508,7 @@ void MainWindow::createActions()
 
 MainWindow::~MainWindow()
 {
+    writeSettings();
 }
 
 bool MainWindow::okToContinue()
