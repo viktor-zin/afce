@@ -20,13 +20,13 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="271"/>
-        <location filename="mainwindow.cpp" line="963"/>
+        <location filename="mainwindow.cpp" line="965"/>
         <source>Input</source>
         <translation>Ввод</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="272"/>
-        <location filename="mainwindow.cpp" line="967"/>
+        <location filename="mainwindow.cpp" line="969"/>
         <source>Output</source>
         <translation>Вывод</translation>
     </message>
@@ -280,7 +280,7 @@
         <translation type="vanished">Вы действительно хотите закрыть afce?</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1268"/>
+        <location filename="mainwindow.cpp" line="1272"/>
         <source>Zoom: %1 %</source>
         <translation>Масштаб: %1 %</translation>
     </message>
@@ -296,7 +296,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="268"/>
-        <location filename="mainwindow.cpp" line="924"/>
+        <location filename="mainwindow.cpp" line="925"/>
         <source>FOR loop</source>
         <translation>Цикл FOR</translation>
     </message>
@@ -357,7 +357,7 @@
         <translation>Отме&amp;нить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1243"/>
+        <location filename="mainwindow.cpp" line="1247"/>
         <source>%1 image (*.%2)</source>
         <translation>Изображение %1 (*.%2)</translation>
     </message>
@@ -524,82 +524,82 @@
         <translation>Цикл с постусловием</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="929"/>
+        <location filename="mainwindow.cpp" line="930"/>
         <source>&amp;Variable:</source>
         <translation>&amp;Переменная:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="930"/>
+        <location filename="mainwindow.cpp" line="931"/>
         <source>&amp;Start value:</source>
         <translation>&amp;Начальное значение:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="931"/>
+        <location filename="mainwindow.cpp" line="932"/>
         <source>&amp;End value:</source>
         <translation>&amp;Конечное значение:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="988"/>
+        <location filename="mainwindow.cpp" line="990"/>
         <source>#</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="989"/>
+        <location filename="mainwindow.cpp" line="991"/>
         <source>1:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="990"/>
+        <location filename="mainwindow.cpp" line="992"/>
         <source>2:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="991"/>
+        <location filename="mainwindow.cpp" line="993"/>
         <source>3:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="992"/>
+        <location filename="mainwindow.cpp" line="994"/>
         <source>4:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
+        <location filename="mainwindow.cpp" line="995"/>
         <source>5:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="996"/>
         <source>6:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="995"/>
+        <location filename="mainwindow.cpp" line="997"/>
         <source>7:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="996"/>
+        <location filename="mainwindow.cpp" line="998"/>
         <source>8:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="998"/>
+        <location filename="mainwindow.cpp" line="1000"/>
         <source>Content:</source>
         <translation>Содержимое:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1061"/>
+        <location filename="mainwindow.cpp" line="1064"/>
         <source>Assign</source>
         <translation>Присваивание</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1065"/>
+        <location filename="mainwindow.cpp" line="1068"/>
         <source>&amp;Source:</source>
         <translation>&amp;Источник:</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1066"/>
+        <location filename="mainwindow.cpp" line="1069"/>
         <source>&amp;Destination:</source>
         <translation>&amp;Назначение:</translation>
     </message>
@@ -607,26 +607,26 @@
 <context>
     <name>QBlock</name>
     <message>
-        <location filename="zvflowchart.cpp" line="785"/>
+        <location filename="zvflowchart.cpp" line="786"/>
         <source>BEGIN</source>
         <translation>НАЧАЛО</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="794"/>
+        <location filename="zvflowchart.cpp" line="795"/>
         <source>END</source>
         <translation>КОНЕЦ</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="893"/>
-        <location filename="zvflowchart.cpp" line="937"/>
-        <location filename="zvflowchart.cpp" line="974"/>
+        <location filename="zvflowchart.cpp" line="894"/>
+        <location filename="zvflowchart.cpp" line="938"/>
+        <location filename="zvflowchart.cpp" line="975"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="900"/>
-        <location filename="zvflowchart.cpp" line="938"/>
-        <location filename="zvflowchart.cpp" line="975"/>
+        <location filename="zvflowchart.cpp" line="901"/>
+        <location filename="zvflowchart.cpp" line="939"/>
+        <location filename="zvflowchart.cpp" line="976"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>

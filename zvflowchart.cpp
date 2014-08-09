@@ -39,6 +39,7 @@ void QFlowChart::makeUndo()
   QString state = toString();
   undoStack.push(state);
   redoStack.clear();
+  emit modified();
 }
 bool QFlowChart::canUndo() const
 {

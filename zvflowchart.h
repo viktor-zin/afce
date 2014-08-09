@@ -121,7 +121,6 @@ class QFlowChart : public QWidget
     QFlowChartStyle fStyle;
     QStack<QString> undoStack;
     QStack<QString> redoStack;
-    void makeUndo();
 
   public:
 
@@ -156,12 +155,14 @@ class QFlowChart : public QWidget
     bool canRedo() const;
     bool canPaste() const;
     void makeChanged();
+    void makeUndo();
 
   signals:
     void zoomChanged(const double aZoom);
     void statusChanged();
     void editBlock(QBlock *block);
     void changed();
+    void modified();
 
   public slots:
     void clear();

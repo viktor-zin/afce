@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 
 
     isSaved = true; //Let's allow to close application if no modification were made in empty document
-    connect(document(), SIGNAL(changed()), SLOT(slotDocumentChanged()));
+    connect(document(), SIGNAL(modified()), SLOT(slotDocumentChanged()));
     connect(this, SIGNAL(documentLoaded()), SLOT(slotDocumentLoaded()));
     connect(this, SIGNAL(documentSaved()), SLOT(slotDocumentSaved()));
 }
@@ -911,9 +911,10 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
 
             if (dlg.exec() == QDialog::Accepted)
             {
-                aBlock->attributes[attr] = text->text();
                 if(aBlock->flowChart())
                 {
+                    aBlock->flowChart()->makeUndo();
+                    aBlock->attributes[attr] = text->text();
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
@@ -946,11 +947,12 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
             teTo->setText(aBlock->attributes.value("to", ""));
             if (dlg.exec() == QDialog::Accepted)
             {
-                aBlock->attributes["var"] = teVar->text();
-                aBlock->attributes["from"] = teFrom->text();
-                aBlock->attributes["to"] = teTo->text();
                 if(aBlock->flowChart())
                 {
+                    aBlock->flowChart()->makeUndo();
+                    aBlock->attributes["var"] = teVar->text();
+                    aBlock->attributes["from"] = teFrom->text();
+                    aBlock->attributes["to"] = teTo->text();
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
@@ -1038,18 +1040,19 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
 
             if (dlg.exec() == QDialog::Accepted)
             {
-                aBlock->attributes["t1"] = t1->text();
-                aBlock->attributes["t2"] = t2->text();
-                aBlock->attributes["t3"] = t3->text();
-                aBlock->attributes["t4"] = t4->text();
-                aBlock->attributes["t5"] = t5->text();
-                aBlock->attributes["t6"] = t6->text();
-                aBlock->attributes["t7"] = t7->text();
-                aBlock->attributes["t8"] = t8->text();
 
 
                 if(aBlock->flowChart())
                 {
+                    aBlock->flowChart()->makeUndo();
+                    aBlock->attributes["t1"] = t1->text();
+                    aBlock->attributes["t2"] = t2->text();
+                    aBlock->attributes["t3"] = t3->text();
+                    aBlock->attributes["t4"] = t4->text();
+                    aBlock->attributes["t5"] = t5->text();
+                    aBlock->attributes["t6"] = t6->text();
+                    aBlock->attributes["t7"] = t7->text();
+                    aBlock->attributes["t8"] = t8->text();
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
@@ -1078,11 +1081,12 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
 
             if (dlg.exec() == QDialog::Accepted)
             {
-                aBlock->attributes["dest"] = leDest->text();
-                aBlock->attributes["src"] = leSrc->text();
 
                 if(aBlock->flowChart())
                 {
+                    aBlock->flowChart()->makeUndo();
+                    aBlock->attributes["dest"] = leDest->text();
+                    aBlock->attributes["src"] = leSrc->text();
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
