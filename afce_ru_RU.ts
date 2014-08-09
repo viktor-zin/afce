@@ -92,14 +92,12 @@
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
         <source>C</source>
-        <translation>C</translation>
+        <translation type="vanished">C</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
         <source>C++</source>
-        <translation>C++</translation>
+        <translation type="vanished">C++</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="308"/>
@@ -197,9 +195,8 @@
         <translation>Исходный код</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="342"/>
         <source>Pascal</source>
-        <translation>Pascal</translation>
+        <translation type="vanished">Pascal</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="345"/>
@@ -207,19 +204,16 @@
         <translation>Алгоритмический язык Ершова</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="346"/>
         <source>PHP</source>
-        <translation>PHP</translation>
+        <translation type="vanished">PHP</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="347"/>
         <source>JavaScript</source>
-        <translation>JavaScript</translation>
+        <translation type="vanished">JavaScript</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="348"/>
         <source>Python</source>
-        <translation>Python</translation>
+        <translation type="vanished">Python</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="355"/>

@@ -339,13 +339,13 @@ void MainWindow::retranslateUi()
 
     int i = codeLanguage->currentIndex();
     codeLanguage->clear();
-    codeLanguage->addItem(tr("Pascal"), "pas");
-    codeLanguage->addItem(tr("C"), "c");
-    codeLanguage->addItem(tr("C++"), "cpp");
+    codeLanguage->addItem("Pascal", "pas");
+    codeLanguage->addItem("C", "c");
+    codeLanguage->addItem("C++", "cpp");
     codeLanguage->addItem(tr("Ershov's algorithm language"), "e87");
-    codeLanguage->addItem(tr("PHP"), "php");
-    codeLanguage->addItem(tr("JavaScript"), "js");
-    codeLanguage->addItem(tr("Python"), "py");
+    codeLanguage->addItem("PHP", "php");
+    codeLanguage->addItem("JavaScript", "js");
+    codeLanguage->addItem("Python", "py");
     if (i!=-1)
         codeLanguage->setCurrentIndex(i);
     else
