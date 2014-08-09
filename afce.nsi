@@ -1,3 +1,4 @@
+RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
 !define VERSION 0.9.6
@@ -25,8 +26,8 @@ UninstPage instfiles
 Section "Program"
   SetOutPath "$INSTDIR"
   File "${BUILDDIR}\afce.exe"
-  File "${BUILDDIR}\afce_ru_RU.qm"
-  File "${BUILDDIR}\afce_en_US.qm"
+  File "afce_ru_RU.qm"
+  File "afce_en_US.qm"
   File "README.RU.txt"
 
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayName" "Редактор блок-схем"
@@ -57,9 +58,9 @@ Section "Qt"
 
 SectionEnd
 
-Section "Doc"
-  SetOutPath "$INSTDIR\doc"
-  File /r "doc\*.*"
+Section "Help"
+  SetOutPath "$INSTDIR\help"
+  File /r "help\*.*"
 SectionEnd
 
 
@@ -71,16 +72,9 @@ Section "Shortcuts"
 SectionEnd
 
 Section "Uninstall"
-  Delete "$INSTDIR\doc\*.*"
-  RMDIR "$INSTDIR\doc"
 
-  Delete "$INSTDIR\*.*"
-  RMDIR "$INSTDIR"
-  
-  Delete "$SMPROGRAMS\Редактор блок-схем\Редактор блок-схем.lnk"
-  Delete "$SMPROGRAMS\Редактор блок-схем\Удалить программу.lnk"
-  RMDIR "$SMPROGRAMS\Редактор блок-схем"
-
+  RMDIR /r "$INSTDIR"
+  RMDIR /r "$SMPROGRAMS\Редактор блок-схем"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce"
 
 SectionEnd

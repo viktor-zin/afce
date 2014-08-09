@@ -131,10 +131,8 @@ void MainWindow::setupUi()
     body->setLayout(bodyLayout);
     QSlider *zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
     zoomLabel = new QLabel;
-    zl = new QLabel;
     QHBoxLayout *zoomLayout= new QHBoxLayout;
     zoomLayout->addStretch();
-    zoomLayout->addWidget(zl);
     zoomLayout->addWidget(zoomLabel);
     zoomLayout->addWidget(zoomSlider);
     zoomPanel->setLayout(zoomLayout);
@@ -309,7 +307,6 @@ void MainWindow::retranslateUi()
     actTools->setStatusTip(tr("Toggle the tool panel"));
     actCode->setText(tr("&Source code"));
     actCode->setStatusTip(tr("Toggle the source code panel"));
-    zl->setText(tr("Zoom:"));
 
 
 

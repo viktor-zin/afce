@@ -107,7 +107,6 @@ private:
   QToolBar *toolBar;
   QLabel *codeLabel;
   QLabel *zoomLabel;
-  QLabel *zl;
   QLabel *labelMenu;
   //QLabel *labelFile;
 

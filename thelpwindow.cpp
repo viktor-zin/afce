@@ -28,7 +28,7 @@ THelpWindow::THelpWindow()
   vl->addWidget(toolBar);
   vl->addWidget(textBrowser);
   widget()->setLayout(vl);
-  textBrowser->setSearchPaths(QStringList() << "./doc/"+QLocale::system().name() << "./doc/en_US");
+  textBrowser->setSearchPaths(QStringList() << "./help/"+QLocale::system().name() << "./help/en_US");
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
   textBrowser->setSearchPaths(QStringList() << "/usr/share/afce/help/"+QLocale::system().name() << "/usr/share/afce/help/en_US");
 #endif
