@@ -1,0 +1,41 @@
+{
+	"algorithm" : {
+		"template" : "function main() {%branch1%\n}"
+	},
+	"if": {
+		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
+	},
+	"for": {
+		"template":"for($%var% = %from%; $%var% < %to%; ++$%var%) {%branch1%\n}"
+	},
+	"pre": {
+		"template":"while (%cond%) {%branch1%\n}"
+	},
+	"post": {
+		"template":"do {%branch1%\n} while (%cond%);"
+	},
+	"assign": {
+		"template":"%left% = %right%;"
+	},
+	"process": {
+		"template": "%text%;"
+	},
+	"io": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix" : "$",
+		"suffix": " = $_GET[\"%$%\"];"
+	},
+
+	"ou": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix": "echo $",
+		"suffix":" . PHP_EOL;"
+
+	}
+}

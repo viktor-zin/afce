@@ -19,7 +19,8 @@
 #include <QtSvg>
 #include <QSettings>
 #include "qflowchartstyle.h"
-#include "zvcodegen.h"
+#include "sourcecodegenerator.h"
+
 #if QT_VERSION >= 0x050000
     #include <QtPrintSupport/QPrinter>
     #include <QtPrintSupport/QPrintDialog>
@@ -27,7 +28,7 @@
 
 QString afceVersion()
 {
-    return "0.9.6";
+    return "0.9.7";
 }
 
 
@@ -41,6 +42,12 @@ void AfcScrollArea::mousePressEvent(QMouseEvent *event)
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags), fDocument(0)
 {
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    QDir::setSearchPaths("generators", QStringList() << "/usr/share/afce/generators");
+#else
+    QDir::setSearchPaths("generators", QStringList() << "./generators");
+#endif
+
     setupUi();
     readSettings();
     retranslateUi();
@@ -343,6 +350,8 @@ void MainWindow::retranslateUi()
     codeLanguage->addItem("PHP", "php");
     codeLanguage->addItem("JavaScript", "js");
     codeLanguage->addItem("Python", "py");
+    codeLanguage->addItem("VBScript", "vbs");
+
     if (i!=-1)
         codeLanguage->setCurrentIndex(i);
     else
@@ -510,6 +519,12 @@ void MainWindow::slotFileOpen()
                                                 tr("Select a file to open"), "", tr("Algorithm flowcharts (*.afc)"));
     if(!fn.isEmpty())
     {
+
+        if (!isSaved)
+            if(QMessageBox::warning(this, tr("Unsaved changes"), tr("You are about to open another document. It will discard all unsaved changes in the current document."),
+                                    QMessageBox::Ok | QMessageBox::Cancel) != QMessageBox::Ok)
+                return;
+
         emit documentUnloaded();
         fileName = fn;
         setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
@@ -813,45 +828,9 @@ void MainWindow::generateCode()
 {
     if (document())
     {
-        switch (codeLanguage->currentIndex())
-        {
-        case 0:
-        {
-            codeText->setText(xmlToPascal(document()->document()));
-            break;
-        }
-        case 1:
-        {
-            codeText->setText(xmlToCdef(document()->document()));
-            break;
-        }
-        case 2:
-        {
-            codeText->setText(xmlToC(document()->document()));
-            break;
-        }
-        case 3:
-        {
-            codeText->setText(xmlToE87(document()->document()));
-            break;
-        }
-        case 4:
-        {
-            codeText->setText(xmlToPHP(document()->document()));
-            break;
-        }
-        case 5:
-        {
-            codeText->setText(xmlToJavaScript(document()->document()));
-            break;
-        }
-        case 6:
-        {
-            codeText->setText(xmlToPython(document()->document()));
-            break;
-        }
-
-        }
+        SourceCodeGenerator gen;
+        gen.loadRule("generators:" + codeLanguage->itemData(codeLanguage->currentIndex()).toString() + ".json");
+        codeText->setText(gen.applyRule(document()->document()));
     }
 }
 
@@ -965,74 +944,14 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
             {
                     dlg.setWindowTitle(tr("Output"));
                 }
-            QGridLayout *gl = new QGridLayout();
-            QLineEdit *t1 = new QLineEdit();
-            QLineEdit *t2 = new QLineEdit();
-            QLineEdit *t3 = new QLineEdit();
-            QLineEdit *t4 = new QLineEdit();
-            QLineEdit *t5 = new QLineEdit();
-            QLineEdit *t6 = new QLineEdit();
-            QLineEdit *t7 = new QLineEdit();
-            QLineEdit *t8 = new QLineEdit();
-            QLabel *l1;
-            QLabel *l2;
-            QLabel *l3;
-            QLabel *l4;
-            QLabel *l5;
-            QLabel *l6;
-            QLabel *l7;
-            QLabel *l8;
-            QLabel *numer;
-            QLabel *cont;
-            numer = new QLabel(tr("#"));
-            l1 = new QLabel(tr("1:"));
-            l2 = new QLabel(tr("2:"));
-            l3 = new QLabel(tr("3:"));
-            l4 = new QLabel(tr("4:"));
-            l5 = new QLabel(tr("5:"));
-            l6 = new QLabel(tr("6:"));
-            l7 = new QLabel(tr("7:"));
-            l8 = new QLabel(tr("8:"));
-
-            cont = new QLabel(tr("Content:"));
-
-            gl->addWidget(numer, 0,0);
-            gl->addWidget(cont, 0,1);
-            gl->addWidget(l1, 1,0);
-            gl->addWidget(t1, 1,1);
-            gl->addWidget(l2, 2,0);
-            gl->addWidget(t2, 2,1);
-            gl->addWidget(l3, 3,0);
-            gl->addWidget(t3, 3,1);
-            gl->addWidget(l4, 4,0);
-            gl->addWidget(t4, 4,1);
-            gl->addWidget(l5, 5,0);
-            gl->addWidget(t5, 5,1);
-            gl->addWidget(l6, 6,0);
-            gl->addWidget(t6, 6,1);
-            gl->addWidget(l7, 7,0);
-            gl->addWidget(t7, 7,1);
-            gl->addWidget(l8, 8,0);
-            gl->addWidget(t8, 8,1);
-            l1->setBuddy(t1);
-            l2->setBuddy(t2);
-            l3->setBuddy(t3);
-            l4->setBuddy(t4);
-            l5->setBuddy(t5);
-            l6->setBuddy(t6);
-            l7->setBuddy(t7);
-            l8->setBuddy(t8);
-
-            mainLayout->addLayout(gl);
+            QVBoxLayout *vl = new QVBoxLayout();
+            QTextEdit *te = new QTextEdit();
+            QLabel *lab = new QLabel(tr("Specify the names of the variables (each per line):"));
+            vl->addWidget(lab);
+            vl->addWidget(te);
+            mainLayout->addLayout(vl);
             mainLayout->addLayout(buttonLayout);
-            t1->setText(aBlock->attributes.value("t1", ""));
-            t2->setText(aBlock->attributes.value("t2", ""));
-            t3->setText(aBlock->attributes.value("t3", ""));
-            t4->setText(aBlock->attributes.value("t4", ""));
-            t5->setText(aBlock->attributes.value("t5", ""));
-            t6->setText(aBlock->attributes.value("t6", ""));
-            t7->setText(aBlock->attributes.value("t7", ""));
-            t8->setText(aBlock->attributes.value("t8", ""));
+            te->setText(aBlock->attributes.value("vars").split(",").join("\n"));
 
 
             if (dlg.exec() == QDialog::Accepted)
@@ -1042,14 +961,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
                 if(aBlock->flowChart())
                 {
                     aBlock->flowChart()->makeUndo();
-                    aBlock->attributes["t1"] = t1->text();
-                    aBlock->attributes["t2"] = t2->text();
-                    aBlock->attributes["t3"] = t3->text();
-                    aBlock->attributes["t4"] = t4->text();
-                    aBlock->attributes["t5"] = t5->text();
-                    aBlock->attributes["t6"] = t6->text();
-                    aBlock->attributes["t7"] = t7->text();
-                    aBlock->attributes["t8"] = t8->text();
+                    aBlock->attributes["vars"] = te->toPlainText().split("\n").join(",");
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
@@ -1184,7 +1096,7 @@ void MainWindow::slotToolIo()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><io t1=\"x\" t2=\"\" t3=\"\" t4=\"\" t5=\"\" t6=\"\" t7=\"\" t8=\"\"/></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><io vars=\"x,y\"/></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
@@ -1201,7 +1113,7 @@ void MainWindow::slotToolOu()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><ou t1=\"z\" t2=\"\" t3=\"\" t4=\"\" t5=\"\" t6=\"\" t7=\"\" t8=\"\"/></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><ou vars=\"x,y\"/></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);

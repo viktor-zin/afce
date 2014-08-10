@@ -1,7 +1,7 @@
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
-!define VERSION 0.9.6
+!define VERSION 0.9.7
 !define QTDIR C:\Qt\5.2.1\mingw48_32\bin
 !define BUILDDIR ..\build-afce-Desktop_Qt_5_2_1_MinGW_32bit-Debug\release
 OutFile "..\afce-${VERSION}-win32.exe"
@@ -61,6 +61,11 @@ SectionEnd
 Section "Help"
   SetOutPath "$INSTDIR\help"
   File /r "help\*.*"
+SectionEnd
+
+Section "Generators"
+  SetOutPath "$INSTDIR\generators"
+  File /r "generators\*.json"
 SectionEnd
 
 

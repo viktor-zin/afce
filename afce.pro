@@ -11,12 +11,12 @@ SOURCES += main.cpp \
     thelpwindow.cpp \
     zvflowchart.cpp \
     qflowchartstyle.cpp \
-    zvcodegen.cpp
+    sourcecodegenerator.cpp
 HEADERS += mainwindow.h \
     thelpwindow.h \
     zvflowchart.h \
     qflowchartstyle.h \
-    zvcodegen.h
+    sourcecodegenerator.h
 RESOURCES += afce.qrc
 CONFIG += release
 TRANSLATIONS += afce_en_US.ts \

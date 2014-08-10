@@ -1,0 +1,36 @@
+{
+	"if": {
+		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
+	},
+	"for": {
+		"template":"for(int %var% = %from%; %var% < %to%; ++%var%) {%branch1%\n}"
+	},
+	"pre": {
+		"template":"while (%cond%) {%branch1%\n}"
+	},
+	"post": {
+		"template":"do {%branch1%\n}\nwhile (%cond%)"
+	},
+	"assign": {
+		"template":"%left% = %right%;"
+	},
+	"process": {
+		"template": "%text%;"
+	},
+	"algorithm" : {
+		"template" : "void main(void) {%branch1%\n}"
+	},
+	"io": {
+		"template": "sdt::cin >> %vars%;",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": " >> "
+	},
+
+	"ou": {
+		"template": "std::cout << %vars%;",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": " << "
+	}
+}

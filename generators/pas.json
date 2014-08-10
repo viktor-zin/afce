@@ -1,0 +1,36 @@
+{
+	"algorithm" : {
+		"template" : "program algorithm;\nbegin%branch1%\nend."
+	},
+	"if": {
+		"template":"if %cond% then\nbegin%branch1%\nend\nelse\nbegin%branch2%\nend;"
+	},
+	"for": {
+		"template":"for %var% := %from% to %to% do\nbegin%branch1%\nend;"
+	},
+	"pre": {
+		"template":"while %cond% do\nbegin%branch1%\nend;"
+	},
+	"post": {
+		"template":"repeat%branch1%\nuntil not (%cond%);"
+	},
+	"assign": {
+		"template":"%left% := %right%;"
+	},
+	"process": {
+		"template": "%text%;"
+	},
+	"io": {
+		"template": "ReadLn(%vars%);",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": ", "
+	},
+
+	"ou": {
+		"template": "WriteLn(%vars%);",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": ", "
+	}
+}

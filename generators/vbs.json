@@ -1,0 +1,40 @@
+{
+	"algorithm" : {
+		"template" : "Sub Main()%branch1%\nEnd Sub"
+	},
+	"if": {
+		"template":"If %cond% Then%branch1%\nElse%branch2%\nEnd If"
+	},
+	"for": {
+		"template":"For %var% = %from% To %to%%branch1%\nNext %var%"
+	},
+	"pre": {
+		"template":"Do While %cond%%branch1%\nLoop"
+	},
+	"post": {
+		"template":"Do%branch1%\nLoop While %cond%"
+	},
+	"assign": {
+		"template":"%left% = %right%;"
+	},
+	"process": {
+		"template": "%text%;"
+	},
+	"io": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix" : "",
+		"suffix": " = InputBox(\"%$%\")"
+	},
+
+	"ou": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix": "WScript.Echo "
+
+	}
+}

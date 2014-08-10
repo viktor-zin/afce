@@ -1,0 +1,36 @@
+{
+	"algorithm" : {
+		"template" : "алг Алгоритм\nнач%branch1%\nкон"
+	},
+	"if": {
+		"template":"если %cond%\nто%branch1%\nиначе%branch2%\nвсе"
+	},
+	"for": {
+		"template":"нц для %var% от %from% до %to%%branch1%\nкц"
+	},
+	"pre": {
+		"template":"нц пока %cond%%branch1%\nкц"
+	},
+	"post": {
+		"template":"%branch1%\nнц пока %cond%%branch1%\nкц"
+	},
+	"assign": {
+		"template":"%left% := %right%"
+	},
+	"process": {
+		"template": "%text%;"
+	},
+	"io": {
+		"template": "ввод %vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": ", "
+	},
+
+	"ou": {
+		"template": "ввывод %vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": ", "
+	}
+}

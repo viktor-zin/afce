@@ -832,13 +832,8 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
         canvas->drawPolygon(par, 4);
         QRectF rect(hcenter - b/2, y + 16 * zoom(), b, a);
-        QStringList ls;
+        QStringList ls = attributes["vars"].split(",");
 
-        for (int lindex = 1; lindex <= 8; ++lindex) {
-            if(attributes.value(QString("t%1").arg(lindex), "") != "") {
-                ls << attributes.value(QString("t%1").arg(lindex), "");
-            }
-        }
         QString text = ls.join(", ");
         canvas->drawText(rect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, text);
         canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
@@ -856,12 +851,7 @@ void QBlock::paint(QPainter *canvas, bool fontSizeInPoints) const
         par[3] = QPointF(hcenter - b/2 - a/4, y + 16 * zoom() + a);
         canvas->drawPolygon(par, 4);
         QRectF textRect(hcenter - b/2 + a/4 +4, y + 16 * zoom()+4, b-a/2 - 8, a - 8);
-        QStringList ls;
-        for (int lindex = 1; lindex <= 8; ++lindex) {
-            if(attributes.value(QString("t%1").arg(lindex), "") != "") {
-                ls << attributes.value(QString("t%1").arg(lindex), "");
-            }
-        }
+        QStringList ls = attributes["vars"].split(",");
         QString text = ls.join(", ");
         canvas->drawText(textRect, Qt::TextSingleLine | Qt::AlignHCenter | Qt::AlignVCenter, text);
         canvas->drawLine(QLineF(hcenter, y + 16 * zoom()+a, hcenter, bottom+0.5));
