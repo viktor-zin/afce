@@ -29,6 +29,7 @@ Section "Program"
   File "afce_ru_RU.qm"
   File "afce_en_US.qm"
   File "README.RU.txt"
+  File "afc.ico"
 
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayName" "Редактор блок-схем"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayIcon" "$INSTDIR\afce.exe"
@@ -37,6 +38,14 @@ Section "Program"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "UninstallString" "$INSTDIR\uninst.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "URLInfoAbout" "http://viktor-zin.blogspot.ru/2011/09/blog-post_5556.html"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "InstallLocation" "$INSTDIR"
+
+  WriteRegStr HKCR ".afc" "" "afcfile"
+  WriteRegStr HKCR ".afc" "Content Type" "application/x-afce"
+  WriteRegStr HKCR "afcfile" "" "Блок-схема"
+  WriteRegStr HKCR "afcfile\DefaultIcon" "" '$INSTDIR\afc.ico'
+  WriteRegStr HKCR "afcfile\shell\open\command" "" '"$INSTDIR\afce.exe" "%1"'
+
+  System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
 
   WriteUninstaller "$INSTDIR\uninst.exe"
 SectionEnd
@@ -81,5 +90,10 @@ Section "Uninstall"
   RMDIR /r "$INSTDIR"
   RMDIR /r "$SMPROGRAMS\Редактор блок-схем"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce"
+
+  DeleteRegKey HKCR ".afc"
+  DeleteRegKey HKCR "afcfile"
+  System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
+
 
 SectionEnd
