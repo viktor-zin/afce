@@ -15,7 +15,7 @@
 		"template":"%branch1%\nнц пока %cond%%branch1%\nкц"
 	},
 	"assign": {
-		"template":"%left% := %right%"
+		"template":"%dest% := %src%"
 	},
 	"process": {
 		"template": "%text%;"

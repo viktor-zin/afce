@@ -15,7 +15,7 @@
 		"template":"do {%branch1%\n} while (%cond%);"
 	},
 	"assign": {
-		"template":"%left% = %right%;"
+		"template":"$%dest% = $%src%;"
 	},
 	"process": {
 		"template": "%text%;"

@@ -15,7 +15,7 @@
 		"template":"Do%branch1%\nLoop While %cond%"
 	},
 	"assign": {
-		"template":"%left% = %right%;"
+		"template":"%dest% = %src%;"
 	},
 	"process": {
 		"template": "%text%;"

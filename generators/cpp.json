@@ -12,7 +12,7 @@
 		"template":"do {%branch1%\n}\nwhile (%cond%)"
 	},
 	"assign": {
-		"template":"%left% = %right%;"
+		"template":"%dest% = %src%;"
 	},
 	"process": {
 		"template": "%text%;"

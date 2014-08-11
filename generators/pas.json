@@ -15,7 +15,7 @@
 		"template":"repeat%branch1%\nuntil not (%cond%);"
 	},
 	"assign": {
-		"template":"%left% := %right%;"
+		"template":"%dest% := %src%;"
 	},
 	"process": {
 		"template": "%text%;"

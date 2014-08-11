@@ -15,7 +15,7 @@
 		"template":"while True:%branch1%\n\tif %cond%:\n\t\tbreak"
 	},
 	"assign": {
-		"template":"%left% = %right%;"
+		"template":"%dest% = %src%;"
 	},
 	"process": {
 		"template": "%text%;"
