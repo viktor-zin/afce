@@ -93,11 +93,11 @@
     </message>
     <message>
         <source>C</source>
-        <translation type="vanished">C</translation>
+        <translation type="obsolete">C</translation>
     </message>
     <message>
         <source>C++</source>
-        <translation type="vanished">C++</translation>
+        <translation type="obsolete">C++</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="313"/>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <source>Pascal</source>
-        <translation type="vanished">Pascal</translation>
+        <translation type="obsolete">Pascal</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="349"/>
@@ -205,15 +205,15 @@
     </message>
     <message>
         <source>PHP</source>
-        <translation type="vanished">PHP</translation>
+        <translation type="obsolete">PHP</translation>
     </message>
     <message>
         <source>JavaScript</source>
-        <translation type="vanished">JavaScript</translation>
+        <translation type="obsolete">JavaScript</translation>
     </message>
     <message>
         <source>Python</source>
-        <translation type="vanished">Python</translation>
+        <translation type="obsolete">Python</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="361"/>
@@ -271,7 +271,7 @@
     </message>
     <message>
         <source>Do you really want to close afce?</source>
-        <translation type="vanished">Вы действительно хотите закрыть afce?</translation>
+        <translation type="obsolete">Вы действительно хотите закрыть afce?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="1181"/>
@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>Close Help window</source>
-        <translation type="vanished">Закрыть окно справки</translation>
+        <translation type="obsolete">Закрыть окно справки</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="310"/>
@@ -473,21 +473,21 @@
     <message>
         <source>Hide the source code panel</source>
         <oldsource>Hide source code panel</oldsource>
-        <translation type="vanished">Скрыть панель исходного кода</translation>
+        <translation type="obsolete">Скрыть панель исходного кода</translation>
     </message>
     <message>
         <source>Show the tool panel</source>
         <oldsource>Show tool panel</oldsource>
-        <translation type="vanished">Показать панель инструментов</translation>
+        <translation type="obsolete">Показать панель инструментов</translation>
     </message>
     <message>
         <source>Show the source code panel</source>
         <oldsource>Show source code panel</oldsource>
-        <translation type="vanished">Показать панель исходного кода</translation>
+        <translation type="obsolete">Показать панель исходного кода</translation>
     </message>
     <message>
         <source>Zoom:</source>
-        <translation type="vanished">Масштаб:</translation>
+        <translation type="obsolete">Масштаб:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="338"/>
@@ -549,7 +549,7 @@
     </message>
     <message>
         <source>Content:</source>
-        <translation type="vanished">Содержимое:</translation>
+        <translation type="obsolete">Содержимое:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="973"/>
@@ -598,51 +598,51 @@
     <name>QObject</name>
     <message>
         <source>(* empty process *)</source>
-        <translation type="vanished">(* пустой процесс *)</translation>
+        <translation type="obsolete">(* пустой процесс *)</translation>
     </message>
     <message>
         <source>(* no destination *)</source>
-        <translation type="vanished">(* нет назначения *)</translation>
+        <translation type="obsolete">(* нет назначения *)</translation>
     </message>
     <message>
         <source>(* no source *)</source>
-        <translation type="vanished">(* нет источника *)</translation>
+        <translation type="obsolete">(* нет источника *)</translation>
     </message>
     <message>
         <source>(* no condition *)</source>
-        <translation type="vanished">(* нет условия *)</translation>
+        <translation type="obsolete">(* нет условия *)</translation>
     </message>
     <message>
         <source>(* no variable *)</source>
-        <translation type="vanished">(* нет переменной *)</translation>
+        <translation type="obsolete">(* нет переменной *)</translation>
     </message>
     <message>
         <source>(* no value *)</source>
-        <translation type="vanished">(* нет значения *)</translation>
+        <translation type="obsolete">(* нет значения *)</translation>
     </message>
     <message>
         <source>/* empty process */</source>
-        <translation type="vanished">/* пустой процесс */</translation>
+        <translation type="obsolete">/* пустой процесс */</translation>
     </message>
     <message>
         <source>/* no destination */</source>
-        <translation type="vanished">/* нет назначения */</translation>
+        <translation type="obsolete">/* нет назначения */</translation>
     </message>
     <message>
         <source>/* no source */</source>
-        <translation type="vanished">/* нет источника */</translation>
+        <translation type="obsolete">/* нет источника */</translation>
     </message>
     <message>
         <source>/* no condition */</source>
-        <translation type="vanished">/* нет условия */</translation>
+        <translation type="obsolete">/* нет условия */</translation>
     </message>
     <message>
         <source>/* no variable */</source>
-        <translation type="vanished">/* нет переменной */</translation>
+        <translation type="obsolete">/* нет переменной */</translation>
     </message>
     <message>
         <source>/* no value */</source>
-        <translation type="vanished">/* нет значения */</translation>
+        <translation type="obsolete">/* нет значения */</translation>
     </message>
 </context>
 <context>

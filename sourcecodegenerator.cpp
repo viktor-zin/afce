@@ -26,8 +26,7 @@ void SourceCodeGenerator::loadRule(const QString &fileName) {
 }
 
 void SourceCodeGenerator::ruleFromJSON(const QByteArray &json) {
-    QJsonParseError err;
-    rule = QJsonDocument::fromJson(json, &err);
+    rule = QJsonDocument::fromJson(json);
 }
 
 QString SourceCodeGenerator::applyRule(const QDomDocument &xml) {
