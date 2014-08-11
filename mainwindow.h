@@ -179,6 +179,7 @@ public slots:
   void docToolsVisibilityChanged(bool visible);
   void docCodeVisibilityChanged(bool visible);
 
+  void slotOpenDocument(const QString &fn);
 signals:
   void documentLoaded();
   void documentSaved();

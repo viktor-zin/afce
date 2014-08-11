@@ -88,6 +88,16 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(document(), SIGNAL(modified()), SLOT(slotDocumentChanged()));
     connect(this, SIGNAL(documentLoaded()), SLOT(slotDocumentLoaded()));
     connect(this, SIGNAL(documentSaved()), SLOT(slotDocumentSaved()));
+
+    if (qApp->arguments().size() > 1) {
+        QFile test(qApp->arguments().at(1));
+        if(test.exists()) {
+            slotOpenDocument(qApp->arguments().at(1));
+        }
+        else {
+            QMessageBox::critical(this, tr("Failed to open a file"), tr("Unable to open file '%1'.").arg(qApp->arguments().at(1)));
+        }
+    }
 }
 
 
@@ -525,23 +535,28 @@ void MainWindow::slotFileOpen()
             if(QMessageBox::warning(this, tr("Unsaved changes"), tr("You are about to open another document. It will discard all unsaved changes in the current document."),
                                     QMessageBox::Ok | QMessageBox::Cancel) != QMessageBox::Ok)
                 return;
+        slotOpenDocument(fn);
 
-        emit documentUnloaded();
-        fileName = fn;
-        setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
-        QFile xml(fileName);
-        if (xml.exists())
-        {
-            xml.open(QIODevice::ReadOnly | QIODevice::Text);
-            QDomDocument doc;
-            if (doc.setContent(&xml, false))
-            {
-                document()->root()->setXmlNode(doc.firstChildElement());
-                document()->setZoom(1);
-            }
-        }
-        emit documentLoaded();
     }
+}
+
+void MainWindow::slotOpenDocument(const QString &fn) {
+    emit documentUnloaded();
+    fileName = fn;
+    setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
+    QFile xml(fileName);
+    if (xml.exists())
+    {
+        xml.open(QIODevice::ReadOnly | QIODevice::Text);
+        QDomDocument doc;
+        if (doc.setContent(&xml, false))
+        {
+            document()->root()->setXmlNode(doc.firstChildElement());
+            document()->setZoom(1);
+        }
+    }
+    emit documentLoaded();
+
 }
 
 void MainWindow::slotFilePrint()

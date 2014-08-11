@@ -1,0 +1,6 @@
+<mime-info>
+<mime-type type="application/x-afce">
+  <comment xml:lang="en">AFCE</comment>
+  <glob pattern="*.afc" />
+</mime-type>
+</mime-info>
