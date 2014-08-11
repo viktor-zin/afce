@@ -1,0 +1,39 @@
+{
+	"algorithm" : {
+		"template" : "main:%branch1%\nend"
+	},
+	"if": {
+		"template":"if %cond% then%branch1%\nelse%branch2%\nend if"
+	},
+	"for": {
+		"template":"for %var% = %from% to %to%%branch1%\nnext %var%"
+	},
+	"pre": {
+		"template":"while %cond%%branch1%\nend while"
+	},
+	"post": {
+		"template":"do%branch1%\nuntil not (%cond%)"
+	},
+	"assign": {
+		"template":"%dest% = %src%"
+	},
+	"process": {
+		"template": "%text%"
+	},
+	"io": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix" : "input "
+	},
+
+	"ou": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix" : "print "
+
+	}
+}

@@ -15,13 +15,13 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="276"/>
-        <location filename="mainwindow.cpp" line="941"/>
+        <location filename="mainwindow.cpp" line="942"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="277"/>
-        <location filename="mainwindow.cpp" line="945"/>
+        <location filename="mainwindow.cpp" line="946"/>
         <source>Output</source>
         <translation type="unfinished"></translation>
     </message>
@@ -167,30 +167,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="362"/>
         <source>&amp;Select programming language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="364"/>
-        <location filename="mainwindow.cpp" line="530"/>
-        <location filename="mainwindow.cpp" line="608"/>
+        <location filename="mainwindow.cpp" line="365"/>
+        <location filename="mainwindow.cpp" line="531"/>
+        <location filename="mainwindow.cpp" line="609"/>
         <source>%1 - Algorithm Flowchart Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="505"/>
+        <location filename="mainwindow.cpp" line="506"/>
         <source>Afce</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="519"/>
+        <location filename="mainwindow.cpp" line="520"/>
         <source>Select a file to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="519"/>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="520"/>
+        <location filename="mainwindow.cpp" line="605"/>
         <source>Algorithm flowcharts (*.afc)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -216,17 +216,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="367"/>
+        <location filename="mainwindow.cpp" line="368"/>
         <source>Help window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1181"/>
+        <location filename="mainwindow.cpp" line="1182"/>
         <source>Zoom: %1 %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="860"/>
+        <location filename="mainwindow.cpp" line="861"/>
         <source>Process</source>
         <translation type="unfinished"></translation>
     </message>
@@ -237,7 +237,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="273"/>
-        <location filename="mainwindow.cpp" line="901"/>
+        <location filename="mainwindow.cpp" line="902"/>
         <source>FOR loop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -277,28 +277,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="366"/>
+        <location filename="mainwindow.cpp" line="367"/>
         <source>Algorithm Flowchart Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="743"/>
-        <location filename="mainwindow.cpp" line="844"/>
+        <location filename="mainwindow.cpp" line="744"/>
+        <location filename="mainwindow.cpp" line="845"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="845"/>
+        <location filename="mainwindow.cpp" line="846"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1156"/>
+        <location filename="mainwindow.cpp" line="1157"/>
         <source>%1 image (*.%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="856"/>
+        <location filename="mainwindow.cpp" line="857"/>
         <source>&amp;Content:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,91 +423,91 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="505"/>
+        <location filename="mainwindow.cpp" line="506"/>
         <source>There are unsaved changes. Do you really want to close afce?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="524"/>
+        <location filename="mainwindow.cpp" line="525"/>
         <source>Unsaved changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="524"/>
+        <location filename="mainwindow.cpp" line="525"/>
         <source>You are about to open another document. It will discard all unsaved changes in the current document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="605"/>
         <source>Select a file to save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="629"/>
-        <location filename="mainwindow.cpp" line="652"/>
+        <location filename="mainwindow.cpp" line="630"/>
+        <location filename="mainwindow.cpp" line="653"/>
         <source>Select a file to export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="744"/>
+        <location filename="mainwindow.cpp" line="745"/>
         <source>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Algorithm Flowchart Editor&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Viktor Zinkevich. All rights reserved.&lt;/p&gt; &lt;p&gt;Contributors:  Sergey Ryabenko, Alexey Loginov&lt;/p&gt; &lt;p&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND,&lt;br&gt; INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND&lt;br&gt; FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="864"/>
+        <location filename="mainwindow.cpp" line="865"/>
         <source>Branching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="865"/>
-        <location filename="mainwindow.cpp" line="871"/>
-        <location filename="mainwindow.cpp" line="877"/>
+        <location filename="mainwindow.cpp" line="866"/>
+        <location filename="mainwindow.cpp" line="872"/>
+        <location filename="mainwindow.cpp" line="878"/>
         <source>&amp;Condition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="870"/>
+        <location filename="mainwindow.cpp" line="871"/>
         <source>WHILE loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="876"/>
+        <location filename="mainwindow.cpp" line="877"/>
         <source>Post-condition loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="906"/>
+        <location filename="mainwindow.cpp" line="907"/>
         <source>&amp;Variable:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="907"/>
+        <location filename="mainwindow.cpp" line="908"/>
         <source>&amp;Start value:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="908"/>
+        <location filename="mainwindow.cpp" line="909"/>
         <source>&amp;End value:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="949"/>
+        <location filename="mainwindow.cpp" line="950"/>
         <source>Specify the names of the variables (each per line):</source>
         <oldsource>Specify variable names to input (each per line):</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="973"/>
+        <location filename="mainwindow.cpp" line="974"/>
         <source>Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="977"/>
+        <location filename="mainwindow.cpp" line="978"/>
         <source>&amp;Source:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="978"/>
+        <location filename="mainwindow.cpp" line="979"/>
         <source>&amp;Destination:</source>
         <translation type="unfinished"></translation>
     </message>

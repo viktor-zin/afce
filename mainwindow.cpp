@@ -351,6 +351,7 @@ void MainWindow::retranslateUi()
     codeLanguage->addItem("JavaScript", "js");
     codeLanguage->addItem("Python", "py");
     codeLanguage->addItem("VBScript", "vbs");
+    codeLanguage->addItem("BASIC-256", "bas256");
 
     if (i!=-1)
         codeLanguage->setCurrentIndex(i);
