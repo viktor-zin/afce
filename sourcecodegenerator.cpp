@@ -43,7 +43,7 @@ QString SourceCodeGenerator::processElement(const QDomNode &element, int level) 
        if(obj.contains("list")) {
            QJsonArray list = obj["list"].toArray();
            if (list.contains(QJsonValue(element.attributes().item(i).nodeName()))) {
-                QStringList sl = element.attributes().item(i).nodeValue().split(obj["separator"].toString());
+                QStringList sl = element.attributes().item(i).nodeValue().split(obj["separator"].toString(), QString::SkipEmptyParts);
                 QString prefix = obj["prefix"].toString();
                 QString suffix = obj["suffix"].toString();
                 for(int k=0; k < sl.size(); ++k) {

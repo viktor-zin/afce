@@ -307,7 +307,7 @@
     <message>
         <location filename="mainwindow.cpp" line="278"/>
         <source>FOR loop (C/C++)</source>
-        <translation>Цикл for (в стиле Си/Си++)</translation>
+        <translation type="unfinished">Цикл for (в стиле C/C++)</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="287"/>

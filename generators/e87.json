@@ -1,36 +1,36 @@
 {
 	"algorithm" : {
-		"template" : "алг Алгоритм\nнач%branch1%\nкон"
-	},
+		"template" : "\u0430\u043B\u0433 \u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\n\u043D\u0430\u0447%branch1%\n\u043A\u043E\u043D"
+		},
 	"if": {
-		"template":"если %cond%\nто%branch1%\nиначе%branch2%\nвсе"
-	},
+		"template":"\u0435\u0441\u043B\u0438 %cond%\n\u0442\u043E%branch1%\n\u0438\u043D\u0430\u0447\u0435%branch2%\n\u0432\u0441\u0435"
+		},
 	"for": {
-		"template":"нц для %var% от %from% до %to%%branch1%\nкц"
+		"template":"\u043D\u0446 \u0434\u043B\u044F %var% \u043E\u0442 %from% \u0434\u043E %to%%branch1%\n\u043A\u0446"
 	},
-	"pre": {
-		"template":"нц пока %cond%%branch1%\nкц"
-	},
-	"post": {
-		"template":"%branch1%\nнц пока %cond%%branch1%\nкц"
-	},
-	"assign": {
-		"template":"%dest% := %src%"
-	},
-	"process": {
-		"template": "%text%;"
-	},
-	"io": {
-		"template": "ввод %vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	},
+		"pre": {
+			"template":"\u043D\u0446 \u043F\u043E\u043A\u0430 %cond%%branch1%\n\u043A\u0446"
+		},
+		"post": {
+			"template":"%branch1%\n\u043D\u0446 \u043F\u043E\u043A\u0430 %cond%%branch1%\n\u043A\u0446"
+		},
+		"assign": {
+			"template":"%dest% := %src%"
+		},
+		"process": {
+			"template": "%text%"
 
-	"ou": {
-		"template": "ввывод %vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	}
-}
+		},
+		"io": {
+			"template": "\u0432\u0432\u043E\u0434 %vars%",
+			"list": ["vars"],
+			"separator": ",",
+			"glue": ", "
+		},
+		"ou": {
+			"template": "\u0432\u044B\u0432\u043E\u0434 %vars%",
+			"list": ["vars"],
+			"separator": ",",
+			"glue": ", "
+			}
+		}

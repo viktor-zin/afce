@@ -962,7 +962,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
                 if(aBlock->flowChart())
                 {
                     aBlock->flowChart()->makeUndo();
-                    aBlock->attributes["vars"] = te->toPlainText().split("\n").join(",");
+                    aBlock->attributes["vars"] = te->toPlainText().split("\n", QString::SkipEmptyParts).join(",");
                     aBlock->flowChart()->update();
                     aBlock->flowChart()->makeChanged();
                 }
