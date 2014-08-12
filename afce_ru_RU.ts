@@ -92,14 +92,6 @@
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <source>C</source>
-        <translation type="obsolete">C</translation>
-    </message>
-    <message>
-        <source>C++</source>
-        <translation type="obsolete">C++</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="323"/>
         <source>&amp;Tools</source>
         <translation>&amp;Инструменты</translation>
@@ -195,25 +187,9 @@
         <translation>Исходный код</translation>
     </message>
     <message>
-        <source>Pascal</source>
-        <translation type="obsolete">Pascal</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="359"/>
         <source>Ershov&apos;s algorithm language</source>
         <translation>Алгоритмический язык Ершова</translation>
-    </message>
-    <message>
-        <source>PHP</source>
-        <translation type="obsolete">PHP</translation>
-    </message>
-    <message>
-        <source>JavaScript</source>
-        <translation type="obsolete">JavaScript</translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation type="obsolete">Python</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="372"/>
@@ -270,10 +246,6 @@
         <translation></translation>
     </message>
     <message>
-        <source>Do you really want to close afce?</source>
-        <translation type="obsolete">Вы действительно хотите закрыть afce?</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="1197"/>
         <source>Zoom: %1 %</source>
         <translation>Масштаб: %1 %</translation>
@@ -291,7 +263,7 @@
     <message>
         <location filename="mainwindow.cpp" line="98"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Не удается открыть файл &quot;%1&quot;.</translation>
+        <translation>Не удаётся открыть файл &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="282"/>
@@ -347,12 +319,12 @@
     <message>
         <location filename="mainwindow.cpp" line="535"/>
         <source>Unsaved changes</source>
-        <translation>Несохраненные изменения</translation>
+        <translation>Несохранённые изменения</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="535"/>
         <source>You are about to open another document. It will discard all unsaved changes in the current document.</source>
-        <translation>Вы собираетесь открыть другой документ. Это приведет к потере не сохраненных изменений в текущем документе.</translation>
+        <translation>Вы собираетесь открыть другой документ. Это приведёт к потере несохранённых изменений в текущем документе.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="759"/>
@@ -461,10 +433,6 @@
         <translation>Открыть/закрыть окно справки</translation>
     </message>
     <message>
-        <source>Close Help window</source>
-        <translation type="obsolete">Закрыть окно справки</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="320"/>
         <source>Information about authors</source>
         <translation>Информация об авторах</translation>
@@ -481,25 +449,6 @@
         <translation>Показать/скрыть панель исходного кода</translation>
     </message>
     <message>
-        <source>Hide the source code panel</source>
-        <oldsource>Hide source code panel</oldsource>
-        <translation type="obsolete">Скрыть панель исходного кода</translation>
-    </message>
-    <message>
-        <source>Show the tool panel</source>
-        <oldsource>Show tool panel</oldsource>
-        <translation type="obsolete">Показать панель инструментов</translation>
-    </message>
-    <message>
-        <source>Show the source code panel</source>
-        <oldsource>Show source code panel</oldsource>
-        <translation type="obsolete">Показать панель исходного кода</translation>
-    </message>
-    <message>
-        <source>Zoom:</source>
-        <translation type="obsolete">Масштаб:</translation>
-    </message>
-    <message>
         <location filename="mainwindow.cpp" line="348"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
@@ -507,7 +456,7 @@
     <message>
         <location filename="mainwindow.cpp" line="516"/>
         <source>There are unsaved changes. Do you really want to close afce?</source>
-        <translation>Имеются несохраненные изменения. Вы действительно хотите закрыть afce?</translation>
+        <translation>Имеются несохранённые изменения. Вы действительно хотите закрыть afce?</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="620"/>
@@ -556,10 +505,6 @@
         <location filename="mainwindow.cpp" line="924"/>
         <source>&amp;End value:</source>
         <translation>&amp;Конечное значение:</translation>
-    </message>
-    <message>
-        <source>Content:</source>
-        <translation type="obsolete">Содержимое:</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="989"/>
