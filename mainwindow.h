@@ -164,7 +164,7 @@ public slots:
   void slotToolOu();
   void slotToolCase();
   void slotToolForCStyle();
-  void slotToolAssing();
+  void slotToolAssign();
   void slotDocumentSaved();
   void slotDocumentChanged();
   void slotDocumentLoaded();

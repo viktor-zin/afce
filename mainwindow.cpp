@@ -231,6 +231,7 @@ void MainWindow::createToolbox()
     tbArrow = createToolButton(":/images/arrow.png");
     tbArrow->setChecked(true);
     tbProcess = createToolButton(":/images/simple.png");
+    tbAssign = createToolButton(":/images/assign.png");
     tbIf = createToolButton(":/images/if.png");
     tbFor = createToolButton(":/images/for.png");
     tbWhilePre = createToolButton(":/images/while.png");
@@ -241,6 +242,7 @@ void MainWindow::createToolbox()
 
     connect(tbArrow, SIGNAL(pressed()), this, SLOT(slotToolArrow()));
     connect(tbProcess, SIGNAL(pressed()), this, SLOT(slotToolProcess()));
+    connect(tbAssign, SIGNAL(pressed()), this, SLOT(slotToolAssign()));
     connect(tbIf, SIGNAL(pressed()), this, SLOT(slotToolIf()));
     connect(tbFor, SIGNAL(pressed()), this, SLOT(slotToolFor()));
     connect(tbWhilePre, SIGNAL(pressed()), this, SLOT(slotToolWhilePre()));
@@ -257,6 +259,7 @@ void MainWindow::createToolbox()
     tl->addWidget(tbIo);
     tl->addWidget(tbOu);
     tl->addWidget(tbProcess);
+    tl->addWidget(tbAssign);
     tl->addWidget(tbIf);
     tl->addWidget(tbFor);
     tl->addWidget(tbWhilePre);
@@ -278,7 +281,8 @@ void MainWindow::retranslateUi()
 {
     dockTools->setWindowTitle(tr("Tools"));
     tbArrow->setText(tr("Select"));
-    tbProcess->setText(tr("Process / Assign"));
+    tbProcess->setText(tr("Process"));
+    tbAssign->setText(tr("Assign"));
     tbIf->setText(tr("If...then...else"));
     tbFor->setText(tr("FOR loop"));
     tbWhilePre->setText(tr("loop with pre-condition"));
@@ -1022,7 +1026,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
     }
 }
 
-void MainWindow::slotToolAssing()
+void MainWindow::slotToolAssign()
 {
     if(document())
     {
@@ -1047,7 +1051,7 @@ void MainWindow::slotToolProcess()
 {
     if(document())
     {
-        document()->setBuffer("<algorithm><branch><process text=\"z = x + y\"/></branch></algorithm>");
+        document()->setBuffer("<algorithm><branch><process text=\"func()\"/></branch></algorithm>");
         if(!document()->buffer().isEmpty())
         {
             document()->setStatus(QFlowChart::Insertion);
