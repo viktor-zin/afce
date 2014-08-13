@@ -523,26 +523,26 @@
 <context>
     <name>QBlock</name>
     <message>
-        <location filename="zvflowchart.cpp" line="786"/>
+        <location filename="zvflowchart.cpp" line="817"/>
         <source>BEGIN</source>
         <translation>НАЧАЛО</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="795"/>
+        <location filename="zvflowchart.cpp" line="826"/>
         <source>END</source>
         <translation>КОНЕЦ</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="884"/>
-        <location filename="zvflowchart.cpp" line="928"/>
-        <location filename="zvflowchart.cpp" line="965"/>
+        <location filename="zvflowchart.cpp" line="915"/>
+        <location filename="zvflowchart.cpp" line="959"/>
+        <location filename="zvflowchart.cpp" line="996"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="zvflowchart.cpp" line="891"/>
-        <location filename="zvflowchart.cpp" line="929"/>
-        <location filename="zvflowchart.cpp" line="966"/>
+        <location filename="zvflowchart.cpp" line="922"/>
+        <location filename="zvflowchart.cpp" line="960"/>
+        <location filename="zvflowchart.cpp" line="997"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>

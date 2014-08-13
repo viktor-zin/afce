@@ -228,6 +228,7 @@ void QFlowChart::realignObjects()
 {
   if(root())
   {
+    makeBackwardCompatibility();
     root()->adjustSize(zoom());
     root()->adjustPosition(0,0);
     resize(root()->width, root()->height);
@@ -235,6 +236,13 @@ void QFlowChart::realignObjects()
     update();
   }
 }
+
+void QFlowChart::makeBackwardCompatibility() {
+    if(root()) {
+        root()->makeBackwardCompatibility();
+    }
+}
+
 
 void QFlowChart::setBuffer(const QString & aBuffer)
 {
@@ -499,6 +507,29 @@ QBlock::~QBlock()
   }
 }
 
+void QBlock::makeBackwardCompatibility() {
+
+    // it supports obsoletted attributes t1, t2, ..., t8
+    // and converts to attribute vars with comma delemited values
+    // versions before 0.9.7
+    if(type() == "io" || type() == "ou") {
+        QStringList sl;
+        for(int i = 1; i <= 8; ++i) {
+            QString attr = QString("t%1").arg(i);
+            if(attributes.value(attr, "") != "")
+                sl << attributes.value(attr, "");
+            attributes.remove(attr);
+        }
+        if(!sl.empty()) {
+            QString vars = sl.join(",");
+            attributes.insert("vars", vars);
+        }
+    }
+
+    for(int i = 0; i < items.size(); ++i) {
+        items.at(i)->makeBackwardCompatibility();
+    }
+}
 
 //QBlock::QBlock(const QBlock & aBlock)
 //{

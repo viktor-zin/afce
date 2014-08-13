@@ -95,6 +95,7 @@ class QBlock : public QObject
     double leftMargin;
     double rightMargin;
     static void drawCaption(QPainter *canvas, const QRectF & rect, const double zoomFactor, const QString & text);
+    void makeBackwardCompatibility();
 };
 
 
@@ -156,8 +157,9 @@ class QFlowChart : public QWidget
     bool canPaste() const;
     void makeChanged();
     void makeUndo();
+    void makeBackwardCompatibility();
 
-  signals:
+signals:
     void zoomChanged(const double aZoom);
     void statusChanged();
     void editBlock(QBlock *block);
