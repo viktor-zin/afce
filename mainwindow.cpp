@@ -366,6 +366,7 @@ void MainWindow::retranslateUi()
     codeLanguage->addItem("Python", "py");
     codeLanguage->addItem("VBScript", "vbs");
     codeLanguage->addItem("BASIC-256", "bas256");
+    codeLanguage->addItem("FreeBASIC", "freebasic");
     codeLanguage->addItem("Perl", "perl");
 
     if (i!=-1)
