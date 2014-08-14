@@ -6,13 +6,10 @@ Name "Редактор блок-схем алгоритмов"
 !define BUILDDIR ..\build-afce-Desktop_Qt_5_2_1_MinGW_32bit-Debug\release
 OutFile "..\afce-${VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\afce"
-;BGGradient 0000FF 000000 FFFFFF
-;MiscButtonText "< Назад" "Далее >" "Отмена" "Закрыть"
-;InstallButtonText "Установить"
-;DirText "Укажите папку, куда будет учтаневлен Клиент." "Укажите директорию:" "Обзор..."
+
 AutoCloseWindow true
 ShowInstDetails show
-;CompletedText "Готово"
+
 XPStyle on
 
 LoadLanguageFile "${NSISDIR}\Contrib\Language files\Russian.nlf"
@@ -86,7 +83,6 @@ Section "Shortcuts"
 SectionEnd
 
 Section "Uninstall"
-
   RMDIR /r "$INSTDIR"
   RMDIR /r "$SMPROGRAMS\Редактор блок-схем"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce"
@@ -94,6 +90,4 @@ Section "Uninstall"
   DeleteRegKey HKCR ".afc"
   DeleteRegKey HKCR "afcfile"
   System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
-
-
 SectionEnd
