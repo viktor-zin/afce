@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US": "VBScript, Visual Basic"
+    },
 	"algorithm" : {
 		"template" : "Sub Main()%branch1%\nEnd Sub"
 	},

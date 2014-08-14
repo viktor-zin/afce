@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"FreeBASIC"
+    },
 	"algorithm" : {
 		"template" : "%branch1%\n"
 	},

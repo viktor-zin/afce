@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"ECMAScript (JavaScript, ActionScript)"
+    },
 	"algorithm" : {
 		"template" : "function main() {%branch1%\n}"
 	},

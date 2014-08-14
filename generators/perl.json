@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"Perl"
+    },
     "algorithm" : {
         "template" : "sub main {%branch1%\n}"
     },

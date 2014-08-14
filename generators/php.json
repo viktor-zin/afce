@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"PHP"
+    },
 	"algorithm" : {
 		"template" : "function main() {%branch1%\n}"
 	},

@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"Python"
+    },
 	"algorithm" : {
 		"template" : "def main():%branch1%\n"
 	},

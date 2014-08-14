@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"BASIC-256"
+    },
 	"algorithm" : {
 		"template" : "main:%branch1%\nend"
 	},

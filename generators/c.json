@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"C"
+    },
 	"if": {
 		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
 	},

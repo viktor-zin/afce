@@ -357,17 +357,29 @@ void MainWindow::retranslateUi()
 
     int i = codeLanguage->currentIndex();
     codeLanguage->clear();
-    codeLanguage->addItem("Pascal", "pas");
-    codeLanguage->addItem("C", "c");
-    codeLanguage->addItem("C++", "cpp");
-    codeLanguage->addItem(tr("Ershov's algorithm language"), "e87");
-    codeLanguage->addItem("PHP", "php");
-    codeLanguage->addItem("JavaScript", "js");
-    codeLanguage->addItem("Python", "py");
-    codeLanguage->addItem("VBScript", "vbs");
-    codeLanguage->addItem("BASIC-256", "bas256");
-    codeLanguage->addItem("FreeBASIC", "freebasic");
-    codeLanguage->addItem("Perl", "perl");
+    QDir gd("generators:");
+    QStringList gens = gd.entryList(QStringList() << "*.json", QDir::Files, QDir::Name);
+
+    for (int g = 0; g < gens.size(); ++g) {
+        QFile f(gd.absoluteFilePath(gens[g]));
+        QString lang_name = QFileInfo(f.fileName()).baseName();
+        if(f.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            QJsonDocument json = QJsonDocument::fromJson(f.readAll());
+            f.close();
+            QJsonObject obj = json.object();
+            QString loc = QLocale::system().name();
+            if(obj.contains("name")) {
+                QJsonObject jn = obj.value("name").toObject();
+                if(jn.contains(loc)) {
+                    lang_name = jn.value(loc).toString();
+                }
+                else if (jn.contains("en_US")) {
+                    lang_name = jn.value("en_US").toString();
+                }
+            }
+            codeLanguage->addItem(lang_name, QFileInfo(f.fileName()).baseName());
+        }
+    }
 
     if (i!=-1)
         codeLanguage->setCurrentIndex(i);

@@ -1,4 +1,7 @@
 {
+    "name": {
+        "en_US":"Pascal"
+    },
 	"algorithm" : {
 		"template" : "program algorithm;\nbegin%branch1%\nend."
 	},
