@@ -638,6 +638,7 @@ void MainWindow::slotFileSaveAs()
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to save"), "", tr("Algorithm flowcharts (*.afc)"));
     if (!fn.isEmpty())
     {
+        if(fn.right(4).toLower() != ".afc") fn += ".afc";
         fileName = fn;
         setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
         slotFileSave();
@@ -660,9 +661,17 @@ void MainWindow::slotDocumentLoaded() {
 void MainWindow::slotFileExport()
 {
     QString filter = getWriteFormatFilter();
-    QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", filter);
+    QString sf = getFilterFor("png");
+    QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", filter, &sf);
     if(!fn.isEmpty())
     {
+        qDebug() << "Selected filter: " << sf;
+        QRegExp rx("\\(\\*(\\.[^\\)]+)\\)$");
+        if(rx.indexIn(sf)!= -1) {
+            if(rx.cap(1).toLower() != fn.right(4).toLower()) {
+                fn += rx.cap(1).toLower();
+            }
+        }
         double oldZoom = document()->zoom();
         document()->setZoom(1);
         document()->setStatus(QFlowChart::Display);
@@ -686,6 +695,7 @@ void MainWindow::slotFileExportSVG()
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", getFilterFor("svg"));
     if(!fn.isEmpty())
     {
+        if(fn.right(4).toLower() != ".svg") fn += ".svg";
         double oldZoom = document()->zoom();
         document()->setZoom(1);
         document()->setStatus(QFlowChart::Display);
