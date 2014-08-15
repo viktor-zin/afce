@@ -40,3 +40,16 @@ TRANSLATIONS += afce_en_US.ts \
 win32 {
     RC_FILE += afce.rc
 }
+
+updatets.commands = lupdate $$_PRO_FILE_
+updatets.target = updatets
+
+updateqm.commands = lrelease $$_PRO_FILE_
+updateqm.target = updateqm
+
+copyqm.target = copyqm
+copyqm.commands = $(COPY) $$shell_path($$_PRO_FILE_PWD_/*.qm) ${DESTDIR}
+
+QMAKE_EXTRA_TARGETS += updatets updateqm copyqm
+
+POST_TARGETDEPS += updatets updateqm copyqm
