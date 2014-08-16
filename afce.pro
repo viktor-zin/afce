@@ -47,9 +47,30 @@ updatets.target = updatets
 updateqm.commands = lrelease $$_PRO_FILE_
 updateqm.target = updateqm
 
-copyqm.target = copyqm
-copyqm.commands = $$QMAKE_COPY $$shell_path($$_PRO_FILE_PWD_/ts/*.qm) ${DESTDIR}
 
-QMAKE_EXTRA_TARGETS += updatets updateqm copyqm
+QMAKE_EXTRA_TARGETS += updatets updateqm
+POST_TARGETDEPS += updatets updateqm
 
-POST_TARGETDEPS += updatets updateqm copyqm
+win32 {
+    copyqm.target = copyqm
+    copyqm.commands = $$QMAKE_COPY $$shell_path($$_PRO_FILE_PWD_/ts/*.qm) ${DESTDIR}
+
+    QMAKE_EXTRA_TARGETS += copyqm
+    POST_TARGETDEPS += copyqm
+}
+
+    bins.path = /usr/bin
+    bins.files = ${DESTDIR_TARGET}
+    help.path = /usr/share/afce/help
+    help.files = help/*
+    share.path = /usr/share/afce
+    share.files = ts/*.qm
+    icons.path = /usr/share/icons
+    icons.files = afc.ico
+    pixmaps.path = /usr/share/pixmaps
+    pixmaps.files = afce.png
+    desktopfile.path = /usr/share/applications
+    desktopfile.files = afce.desktop
+    mime.path = /usr/share/mime
+    mime.files = afce.xml
+    INSTALLS += bins help share icons desktopfile pixmaps mime
