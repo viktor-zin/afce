@@ -323,7 +323,7 @@ void QFlowChart::mousePressEvent(QMouseEvent *pEvent)
 
 void QFlowChart::mouseDoubleClickEvent(QMouseEvent * event)
 {
-  if(status() == Selectable)
+  if(status() == Selectable && event->modifiers() == Qt::NoModifier)
   {
     QBlock *block = root()->blockAt(event->x(), event->y());
     if (block)

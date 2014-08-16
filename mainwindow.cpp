@@ -38,6 +38,15 @@ void AfcScrollArea::mousePressEvent(QMouseEvent *event)
     emit mouseDown();
 }
 
+void AfcScrollArea::wheelEvent(QWheelEvent *event)
+{
+    if((event->modifiers() & Qt::ControlModifier) != 0) {
+        event->ignore();
+        emit zoomStepped(event->delta() / 120);
+    }
+    else event->accept();
+}
+
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags), fDocument(0)
@@ -146,18 +155,20 @@ void MainWindow::setupUi()
     bodyLayout->addWidget(saScheme);
     bodyLayout->addWidget(zoomPanel);
     body->setLayout(bodyLayout);
-    QSlider *zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
+    zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
     zoomLabel = new QLabel;
     QHBoxLayout *zoomLayout= new QHBoxLayout;
     zoomLayout->addStretch();
     zoomLayout->addWidget(zoomLabel);
     zoomLayout->addWidget(zoomSlider);
     zoomPanel->setLayout(zoomLayout);
-    zoomSlider->setRange(10, 500);
-    zoomSlider->setSingleStep(10);
-    zoomSlider->setPageStep(100);
+    zoomSlider->setRange(1, 20);
+    zoomSlider->setSingleStep(1);
+    zoomSlider->setPageStep(10);
     connect(zoomSlider, SIGNAL(valueChanged(int)),this, SLOT(setZoom(int)));
-    zoomSlider->setValue(100);
+    zoomSlider->setValue(4);
+    connect(saScheme, SIGNAL(zoomStepped(int)), this, SLOT(shiftZoom(int)));
+
     createToolbox();
 
     dockCode = new QDockWidget(this);
@@ -1241,11 +1252,19 @@ void MainWindow::setDocument(QFlowChart * aDocument)
     fDocument->show();
     fDocument->move(0,0);
 }
-void MainWindow::setZoom(int Percents)
+void MainWindow::setZoom(int quarts)
 {
-    zoomLabel->setText(tr("Zoom: %1 %").arg(Percents));
+    if(quarts > 20) quarts = 20;
+    if(quarts < 1) quarts = 1;
+    zoomLabel->setText(tr("Zoom: %1 %").arg(quarts * 25));
     if (document())
     {
-        document()->setZoom(Percents / 100.0);
+        document()->setZoom(quarts * 25 / 100.0);
     }
+}
+
+void MainWindow::shiftZoom(int step)
+{
+    int z = zoomSlider->value();
+    zoomSlider->setValue(z + step);
 }

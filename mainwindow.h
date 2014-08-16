@@ -36,8 +36,10 @@ class AfcScrollArea : public QScrollArea
   Q_OBJECT
   protected:
     virtual void mousePressEvent(QMouseEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
   signals:
     void mouseDown();
+    void zoomStepped(int);
   public:
      explicit AfcScrollArea(QWidget* parent=0) : QScrollArea(parent) { }
     ~AfcScrollArea() { }
@@ -108,6 +110,7 @@ private:
   QLabel *codeLabel;
   QLabel *zoomLabel;
   QLabel *labelMenu;
+  QSlider *zoomSlider;
   //QLabel *labelFile;
 
 
@@ -170,7 +173,8 @@ public slots:
   void slotDocumentLoaded();
 
 
-  void setZoom(int Percents);
+  void setZoom(int quarts);
+  void shiftZoom(int step);
   void slotStatusChanged();
   void slotEditBlock(QBlock *aBlock);
   void updateActions();
