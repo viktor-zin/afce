@@ -666,10 +666,31 @@ void MainWindow::slotFileExport()
     if(!fn.isEmpty())
     {
         qDebug() << "Selected filter: " << sf;
-        QRegExp rx("\\(\\*(\\.[^\\)]+)\\)$");
+        QRegExp rx("\\(\\*([^\\)]+)\\)$");
+        QStringList masks;
         if(rx.indexIn(sf)!= -1) {
-            if(rx.cap(1).toLower() != fn.right(4).toLower()) {
-                fn += rx.cap(1).toLower();
+            // each filter may content several masks splitted by a spaces
+            masks = rx.cap(1).split(" ", QString::SkipEmptyParts);
+
+            bool matches = false;
+            for(int i = 0; i < masks.size(); ++i) {
+                QString ex = masks.at(i);
+                if(ex.startsWith("*")) {
+                    ex = ex.mid(1).toLower();
+                    if(fn.toLower().endsWith(ex)) {
+                        matches = true;
+                        break;
+                    }
+                }
+            }
+
+            // if no extension or a wrong extension is added then the correct extension will be appended
+            if(!matches && !masks.empty()) {
+                QString ex = masks.first();
+                if(ex.startsWith("*")) {
+                    ex = ex.mid(1).toLower();
+                }
+                fn += ex;
             }
         }
         double oldZoom = document()->zoom();

@@ -15,13 +15,13 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="290"/>
-        <location filename="mainwindow.cpp" line="985"/>
+        <location filename="mainwindow.cpp" line="1006"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="291"/>
-        <location filename="mainwindow.cpp" line="989"/>
+        <location filename="mainwindow.cpp" line="1010"/>
         <source>Output</source>
         <translation type="unfinished"></translation>
     </message>
@@ -226,13 +226,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1225"/>
+        <location filename="mainwindow.cpp" line="1246"/>
         <source>Zoom: %1 %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="284"/>
-        <location filename="mainwindow.cpp" line="904"/>
+        <location filename="mainwindow.cpp" line="925"/>
         <source>Process</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,7 +243,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="287"/>
-        <location filename="mainwindow.cpp" line="945"/>
+        <location filename="mainwindow.cpp" line="966"/>
         <source>FOR loop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -288,23 +288,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="787"/>
-        <location filename="mainwindow.cpp" line="888"/>
+        <location filename="mainwindow.cpp" line="808"/>
+        <location filename="mainwindow.cpp" line="909"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="889"/>
+        <location filename="mainwindow.cpp" line="910"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1200"/>
+        <location filename="mainwindow.cpp" line="1221"/>
         <source>%1 image (*.%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="900"/>
+        <location filename="mainwindow.cpp" line="921"/>
         <source>&amp;Content:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -445,71 +445,71 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="665"/>
-        <location filename="mainwindow.cpp" line="695"/>
+        <location filename="mainwindow.cpp" line="716"/>
         <source>Select a file to export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="788"/>
+        <location filename="mainwindow.cpp" line="809"/>
         <source>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Algorithm Flowchart Editor&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Viktor Zinkevich. All rights reserved.&lt;/p&gt; &lt;p&gt;Contributors:  Sergey Ryabenko, Alexey Loginov&lt;/p&gt; &lt;p&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND,&lt;br&gt; INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND&lt;br&gt; FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="908"/>
+        <location filename="mainwindow.cpp" line="929"/>
         <source>Branching</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="909"/>
-        <location filename="mainwindow.cpp" line="915"/>
-        <location filename="mainwindow.cpp" line="921"/>
+        <location filename="mainwindow.cpp" line="930"/>
+        <location filename="mainwindow.cpp" line="936"/>
+        <location filename="mainwindow.cpp" line="942"/>
         <source>&amp;Condition:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="914"/>
+        <location filename="mainwindow.cpp" line="935"/>
         <source>WHILE loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="920"/>
+        <location filename="mainwindow.cpp" line="941"/>
         <source>Post-condition loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="950"/>
+        <location filename="mainwindow.cpp" line="971"/>
         <source>&amp;Variable:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="951"/>
+        <location filename="mainwindow.cpp" line="972"/>
         <source>&amp;Start value:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="952"/>
+        <location filename="mainwindow.cpp" line="973"/>
         <source>&amp;End value:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="993"/>
+        <location filename="mainwindow.cpp" line="1014"/>
         <source>Specify the names of the variables (each per line):</source>
         <oldsource>Specify variable names to input (each per line):</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="285"/>
-        <location filename="mainwindow.cpp" line="1017"/>
+        <location filename="mainwindow.cpp" line="1038"/>
         <source>Assign</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1021"/>
+        <location filename="mainwindow.cpp" line="1042"/>
         <source>&amp;Source:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1022"/>
+        <location filename="mainwindow.cpp" line="1043"/>
         <source>&amp;Destination:</source>
         <translation type="unfinished"></translation>
     </message>
