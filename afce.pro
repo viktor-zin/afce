@@ -35,8 +35,8 @@ HEADERS += mainwindow.h \
     qjson4/QJsonValueRef.h
 RESOURCES += afce.qrc
 CONFIG += release
-TRANSLATIONS += afce_en_US.ts \
-    afce_ru_RU.ts
+TRANSLATIONS += ts/afce_en_US.ts \
+    ts/afce_ru_RU.ts
 win32 {
     RC_FILE += afce.rc
 }
@@ -48,7 +48,7 @@ updateqm.commands = lrelease $$_PRO_FILE_
 updateqm.target = updateqm
 
 copyqm.target = copyqm
-copyqm.commands = $(COPY) $$shell_path($$_PRO_FILE_PWD_/*.qm) ${DESTDIR}
+copyqm.commands = $$QMAKE_COPY $$shell_path($$_PRO_FILE_PWD_/ts/*.qm) ${DESTDIR}
 
 QMAKE_EXTRA_TARGETS += updatets updateqm copyqm
 
