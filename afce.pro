@@ -60,17 +60,19 @@ win32 {
 }
 
     bins.path = /usr/bin
-    bins.files = ${DESTDIR_TARGET}
+    bins.files = $${TARGET}
     help.path = /usr/share/afce/help
     help.files = help/*
-    share.path = /usr/share/afce
-    share.files = ts/*.qm
+    generators.path = /usr/share/afce/generators
+    generators.files = generators/*
+    qm.path = /usr/share/afce
+    qm.extra = find ts -name "*.qm" -exec cp -pr {} $(INSTALL_ROOT)/usr/share/afce \\;
     icons.path = /usr/share/icons
     icons.files = afc.ico
     pixmaps.path = /usr/share/pixmaps
     pixmaps.files = afce.png
     desktopfile.path = /usr/share/applications
     desktopfile.files = afce.desktop
-    mime.path = /usr/share/mime
+    mime.path = /usr/share/mime/packages
     mime.files = afce.xml
-    INSTALLS += bins help share icons desktopfile pixmaps mime
+    INSTALLS += bins help qm icons desktopfile pixmaps mime generators
