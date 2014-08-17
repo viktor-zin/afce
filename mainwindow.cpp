@@ -686,22 +686,15 @@ void MainWindow::slotFileExport()
             bool matches = false;
             for(int i = 0; i < masks.size(); ++i) {
                 QString ex = masks.at(i);
-                if(ex.startsWith("*")) {
-                    ex = ex.mid(1).toLower();
-                    if(fn.toLower().endsWith(ex)) {
-                        matches = true;
-                        break;
-                    }
+                if(fn.toLower().endsWith(ex)) {
+                    matches = true;
+                    break;
                 }
             }
 
             // if no extension or a wrong extension is added then the correct extension will be appended
             if(!matches && !masks.empty()) {
-                QString ex = masks.first();
-                if(ex.startsWith("*")) {
-                    ex = ex.mid(1).toLower();
-                }
-                fn += ex;
+                fn += masks.first().toLower();
             }
         }
         double oldZoom = document()->zoom();
