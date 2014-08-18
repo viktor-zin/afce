@@ -19,26 +19,32 @@ Building in Windows
 -------------------
 * Download sources from https://github.com/viktor-zin/afce/archive/master.zip
 * Unpack master.zip to current folder
-* cd afce-master
-* mkdir build
+* `cd afce-master`
+* `mkdir build`
 * To run Qt tools it needs Qt 'bin' directories to be in PATH. For example:
-* set PATH=C:\Qt\5.2.1\mingw48_32\bin;C:\Qt/Tools/mingw48_32\bin;%PATH%
-* qmake ..\afce.pro
-* mingw32-make -f MakeFile.Release
+* `set PATH=C:\Qt\5.2.1\mingw48_32\bin;C:\Qt/Tools/mingw48_32\bin;%PATH%`
+* `qmake ..\afce.pro`
+* `mingw32-make -f MakeFile.Release`
 
 Building in Linux
 -----------------
 * Download sources from https://github.com/viktor-zin/afce/archive/master.zip
 * Unpack master.zip to current folder
-* cd afce-master
-* mkdir build
-* qmake ..\afce.pro
-* make -f MakeFile.Release
+* `cd afce-master`
+* `qmake` (or `qmake afce.pro`)
+* `make`
+
+Installation
+------------
+`make install`
+or
+`make install INSTALL_ROOT=dir`
+if you want to install in the specific directory (dir).
 
 Using Qt Creator
 ----------------
-Also you can use Qt Creator. Just open afce.pro and build AFCE (Ctrl+B).
+Also you can use Qt Creator. Just open afce.pro and build AFCE (`Ctrl+B`).
 
 Creation Windows installer
 --------------------------
-There is afce.nsi file in the source files. This file can be compiled by Nullsoft Installation System (NSIS). You can correct some constants for your environment.
+There is `afce.nsi` file in the source files. This file can be compiled by Nullsoft Installation System (NSIS). You can correct some constants for your environment.
