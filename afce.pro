@@ -33,6 +33,16 @@ win32 {
 
 }
 
+win32 {
+    QT_QM = $$[QT_INSTALL_DATA]translations/*_ru.qm
+    system(copy /y $$replace(QT_QM, /, \\) ts\\)
+}
+!win32 {
+    QT_QM = $$[QT_INSTALL_DATA]/translations/*_ru.qm
+    system(cp -f $$QT_QM ts)
+}
+
+
 unix:!mac {
   # This is to keep symbols for backtraces
   QMAKE_CXXFLAGS += -rdynamic
@@ -134,4 +144,3 @@ QMAKE_EXTRA_COMPILERS += updateqm
 TS_OUT = $$TRANSLATIONS
 TS_OUT ~= s/.ts/.qm/g
 PRE_TARGETDEPS += $$TS_OUT
-

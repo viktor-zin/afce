@@ -20,19 +20,27 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-             QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    qtTranslator.load(QLocale::system(), "qt", "_", QString(PROGRAM_DATA_DIR) + "ts", ".qm");
+#else
+    qtTranslator.load(QLocale::system(), "qt", "_", app.applicationDirPath() + "/ts",  ".qm");
+#endif
     app.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    myappTranslator.load("afce_" + QLocale::system().name(), QString(PROGRAM_DATA_DIR) + "ts");
+    myappTranslator.load("afce_" + QLocale::system().name() + ".qm", QString(PROGRAM_DATA_DIR) + "ts");
 #else
-    myappTranslator.load("afce_" + QLocale::system().name(), app.applicationDirPath());
+    myappTranslator.load(QLocale::system(), "afce", "_", app.applicationDirPath() + "/ts", ".qm");
 #endif
     app.installTranslator(&myappTranslator);
 
     qDebug() << "Detected system locale: " << QLocale::system().name();
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    qDebug() << "Application dir path:" << QString(PROGRAM_DATA_DIR);
+#else
+    qDebug() << "Application dir path:" << app.applicationDirPath();
+#endif
     qDebug() << "Version: " << afceVersion();
     qDebug() << "Supported image formats to write: " << QImageWriter::supportedImageFormats();
 #if QT_VERSION < 0x050000
