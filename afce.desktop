@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=afce
-GenericName=afce
+GenericName=Flowchart editor
+GenericName[ru]=Редактор блок-схем
 Comment=Algorithm Flowchart Editor
 Comment[ru]=Редактор блок-схем алгоритмов
 Exec=afce %f

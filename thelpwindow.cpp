@@ -30,7 +30,7 @@ THelpWindow::THelpWindow()
   widget()->setLayout(vl);
   textBrowser->setSearchPaths(QStringList() << "./help/"+QLocale::system().name() << "./help/en_US");
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-  textBrowser->setSearchPaths(QStringList() << "/usr/share/afce/help/"+QLocale::system().name() << "/usr/share/afce/help/en_US");
+  textBrowser->setSearchPaths(QStringList() << QString(PROGRAM_DATA_DIR) + "help/"+QLocale::system().name() << QString(PROGRAM_DATA_DIR) + "help/en_US");
 #endif
 
   home();

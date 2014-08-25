@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     QTranslator myappTranslator;
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    myappTranslator.load("afce_" + QLocale::system().name(), "/usr/share/afce");
+    myappTranslator.load("afce_" + QLocale::system().name(), QString(PROGRAM_DATA_DIR) + "ts");
 #else
     myappTranslator.load("afce_" + QLocale::system().name(), app.applicationDirPath());
 #endif

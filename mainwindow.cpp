@@ -28,7 +28,7 @@
 
 QString afceVersion()
 {
-    return "0.9.7";
+    return PROGRAM_VERSION;
 }
 
 
@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags), fDocument(0)
 {
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    QDir::setSearchPaths("generators", QStringList() << "/usr/share/afce/generators");
+    QDir::setSearchPaths("generators", QStringList() << QString(PROGRAM_DATA_DIR) + "generators");
 #else
     QDir::setSearchPaths("generators", QStringList() << "./generators");
 #endif
@@ -685,7 +685,7 @@ void MainWindow::slotFileExport()
 
             bool matches = false;
             for(int i = 0; i < masks.size(); ++i) {
-                QString ex = masks.at(i);
+                QString ex = masks.at(i).toLower();
                 if(fn.toLower().endsWith(ex)) {
                     matches = true;
                     break;
@@ -895,7 +895,7 @@ void MainWindow::codeLangChanged(int )
 
 void MainWindow::generateCode()
 {
-    if (document())
+    if (document() && codeLanguage->currentIndex() >= 0)
     {
         SourceCodeGenerator gen;
         gen.loadRule("generators:" + codeLanguage->itemData(codeLanguage->currentIndex()).toString() + ".json");

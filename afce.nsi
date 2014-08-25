@@ -23,8 +23,6 @@ UninstPage instfiles
 Section "Program"
   SetOutPath "$INSTDIR"
   File "${BUILDDIR}\afce.exe"
-  File "afce_ru_RU.qm"
-  File "afce_en_US.qm"
   File "README.RU.txt"
   File "afc.ico"
 
@@ -45,6 +43,11 @@ Section "Program"
   System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
 
   WriteUninstaller "$INSTDIR\uninst.exe"
+SectionEnd
+
+Section "Translations"
+  SetOutPath "$INSTDIR\ts"
+  File "ts\*.qm"
 SectionEnd
 
 Section "Qt"
