@@ -329,9 +329,8 @@
         <translation>&amp;ОК</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="813"/>
         <source>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Algorithm Flowchart Editor&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Viktor Zinkevich. All rights reserved.&lt;/p&gt; &lt;p&gt;Contributors:  Sergey Ryabenko, Alexey Loginov&lt;/p&gt; &lt;p&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND,&lt;br&gt; INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND&lt;br&gt; FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Редактор блок-схем алгоритмов&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Виктор Зинкевич. Все права защищены.&lt;/p&gt; &lt;p&gt;Соавторы:  Сергей Рябенко, Алексей Логинов&lt;/p&gt; &lt;p&gt;Программа предоставляется КАК ЕСТЬ БЕЗ ГАРАНТИЙ ЛЮБОГО РОДА,&lt;br&gt; ВКЛЮЧАЯ ГАРАНТИЮ ДИЗАЙНА, КОММЕРЧЕСКОЙ ЦЕННОСТИ И&lt;br&gt; ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ.&lt;/p&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Редактор блок-схем алгоритмов&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Виктор Зинкевич. Все права защищены.&lt;/p&gt; &lt;p&gt;Соавторы:  Сергей Рябенко, Алексей Логинов&lt;/p&gt; &lt;p&gt;Программа предоставляется КАК ЕСТЬ БЕЗ ГАРАНТИЙ ЛЮБОГО РОДА,&lt;br&gt; ВКЛЮЧАЯ ГАРАНТИЮ ДИЗАЙНА, КОММЕРЧЕСКОЙ ЦЕННОСТИ И&lt;br&gt; ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ.&lt;/p&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="914"/>
@@ -464,6 +463,11 @@
         <location filename="../mainwindow.cpp" line="720"/>
         <source>Select a file to export</source>
         <translation>Выберите файл для экспорта</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="813"/>
+        <source>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Algorithm Flowchart Editor. Version %0&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Viktor Zinkevich. All rights reserved.&lt;/p&gt; &lt;p&gt;Contributors:  Sergey Ryabenko, Alexey Loginov&lt;/p&gt; &lt;p&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND,&lt;br&gt; INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND&lt;br&gt; FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Редактор блок-схем алгоритмов. Версия %0&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Виктор Зинкевич. Все права защищены.&lt;/p&gt; &lt;p&gt;Соавторы:  Сергей Рябенко, Алексей Логинов&lt;/p&gt; &lt;p&gt;Программа предоставляется КАК ЕСТЬ БЕЗ ГАРАНТИЙ ЛЮБОГО РОДА,&lt;br&gt; ВКЛЮЧАЯ ГАРАНТИЮ ДИЗАЙНА, КОММЕРЧЕСКОЙ ЦЕННОСТИ И&lt;br&gt; ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ.&lt;/p&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="933"/>

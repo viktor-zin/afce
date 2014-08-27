@@ -3,7 +3,7 @@ SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
 !define VERSION 0.9.7
 !define QTDIR C:\Qt\5.2.1\mingw48_32\bin
-!define BUILDDIR ..\build-afce-Desktop_Qt_5_2_1_MinGW_32bit-Debug\release
+!define BUILDDIR ..\build-afce-new-Desktop_Qt_5_2_1_MinGW_32bit-Release
 OutFile "..\afce-${VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\afce"
 
@@ -22,7 +22,7 @@ UninstPage instfiles
 
 Section "Program"
   SetOutPath "$INSTDIR"
-  File "${BUILDDIR}\afce.exe"
+  File "${BUILDDIR}\release\afce.exe"
   File "README.RU.txt"
   File "afc.ico"
 
@@ -46,8 +46,9 @@ Section "Program"
 SectionEnd
 
 Section "Translations"
-  SetOutPath "$INSTDIR\ts"
-  File "ts\*.qm"
+  SetOutPath "$INSTDIR\locale"
+  File "locale\*.qm"
+  File "${BUILDDIR}\locale\*.qm"
 SectionEnd
 
 Section "Qt"

@@ -35,13 +35,8 @@ win32 {
 
 win32 {
     QT_QM = $$[QT_INSTALL_DATA]translations/*_ru.qm
-    system(copy /y $$replace(QT_QM, /, \\) ts\\)
+    system(copy /y $$replace(QT_QM, /, \\) locale\\)
 }
-!win32 {
-    QT_QM = $$[QT_INSTALL_DATA]/translations/*_ru.qm
-    system(cp -f $$QT_QM ts)
-}
-
 
 unix:!mac {
   # This is to keep symbols for backtraces
@@ -62,8 +57,8 @@ unix:!mac {
 
     DEFINES += PROGRAM_DATA_DIR=\\\"$$PREFIX/share/afce/\\\"
     target.path = $$PREFIX/bin/
-    locale.path = $$PREFIX/share/afce/ts/
-    locale.files = ts/*.qm
+    locale.path = $$PREFIX/share/afce/locale/
+    locale.files = locale/*.qm
     INSTALLS += target \
         locale
     pixmaps.path = $$PREFIX/share/pixmaps
@@ -116,8 +111,8 @@ HEADERS += mainwindow.h \
     qjson4/QJsonValueRef.h
 RESOURCES += afce.qrc
 CONFIG += release
-TRANSLATIONS += ts/afce_en_US.ts \
-    ts/afce_ru_RU.ts
+TRANSLATIONS += locale/afce_en_US.ts \
+    locale/afce_ru_RU.ts
 
 
 # This makes qmake generate translations
@@ -134,7 +129,7 @@ isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease-qt4
 }
 
 updateqm.input = TRANSLATIONS
-updateqm.output = ts/${QMAKE_FILE_BASE}.qm
+updateqm.output = locale/${QMAKE_FILE_BASE}.qm
 updateqm.commands = $$QMAKE_LRELEASE \
     ${QMAKE_FILE_IN} \
     -qm \
