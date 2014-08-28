@@ -33,9 +33,13 @@ win32 {
 
 }
 
+QT_QM = $$[QT_INSTALL_TRANSLATIONS]/*_ru.qm
+
 win32 {
-    QT_QM = $$[QT_INSTALL_DATA]translations/*_ru.qm
-    system(copy /y $$replace(QT_QM, /, \\) locale\\)
+    system(copy /y $$replace(QT_QM, /, \\) $$replace(_PRO_FILE_PWD_, /, \\)\\locale\\)
+}
+!win32 {
+    system(cp -f $$QT_QM locale/)
 }
 
 unix:!mac {
@@ -127,6 +131,10 @@ isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease-qt4
 !win32 {
   system($${QMAKE_LRELEASE} -silent $${_PRO_FILE_} 2> /dev/null)
 }
+win32 {
+  system($$[QT_INSTALL_BINS]\\lrelease.exe $${_PRO_FILE_})
+}
+
 
 updateqm.input = TRANSLATIONS
 updateqm.output = locale/${QMAKE_FILE_BASE}.qm
