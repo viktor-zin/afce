@@ -2,7 +2,9 @@ RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
 !define VERSION 0.9.7
-!define QTDIR C:\Qt\5.2.1\mingw48_32\bin
+!define QT_INSTALL_PREFIX C:\Qt\5.2.1\mingw48_32
+!define QT_INSTALL_BINS ${QT_INSTALL_PREFIX}\bin
+!define QT_INSTALL_TRANSLATIONS ${QT_INSTALL_PREFIX}\translations
 !define BUILDDIR ..\build-afce-new-Desktop_Qt_5_2_1_MinGW_32bit-Release
 OutFile "..\afce-${VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\afce"
@@ -53,18 +55,18 @@ SectionEnd
 
 Section "Qt"
   SetOutPath "$INSTDIR"
-  File "${QTDIR}\libstdc++-6.dll"
-  File "${QTDIR}\libgcc_s_dw2-1.dll"
-  File "${QTDIR}\Qt5Core.dll"
-  File "${QTDIR}\Qt5Gui.dll"
-  File "${QTDIR}\Qt5PrintSupport.dll"
-  File "${QTDIR}\Qt5Svg.dll"
-  File "${QTDIR}\Qt5Xml.dll"
-  File "${QTDIR}\Qt5Widgets.dll"
-  File "${QTDIR}\libwinpthread-1.dll"
-  File "${QTDIR}\icuin51.dll"
-  File "${QTDIR}\icuuc51.dll"
-  File "${QTDIR}\icudt51.dll"
+  File "${QT_INSTALL_BINS}\libstdc++-6.dll"
+  File "${QT_INSTALL_BINS}\libgcc_s_dw2-1.dll"
+  File "${QT_INSTALL_BINS}\Qt5Core.dll"
+  File "${QT_INSTALL_BINS}\Qt5Gui.dll"
+  File "${QT_INSTALL_BINS}\Qt5PrintSupport.dll"
+  File "${QT_INSTALL_BINS}\Qt5Svg.dll"
+  File "${QT_INSTALL_BINS}\Qt5Xml.dll"
+  File "${QT_INSTALL_BINS}\Qt5Widgets.dll"
+  File "${QT_INSTALL_BINS}\libwinpthread-1.dll"
+  File "${QT_INSTALL_BINS}\icuin51.dll"
+  File "${QT_INSTALL_BINS}\icuuc51.dll"
+  File "${QT_INSTALL_BINS}\icudt51.dll"
 
 SectionEnd
 

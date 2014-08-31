@@ -9,7 +9,9 @@ QT += gui
 QT += xml
 QT += printsupport
 QT += svg
-QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
+}
 CONFIG += exceptions \
     rtti \
     stl
@@ -33,10 +35,21 @@ win32 {
 
 }
 
-QT_QM = $$[QT_INSTALL_TRANSLATIONS]/*_ru.qm
+QT_QM = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT_QM += $$[QT_INSTALL_TRANSLATIONS]/qtbase_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtscript_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtquick1_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtmultimedia_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtxmlpatterns_ru.qm
+}
 
 win32 {
-    system(copy /y $$replace(QT_QM, /, \\) $$replace(_PRO_FILE_PWD_, /, \\)\\locale\\)
+    for(qm, QT_QM) {
+        system(copy /Y $$replace(qm, /, \\) $$replace(_PRO_FILE_PWD_, /, \\)\\locale\\)
+    }
+
 }
 !win32 {
     system(cp -f $$QT_QM locale/)
