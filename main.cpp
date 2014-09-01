@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QTranslator qtTranslator;
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    qtTranslator.load(QLocale::system(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath), ".qm");
+    qtTranslator.load(QLocale::system(), "qt", "_", QString(PROGRAM_DATA_DIR) + "locale", ".qm");
 #else
     qtTranslator.load(QLocale::system(), "qt", "_", app.applicationDirPath() + "/locale",  ".qm");
 #endif
