@@ -1,8 +1,0 @@
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-<mime-type type="application/x-afce">
-  <comment xml:lang="en">Flowchart AFCE</comment>
-  <comment xml:lang="ru">Блок-схема AFCE</comment>
-  <icon name="/usr/share/icons/afc.ico"/>
-  <glob pattern="*.afc" />
-</mime-type>
-</mime-info>
