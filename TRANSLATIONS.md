@@ -12,6 +12,9 @@ There are another files to translate. These are:
 
 Generators
 ----------------
-Each json file in the "generators" folder has a special object called "name". The object contains a string keys that are named according to a locale. If the translation will contain a non-ASCII chars you should to use \uXXXX notation. Please, do not translate every language name. Most of people know how the programming language is called in English.
+Each json file in the "generators" folder has a special object called "name". The object contains a string keys that are named according to a locale. If the translation will contain a non-ASCII chars you should to use \uXXXX notation. Please, do not translate every language name. Most of people know how the programming language is called in English. 
+To translate non-ASCII symbols you can use command:
+
+`$ echo Алгоритмический язык Ершова | recode UTF-8..JAVA`
 
 You can send me your translations by means of GitHub or Email <vicking@yandex.ru>.

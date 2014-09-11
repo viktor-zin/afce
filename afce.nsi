@@ -1,7 +1,7 @@
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 Name "Редактор блок-схем алгоритмов"
-!define VERSION 0.9.7
+!define VERSION 0.9.8-alpha
 !define QT_INSTALL_PREFIX C:\Qt\5.2.1\mingw48_32
 !define QT_INSTALL_BINS ${QT_INSTALL_PREFIX}\bin
 !define QT_INSTALL_TRANSLATIONS ${QT_INSTALL_PREFIX}\translations

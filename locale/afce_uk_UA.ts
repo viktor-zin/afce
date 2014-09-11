@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<TS version="2.0" language="uk">
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.cpp" line="293"/>
         <source>Tools</source>
-        <translation>Инструменты</translation>
+        <translation>Знаряддя</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="294"/>
         <source>Select</source>
-        <translation>Выбор</translation>
+        <translation>Вибір</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="295"/>
         <location filename="../mainwindow.cpp" line="929"/>
         <source>Process</source>
         <oldsource>Process / Assign</oldsource>
-        <translation>Процесс</translation>
+        <translation>Процес</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="301"/>
         <location filename="../mainwindow.cpp" line="1010"/>
         <source>Input</source>
-        <translation>Ввод</translation>
+        <translation>Введення</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="302"/>
         <location filename="../mainwindow.cpp" line="1014"/>
         <source>Output</source>
-        <translation>Вывод</translation>
+        <translation>Виведення</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="304"/>
         <source>E&amp;xit</source>
-        <translation>Вы&amp;ход</translation>
+        <translation>Ви&amp;хід</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="305"/>
         <source>Exit from program</source>
         <oldsource>Exit from programm</oldsource>
-        <translation>Выйти из программы</translation>
+        <translation>Вийти з додатку</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="306"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Открыть...</translation>
+        <translation>&amp;Відкрити...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>&amp;Save</source>
-        <translation>&amp;Сохранить</translation>
+        <translation>&amp;Зберегти</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="310"/>
         <source>Save &amp;as...</source>
-        <translation>Сохранить &amp;как...</translation>
+        <translation>Зберегти &amp;як...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="318"/>
         <source>&amp;New</source>
-        <translation>&amp;Новый</translation>
+        <translation>&amp;Новий</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="320"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Отменить</translation>
+        <translation>&amp;Скасувати</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="322"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Повторить</translation>
+        <translation>&amp;Повторити</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="324"/>
         <source>Cu&amp;t</source>
-        <translation>&amp;Вырезать</translation>
+        <translation>&amp;Вирізати</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="326"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Копировать</translation>
+        <translation>&amp;Копіювати</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="328"/>
         <source>&amp;Paste</source>
-        <translation>Вс&amp;тавить</translation>
+        <translation>Вс&amp;тавити</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="330"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
+        <translation>&amp;Видалити</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="338"/>
         <source>&amp;Tools</source>
-        <translation>&amp;Инструменты</translation>
+        <translation>&amp;Знаряддя</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="339"/>
         <source>Toggle the tool panel</source>
-        <translation>Показать/скрыть панель инструментов</translation>
+        <translation>Показати/приховати панель знаряддь</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="340"/>
         <source>&amp;Source code</source>
-        <translation>&amp;Исходный код</translation>
+        <translation>&amp;Початковий код</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="345"/>
@@ -181,51 +181,51 @@
     <message>
         <location filename="../mainwindow.cpp" line="365"/>
         <source>Standard</source>
-        <translation>Стандартная</translation>
+        <translation>Стандартна</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="366"/>
         <source>Source code</source>
-        <translation>Исходный код</translation>
+        <translation>Початковий код</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="401"/>
         <source>&amp;Select programming language:</source>
-        <translation>&amp;Выберите язык программирования:</translation>
+        <translation>&amp;Оберіть мову програмування:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="404"/>
         <location filename="../mainwindow.cpp" line="575"/>
         <location filename="../mainwindow.cpp" line="654"/>
         <source>%1 - Algorithm Flowchart Editor</source>
-        <translation>%1 - Редактор блок-схем алгоритмов</translation>
+        <translation>%1 - Редактор блок-схем алгоритмів</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="559"/>
         <source>Select a file to open</source>
-        <translation>Выберите файл для открытия</translation>
+        <translation>Оберіть файл для відкриття</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="559"/>
         <location filename="../mainwindow.cpp" line="649"/>
         <source>Algorithm flowcharts (*.afc)</source>
-        <translation>Блок-схемы алгоритмов (*.afc)</translation>
+        <translation>Блок-схеми алгоритмів (*.afc)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="332"/>
         <location filename="../mainwindow.cpp" line="362"/>
         <source>&amp;Help</source>
-        <translation>&amp;Справка</translation>
+        <translation>&amp;Довідка</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="334"/>
         <source>&amp;About</source>
-        <translation>&amp;О программе</translation>
+        <translation>&amp;Про додаток</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="336"/>
         <source>About &amp;Qt</source>
-        <translation>О библиотеке &amp;Qt</translation>
+        <translation>Про бібліотеку &amp;Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="355"/>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="407"/>
         <source>Help window</source>
-        <translation>Окно помощи</translation>
+        <translation>Вікно допомоги</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
@@ -250,17 +250,17 @@
     <message>
         <location filename="../mainwindow.cpp" line="107"/>
         <source>Failed to open a file</source>
-        <translation>Не удалось открыть файл</translation>
+        <translation>Невдача при відкритті файлу</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="107"/>
         <source>Unable to open file &apos;%1&apos;.</source>
-        <translation>Не удаётся открыть файл &quot;%1&quot;.</translation>
+        <translation>Невдача при відкритті файлу &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="297"/>
         <source>If...then...else</source>
-        <translation>Если...то...иначе</translation>
+        <translation>Якщо...то...інакше</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="298"/>
@@ -271,32 +271,32 @@
     <message>
         <location filename="../mainwindow.cpp" line="299"/>
         <source>loop with pre-condition</source>
-        <translation>Цикл с предусловием</translation>
+        <translation>Цикл с передумовою</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="300"/>
         <source>loop with post-condition</source>
-        <translation>Цикл с постусловием</translation>
+        <translation>Цикл з наступною перевіркою умови</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="303"/>
         <source>FOR loop (C/C++)</source>
-        <translation>Цикл for (в стиле C/C++)</translation>
+        <translation>Цикл for (в стилі C/C++)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="312"/>
         <source>&amp;Export to raster...</source>
-        <translation>&amp;Экспорт в растр...</translation>
+        <translation>&amp;Експорт в растр...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="314"/>
         <source>&amp;Export to SVG...</source>
-        <translation>Э&amp;кспорт в SVG...</translation>
+        <translation>Е&amp;кспорт в SVG...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="316"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Печать...</translation>
+        <translation>&amp;Друк...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="356"/>
@@ -306,134 +306,134 @@
     <message>
         <location filename="../mainwindow.cpp" line="406"/>
         <source>Algorithm Flowchart Editor</source>
-        <translation>Редактор блок-схем алгоритмов</translation>
+        <translation>Редактор блок-схем алгоритмів</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="564"/>
         <source>Unsaved changes</source>
-        <translation>Несохранённые изменения</translation>
+        <translation>Незбережені зміни</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="564"/>
         <source>You are about to open another document. It will discard all unsaved changes in the current document.</source>
-        <translation>Вы собираетесь открыть другой документ. Это приведёт к потере несохранённых изменений в текущем документе.</translation>
+        <translation>Ви намагаєтесь відкрити інший документ. Це призведе до втрати незбережених змін поточного документу.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="812"/>
         <location filename="../mainwindow.cpp" line="913"/>
         <source>&amp;OK</source>
-        <translation>&amp;ОК</translation>
+        <translation>&amp;Гаразд</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="914"/>
         <source>&amp;Cancel</source>
-        <translation>Отме&amp;нить</translation>
+        <translation>Скасу&amp;вати</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1018"/>
         <source>Specify the names of the variables (each per line):</source>
         <oldsource>Specify variable names to input (each per line):</oldsource>
-        <translation>Укажите имена переменных (по одной на строку):</translation>
+        <translation>Вкажіть імена змінних (одну на рядок):</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1225"/>
         <source>%1 image (*.%2)</source>
-        <translation>Изображение %1 (*.%2)</translation>
+        <translation>Малюнок %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="925"/>
         <source>&amp;Content:</source>
-        <translation>&amp;Содержимое:</translation>
+        <translation>&amp;Зміст:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="307"/>
         <source>Open saved file</source>
-        <translation>Открыть сохранённый файл</translation>
+        <translation>Відкрити збережений файл</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="309"/>
         <source>Save changes</source>
-        <translation>Сохранить изменения</translation>
+        <translation>Зберегти зміни</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="311"/>
         <source>Save changes in a new file</source>
         <oldsource>Save changes in new file</oldsource>
-        <translation>Сохранить изменения в новый файл</translation>
+        <translation>Зберегти зиіни в новий файл</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="313"/>
         <source>Save the flowchart in a raster picture format</source>
         <oldsource>Save the flowchart in raster picture format</oldsource>
-        <translation>Сохранить блок-схему в растровый формат</translation>
+        <translation>Зберегти блок-схему в растровий формат</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="315"/>
         <source>Save the flowchart in a vector picture format</source>
         <oldsource>Save the flowchart in vector picture format</oldsource>
-        <translation>Сохранить блок-схему в векторный формат</translation>
+        <translation>Зберегти блок-схему в векторний формат</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="317"/>
         <source>To print</source>
-        <translation>Распечатать блок-схему</translation>
+        <translation>Друкувати блок-схему</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="319"/>
         <source>Create a new project</source>
-        <translation>Создать новый проект</translation>
+        <translation>Створити новий проект</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="321"/>
         <source>Undo the last operation</source>
-        <translation>Отменить последнюю операцию</translation>
+        <translation>Скасувати останню операцію</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="323"/>
         <source>Restore the last undone action</source>
-        <translation>Восстановить последнюю отменённую операцию</translation>
+        <translation>Відновити останню скасовану операцію</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="325"/>
         <source>Cut the current selection</source>
-        <translation>Вырезать текущее выделение</translation>
+        <translation>Вирізати поточне виділення</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <source>Copy the current selection</source>
-        <translation>Скопировать текущее выделение</translation>
+        <translation>Скопіювати поточне виділення</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="329"/>
         <source>Paste</source>
-        <translation>Вставить</translation>
+        <translation>Вставити</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="331"/>
         <source>Delete the current selection</source>
-        <translation>Удалить текущее выделение</translation>
+        <translation>Видалити поточне виділення</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="333"/>
         <source>Toggle Help window</source>
         <oldsource>Open Help window</oldsource>
-        <translation>Открыть/закрыть окно справки</translation>
+        <translation>Відкрити/закрыти вікно довідки</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <source>Information about authors</source>
-        <translation>Информация об авторах</translation>
+        <translation>Відомості про авторів</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="337"/>
         <source>Information about Qt</source>
-        <translation>Информация о Qt</translation>
+        <translation>Відомості про Qt</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="341"/>
         <source>Toggle the source code panel</source>
         <oldsource>Hide the tool panel</oldsource>
-        <translation>Показать/скрыть панель исходного кода</translation>
+        <translation>Показати/приховати панель початкового коду</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="363"/>
@@ -443,76 +443,76 @@
     <message>
         <location filename="../mainwindow.cpp" line="545"/>
         <source>There are unsaved changes. Do you really want to close afce?</source>
-        <translation>Имеются несохранённые изменения. Вы действительно хотите закрыть afce?</translation>
+        <translation>Є незбережені зміни. Ви дійсно бажаєте закрити afce?</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="649"/>
         <source>Select a file to save</source>
-        <translation>Выберите файл для сохранения</translation>
+        <translation>Оберіть файл для збереження</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="676"/>
         <location filename="../mainwindow.cpp" line="720"/>
         <source>Select a file to export</source>
-        <translation>Выберите файл для экспорта</translation>
+        <translation>Оберіть файл для експорту</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="813"/>
         <source>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Algorithm Flowchart Editor. Version %0&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Viktor Zinkevich. All rights reserved.&lt;/p&gt; &lt;p&gt;Contributors:  Sergey Ryabenko, Alexey Loginov&lt;/p&gt; &lt;p&gt;The program is provided AS IS with NO WARRANTY OF ANY KIND,&lt;br&gt; INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND&lt;br&gt; FITNESS FOR A PARTICULAR PURPOSE.&lt;/p&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Редактор блок-схем алгоритмов. Версия %0&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Виктор Зинкевич. Все права защищены.&lt;/p&gt; &lt;p&gt;Соавторы:  Сергей Рябенко, Алексей Логинов&lt;/p&gt; &lt;p&gt;Программа предоставляется КАК ЕСТЬ БЕЗ ГАРАНТИЙ ЛЮБОГО РОДА,&lt;br&gt; ВКЛЮЧАЯ ГАРАНТИЮ ДИЗАЙНА, КОММЕРЧЕСКОЙ ЦЕННОСТИ И&lt;br&gt; ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ.&lt;/p&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;h1&gt;AFCE&lt;/h1&gt;&lt;p&gt;Редактор блок-схем алгоритмів. Версія %0&lt;/p&gt;&lt;p&gt;Copyright 2008-2014 Віктор Зінкевіч. Всі права захищено.&lt;/p&gt; &lt;p&gt;Співавтори:  Сергій Рябенко, Олексій Логінов&lt;/p&gt; &lt;p&gt;Програма поширюється ЯК Є БЕЗ БУДЬ-ЯКМХ ГАРАНТІЙ,&lt;br&gt; РАХУЮЧИ ГАРАНТІЇ ДИЗАЙНУ, КОМЕРЦІЙНОЇ ЦІННОСТІ И&lt;br&gt; ПРИДАТНОСТІ ДЛЯ ПЕВНИХ ЦІЛЕЙ.&lt;/p&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="933"/>
         <source>Branching</source>
-        <translation>Ветвление</translation>
+        <translation>Розгалуження</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="934"/>
         <location filename="../mainwindow.cpp" line="940"/>
         <location filename="../mainwindow.cpp" line="946"/>
         <source>&amp;Condition:</source>
-        <translation>&amp;Условие:</translation>
+        <translation>&amp;Умова:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="939"/>
         <source>WHILE loop</source>
-        <translation>Цикл ПОКА</translation>
+        <translation>Цикл UNTIL</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="945"/>
         <source>Post-condition loop</source>
-        <translation>Цикл с постусловием</translation>
+        <translation>Цикл з наступною перевіркою умови</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="975"/>
         <source>&amp;Variable:</source>
-        <translation>&amp;Переменная:</translation>
+        <translation>&amp;Змінна:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="976"/>
         <source>&amp;Start value:</source>
-        <translation>&amp;Начальное значение:</translation>
+        <translation>&amp;Початкова умова:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="977"/>
         <source>&amp;End value:</source>
-        <translation>&amp;Конечное значение:</translation>
+        <translation>&amp;Кінцеве значення:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="296"/>
         <location filename="../mainwindow.cpp" line="1042"/>
         <source>Assign</source>
-        <translation>Присваивание</translation>
+        <translation>Присвоювання</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1046"/>
         <source>&amp;Source:</source>
-        <translation>&amp;Источник:</translation>
+        <translation>&amp;Джерело:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="1047"/>
         <source>&amp;Destination:</source>
-        <translation>&amp;Назначение:</translation>
+        <translation>&amp;Призначення:</translation>
     </message>
 </context>
 <context>
@@ -520,26 +520,77 @@
     <message>
         <location filename="../zvflowchart.cpp" line="817"/>
         <source>BEGIN</source>
-        <translation>НАЧАЛО</translation>
+        <translation>ПОЧАТОК</translation>
     </message>
     <message>
         <location filename="../zvflowchart.cpp" line="826"/>
         <source>END</source>
-        <translation>КОНЕЦ</translation>
+        <translation>КІНЕЦЬ</translation>
     </message>
     <message>
         <location filename="../zvflowchart.cpp" line="915"/>
         <location filename="../zvflowchart.cpp" line="959"/>
         <location filename="../zvflowchart.cpp" line="996"/>
         <source>Yes</source>
-        <translation>Да</translation>
+        <translation>Так</translation>
     </message>
     <message>
         <location filename="../zvflowchart.cpp" line="922"/>
         <location filename="../zvflowchart.cpp" line="960"/>
         <location filename="../zvflowchart.cpp" line="997"/>
         <source>No</source>
-        <translation>Нет</translation>
+        <translation>Ні</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>(* empty process *)</source>
+        <translation type="obsolete">(* пустий процес *)</translation>
+    </message>
+    <message>
+        <source>(* no destination *)</source>
+        <translation type="obsolete">(* відсутнє призначення *)</translation>
+    </message>
+    <message>
+        <source>(* no source *)</source>
+        <translation type="obsolete">(* відсутнє джерело *)</translation>
+    </message>
+    <message>
+        <source>(* no condition *)</source>
+        <translation type="obsolete">(* відсутнє умова *)</translation>
+    </message>
+    <message>
+        <source>(* no variable *)</source>
+        <translation type="obsolete">(* відсутня змінна *)</translation>
+    </message>
+    <message>
+        <source>(* no value *)</source>
+        <translation type="obsolete">(* відсутнє значення *)</translation>
+    </message>
+    <message>
+        <source>/* empty process */</source>
+        <translation type="obsolete">/* пустий процес */</translation>
+    </message>
+    <message>
+        <source>/* no destination */</source>
+        <translation type="obsolete">/* відсутнє призначення */</translation>
+    </message>
+    <message>
+        <source>/* no source */</source>
+        <translation type="obsolete">/* відсутнє джерело */</translation>
+    </message>
+    <message>
+        <source>/* no condition */</source>
+        <translation type="obsolete">/* відсутня умова */</translation>
+    </message>
+    <message>
+        <source>/* no variable */</source>
+        <translation type="obsolete">/* відсутня змінна */</translation>
+    </message>
+    <message>
+        <source>/* no value */</source>
+        <translation type="obsolete">/* відсутнє значення */</translation>
     </message>
 </context>
 <context>
@@ -552,12 +603,12 @@
     <message>
         <location filename="../thelpwindow.cpp" line="38"/>
         <source>Forward</source>
-        <translation>Вперёд</translation>
+        <translation>Вперед</translation>
     </message>
     <message>
         <location filename="../thelpwindow.cpp" line="40"/>
         <source>Home</source>
-        <translation>Домой</translation>
+        <translation>Додому</translation>
     </message>
 </context>
 </TS>

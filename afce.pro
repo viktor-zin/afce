@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = afce
-VERSION = 0.9.7
+VERSION = 0.9.8-alpha
 
   system(echo $$VERSION > version.txt)
 
@@ -35,14 +35,20 @@ win32 {
 
 }
 
-QT_QM = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm
+QT_QM = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
+	$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT_QM += $$[QT_INSTALL_TRANSLATIONS]/qtbase_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtscript_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtquick1_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtmultimedia_ru.qm \
-        $$[QT_INSTALL_TRANSLATIONS]/qtxmlpatterns_ru.qm
+        $$[QT_INSTALL_TRANSLATIONS]/qtxmlpatterns_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtbase_uk.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtscript_uk.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtquick1_uk.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtmultimedia_uk.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtxmlpatterns_uk.qm
 }
 
 win32 {
@@ -129,7 +135,8 @@ HEADERS += mainwindow.h \
 RESOURCES += afce.qrc
 CONFIG += release
 TRANSLATIONS += locale/afce_en_US.ts \
-    locale/afce_ru_RU.ts
+    locale/afce_ru_RU.ts \
+    locale/afce_uk_UA.ts
 
 
 # This makes qmake generate translations
