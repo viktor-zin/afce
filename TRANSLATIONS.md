@@ -9,6 +9,7 @@ There are another files to translate. These are:
 * afce.desktop
 * afce.xml
 * generators/*.json
+* afce.nsi
 
 Generators
 ----------------
