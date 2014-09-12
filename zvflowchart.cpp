@@ -526,6 +526,10 @@ void QBlock::makeBackwardCompatibility() {
         }
     }
 
+    if(type() == "algorithm") {
+        attributes.insert("version", AFC_VERSION);
+    }
+
     for(int i = 0; i < items.size(); ++i) {
         items.at(i)->makeBackwardCompatibility();
     }

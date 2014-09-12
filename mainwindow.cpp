@@ -606,7 +606,7 @@ void MainWindow::slotFilePrint()
         {
             z = page.height() / (double) r->height;
         }
-
+        if (z > (printer.resolution()/96.0)) z = printer.resolution()/96.0;
         document()->setZoom(z);
         r->adjustSize(z);
         r->adjustPosition(0, 0);

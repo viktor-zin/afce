@@ -23,6 +23,8 @@
 #include <QDomDocument>
 #include "qflowchartstyle.h"
 
+#define AFC_VERSION "1.2"
+
 class QBlock;
 class QFlowChart;
 //class QBranch;
