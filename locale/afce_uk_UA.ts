@@ -249,7 +249,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1294"/>
+        <location filename="../mainwindow.cpp" line="1299"/>
         <source>Zoom: %1 %</source>
         <translation>Масштаб: %1 %</translation>
     </message>

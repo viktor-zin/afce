@@ -1265,7 +1265,12 @@ QString MainWindow::getWriteFormatFilter()
 QHash<QString, QString> MainWindow::enumLanguages()
 {
     QHash<QString, QString> result;
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    QDir dir(QString(PROGRAM_DATA_DIR) + "locale");
+#else
     QDir dir(qApp->applicationDirPath() + "/locale");
+#endif
+
     QStringList qms = dir.entryList(QStringList() << "afce_*.qm", QDir::Files, QDir::Name);
 
     QRegExp rx("^afce_([-_a-zA-Z]+)\\.qm$");
