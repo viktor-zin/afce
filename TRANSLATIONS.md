@@ -19,3 +19,10 @@ To translate non-ASCII symbols you can use command:
 `$ echo Алгоритмический язык Ершова | recode UTF-8..JAVA`
 
 You can send me your translations by means of GitHub or Email <vicking@yandex.ru>.
+
+Translators
+-----------
+
+* Russian - Victor Zinkevich <vicking@yandex.ru>
+* Ukrainian - Sasha Mishchenko <sasha.mishchenko@gmail.com>
+
