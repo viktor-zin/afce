@@ -97,6 +97,7 @@ private:
   QAction *actCode;
   QAction *acteng;
   QAction *actrus;
+  QList<QAction *> actLanguages;
 
 
 //  QAction *actPageSetup;
@@ -105,6 +106,7 @@ private:
   QMenu *menuEdit;
   QMenu *menuHelp;
   QMenu *menuWindow;
+  QMenu *menuLanguage;
   QString fileName;
   QToolBar *toolBar;
   QLabel *codeLabel;
@@ -141,6 +143,7 @@ public:
     void setDocument(QFlowChart * aDocument);
   static QString getFilterFor(const QString & fileExt);
   static QString getWriteFormatFilter();
+  static QHash<QString, QString> enumLanguages();
 
 public slots:
   void retranslateUi();
@@ -171,7 +174,7 @@ public slots:
   void slotDocumentSaved();
   void slotDocumentChanged();
   void slotDocumentLoaded();
-
+  void slotChangeLanguage();
 
   void setZoom(int quarts);
   void shiftZoom(int step);
@@ -194,5 +197,6 @@ signals:
 };
 
 QString afceVersion();
+void setApplicationLocale(const QString &localeName);
 
 #endif // MAINWINDOW_H

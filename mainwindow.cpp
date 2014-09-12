@@ -361,6 +361,7 @@ void MainWindow::retranslateUi()
     menuEdit->setTitle(tr("&Edit"));
     menuHelp->setTitle(tr("&Help"));
     menuWindow->setTitle(tr("&View"));
+    menuLanguage->setTitle(tr("&Language"));
 
     toolBar->setWindowTitle(tr("Standard"));
     dockCode->setWindowTitle(tr("Source code"));
@@ -439,6 +440,11 @@ void MainWindow::createMenu()
     menuWindow = menuBar()->addMenu("");
     menuWindow->addAction(actTools);
     menuWindow->addAction(actCode);
+    menuWindow->addSeparator();
+    menuLanguage = menuWindow->addMenu(tr("&Language"));
+    for (int i = 0; i < actLanguages.size(); ++i) {
+        menuLanguage->addAction(actLanguages[i]);
+    }
 
     menuHelp = menuBar()->addMenu("");
     menuHelp->addAction(actHelp);
@@ -528,7 +534,15 @@ void MainWindow::createActions()
 //    connect(actTools, SIGNAL(triggered()), this, SLOT(slotTools()));
 
 
-
+    QHash<QString, QString> avlLangs = enumLanguages();
+    QList<QString> locales = avlLangs.keys();
+    for (int i = 0; i < locales.size(); ++i) {
+        QAction *act = new QAction(this);
+        act->setText(avlLangs[locales[i]]);
+        act->setData(locales[i]);
+        actLanguages.append(act);
+        connect(act, SIGNAL(triggered()), this, SLOT(slotChangeLanguage()));
+    }
 
 }
 
@@ -666,6 +680,17 @@ void MainWindow::slotDocumentChanged() {
 
 void MainWindow::slotDocumentLoaded() {
     isSaved = true;
+}
+
+void MainWindow::slotChangeLanguage()
+{
+    QAction * action = (QAction *)sender();
+    QString localeName = action->data().toString();
+    setApplicationLocale(localeName);
+    retranslateUi();
+
+    QSettings settings("afce", "application");
+    settings.setValue("locale", localeName);
 }
 
 
@@ -1237,6 +1262,23 @@ QString MainWindow::getWriteFormatFilter()
     return result;
 }
 
+QHash<QString, QString> MainWindow::enumLanguages()
+{
+    QHash<QString, QString> result;
+    QDir dir(qApp->applicationDirPath() + "/locale");
+    QStringList qms = dir.entryList(QStringList() << "afce_*.qm", QDir::Files, QDir::Name);
+
+    QRegExp rx("^afce_([-_a-zA-Z]+)\\.qm$");
+    for (int i = 0; i < qms.size(); ++i) {
+        if(rx.indexIn(qms[i]) >= 0) {
+            QString localeName = rx.cap(1);
+            QLocale loc(localeName);
+            result.insert(localeName, loc.nativeLanguageName());
+        }
+    }
+    return result;
+}
+
 void MainWindow::setDocument(QFlowChart * aDocument)
 {
     fDocument = aDocument;
@@ -1260,4 +1302,41 @@ void MainWindow::shiftZoom(int step)
 {
     int z = zoomSlider->value();
     zoomSlider->setValue(z + step);
+}
+
+
+void setApplicationLocale(const QString &localeName)
+{
+    QLocale locale(localeName);
+    static QTranslator *qtTranslator = NULL;
+    static QTranslator *myappTranslator = NULL;
+
+    if(!qtTranslator) {
+        qApp->removeTranslator(qtTranslator);
+        delete qtTranslator;
+        qtTranslator = new QTranslator;
+    }
+    if(!myappTranslator) {
+        qApp->removeTranslator(myappTranslator);
+        delete myappTranslator;
+        myappTranslator = new QTranslator;
+    }
+
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    qtTranslator->load(locale, "qt", "_", QString(PROGRAM_DATA_DIR) + "locale", ".qm");
+#else
+    qtTranslator->load(locale, "qt", "_", qApp->applicationDirPath() + "/locale",  ".qm");
+#endif
+    qApp->installTranslator(qtTranslator);
+
+#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    myappTranslator->load("afce_" + locale.name() + ".qm", QString(PROGRAM_DATA_DIR) + "locale");
+#else
+    myappTranslator->load(locale, "afce", "_", qApp->applicationDirPath() + "/locale", ".qm");
+#endif
+    qApp->installTranslator(myappTranslator);
+
+    qDebug() << "Detected system locale: " << QLocale::system().name();
+    qDebug() << "Set locale: " << locale.name();
+    qDebug() << qApp->applicationDirPath();
 }

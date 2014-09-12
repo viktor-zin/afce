@@ -19,23 +19,10 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QTranslator qtTranslator;
-#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    qtTranslator.load(QLocale::system(), "qt", "_", QString(PROGRAM_DATA_DIR) + "locale", ".qm");
-#else
-    qtTranslator.load(QLocale::system(), "qt", "_", app.applicationDirPath() + "/locale",  ".qm");
-#endif
-    app.installTranslator(&qtTranslator);
-
-    QTranslator myappTranslator;
-#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-    myappTranslator.load("afce_" + QLocale::system().name() + ".qm", QString(PROGRAM_DATA_DIR) + "locale");
-#else
-    myappTranslator.load(QLocale::system(), "afce", "_", app.applicationDirPath() + "/locale", ".qm");
-#endif
-    app.installTranslator(&myappTranslator);
-
-    qDebug() << "Detected system locale: " << QLocale::system().name();
+    QSettings settings("afce", "application");
+    QString localeName = settings.value("locale", QLocale::system().name()).toString();
+    qDebug() << "Available languages: " << MainWindow::enumLanguages();
+    setApplicationLocale(localeName);
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
     qDebug() << "Application dir path:" << QString(PROGRAM_DATA_DIR);
 #else
