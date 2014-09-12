@@ -33,6 +33,11 @@ LangString REMOVEPROGRAM ${LANG_ENGLISH} "Remove the program"
 LangString REMOVEPROGRAM ${LANG_RUSSIAN} "Удалить программу"
 LangString REMOVEPROGRAM ${LANG_UKRAINIAN} "Видалити програму"
 
+LangString LOCALE ${LANG_ENGLISH} "en_US"
+LangString LOCALE ${LANG_RUSSIAN} "ru_RU"
+LangString LOCALE ${LANG_UKRAINIAN} "uk_UA"
+
+
 Page directory
 Page instfiles
 
@@ -60,6 +65,7 @@ Section "Program"
   WriteRegStr HKCR "afcfile\shell\open\command" "" '"$INSTDIR\afce.exe" "%1"'
 
   WriteRegDWORD HKLM "Software\afce" "InstalledLang" $LANGUAGE
+  WriteRegStr HKCU "Software\afce\application" "locale" $(LOCALE)
 
   System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
 
