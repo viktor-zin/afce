@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 #endif
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
     MainWindow w;
+    w.setLocale(QLocale(localeName));
     w.show();
     return app.exec();
 }

@@ -31,12 +31,16 @@ signals:
     void windowVisibilityChanged();
 
 public:
+    QTextBrowser *textBrowser;
+
     THelpWindow();
+
 private:
     QFrame *fWidget;
     QToolBar *toolBar;
-    QTextBrowser *textBrowser;
+
     void hideEvent(QHideEvent *);
+
 public slots:
     void home();
 };

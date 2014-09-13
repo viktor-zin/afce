@@ -99,7 +99,6 @@ private:
   QAction *actrus;
   QList<QAction *> actLanguages;
 
-
 //  QAction *actPageSetup;
 
   QMenu *menuFile;
@@ -175,6 +174,7 @@ public slots:
   void slotDocumentChanged();
   void slotDocumentLoaded();
   void slotChangeLanguage();
+  void slotReloadGenerators();
 
   void setZoom(int quarts);
   void shiftZoom(int step);

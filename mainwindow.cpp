@@ -20,6 +20,7 @@
 #include <QSettings>
 #include "qflowchartstyle.h"
 #include "sourcecodegenerator.h"
+#include <QWidgetList>
 
 #if QT_VERSION >= 0x050000
     #include <QtPrintSupport/QPrinter>
@@ -367,37 +368,7 @@ void MainWindow::retranslateUi()
     dockCode->setWindowTitle(tr("Source code"));
     
 
-    int i = codeLanguage->currentIndex();
-    codeLanguage->clear();
-    QDir gd("generators:");
-    QStringList gens = gd.entryList(QStringList() << "*.json", QDir::Files, QDir::Name);
-
-    for (int g = 0; g < gens.size(); ++g) {
-        QFile f(gd.absoluteFilePath(gens[g]));
-        QString lang_name = QFileInfo(f.fileName()).baseName();
-        if(f.open(QIODevice::ReadOnly|QIODevice::Text)) {
-            QJsonDocument json = QJsonDocument::fromJson(f.readAll());
-            f.close();
-            QJsonObject obj = json.object();
-            QString loc = QLocale::system().name();
-            if(obj.contains("name")) {
-                QJsonObject jn = obj.value("name").toObject();
-                if(jn.contains(loc)) {
-                    lang_name = jn.value(loc).toString();
-                }
-                else if (jn.contains("en_US")) {
-                    lang_name = jn.value("en_US").toString();
-                }
-            }
-            codeLanguage->addItem(lang_name, QFileInfo(f.fileName()).baseName());
-        }
-    }
-
-    if (i!=-1)
-        codeLanguage->setCurrentIndex(i);
-    else
-        codeLanguage->setCurrentIndex(0);
-
+    slotReloadGenerators();
 
     codeLabel->setText(tr("&Select programming language:"));
 
@@ -406,6 +377,12 @@ void MainWindow::retranslateUi()
     else
         setWindowTitle(tr("Algorithm Flowchart Editor"));
     helpWindow->setWindowTitle(tr("Help window"));
+    helpWindow->textBrowser->setSearchPaths(QStringList() << "./help/"+QLocale().name() << "./help/en_US");
+  #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
+    helpWindow->textBrowser->setSearchPaths(QStringList() << QString(PROGRAM_DATA_DIR) + "help/"+QLocale().name() << QString(PROGRAM_DATA_DIR) + "help/en_US");
+  #endif
+    helpWindow->textBrowser->reload();
+
 
 }
 
@@ -691,6 +668,41 @@ void MainWindow::slotChangeLanguage()
 
     QSettings settings("afce", "application");
     settings.setValue("locale", localeName);
+}
+
+void MainWindow::slotReloadGenerators()
+{
+    int i = codeLanguage->currentIndex();
+    codeLanguage->clear();
+    QDir gd("generators:");
+    QStringList gens = gd.entryList(QStringList() << "*.json", QDir::Files, QDir::Name);
+
+    for (int g = 0; g < gens.size(); ++g) {
+        QFile f(gd.absoluteFilePath(gens[g]));
+        QString lang_name = QFileInfo(f.fileName()).baseName();
+        if(f.open(QIODevice::ReadOnly|QIODevice::Text)) {
+            QJsonDocument json = QJsonDocument::fromJson(f.readAll());
+            f.close();
+            QJsonObject obj = json.object();
+            QString loc = QLocale().name();
+            if(obj.contains("name")) {
+                QJsonObject jn = obj.value("name").toObject();
+                if(jn.contains(loc)) {
+                    lang_name = jn.value(loc).toString();
+                }
+                else if (jn.contains("en_US")) {
+                    lang_name = jn.value("en_US").toString();
+                }
+            }
+            codeLanguage->addItem(lang_name, QFileInfo(f.fileName()).baseName());
+        }
+    }
+
+    if (i!=-1)
+        codeLanguage->setCurrentIndex(i);
+    else
+        codeLanguage->setCurrentIndex(0);
+
 }
 
 
@@ -1313,6 +1325,7 @@ void MainWindow::shiftZoom(int step)
 void setApplicationLocale(const QString &localeName)
 {
     QLocale locale(localeName);
+    QLocale::setDefault(locale);
     static QTranslator *qtTranslator = NULL;
     static QTranslator *myappTranslator = NULL;
 
@@ -1344,4 +1357,8 @@ void setApplicationLocale(const QString &localeName)
     qDebug() << "Detected system locale: " << QLocale::system().name();
     qDebug() << "Set locale: " << locale.name();
     qDebug() << qApp->applicationDirPath();
+    QWidgetList wl = qApp->allWidgets();
+    for(int i = 0; i < wl.size(); ++i) {
+        wl[i]->setLocale(locale);
+    }
 }
