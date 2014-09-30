@@ -4,8 +4,9 @@ Name "Редактор блок-схем алгоритмов"
 !define VERSION 0.9.7
 !define QT_INSTALL_PREFIX C:\Qt\5.2.1\mingw48_32
 !define QT_INSTALL_BINS ${QT_INSTALL_PREFIX}\bin
+!define QT_INSTALL_PLUGINS ${QT_INSTALL_PREFIX}\plugins
 !define QT_INSTALL_TRANSLATIONS ${QT_INSTALL_PREFIX}\translations
-!define BUILDDIR ..\build-afce-new-Desktop_Qt_5_2_1_MinGW_32bit-Release
+!define BUILDDIR ..\build-afce-Desktop_Qt_5_2_1_MinGW_32bit-Release
 OutFile "..\afce-${VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\afce"
 
@@ -67,8 +68,25 @@ Section "Qt"
   File "${QT_INSTALL_BINS}\icuin51.dll"
   File "${QT_INSTALL_BINS}\icuuc51.dll"
   File "${QT_INSTALL_BINS}\icudt51.dll"
+  
+  SetOutPath "$INSTDIR\platforms"
+  File "${QT_INSTALL_PLUGINS}\platforms\qwindows.dll"
+
+  SetOutPath "$INSTDIR\imageformats"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qwbmpd.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qtiff.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qmng.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qjpeg.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qgif.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qsvg.dll"
+  File "${QT_INSTALL_PLUGINS}\imageformats\qwbmp.dll"
+
+  SetOutPath "$INSTDIR\printsupport"
+  File "${QT_INSTALL_PLUGINS}\printsupport\windowsprintersupport.dll"
+
 
 SectionEnd
+
 
 Section "Help"
   SetOutPath "$INSTDIR\help"
