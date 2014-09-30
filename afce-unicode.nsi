@@ -1,4 +1,3 @@
-Unicode true
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
 !define VERSION 0.9.8-alpha
@@ -19,20 +18,20 @@ LoadLanguageFile "${NSISDIR}\Contrib\Language files\Ukrainian.nlf"
 LoadLanguageFile "${NSISDIR}\Contrib\Language files\English.nlf"
 
 LangString ^Name ${LANG_ENGLISH} "Algorithm flowchart editor"
-LangString ^Name ${LANG_RUSSIAN} "Редактор блок-схем алгоритмов"
-LangString ^Name ${LANG_UKRAINIAN} "Редактор блок-схем алгоритмів"
+LangString ^Name ${LANG_RUSSIAN} "Р РµРґР°РєС‚РѕСЂ Р±Р»РѕРє-СЃС…РµРј Р°Р»РіРѕСЂРёС‚РјРѕРІ"
+LangString ^Name ${LANG_UKRAINIAN} "Р РµРґР°РєС‚РѕСЂ Р±Р»РѕРє-СЃС…РµРј Р°Р»РіРѕСЂРёС‚РјС–РІ"
 
 LangString AFCE ${LANG_ENGLISH} "Flowchart editor"
-LangString AFCE ${LANG_RUSSIAN} "Редактор блок-схем"
-LangString AFCE ${LANG_UKRAINIAN} "Редактор блок-схем"
+LangString AFCE ${LANG_RUSSIAN} "Р РµРґР°РєС‚РѕСЂ Р±Р»РѕРє-СЃС…РµРј"
+LangString AFCE ${LANG_UKRAINIAN} "Р РµРґР°РєС‚РѕСЂ Р±Р»РѕРє-СЃС…РµРј"
 
 LangString FLOWCHART ${LANG_ENGLISH} "Flowchart"
-LangString FLOWCHART ${LANG_RUSSIAN} "Блок-схема"
-LangString FLOWCHART ${LANG_UKRAINIAN} "Блок-схема"
+LangString FLOWCHART ${LANG_RUSSIAN} "Р‘Р»РѕРє-СЃС…РµРјР°"
+LangString FLOWCHART ${LANG_UKRAINIAN} "Р‘Р»РѕРє-СЃС…РµРјР°"
 
 LangString REMOVEPROGRAM ${LANG_ENGLISH} "Remove the program"
-LangString REMOVEPROGRAM ${LANG_RUSSIAN} "Удалить программу"
-LangString REMOVEPROGRAM ${LANG_UKRAINIAN} "Видалити програму"
+LangString REMOVEPROGRAM ${LANG_RUSSIAN} "РЈРґР°Р»РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ"
+LangString REMOVEPROGRAM ${LANG_UKRAINIAN} "Р’РёРґР°Р»РёС‚Рё РїСЂРѕРіСЂР°РјСѓ"
 
 LangString LOCALE ${LANG_ENGLISH} "en_US"
 LangString LOCALE ${LANG_RUSSIAN} "ru_RU"
@@ -54,7 +53,7 @@ Section "Program"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayName" $(AFCE)
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayIcon" "$INSTDIR\afce.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "DisplayVersion" "${VERSION}"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "Publisher" "Виктор Зинкевич"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "Publisher" "Р’РёРєС‚РѕСЂ Р—РёРЅРєРµРІРёС‡"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "UninstallString" "$INSTDIR\uninst.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "URLInfoAbout" "http://viktor-zin.github.io/afce/"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\afce" "InstallLocation" "$INSTDIR"
