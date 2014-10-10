@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
     QDir::setSearchPaths("generators", QStringList() << QString(PROGRAM_DATA_DIR) + "generators");
 #else
-    QDir::setSearchPaths("generators", QStringList() << "./generators");
+    QDir::setSearchPaths("generators", QStringList() << qApp->applicationDirPath() + "/generators");
 #endif
 
     setupUi();

@@ -61,6 +61,8 @@ win32 {
     system(cp -f $$QT_QM locale/)
 }
 
+mac:QMAKE_MAC_SDK = macosx10.9
+
 unix:!mac {
   # This is to keep symbols for backtraces
   QMAKE_CXXFLAGS += -rdynamic

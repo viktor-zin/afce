@@ -48,3 +48,13 @@ Also you can use Qt Creator. Just open afce.pro and build AFCE (`Ctrl+B`).
 Creation Windows installer
 --------------------------
 There is `afce.nsi` file in the source files. This file can be compiled by Nullsoft Installation System (NSIS). You can correct some constants for your environment.
+
+Building on MacOS X
+------------------
+Before building application be sure that XCode is installed. Then you can install Qt.
+Correct version of `QMAKE_MAC_SDK` in `afce.pro`. Now you can build AFCE:
+
+* qmake
+* make
+
+You should put folders `help`, `generators`, `locale` and `images` into `afce.app/Contents/MacOS`. To make a complete bundle run `macdeployqt afce.app`. This will populate the bundle with required files.
