@@ -551,17 +551,17 @@
 <context>
     <name>THelpWindow</name>
     <message>
-        <location filename="../thelpwindow.cpp" line="37"/>
+        <location filename="../thelpwindow.cpp" line="38"/>
         <source>Back</source>
         <translation>Назад</translation>
     </message>
     <message>
-        <location filename="../thelpwindow.cpp" line="38"/>
+        <location filename="../thelpwindow.cpp" line="39"/>
         <source>Forward</source>
         <translation>Вперёд</translation>
     </message>
     <message>
-        <location filename="../thelpwindow.cpp" line="40"/>
+        <location filename="../thelpwindow.cpp" line="41"/>
         <source>Home</source>
         <translation>Домой</translation>
     </message>

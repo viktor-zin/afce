@@ -61,7 +61,21 @@ win32 {
     system(cp -f $$QT_QM locale/)
 }
 
-mac:QMAKE_MAC_SDK = macosx10.9
+macx {
+    QMAKE_MAC_SDK = macosx10.9
+    ICON = afce.icns
+    QMAKE_INFO_PLIST = myInfo.plist
+    QMAKE_POST_LINK = mkdir -p afce.app/Contents/MacOS/locale & \
+                      cp -R locale/*.qm afce.app/Contents/MacOS/locale/ & \
+                      cp -R $$QT_QM afce.app/Contents/MacOS/locale/ & \
+                      mkdir -p afce.app/Contents/MacOS/help & \
+                      cp -R $${PWD}/help afce.app/Contents/MacOS \
+                      mkdir -p afce.app/Contents/MacOS/images & \
+                      cp -R $${PWD}/images afce.app/Contents/MacOS \
+                      mkdir -p afce.app/Contents/MacOS/generators & \
+                      cp -R $${PWD}/generators afce.app/Contents/MacOS
+}
+
 
 unix:!mac {
   # This is to keep symbols for backtraces

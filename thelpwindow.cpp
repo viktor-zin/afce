@@ -15,6 +15,7 @@
 
 #include "thelpwindow.h"
 #include <QLocale>
+#include <QApplication>
 
 
 THelpWindow::THelpWindow()
@@ -28,7 +29,7 @@ THelpWindow::THelpWindow()
   vl->addWidget(toolBar);
   vl->addWidget(textBrowser);
   widget()->setLayout(vl);
-  textBrowser->setSearchPaths(QStringList() << "./help/"+QLocale().name() << "./help/en_US");
+  textBrowser->setSearchPaths(QStringList() << qApp->applicationDirPath() + "/help/"+QLocale().name() << qApp->applicationDirPath() + "/help/en_US");
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
   textBrowser->setSearchPaths(QStringList() << QString(PROGRAM_DATA_DIR) + "help/"+QLocale().name() << QString(PROGRAM_DATA_DIR) + "help/en_US");
 #endif
