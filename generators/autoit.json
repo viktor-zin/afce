@@ -1,0 +1,43 @@
+{
+    "name": {
+        "en_US": "AutoIt 3"
+    },
+	"algorithm" : {
+		"template" : "Func Main()%branch1%\nEndFunc"
+	},
+	"if": {
+		"template":"If %cond% Then%branch1%\nElse%branch2%\nEndIf"
+	},
+	"for": {
+		"template":"For $%var% = %from% To %to%%branch1%\nNext"
+	},
+	"pre": {
+		"template":"While %cond%%branch1%\nWEnd"
+	},
+	"post": {
+		"template":"Do%branch1%\nUntil Not %cond%"
+	},
+	"assign": {
+		"template":"$%dest% = %src%"
+	},
+	"process": {
+		"template": "%text%"
+	},
+	"io": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix" : "$",
+		"suffix": " = ConsoleRead()"
+	},
+
+	"ou": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"prefix": "ConsoleWrite($",
+		"suffix": " & @CRLF)"
+	}
+}
