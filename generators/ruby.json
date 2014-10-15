@@ -1,0 +1,41 @@
+{
+    "name": {
+        "en_US":"Ruby"
+    },
+	"algorithm" : {
+		"template" : "def main%branch1%\nend"
+	},
+	"if": {
+		"template":"if %cond% then%branch1%\nelse%branch2%\nend"
+	},
+	"for": {
+		"template":"for %var% in %from%..%to%%branch1%\nend"
+	},
+	"pre": {
+		"template":"while %cond%%branch1%\nend"
+	},
+	"post": {
+		"template":"begin%branch1%\nend while %cond%"
+	},
+	"assign": {
+		"template":"%dest% = %src%"
+	},
+	"process": {
+		"template": "%text%"
+	},
+	"io": {
+		"template": "%vars%",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": "\n",
+		"suffix": " = gets"
+	},
+
+	"ou": {
+		"template": "puts [%vars%]",
+		"list": ["vars"],
+		"separator": ",",
+		"glue": ", "
+
+	}
+}
