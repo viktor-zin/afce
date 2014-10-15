@@ -1,6 +1,6 @@
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
-!define VERSION 0.9.8-alpha
+!define VERSION 0.9.8-beta
 !define QT_INSTALL_PREFIX C:\Qt\5.2.1\mingw48_32
 !define QT_INSTALL_BINS ${QT_INSTALL_PREFIX}\bin
 !define QT_INSTALL_PLUGINS ${QT_INSTALL_PREFIX}\plugins
