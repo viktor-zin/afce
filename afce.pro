@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = afce
-VERSION = 0.9.8-beta
+VERSION = 0.9.8
 
   system(echo $$VERSION > version.txt)
 

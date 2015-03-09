@@ -1,11 +1,11 @@
 RequestExecutionLevel admin
 SetCompressor /SOLID lzma
-!define VERSION 0.9.8-beta
-!define QT_INSTALL_PREFIX C:\Qt\5.2.1\mingw48_32
+!define VERSION 0.9.8
+!define QT_INSTALL_PREFIX C:\Qt\5.4\mingw491_32
 !define QT_INSTALL_BINS ${QT_INSTALL_PREFIX}\bin
 !define QT_INSTALL_PLUGINS ${QT_INSTALL_PREFIX}\plugins
 !define QT_INSTALL_TRANSLATIONS ${QT_INSTALL_PREFIX}\translations
-!define BUILDDIR ..\build-afce-Desktop_Qt_5_2_1_MinGW_32bit-Release
+!define BUILDDIR ..\build-afce-Desktop_Qt_5_4_1_MinGW_32bit-Release
 OutFile "..\afce-${VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\afce"
 
@@ -90,9 +90,9 @@ Section "Qt"
   File "${QT_INSTALL_BINS}\Qt5Xml.dll"
   File "${QT_INSTALL_BINS}\Qt5Widgets.dll"
   File "${QT_INSTALL_BINS}\libwinpthread-1.dll"
-  File "${QT_INSTALL_BINS}\icuin51.dll"
-  File "${QT_INSTALL_BINS}\icuuc51.dll"
-  File "${QT_INSTALL_BINS}\icudt51.dll"
+  File "${QT_INSTALL_BINS}\icuin53.dll"
+  File "${QT_INSTALL_BINS}\icuuc53.dll"
+  File "${QT_INSTALL_BINS}\icudt53.dll"
 
   SetOutPath "$INSTDIR\platforms"
   File "${QT_INSTALL_PLUGINS}\platforms\qwindows.dll"

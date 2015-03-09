@@ -549,57 +549,6 @@
     </message>
 </context>
 <context>
-    <name>QObject</name>
-    <message>
-        <source>(* empty process *)</source>
-        <translation type="obsolete">(* пустий процес *)</translation>
-    </message>
-    <message>
-        <source>(* no destination *)</source>
-        <translation type="obsolete">(* відсутнє призначення *)</translation>
-    </message>
-    <message>
-        <source>(* no source *)</source>
-        <translation type="obsolete">(* відсутнє джерело *)</translation>
-    </message>
-    <message>
-        <source>(* no condition *)</source>
-        <translation type="obsolete">(* відсутнє умова *)</translation>
-    </message>
-    <message>
-        <source>(* no variable *)</source>
-        <translation type="obsolete">(* відсутня змінна *)</translation>
-    </message>
-    <message>
-        <source>(* no value *)</source>
-        <translation type="obsolete">(* відсутнє значення *)</translation>
-    </message>
-    <message>
-        <source>/* empty process */</source>
-        <translation type="obsolete">/* пустий процес */</translation>
-    </message>
-    <message>
-        <source>/* no destination */</source>
-        <translation type="obsolete">/* відсутнє призначення */</translation>
-    </message>
-    <message>
-        <source>/* no source */</source>
-        <translation type="obsolete">/* відсутнє джерело */</translation>
-    </message>
-    <message>
-        <source>/* no condition */</source>
-        <translation type="obsolete">/* відсутня умова */</translation>
-    </message>
-    <message>
-        <source>/* no variable */</source>
-        <translation type="obsolete">/* відсутня змінна */</translation>
-    </message>
-    <message>
-        <source>/* no value */</source>
-        <translation type="obsolete">/* відсутнє значення */</translation>
-    </message>
-</context>
-<context>
     <name>THelpWindow</name>
     <message>
         <location filename="../thelpwindow.cpp" line="38"/>
