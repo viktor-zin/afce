@@ -29,22 +29,13 @@
 #include <QLabel>
 #include <QApplication>
 #include <QTextCodec>
+#include "afcscrollarea.h"
 
 
-class AfcScrollArea : public QScrollArea
-{
-  Q_OBJECT
-  protected:
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
-  signals:
-    void mouseDown();
-    void zoomStepped(int);
-  public:
-     explicit AfcScrollArea(QWidget* parent=0) : QScrollArea(parent) { }
-    ~AfcScrollArea() { }
+namespace Ui {
+class MainWindow;
+}
 
-};
 
 class MainWindow : public QMainWindow
 {
@@ -54,6 +45,7 @@ signals:
 private:
 //  TAlgorithmBlock *fRoot;
   QFlowChart *fDocument;
+  Ui::MainWindow *ui;
   bool isSaved;
   QVBoxLayout *fVLayout;
   QHBoxLayout *fHLayout;
@@ -69,37 +61,34 @@ private:
   QToolButton *tbWhilePost;
   QToolButton *tbIo;
   QToolButton *tbOu;
-//  QToolButton *tbCase;
   QToolButton *tbForCStyle;
   QToolButton *tbAssign;
 
   QComboBox *codeLanguage;
   QTextEdit *codeText;
 
-  QAction *actNew;
-  QAction *actOpen;
-  QAction *actSave;
-  QAction *actSaveAs;
-  QAction *actExit;
-  QAction *actUndo;
-  QAction *actRedo;
-  QAction *actCut;
-  QAction *actCopy;
-  QAction *actPaste;
-  QAction *actDelete;
-  QAction *actHelp;
-  QAction *actAbout;
-  QAction *actAboutQt;
-  QAction *actExport;
-  QAction *actExportSVG;
-  QAction *actPrint;
-  QAction *actTools;
-  QAction *actCode;
-  QAction *acteng;
-  QAction *actrus;
+//  QAction *actNew;
+//  QAction *actOpen;
+//  QAction *actSave;
+//  QAction *actSaveAs;
+//  QAction *actExit;
+//  QAction *actUndo;
+//  QAction *actRedo;
+//  QAction *actCut;
+//  QAction *actCopy;
+//  QAction *actPaste;
+//  QAction *actDelete;
+//  QAction *actHelp;
+//  QAction *actAbout;
+//  QAction *actAboutQt;
+//  QAction *actExport;
+//  QAction *actExportSVG;
+//  QAction *actPrint;
+//  QAction *actTools;
+//  QAction *actCode;
+//  QAction *acteng;
+//  QAction *actrus;
   QList<QAction *> actLanguages;
-
-//  QAction *actPageSetup;
 
   QMenu *menuFile;
   QMenu *menuEdit;
@@ -112,8 +101,6 @@ private:
   QLabel *zoomLabel;
   QLabel *labelMenu;
   QSlider *zoomSlider;
-  //QLabel *labelFile;
-
 
   THelpWindow *helpWindow;
 
@@ -136,64 +123,60 @@ void closeEvent(QCloseEvent *event);
 public:
     MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~MainWindow();
-//    TAlgorithmBlock *root() const;
-//    void setRoot(TAlgorithmBlock *aRoot);
     QFlowChart * document() const { return fDocument; }
     void setDocument(QFlowChart * aDocument);
-  static QString getFilterFor(const QString & fileExt);
-  static QString getWriteFormatFilter();
-  static QHash<QString, QString> enumLanguages();
+    static QString getFilterFor(const QString & fileExt);
+    static QString getWriteFormatFilter();
+    static QHash<QString, QString> enumLanguages();
 
 public slots:
-  void retranslateUi();
-  void slotFileOpen();
-  void slotFileNew();
-  void slotFileSave();
-  void slotFileSaveAs();
-  void slotFileExport();
-  void slotFileExportSVG();
-  void slotFilePrint();
-  void slotEditCopy();
-  void slotEditCut();
-  void slotEditPaste();
-  void slotEditDelete();
-  void slotHelpAbout();
-  void slotHelpAboutQt();
-  void slotToolArrow();
-  void slotToolProcess();
-  void slotToolIf();
-  void slotToolFor();
-  void slotToolWhilePre();
-  void slotToolWhilePost();
-  void slotToolIo();
-  void slotToolOu();
-  void slotToolCase();
-  void slotToolForCStyle();
-  void slotToolAssign();
-  void slotDocumentSaved();
-  void slotDocumentChanged();
-  void slotDocumentLoaded();
-  void slotChangeLanguage();
-  void slotReloadGenerators();
+    void retranslateUi();
+    void on_actOpen_triggered();
+    void on_actNew_triggered();
+    void on_actSave_triggered();
+    void on_actSaveAs_triggered();
+    void on_actExport_triggered();
+    void on_actExportSVG_triggered();
+    void on_actPrint_triggered();
+    void on_actCopy_triggered();
+    void on_actCut_triggered();
+    void on_actPaste_triggered();
+    void on_actDelete_triggered();
+    void on_actAbout_triggered();
+    void on_actAboutQt_triggered();
+    void slotToolArrow();
+    void slotToolProcess();
+    void slotToolIf();
+    void slotToolFor();
+    void slotToolWhilePre();
+    void slotToolWhilePost();
+    void slotToolIo();
+    void slotToolOu();
+    void slotToolCase();
+    void slotToolForCStyle();
+    void slotToolAssign();
+    void slotDocumentSaved();
+    void slotDocumentChanged();
+    void slotDocumentLoaded();
+    void slotChangeLanguage();
+    void slotReloadGenerators();
 
-  void setZoom(int quarts);
-  void shiftZoom(int step);
-  void slotStatusChanged();
-  void slotEditBlock(QBlock *aBlock);
-  void updateActions();
-  void generateCode();
-  void codeLangChanged(int index);
-  void docToolsVisibilityChanged(bool visible);
-  void docCodeVisibilityChanged(bool visible);
+    void setZoom(int quarts);
+    void shiftZoom(int step);
+    void slotStatusChanged();
+    void slotEditBlock(QBlock *aBlock);
+    void updateActions();
+    void generateCode();
+    void codeLangChanged(int index);
+    void docToolsVisibilityChanged(bool visible);
+    void docCodeVisibilityChanged(bool visible);
 
-  void slotOpenDocument(const QString &fn);
+    void slotOpenDocument(const QString &fn);
 signals:
-  void documentLoaded();
-  void documentSaved();
-  void documentChanged();
-  void documentUnloaded();
-
-
+    void documentLoaded();
+    void documentSaved();
+    void documentChanged();
+    void documentUnloaded();
 };
 
 QString afceVersion();

@@ -14,6 +14,7 @@
 ****************************************************************************/
 
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "zvflowchart.h"
 #include <QtGui>
 #include <QtSvg>
@@ -31,31 +32,20 @@ QString afceVersion()
 }
 
 
-void AfcScrollArea::mousePressEvent(QMouseEvent *event)
-{
-    event->accept();
-    emit mouseDown();
-}
-
-void AfcScrollArea::wheelEvent(QWheelEvent *event)
-{
-    if((event->modifiers() & Qt::ControlModifier) != 0) {
-        event->ignore();
-        emit zoomStepped(event->delta() / 120);
-    }
-    else event->accept();
-}
 
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
-    : QMainWindow(parent, flags), fDocument(0)
+    : QMainWindow(parent, flags), fDocument(0),
+      ui(new Ui::MainWindow)
 {
+
 #if defined(Q_WS_X11) or defined(Q_OS_LINUX)
     QDir::setSearchPaths("generators", QStringList() << QString(PROGRAM_DATA_DIR) + "generators");
 #else
     QDir::setSearchPaths("generators", QStringList() << qApp->applicationDirPath() + "/generators");
 #endif
 
+    ui->setupUi(this);
     setupUi();
     readSettings();
     retranslateUi();
@@ -65,8 +55,8 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     document()->setZoom(1);
     connect(document(), SIGNAL(statusChanged()), this, SLOT(slotStatusChanged()));
     connect(document(), SIGNAL(editBlock(QBlock *)), this, SLOT(slotEditBlock(QBlock *)));
-    connect(actUndo, SIGNAL(triggered()), document(), SLOT(undo()));
-    connect(actRedo, SIGNAL(triggered()), document(), SLOT(redo()));
+    connect(ui->actUndo, SIGNAL(triggered()), document(), SLOT(undo()));
+    connect(ui->actRedo, SIGNAL(triggered()), document(), SLOT(redo()));
     connect(document(), SIGNAL(changed()), this, SLOT(updateActions()));
     connect(document(), SIGNAL(changed()), this, SLOT(generateCode()));
     document()->setStatus(QFlowChart::Selectable);
@@ -178,10 +168,10 @@ void MainWindow::setupUi()
     codeLanguage = new QComboBox;
     codeText = new QTextEdit;
     codeLabel = new QLabel;
-    actCode->setCheckable(true);
-    actCode->setChecked(dockCode->isVisible());
-    connect(actCode, SIGNAL(triggered(bool)), dockCode, SLOT(setVisible(bool)));
-    connect(dockCode, SIGNAL(visibilityChanged(bool)), actCode, SLOT(setChecked(bool)));
+    ui->actCode->setCheckable(true);
+    ui->actCode->setChecked(dockCode->isVisible());
+    connect(ui->actCode, SIGNAL(triggered(bool)), dockCode, SLOT(setVisible(bool)));
+    connect(dockCode, SIGNAL(visibilityChanged(bool)), ui->actCode, SLOT(setChecked(bool)));
 
     //connect(dockCode, SIGNAL(visibilityChanged(bool)), this, SLOT(docCodeVisibilityChanged(bool)));
 
@@ -207,11 +197,11 @@ void MainWindow::setupUi()
     addDockWidget(Qt::RightDockWidgetArea, helpWindow);
     helpWindow->hide();
 
-    actHelp->setCheckable(true);
-    actHelp->setChecked(helpWindow->isVisible());
+    ui->actHelp->setCheckable(true);
+    ui->actHelp->setChecked(helpWindow->isVisible());
 
-    connect(actHelp, SIGNAL(triggered(bool)), helpWindow, SLOT(setVisible(bool)));
-    connect(helpWindow, SIGNAL(visibilityChanged(bool)), actHelp, SLOT(setChecked(bool)));
+    connect(ui->actHelp, SIGNAL(triggered(bool)), helpWindow, SLOT(setVisible(bool)));
+    connect(helpWindow, SIGNAL(visibilityChanged(bool)), ui->actHelp, SLOT(setChecked(bool)));
 
 
 }
@@ -279,16 +269,17 @@ void MainWindow::createToolbox()
     toolsWidget->setLayout(tl);
     dockTools->setWidget(toolsWidget);
 
-    actTools->setCheckable(true);
-    actTools->setChecked(dockTools->isVisible());
-    connect(actTools, SIGNAL(triggered(bool)), dockTools, SLOT(setVisible(bool)));
-    connect(dockTools, SIGNAL(visibilityChanged(bool)), actTools, SLOT(setChecked(bool)));
+    ui->actTools->setCheckable(true);
+    ui->actTools->setChecked(dockTools->isVisible());
+    connect(ui->actTools, SIGNAL(triggered(bool)), dockTools, SLOT(setVisible(bool)));
+    connect(dockTools, SIGNAL(visibilityChanged(bool)), ui->actTools, SLOT(setChecked(bool)));
 
 
 }
 
 void MainWindow::retranslateUi()
 {
+    ui->retranslateUi(this);
     dockTools->setWindowTitle(tr("Tools"));
     tbArrow->setText(tr("Select"));
     tbProcess->setText(tr("Process"));
@@ -300,61 +291,61 @@ void MainWindow::retranslateUi()
     tbIo->setText(tr("Input"));
     tbOu->setText(tr("Output"));
     tbForCStyle->setText(tr("FOR loop (C/C++)"));
-    actExit->setText(tr("E&xit"));
-    actExit->setStatusTip(tr("Exit from program"));
-    actOpen->setText(tr("&Open..."));
-    actOpen->setStatusTip(tr("Open saved file"));
-    actSave->setText(tr("&Save"));
-    actSave->setStatusTip(tr("Save changes"));
-    actSaveAs->setText(tr("Save &as..."));
-    actSaveAs->setStatusTip(tr("Save changes in a new file"));
-    actExport->setText(tr("&Export to raster..."));
-    actExport->setStatusTip(tr("Save the flowchart in a raster picture format"));
-    actExportSVG->setText(tr("&Export to SVG..."));
-    actExportSVG->setStatusTip(tr("Save the flowchart in a vector picture format"));
-    actPrint->setText(tr("&Print..."));
-    actPrint->setStatusTip(tr("To print"));
-    actNew->setText(tr("&New"));
-    actNew->setStatusTip(tr("Create a new project"));
-    actUndo->setText(tr("&Undo"));
-    actUndo->setStatusTip(tr("Undo the last operation"));
-    actRedo->setText(tr("&Redo"));
-    actRedo->setStatusTip(tr("Restore the last undone action"));
-    actCut->setText(tr("Cu&t"));
-    actCut->setStatusTip(tr("Cut the current selection"));
-    actCopy->setText(tr("&Copy"));
-    actCopy->setStatusTip(tr("Copy the current selection"));
-    actPaste->setText(tr("&Paste"));
-    actPaste->setStatusTip(tr("Paste"));
-    actDelete->setText(tr("&Delete"));
-    actDelete->setStatusTip(tr("Delete the current selection"));
-    actHelp->setText(tr("&Help"));
-    actHelp->setStatusTip(tr("Toggle Help window"));
-    actAbout->setText(tr("&About"));
-    actAbout->setStatusTip(tr("Information about authors"));
-    actAboutQt->setText(tr("About &Qt"));
-    actAboutQt->setStatusTip(tr("Information about Qt"));
-    actTools->setText(tr("&Tools"));
-    actTools->setStatusTip(tr("Toggle the tool panel"));
-    actCode->setText(tr("&Source code"));
-    actCode->setStatusTip(tr("Toggle the source code panel"));
+//    actExit->setText(tr("E&xit"));
+//    actExit->setStatusTip(tr("Exit from program"));
+//    actOpen->setText(tr("&Open..."));
+//    actOpen->setStatusTip(tr("Open saved file"));
+//    actSave->setText(tr("&Save"));
+//    actSave->setStatusTip(tr("Save changes"));
+//    actSaveAs->setText(tr("Save &as..."));
+//    actSaveAs->setStatusTip(tr("Save changes in a new file"));
+//    actExport->setText(tr("&Export to raster..."));
+//    actExport->setStatusTip(tr("Save the flowchart in a raster picture format"));
+//    actExportSVG->setText(tr("&Export to SVG..."));
+//    actExportSVG->setStatusTip(tr("Save the flowchart in a vector picture format"));
+//    actPrint->setText(tr("&Print..."));
+//    actPrint->setStatusTip(tr("To print"));
+//    actNew->setText(tr("&New"));
+//    actNew->setStatusTip(tr("Create a new project"));
+//    actUndo->setText(tr("&Undo"));
+//    actUndo->setStatusTip(tr("Undo the last operation"));
+//    actRedo->setText(tr("&Redo"));
+//    actRedo->setStatusTip(tr("Restore the last undone action"));
+//    actCut->setText(tr("Cu&t"));
+//    actCut->setStatusTip(tr("Cut the current selection"));
+//    actCopy->setText(tr("&Copy"));
+//    actCopy->setStatusTip(tr("Copy the current selection"));
+//    actPaste->setText(tr("&Paste"));
+//    actPaste->setStatusTip(tr("Paste"));
+//    actDelete->setText(tr("&Delete"));
+//    actDelete->setStatusTip(tr("Delete the current selection"));
+//    actHelp->setText(tr("&Help"));
+//    actHelp->setStatusTip(tr("Toggle Help window"));
+//    actAbout->setText(tr("&About"));
+//    actAbout->setStatusTip(tr("Information about authors"));
+//    actAboutQt->setText(tr("About &Qt"));
+//    actAboutQt->setStatusTip(tr("Information about Qt"));
+//    actTools->setText(tr("&Tools"));
+//    actTools->setStatusTip(tr("Toggle the tool panel"));
+//    actCode->setText(tr("&Source code"));
+//    actCode->setStatusTip(tr("Toggle the source code panel"));
 
 
 
-    actExit->setShortcut(tr("Alt+X"));
-    actOpen->setShortcut(tr("Ctrl+O"));
-    actSave->setShortcut(tr("Ctrl+S"));
-    actNew->setShortcut(tr("Ctrl+N"));
-    actUndo->setShortcut(tr("Ctrl+Z"));
-    actRedo->setShortcut(tr("Ctrl+Y"));
-    actCut->setShortcut(tr("Ctrl+X"));
-    actCopy->setShortcut(tr("Ctrl+C"));
-    actPaste->setShortcut(tr("Ctrl+V"));
-    actDelete->setShortcut(tr("Del"));
-    actHelp->setShortcut(tr("F1"));
-    actPrint->setShortcut(tr("Ctrl+P"));
-    actTools->setShortcut(tr("F2"));
-    actCode->setShortcut(tr("F3"));
+//    actExit->setShortcut(tr("Alt+X"));
+//    actOpen->setShortcut(tr("Ctrl+O"));
+//    actSave->setShortcut(tr("Ctrl+S"));
+//    actNew->setShortcut(tr("Ctrl+N"));
+//    actUndo->setShortcut(tr("Ctrl+Z"));
+//    actRedo->setShortcut(tr("Ctrl+Y"));
+//    actCut->setShortcut(tr("Ctrl+X"));
+//    actCopy->setShortcut(tr("Ctrl+C"));
+//    actPaste->setShortcut(tr("Ctrl+V"));
+//    actDelete->setShortcut(tr("Del"));
+//    actHelp->setShortcut(tr("F1"));
+//    actPrint->setShortcut(tr("Ctrl+P"));
+//    actTools->setShortcut(tr("F2"));
+//    actCode->setShortcut(tr("F3"));
 
     menuFile->setTitle(tr("&File"));
     menuEdit->setTitle(tr("&Edit"));
@@ -387,34 +378,34 @@ void MainWindow::retranslateUi()
 void MainWindow::createMenu()
 {
     menuFile = menuBar()->addMenu("");
-    menuFile->addAction(actNew);
-    menuFile->addAction(actOpen);
+    menuFile->addAction(ui->actNew);
+    menuFile->addAction(ui->actOpen);
     menuFile->addSeparator();
-    menuFile->addAction(actSave);
-    menuFile->addAction(actSaveAs);
+    menuFile->addAction(ui->actSave);
+    menuFile->addAction(ui->actSaveAs);
     menuFile->addSeparator();
-    menuFile->addAction(actExport);
-    menuFile->addAction(actExportSVG);
+    menuFile->addAction(ui->actExport);
+    menuFile->addAction(ui->actExportSVG);
     menuFile->addSeparator();
-    menuFile->addAction(actPrint);
+    menuFile->addAction(ui->actPrint);
     menuFile->addSeparator();
     menuFile->addSeparator();
-    menuFile->addAction(actExit);
-    actAbout->isChecked();
+    menuFile->addAction(ui->actExit);
+    ui->actAbout->isChecked();
 
     menuEdit = menuBar()->addMenu("");
-    menuEdit->addAction(actUndo);
-    menuEdit->addAction(actRedo);
+    menuEdit->addAction(ui->actUndo);
+    menuEdit->addAction(ui->actRedo);
     menuEdit->addSeparator();
-    menuEdit->addAction(actCut);
-    menuEdit->addAction(actCopy);
-    menuEdit->addAction(actPaste);
+    menuEdit->addAction(ui->actCut);
+    menuEdit->addAction(ui->actCopy);
+    menuEdit->addAction(ui->actPaste);
     menuEdit->addSeparator();
-    menuEdit->addAction(actDelete);
+    menuEdit->addAction(ui->actDelete);
 
     menuWindow = menuBar()->addMenu("");
-    menuWindow->addAction(actTools);
-    menuWindow->addAction(actCode);
+    menuWindow->addAction(ui->actTools);
+    menuWindow->addAction(ui->actCode);
     menuWindow->addSeparator();
     menuLanguage = menuWindow->addMenu(tr("&Language"));
     for (int i = 0; i < actLanguages.size(); ++i) {
@@ -422,10 +413,10 @@ void MainWindow::createMenu()
     }
 
     menuHelp = menuBar()->addMenu("");
-    menuHelp->addAction(actHelp);
+    menuHelp->addAction(ui->actHelp);
     menuHelp->addSeparator();
-    menuHelp->addAction(actAbout);
-    menuHelp->addAction(actAboutQt);
+    menuHelp->addAction(ui->actAbout);
+    menuHelp->addAction(ui->actAboutQt);
 }
 
 void MainWindow::createToolBar()
@@ -435,75 +426,73 @@ void MainWindow::createToolBar()
     toolBar->setIconSize(QSize(32,32));
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-    toolBar->addAction(actNew);
-    toolBar->addAction(actOpen);
-    toolBar->addAction(actSave);
+    toolBar->addAction(ui->actNew);
+    toolBar->addAction(ui->actOpen);
+    toolBar->addAction(ui->actSave);
     toolBar->addSeparator();
-    toolBar->addAction(actUndo);
-    toolBar->addAction(actRedo);
+    toolBar->addAction(ui->actUndo);
+    toolBar->addAction(ui->actRedo);
     toolBar->addSeparator();
-    toolBar->addAction(actCut);
-    toolBar->addAction(actCopy);
-    toolBar->addAction(actPaste);
+    toolBar->addAction(ui->actCut);
+    toolBar->addAction(ui->actCopy);
+    toolBar->addAction(ui->actPaste);
     toolBar->addSeparator();
-    toolBar->addAction(actHelp);
+    toolBar->addAction(ui->actHelp);
     toolBar->addSeparator();
-    toolBar->addAction(actTools);
-    toolBar->addAction(actCode);
+    toolBar->addAction(ui->actTools);
+    toolBar->addAction(ui->actCode);
 }
 
 
 void MainWindow::docToolsVisibilityChanged(bool visible)
 {
-    actTools->setChecked(visible);
+    ui->actTools->setChecked(visible);
 }
 
 void MainWindow::docCodeVisibilityChanged(bool visible)
 {
-    actCode->setChecked(visible);
+    ui->actCode->setChecked(visible);
 }
 
 void MainWindow::createActions()
 {
-    actExit = new QAction(QIcon(":/images/exit.png"), "", this);
-    actOpen = new QAction(QIcon(":/images/open_document_32_h.png"), "", this);
-    actNew = new QAction(QIcon(":/images/new_document_32_h.png"), "", this);
-    actSave = new QAction(QIcon(":/images/save_32_h.png"), "", this);
-    actSaveAs = new QAction(this);
-    //actUndo = new QAction(QIcon(":/images/undo_32_h.png"), "", this);
-    //actRedo = new QAction(QIcon(":/images/redo_32_h.png"), "", this);
-    actUndo = new QAction(QIcon(":/images/restart-3.png"), "", this);
-    actRedo = new QAction(QIcon(":/images/restart-4.png"), "", this);
-    actCut = new QAction(QIcon(":/images/cut_clipboard_32_h.png"), "", this);
-    actCopy = new QAction(QIcon(":/images/copy_clipboard_32_h.png"), "", this);
-    actPaste = new QAction(QIcon(":/images/paste_clipboard_32_h.png"), "", this);
-    actDelete = new QAction(QIcon(":/images/delete_x_32_h.png"), "", this);
-    actExport = new QAction(this);
-    actExportSVG = new QAction(this);
-    actHelp = new QAction(QIcon(":/images/help-icon.png"), "", this);
-    actAbout = new QAction(this);
-    actAboutQt = new QAction(this);
-    actPrint = new QAction(QIcon(":/images/print_32_h.png"), "", this);
-    actTools = new QAction(QIcon(":/images/toolbar.png"), "", this);
-    actCode = new QAction(QIcon(":/images/source-code.png"), "", this);
+//    actExit = new QAction(QIcon(":/images/exit.png"), "", this);
+//    actOpen = new QAction(QIcon(":/images/open_document_32_h.png"), "", this);
+//    actNew = new QAction(QIcon(":/images/new_document_32_h.png"), "", this);
+//    actSave = new QAction(QIcon(":/images/save_32_h.png"), "", this);
+//    actSaveAs = new QAction(this);
+//    actUndo = new QAction(QIcon(":/images/restart-3.png"), "", this);
+//    actRedo = new QAction(QIcon(":/images/restart-4.png"), "", this);
+//    actCut = new QAction(QIcon(":/images/cut_clipboard_32_h.png"), "", this);
+//    actCopy = new QAction(QIcon(":/images/copy_clipboard_32_h.png"), "", this);
+//    actPaste = new QAction(QIcon(":/images/paste_clipboard_32_h.png"), "", this);
+//    actDelete = new QAction(QIcon(":/images/delete_x_32_h.png"), "", this);
+//    actExport = new QAction(this);
+//    actExportSVG = new QAction(this);
+//    actHelp = new QAction(QIcon(":/images/help-icon.png"), "", this);
+//    actAbout = new QAction(this);
+//    actAboutQt = new QAction(this);
+//    actPrint = new QAction(QIcon(":/images/print_32_h.png"), "", this);
+//    actTools = new QAction(QIcon(":/images/toolbar.png"), "", this);
+//    actCode = new QAction(QIcon(":/images/source-code.png"), "", this);
 
 
-    connect(actExit, SIGNAL(triggered()), this, SLOT(close()));
-    connect(actNew, SIGNAL(triggered()), this, SLOT(slotFileNew()));
-    connect(actOpen, SIGNAL(triggered()), this, SLOT(slotFileOpen()));
-    connect(actSave, SIGNAL(triggered()), this, SLOT(slotFileSave()));
-    connect(actSaveAs, SIGNAL(triggered()), this, SLOT(slotFileSaveAs()));
-    connect(actExport, SIGNAL(triggered()), this, SLOT(slotFileExport()));
-    connect(actExportSVG, SIGNAL(triggered()), this, SLOT(slotFileExportSVG()));
-    connect(actPrint, SIGNAL(triggered()), this, SLOT(slotFilePrint()));
-    connect(actCut, SIGNAL(triggered()), this, SLOT(slotEditCut()));
-    connect(actCopy, SIGNAL(triggered()), this, SLOT(slotEditCopy()));
-    connect(actPaste, SIGNAL(triggered()), this, SLOT(slotEditPaste()));
-    connect(actDelete, SIGNAL(triggered()), this, SLOT(slotEditDelete()));
+    //connect(ui->actExit, SIGNAL(triggered()), this, SLOT(close()));
+//    connect(ui->actNew, SIGNAL(triggered()), this, SLOT(on_actNew_triggered()));
+//    connect(ui->actOpen, SIGNAL(triggered()), this, SLOT(on_actOpen_triggered()));
+//    connect(ui->actSave, SIGNAL(triggered()), this, SLOT(on_actSave_triggered()));
+//    connect(ui->actSaveAs, SIGNAL(triggered()), this, SLOT(on_actSaveAs_triggered()));
+//    connect(actExport, SIGNAL(triggered()), this, SLOT(on_actExport_triggered()));
+//    connect(actExportSVG, SIGNAL(triggered()), this, SLOT(on_actExportSVG_triggered()));
+//    connect(actPrint, SIGNAL(triggered()), this, SLOT(on_actPrint_triggered()));
+//    connect(actCut, SIGNAL(triggered()), this, SLOT(slotEditCut()));
+//    connect(actCopy, SIGNAL(triggered()), this, SLOT(slotEditCopy()));
+//    connect(actPaste, SIGNAL(triggered()), this, SLOT(slotEditPaste()));
+//    connect(actDelete, SIGNAL(triggered()), this, SLOT(slotEditDelete()));
 
 //    connect(actHelp, SIGNAL(triggered()), this, SLOT(slotHelpHelp()));
-    connect(actAbout, SIGNAL(triggered()), this, SLOT(slotHelpAbout()));
-    connect(actAboutQt, SIGNAL(triggered()), this, SLOT(slotHelpAboutQt()));
+//    connect(actAbout, SIGNAL(triggered()), this, SLOT(slotHelpAbout()));
+//    connect(actAboutQt, SIGNAL(triggered()), this, SLOT(slotHelpAboutQt()));
 
     /* ... */
 //    connect(actTools, SIGNAL(triggered()), this, SLOT(slotTools()));
@@ -542,7 +531,7 @@ bool MainWindow::okToContinue()
     return true;
 }
 
-void MainWindow::slotFileOpen()
+void MainWindow::on_actOpen_triggered()
 {
     QString fn = QFileDialog::getOpenFileName ( this,
                                                 tr("Select a file to open"), "", tr("Algorithm flowcharts (*.afc)"));
@@ -577,7 +566,7 @@ void MainWindow::slotOpenDocument(const QString &fn) {
 
 }
 
-void MainWindow::slotFilePrint()
+void MainWindow::on_actPrint_triggered()
 {
     QPrinter printer(QPrinter::HighResolution);
     QPrintDialog pd(&printer, this);
@@ -608,16 +597,16 @@ void MainWindow::slotFilePrint()
     }
 }
 
-void MainWindow::slotFileNew()
+void MainWindow::on_actNew_triggered()
 {
     QProcess::startDetached(QApplication::applicationFilePath());
 }
 
-void MainWindow::slotFileSave()
+void MainWindow::on_actSave_triggered()
 {
     if (fileName.isEmpty())
     {
-        slotFileSaveAs();
+        on_actSaveAs_triggered();
     }
     else
     {
@@ -633,7 +622,7 @@ void MainWindow::slotFileSave()
     }
 }
 
-void MainWindow::slotFileSaveAs()
+void MainWindow::on_actSaveAs_triggered()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to save"), "", tr("Algorithm flowcharts (*.afc)"));
     if (!fn.isEmpty())
@@ -641,7 +630,7 @@ void MainWindow::slotFileSaveAs()
         if(fn.right(4).toLower() != ".afc") fn += ".afc";
         fileName = fn;
         setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
-        slotFileSave();
+        on_actSave_triggered();
     }
 }
 
@@ -704,7 +693,7 @@ void MainWindow::slotReloadGenerators()
 }
 
 
-void MainWindow::slotFileExport()
+void MainWindow::on_actExport_triggered()
 {
     QString filter = getWriteFormatFilter();
     QString sf = getFilterFor("png");
@@ -749,7 +738,7 @@ void MainWindow::slotFileExport()
     }
 }
 
-void MainWindow::slotFileExportSVG()
+void MainWindow::on_actExportSVG_triggered()
 {
     QString filter = getWriteFormatFilter();
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", getFilterFor("svg"));
@@ -776,13 +765,13 @@ void MainWindow::slotFileExportSVG()
 }
 
 
-void MainWindow::slotEditCut()
+void MainWindow::on_actCut_triggered()
 {
-    slotEditCopy();
-    slotEditDelete();
+    on_actCopy_triggered();
+    on_actDelete_triggered();
 }
 
-void MainWindow::slotEditCopy()
+void MainWindow::on_actCopy_triggered()
 {
     if(document())
     {
@@ -816,7 +805,7 @@ void MainWindow::slotEditCopy()
     }
 }
 
-void MainWindow::slotEditPaste()
+void MainWindow::on_actPaste_triggered()
 {
     if(document())
     {
@@ -829,7 +818,7 @@ void MainWindow::slotEditPaste()
         }
     }
 }
-void MainWindow::slotEditDelete()
+void MainWindow::on_actDelete_triggered()
 {
     if(document())
     {
@@ -841,7 +830,7 @@ void MainWindow::slotEditDelete()
 }
 
 
-void MainWindow::slotHelpAbout()
+void MainWindow::on_actAbout_triggered()
 {
     QDialog dlg;
     QPushButton *ok = new QPushButton(tr("&OK"));
@@ -863,7 +852,7 @@ FITNESS FOR A PARTICULAR PURPOSE.</p></html>").arg(PROGRAM_VERSION));
     dlg.exec();
 }
 
-void MainWindow::slotHelpAboutQt()
+void MainWindow::on_actAboutQt_triggered()
 {
     QMessageBox::aboutQt(this);
 }
@@ -883,43 +872,43 @@ void MainWindow::updateActions()
 {
     if(document())
     {
-        if (actTools->isVisible())
+        if (ui->actTools->isVisible())
         {
-            actTools->setEnabled(false);
+            ui->actTools->setEnabled(false);
         }
 
 
 
-        actCode->setEnabled(document()->status() != QFlowChart::Insertion);
-        actTools->setEnabled(document()->status() != QFlowChart::Insertion);
-        actHelp->setEnabled(document()->status() != QFlowChart::Insertion);
-        actUndo->setEnabled(document()->canUndo() && document()->status() != QFlowChart::Insertion);
-        actRedo->setEnabled(document()->canRedo() && document()->status() != QFlowChart::Insertion);
-        actOpen->setEnabled(document()->status() != QFlowChart::Insertion);
-        actSave->setEnabled(document()->status() != QFlowChart::Insertion);
-        actSaveAs->setEnabled(document()->status() != QFlowChart::Insertion);
-        actPrint->setEnabled(document()->status() != QFlowChart::Insertion);
-        actExport->setEnabled(document()->status() != QFlowChart::Insertion);
-        actExportSVG->setEnabled(document()->status() != QFlowChart::Insertion);
-        actCopy->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
-        actCut->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
-        actPaste->setEnabled(document()->status() == QFlowChart::Selectable && document()->canPaste());
-        actDelete->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
+        ui->actCode->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actTools->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actHelp->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actUndo->setEnabled(document()->canUndo() && document()->status() != QFlowChart::Insertion);
+        ui->actRedo->setEnabled(document()->canRedo() && document()->status() != QFlowChart::Insertion);
+        ui->actOpen->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actSave->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actSaveAs->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actPrint->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actExport->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actExportSVG->setEnabled(document()->status() != QFlowChart::Insertion);
+        ui->actCopy->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
+        ui->actCut->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
+        ui->actPaste->setEnabled(document()->status() == QFlowChart::Selectable && document()->canPaste());
+        ui->actDelete->setEnabled(document()->status() == QFlowChart::Selectable && document()->activeBlock());
     }
     else
     {
-        actUndo->setEnabled(false);
-        actRedo->setEnabled(false);
-        actOpen->setEnabled(false);
-        actSave->setEnabled(false);
-        actSaveAs->setEnabled(false);
-        actPrint->setEnabled(false);
-        actExport->setEnabled(false);
-        actExportSVG->setEnabled(false);
-        actCopy->setEnabled(false);
-        actCut->setEnabled(false);
-        actPaste->setEnabled(false);
-        actDelete->setEnabled(false);
+        ui->actUndo->setEnabled(false);
+        ui->actRedo->setEnabled(false);
+        ui->actOpen->setEnabled(false);
+        ui->actSave->setEnabled(false);
+        ui->actSaveAs->setEnabled(false);
+        ui->actPrint->setEnabled(false);
+        ui->actExport->setEnabled(false);
+        ui->actExportSVG->setEnabled(false);
+        ui->actCopy->setEnabled(false);
+        ui->actCut->setEnabled(false);
+        ui->actPaste->setEnabled(false);
+        ui->actDelete->setEnabled(false);
     }
 }
 

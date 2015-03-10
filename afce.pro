@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = afce
-VERSION = 0.9.9-alpha
+VERSION = 1.0.0-alpha
 
   system(echo $$VERSION > version.txt)
 
@@ -123,13 +123,15 @@ SOURCES += main.cpp \
     thelpwindow.cpp \
     zvflowchart.cpp \
     qflowchartstyle.cpp \
-    sourcecodegenerator.cpp
+    sourcecodegenerator.cpp \
+    afcscrollarea.cpp
 
 HEADERS += mainwindow.h \
     thelpwindow.h \
     zvflowchart.h \
     qflowchartstyle.h \
-    sourcecodegenerator.h
+    sourcecodegenerator.h \
+    afcscrollarea.h
 
 RESOURCES += afce.qrc
 CONFIG += release
@@ -165,3 +167,6 @@ QMAKE_EXTRA_COMPILERS += updateqm
 TS_OUT = $$TRANSLATIONS
 TS_OUT ~= s/.ts/.qm/g
 PRE_TARGETDEPS += $$TS_OUT
+
+FORMS += \
+    mainwindow.ui
