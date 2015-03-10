@@ -130,31 +130,32 @@ void MainWindow::setupUi()
     createActions();
     createMenu();
     createToolBar();
-    QWidget *body = new QWidget;
-    QWidget *zoomPanel = new QWidget;
-    zoomPanel->setMinimumHeight(18);
+//    QWidget *body = new QWidget;
+//    QWidget *zoomPanel = new QWidget;
+    ui->zoomPanel->setMinimumHeight(18);
     saScheme = new AfcScrollArea();
     QPalette pal = saScheme->palette();
     pal.setColor(QPalette::Window, pal.color(QPalette::Base));
     saScheme->setPalette(pal);
 
-    setCentralWidget(body);
-    QVBoxLayout *bodyLayout = new QVBoxLayout;
-    bodyLayout->addWidget(saScheme);
-    bodyLayout->addWidget(zoomPanel);
-    body->setLayout(bodyLayout);
-    zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
-    zoomLabel = new QLabel;
-    QHBoxLayout *zoomLayout= new QHBoxLayout;
-    zoomLayout->addStretch();
-    zoomLayout->addWidget(zoomLabel);
-    zoomLayout->addWidget(zoomSlider);
-    zoomPanel->setLayout(zoomLayout);
-    zoomSlider->setRange(1, 20);
-    zoomSlider->setSingleStep(1);
-    zoomSlider->setPageStep(10);
-    connect(zoomSlider, SIGNAL(valueChanged(int)),this, SLOT(setZoom(int)));
-    zoomSlider->setValue(4);
+//    setCentralWidget(body);
+    ui->body->layout()->addWidget(saScheme);
+//    QVBoxLayout *bodyLayout = new QVBoxLayout;
+//    bodyLayout->addWidget(saScheme);
+//    bodyLayout->addWidget(zoomPanel);
+//    body->setLayout(bodyLayout);
+//    zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
+//    zoomLabel = new QLabel;
+//    QHBoxLayout *zoomLayout= new QHBoxLayout;
+//    zoomLayout->addStretch();
+//    zoomLayout->addWidget(zoomLabel);
+//    zoomLayout->addWidget(zoomSlider);
+//    zoomPanel->setLayout(zoomLayout);
+//    zoomSlider->setRange(1, 20);
+//    zoomSlider->setSingleStep(1);
+//    zoomSlider->setPageStep(10);
+    connect(ui->zoomSlider, SIGNAL(valueChanged(int)),this, SLOT(setZoom(int)));
+//    zoomSlider->setValue(4);
     connect(saScheme, SIGNAL(zoomStepped(int)), this, SLOT(shiftZoom(int)));
 
     createToolbox();
@@ -1287,7 +1288,7 @@ void MainWindow::setZoom(int quarts)
 {
     if(quarts > 20) quarts = 20;
     if(quarts < 1) quarts = 1;
-    zoomLabel->setText(tr("Zoom: %1 %").arg(quarts * 25));
+    ui->zoomLabel->setText(tr("Zoom: %1 %").arg(quarts * 25));
     if (document())
     {
         document()->setZoom(quarts * 25 / 100.0);
@@ -1296,8 +1297,8 @@ void MainWindow::setZoom(int quarts)
 
 void MainWindow::shiftZoom(int step)
 {
-    int z = zoomSlider->value();
-    zoomSlider->setValue(z + step);
+    int z = ui->zoomSlider->value();
+    ui->zoomSlider->setValue(z + step);
 }
 
 

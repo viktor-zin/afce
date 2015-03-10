@@ -99,9 +99,9 @@ private:
   QString fileName;
 //  QToolBar *toolBar;
 //  QLabel *codeLabel;
-  QLabel *zoomLabel;
+//  QLabel *zoomLabel;
   QLabel *labelMenu;
-  QSlider *zoomSlider;
+//  QSlider *zoomSlider;
 
   THelpWindow *helpWindow;
 
