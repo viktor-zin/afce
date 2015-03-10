@@ -90,13 +90,13 @@ private:
 //  QAction *actrus;
   QList<QAction *> actLanguages;
 
-  QMenu *menuFile;
-  QMenu *menuEdit;
-  QMenu *menuHelp;
-  QMenu *menuWindow;
+//  QMenu *menuFile;
+//  QMenu *menuEdit;
+//  QMenu *menuHelp;
+//  QMenu *menuWindow;
   QMenu *menuLanguage;
   QString fileName;
-  QToolBar *toolBar;
+//  QToolBar *toolBar;
   QLabel *codeLabel;
   QLabel *zoomLabel;
   QLabel *labelMenu;

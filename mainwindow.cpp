@@ -347,13 +347,13 @@ void MainWindow::retranslateUi()
 //    actTools->setShortcut(tr("F2"));
 //    actCode->setShortcut(tr("F3"));
 
-    menuFile->setTitle(tr("&File"));
-    menuEdit->setTitle(tr("&Edit"));
-    menuHelp->setTitle(tr("&Help"));
-    menuWindow->setTitle(tr("&View"));
+//    menuFile->setTitle(tr("&File"));
+//    menuEdit->setTitle(tr("&Edit"));
+//    menuHelp->setTitle(tr("&Help"));
+//    menuWindow->setTitle(tr("&View"));
     menuLanguage->setTitle(tr("&Language"));
 
-    toolBar->setWindowTitle(tr("Standard"));
+//    toolBar->setWindowTitle(tr("Standard"));
     dockCode->setWindowTitle(tr("Source code"));
     
 
@@ -377,70 +377,70 @@ void MainWindow::retranslateUi()
 
 void MainWindow::createMenu()
 {
-    menuFile = menuBar()->addMenu("");
-    menuFile->addAction(ui->actNew);
-    menuFile->addAction(ui->actOpen);
-    menuFile->addSeparator();
-    menuFile->addAction(ui->actSave);
-    menuFile->addAction(ui->actSaveAs);
-    menuFile->addSeparator();
-    menuFile->addAction(ui->actExport);
-    menuFile->addAction(ui->actExportSVG);
-    menuFile->addSeparator();
-    menuFile->addAction(ui->actPrint);
-    menuFile->addSeparator();
-    menuFile->addSeparator();
-    menuFile->addAction(ui->actExit);
+//    menuFile = menuBar()->addMenu("");
+//    menuFile->addAction(ui->actNew);
+//    menuFile->addAction(ui->actOpen);
+//    menuFile->addSeparator();
+//    menuFile->addAction(ui->actSave);
+//    menuFile->addAction(ui->actSaveAs);
+//    menuFile->addSeparator();
+//    menuFile->addAction(ui->actExport);
+//    menuFile->addAction(ui->actExportSVG);
+//    menuFile->addSeparator();
+//    menuFile->addAction(ui->actPrint);
+//    menuFile->addSeparator();
+//    menuFile->addSeparator();
+//    menuFile->addAction(ui->actExit);
     ui->actAbout->isChecked();
 
-    menuEdit = menuBar()->addMenu("");
-    menuEdit->addAction(ui->actUndo);
-    menuEdit->addAction(ui->actRedo);
-    menuEdit->addSeparator();
-    menuEdit->addAction(ui->actCut);
-    menuEdit->addAction(ui->actCopy);
-    menuEdit->addAction(ui->actPaste);
-    menuEdit->addSeparator();
-    menuEdit->addAction(ui->actDelete);
+//    menuEdit = menuBar()->addMenu("");
+//    menuEdit->addAction(ui->actUndo);
+//    menuEdit->addAction(ui->actRedo);
+//    menuEdit->addSeparator();
+//    menuEdit->addAction(ui->actCut);
+//    menuEdit->addAction(ui->actCopy);
+//    menuEdit->addAction(ui->actPaste);
+//    menuEdit->addSeparator();
+//    menuEdit->addAction(ui->actDelete);
 
-    menuWindow = menuBar()->addMenu("");
-    menuWindow->addAction(ui->actTools);
-    menuWindow->addAction(ui->actCode);
-    menuWindow->addSeparator();
-    menuLanguage = menuWindow->addMenu(tr("&Language"));
+//    menuWindow = menuBar()->addMenu("");
+//    menuWindow->addAction(ui->actTools);
+//    menuWindow->addAction(ui->actCode);
+//    menuWindow->addSeparator();
+    menuLanguage = ui->menu_View->addMenu(tr("&Language"));
     for (int i = 0; i < actLanguages.size(); ++i) {
         menuLanguage->addAction(actLanguages[i]);
     }
 
-    menuHelp = menuBar()->addMenu("");
-    menuHelp->addAction(ui->actHelp);
-    menuHelp->addSeparator();
-    menuHelp->addAction(ui->actAbout);
-    menuHelp->addAction(ui->actAboutQt);
+//    menuHelp = menuBar()->addMenu("");
+//    menuHelp->addAction(ui->actHelp);
+//    menuHelp->addSeparator();
+//    menuHelp->addAction(ui->actAbout);
+//    menuHelp->addAction(ui->actAboutQt);
 }
 
 void MainWindow::createToolBar()
 {
-    toolBar = addToolBar("");
-    toolBar->setObjectName("standard_toolbar");
-    toolBar->setIconSize(QSize(32,32));
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+//    toolBar = addToolBar("");
+//    toolBar->setObjectName("standard_toolbar");
+//    toolBar->setIconSize(QSize(32,32));
+//    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-    toolBar->addAction(ui->actNew);
-    toolBar->addAction(ui->actOpen);
-    toolBar->addAction(ui->actSave);
-    toolBar->addSeparator();
-    toolBar->addAction(ui->actUndo);
-    toolBar->addAction(ui->actRedo);
-    toolBar->addSeparator();
-    toolBar->addAction(ui->actCut);
-    toolBar->addAction(ui->actCopy);
-    toolBar->addAction(ui->actPaste);
-    toolBar->addSeparator();
-    toolBar->addAction(ui->actHelp);
-    toolBar->addSeparator();
-    toolBar->addAction(ui->actTools);
-    toolBar->addAction(ui->actCode);
+//    toolBar->addAction(ui->actNew);
+//    toolBar->addAction(ui->actOpen);
+//    toolBar->addAction(ui->actSave);
+//    toolBar->addSeparator();
+//    toolBar->addAction(ui->actUndo);
+//    toolBar->addAction(ui->actRedo);
+//    toolBar->addSeparator();
+//    toolBar->addAction(ui->actCut);
+//    toolBar->addAction(ui->actCopy);
+//    toolBar->addAction(ui->actPaste);
+//    toolBar->addSeparator();
+//    toolBar->addAction(ui->actHelp);
+//    toolBar->addSeparator();
+//    toolBar->addAction(ui->actTools);
+//    toolBar->addAction(ui->actCode);
 }
 
 

@@ -73,11 +73,71 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actNew"/>
+    <addaction name="actOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actSave"/>
+    <addaction name="actSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actExport"/>
+    <addaction name="actExportSVG"/>
+    <addaction name="separator"/>
+    <addaction name="actPrint"/>
+    <addaction name="separator"/>
+    <addaction name="actExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actUndo"/>
+    <addaction name="actRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actCut"/>
+    <addaction name="actCopy"/>
+    <addaction name="actPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actDelete"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actTools"/>
+    <addaction name="actCode"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actAbout"/>
+    <addaction name="actAboutQt"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Edit"/>
+   <addaction name="menu_View"/>
+   <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="standard_toolbar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Standard</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -85,6 +145,21 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actNew"/>
+   <addaction name="actOpen"/>
+   <addaction name="actSave"/>
+   <addaction name="separator"/>
+   <addaction name="actUndo"/>
+   <addaction name="actRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actCut"/>
+   <addaction name="actCopy"/>
+   <addaction name="actPaste"/>
+   <addaction name="separator"/>
+   <addaction name="actTools"/>
+   <addaction name="actCode"/>
+   <addaction name="separator"/>
+   <addaction name="actHelp"/>
   </widget>
   <action name="actExit">
    <property name="icon">
