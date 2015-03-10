@@ -51,9 +51,9 @@ private:
   QHBoxLayout *fHLayout;
   AfcScrollArea *saScheme;
 //  QDockWidget *dock_tools;
-  QDockWidget *dockCode;
+//  QDockWidget *dock_code;
 //  QFrame *toolsWidget;
-  QFrame *codeWidget;
+//  QFrame *codeWidget;
 //  QToolButton *tbArrow;
 //  QToolButton *tbProcess;
 //  QToolButton *tbIf;
@@ -65,8 +65,8 @@ private:
 //  QToolButton *tbForCStyle;
 //  QToolButton *tbAssign;
 
-  QComboBox *codeLanguage;
-  QTextEdit *codeText;
+//  QComboBox *codeLanguage;
+//  QTextEdit *codeText;
 
 //  QAction *actNew;
 //  QAction *actOpen;
@@ -98,7 +98,7 @@ private:
   QMenu *menuLanguage;
   QString fileName;
 //  QToolBar *toolBar;
-  QLabel *codeLabel;
+//  QLabel *codeLabel;
   QLabel *zoomLabel;
   QLabel *labelMenu;
   QSlider *zoomSlider;

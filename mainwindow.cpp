@@ -44,7 +44,6 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 #else
     QDir::setSearchPaths("generators", QStringList() << qApp->applicationDirPath() + "/generators");
 #endif
-
     ui->setupUi(this);
     setupUi();
     readSettings();
@@ -61,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(document(), SIGNAL(changed()), this, SLOT(generateCode()));
     document()->setStatus(QFlowChart::Selectable);
     connect(saScheme, SIGNAL(mouseDown()), document(), SLOT(deselectAll()));
-    connect(codeLanguage, SIGNAL(activated(int)), this, SLOT(codeLangChanged(int)));
+    connect(ui->codeLanguage, SIGNAL(activated(int)), this, SLOT(codeLangChanged(int)));
 
     QFlowChartStyle st;
     QPalette pal = palette();
@@ -160,36 +159,36 @@ void MainWindow::setupUi()
 
     createToolbox();
 
-    dockCode = new QDockWidget(this);
-    dockCode->setObjectName("dock_code");
-    dockCode->setAllowedAreas(Qt::AllDockWidgetAreas);
-    addDockWidget(Qt::RightDockWidgetArea, dockCode);
-    codeWidget = new QFrame;
-    codeLanguage = new QComboBox;
-    codeText = new QTextEdit;
-    codeLabel = new QLabel;
+//    dock_code = new QDockWidget(this);
+//    dock_code->setObjectName("dock_code");
+//    dock_code->setAllowedAreas(Qt::AllDockWidgetAreas);
+//    addDockWidget(Qt::RightDockWidgetArea, dock_code);
+//    codeWidget = new QFrame;
+//    codeLanguage = new QComboBox;
+//    codeText = new QTextEdit;
+//    codeLabel = new QLabel;
     ui->actCode->setCheckable(true);
-    ui->actCode->setChecked(dockCode->isVisible());
-    connect(ui->actCode, SIGNAL(triggered(bool)), dockCode, SLOT(setVisible(bool)));
-    connect(dockCode, SIGNAL(visibilityChanged(bool)), ui->actCode, SLOT(setChecked(bool)));
+    ui->actCode->setChecked(ui->dock_code->isVisible());
+//    connect(ui->actCode, SIGNAL(triggered(bool)), ui->dock_code, SLOT(setVisible(bool)));
+//    connect(dock_code, SIGNAL(visibilityChanged(bool)), ui->actCode, SLOT(setChecked(bool)));
 
     //connect(dockCode, SIGNAL(visibilityChanged(bool)), this, SLOT(docCodeVisibilityChanged(bool)));
 
-    codeWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+//    codeWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
 
-    codeLabel->setBuddy(codeLanguage);
+//    codeLabel->setBuddy(codeLanguage);
 
-    codeText->setFont(QFont("Courier New", 12));
-    codeText->setLineWrapMode(QTextEdit::NoWrap);
-    codeText->setReadOnly(true);
+//    codeText->setFont(QFont("Courier New", 12));
+//    codeText->setLineWrapMode(QTextEdit::NoWrap);
+//    codeText->setReadOnly(true);
 
 
-    QVBoxLayout * vbl = new QVBoxLayout;
-    vbl->addWidget(codeLabel);
-    vbl->addWidget(codeLanguage);
-    vbl->addWidget(codeText);
-    codeWidget->setLayout(vbl);
-    dockCode->setWidget(codeWidget);
+//    QVBoxLayout * vbl = new QVBoxLayout;
+//    vbl->addWidget(codeLabel);
+//    vbl->addWidget(codeLanguage);
+//    vbl->addWidget(codeText);
+//    codeWidget->setLayout(vbl);
+//    dock_code->setWidget(codeWidget);
 
     helpWindow = new THelpWindow();
     helpWindow->setObjectName("help_window");
@@ -347,12 +346,12 @@ void MainWindow::retranslateUi()
     menuLanguage->setTitle(tr("&Language"));
 
 //    toolBar->setWindowTitle(tr("Standard"));
-    dockCode->setWindowTitle(tr("Source code"));
+//    dock_code->setWindowTitle(tr("Source code"));
     
 
     slotReloadGenerators();
 
-    codeLabel->setText(tr("&Select programming language:"));
+//    codeLabel->setText(tr("&Select programming language:"));
 
     if (!fileName.isEmpty())
         setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
@@ -652,8 +651,8 @@ void MainWindow::slotChangeLanguage()
 
 void MainWindow::slotReloadGenerators()
 {
-    int i = codeLanguage->currentIndex();
-    codeLanguage->clear();
+    int i = ui->codeLanguage->currentIndex();
+    ui->codeLanguage->clear();
     QDir gd("generators:");
     QStringList gens = gd.entryList(QStringList() << "*.json", QDir::Files, QDir::Name);
 
@@ -674,14 +673,14 @@ void MainWindow::slotReloadGenerators()
                     lang_name = jn.value("en_US").toString();
                 }
             }
-            codeLanguage->addItem(lang_name, QFileInfo(f.fileName()).baseName());
+            ui->codeLanguage->addItem(lang_name, QFileInfo(f.fileName()).baseName());
         }
     }
 
     if (i!=-1)
-        codeLanguage->setCurrentIndex(i);
+        ui->codeLanguage->setCurrentIndex(i);
     else
-        codeLanguage->setCurrentIndex(0);
+        ui->codeLanguage->setCurrentIndex(0);
 
 }
 
@@ -912,11 +911,11 @@ void MainWindow::codeLangChanged(int )
 
 void MainWindow::generateCode()
 {
-    if (document() && codeLanguage->currentIndex() >= 0)
+    if (document() && ui->codeLanguage->currentIndex() >= 0)
     {
         SourceCodeGenerator gen;
-        gen.loadRule("generators:" + codeLanguage->itemData(codeLanguage->currentIndex()).toString() + ".json");
-        codeText->setText(gen.applyRule(document()->document()));
+        gen.loadRule("generators:" + ui->codeLanguage->itemData(ui->codeLanguage->currentIndex()).toString() + ".json");
+        ui->codeText->setPlainText(gen.applyRule(document()->document()));
     }
 }
 
