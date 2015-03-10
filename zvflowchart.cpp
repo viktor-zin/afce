@@ -496,6 +496,36 @@ QBlock::QBlock()
   isBranch = false;
   attributes.clear();
   items.clear();
+  fFlowChart = NULL;
+  x = 0;
+  y = 0;
+  width = 0;
+  height = 0;
+  parent = NULL;
+  topMargin = 0;
+  bottomMargin = 0;
+  leftMargin = 0;
+  rightMargin = 0;
+}
+
+QBlock::QBlock(const QString &aType)
+{
+    parent = 0;
+    isBranch = false;
+    attributes.clear();
+    items.clear();
+    fFlowChart = NULL;
+    x = 0;
+    y = 0;
+    width = 0;
+    height = 0;
+    parent = NULL;
+    topMargin = 0;
+    bottomMargin = 0;
+    leftMargin = 0;
+    rightMargin = 0;
+
+    setType(aType);
 }
 
 QBlock::~QBlock()

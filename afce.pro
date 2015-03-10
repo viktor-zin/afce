@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = afce
-VERSION = 0.9.8
+VERSION = 0.9.9-alpha
 
   system(echo $$VERSION > version.txt)
 
@@ -9,12 +9,12 @@ QT += gui
 QT += xml
 QT += printsupport
 QT += svg
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += widgets
-}
+QT += widgets
+
 CONFIG += exceptions \
     rtti \
     stl
+
 OBJECTS_DIR = build
 UI_DIR = build
 MOC_DIR = build
@@ -36,10 +36,8 @@ win32 {
 }
 
 QT_QM = $$[QT_INSTALL_TRANSLATIONS]/qt_ru.qm \
-	$$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT_QM += $$[QT_INSTALL_TRANSLATIONS]/qtbase_ru.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_uk.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qtbase_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtscript_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtquick1_ru.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtmultimedia_ru.qm \
@@ -49,7 +47,6 @@ greaterThan(QT_MAJOR_VERSION, 4) {
         $$[QT_INSTALL_TRANSLATIONS]/qtquick1_uk.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtmultimedia_uk.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qtxmlpatterns_uk.qm
-}
 
 win32 {
     for(qm, QT_QM) {
@@ -126,28 +123,14 @@ SOURCES += main.cpp \
     thelpwindow.cpp \
     zvflowchart.cpp \
     qflowchartstyle.cpp \
-    sourcecodegenerator.cpp \
-    qjson4/QJsonArray.cpp \
-    qjson4/QJsonDocument.cpp \
-    qjson4/QJsonObject.cpp \
-    qjson4/QJsonParseError.cpp \
-    qjson4/QJsonParser.cpp \
-    qjson4/QJsonValue.cpp \
-    qjson4/QJsonValueRef.cpp
+    sourcecodegenerator.cpp
 
 HEADERS += mainwindow.h \
     thelpwindow.h \
     zvflowchart.h \
     qflowchartstyle.h \
-    sourcecodegenerator.h \
-    qjson4/QJsonArray.h \
-    qjson4/QJsonDocument.h \
-    qjson4/QJsonObject.h \
-    qjson4/QJsonParseError.h \
-    qjson4/QJsonParser.h \
-    qjson4/QJsonRoot.h \
-    qjson4/QJsonValue.h \
-    qjson4/QJsonValueRef.h
+    sourcecodegenerator.h
+
 RESOURCES += afce.qrc
 CONFIG += release
 TRANSLATIONS += locale/afce_en_US.ts \
@@ -159,7 +142,6 @@ TRANSLATIONS += locale/afce_en_US.ts \
 
 win32:# Windows doesn't seem to have *-qt4 symlinks
 isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
-isEmpty(QMAKE_LRELEASE):QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease-qt4
 
 # The *.qm files might not exist when qmake is run for the first time,
 # causing the standard install rule to be ignored, and no translations

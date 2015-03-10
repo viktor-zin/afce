@@ -62,7 +62,7 @@ class QBlock : public QObject
 
   public:
     QBlock();
-    explicit QBlock(const QString & aType) { setType(aType); }
+    explicit QBlock(const QString & aType);
     ~QBlock();
 //    QBlock(const QBlock & aBlock);
     QHash<QString, QString> attributes;

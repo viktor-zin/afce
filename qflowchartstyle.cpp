@@ -19,5 +19,6 @@
 
 QFlowChartStyle::QFlowChartStyle()
 {
-
+    fLineWidth = 2;
+    fFontSize = 14;
 }

@@ -22,10 +22,8 @@
 #include "sourcecodegenerator.h"
 #include <QWidgetList>
 
-#if QT_VERSION >= 0x050000
-    #include <QtPrintSupport/QPrinter>
-    #include <QtPrintSupport/QPrintDialog>
-#endif
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 
 QString afceVersion()
 {

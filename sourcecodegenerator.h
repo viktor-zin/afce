@@ -2,15 +2,9 @@
 #define SOURCECODEGENERATOR_H
 
 #include <QObject>
-#if QT_VERSION < 0x050000
-#include <qjson4/QJsonDocument.h>
-#include <qjson4/QJsonObject.h>
-#include <qjson4/QJsonArray.h>
-#else
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#endif
 #include <QDomElement>
 #include <QDomDocument>
 
