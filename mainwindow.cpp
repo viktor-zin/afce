@@ -31,9 +31,6 @@ QString afceVersion()
     return PROGRAM_VERSION;
 }
 
-
-
-
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags), fDocument(0),
       ui(new Ui::MainWindow)
@@ -127,69 +124,25 @@ void MainWindow::readSettings()
 void MainWindow::setupUi()
 {
     QApplication::setWindowIcon(QIcon(":/images/icon.png"));
-    createActions();
-    createMenu();
-    createToolBar();
-//    QWidget *body = new QWidget;
-//    QWidget *zoomPanel = new QWidget;
+
+    createLanguageActions();
+    createLanguageMenu();
+
     ui->zoomPanel->setMinimumHeight(18);
     saScheme = new AfcScrollArea();
     QPalette pal = saScheme->palette();
     pal.setColor(QPalette::Window, pal.color(QPalette::Base));
     saScheme->setPalette(pal);
 
-//    setCentralWidget(body);
     ui->body->layout()->addWidget(saScheme);
-//    QVBoxLayout *bodyLayout = new QVBoxLayout;
-//    bodyLayout->addWidget(saScheme);
-//    bodyLayout->addWidget(zoomPanel);
-//    body->setLayout(bodyLayout);
-//    zoomSlider = new QSlider(Qt::Horizontal, zoomPanel);
-//    zoomLabel = new QLabel;
-//    QHBoxLayout *zoomLayout= new QHBoxLayout;
-//    zoomLayout->addStretch();
-//    zoomLayout->addWidget(zoomLabel);
-//    zoomLayout->addWidget(zoomSlider);
-//    zoomPanel->setLayout(zoomLayout);
-//    zoomSlider->setRange(1, 20);
-//    zoomSlider->setSingleStep(1);
-//    zoomSlider->setPageStep(10);
+
     connect(ui->zoomSlider, SIGNAL(valueChanged(int)),this, SLOT(setZoom(int)));
-//    zoomSlider->setValue(4);
     connect(saScheme, SIGNAL(zoomStepped(int)), this, SLOT(shiftZoom(int)));
 
     createToolbox();
 
-//    dock_code = new QDockWidget(this);
-//    dock_code->setObjectName("dock_code");
-//    dock_code->setAllowedAreas(Qt::AllDockWidgetAreas);
-//    addDockWidget(Qt::RightDockWidgetArea, dock_code);
-//    codeWidget = new QFrame;
-//    codeLanguage = new QComboBox;
-//    codeText = new QTextEdit;
-//    codeLabel = new QLabel;
     ui->actCode->setCheckable(true);
     ui->actCode->setChecked(ui->dock_code->isVisible());
-//    connect(ui->actCode, SIGNAL(triggered(bool)), ui->dock_code, SLOT(setVisible(bool)));
-//    connect(dock_code, SIGNAL(visibilityChanged(bool)), ui->actCode, SLOT(setChecked(bool)));
-
-    //connect(dockCode, SIGNAL(visibilityChanged(bool)), this, SLOT(docCodeVisibilityChanged(bool)));
-
-//    codeWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-
-//    codeLabel->setBuddy(codeLanguage);
-
-//    codeText->setFont(QFont("Courier New", 12));
-//    codeText->setLineWrapMode(QTextEdit::NoWrap);
-//    codeText->setReadOnly(true);
-
-
-//    QVBoxLayout * vbl = new QVBoxLayout;
-//    vbl->addWidget(codeLabel);
-//    vbl->addWidget(codeLanguage);
-//    vbl->addWidget(codeText);
-//    codeWidget->setLayout(vbl);
-//    dock_code->setWidget(codeWidget);
 
     helpWindow = new THelpWindow();
     helpWindow->setObjectName("help_window");
@@ -221,53 +174,9 @@ QToolButton * createToolButton(const QString & fileName)
 
 void MainWindow::createToolbox()
 {
-
     connect(ui->dock_tools, SIGNAL(visibilityChanged(bool)), this, SLOT(docToolsVisibilityChanged(bool)));
-
-//    tbArrow = createToolButton(":/images/arrow.png");
-//    tbArrow->setChecked(true);
-//    tbProcess = createToolButton(":/images/simple.png");
-//    tbAssign = createToolButton(":/images/assign.png");
-//    tbIf = createToolButton(":/images/if.png");
-//    tbFor = createToolButton(":/images/for.png");
-//    tbWhilePre = createToolButton(":/images/while.png");
-//    tbWhilePost = createToolButton(":/images/until.png");
-//    tbIo = createToolButton(":/images/io.png");
-//    tbOu = createToolButton(":/images/ou.png");
-//    tbForCStyle = createToolButton(":/images/forc.png");
-
-//    connect(tbArrow, SIGNAL(pressed()), this, SLOT(on_tbArrow_pressed()));
-//    connect(tbProcess, SIGNAL(pressed()), this, SLOT(on_tbProcess_pressed()));
-//    connect(tbAssign, SIGNAL(pressed()), this, SLOT(on_tbAssign_pressed()));
-//    connect(tbIf, SIGNAL(pressed()), this, SLOT(on_tbIf_pressed()));
-//    connect(tbFor, SIGNAL(pressed()), this, SLOT(on_tbFor_pressed()));
-//    connect(tbWhilePre, SIGNAL(pressed()), this, SLOT(on_tbWhilePre_pressed()));
-//    connect(tbWhilePost, SIGNAL(pressed()), this, SLOT(on_tbWhilePost_pressed()));
-//    connect(tbIo, SIGNAL(pressed()), this, SLOT(on_tbIo_pressed()));
-//    connect(tbOu, SIGNAL(pressed()), this, SLOT(on_tbOu_pressed()));
-//    connect(tbForCStyle, SIGNAL(pressed()), this, SLOT(on_tbForCStyle_pressed()));
-
-//    toolsWidget = new QFrame;
-//    toolsWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-//    QVBoxLayout *tl = new QVBoxLayout;
-//    ui->tl->addWidget(tbArrow);
-//    ui->tl->addWidget(tbIo);
-//    ui->tl->addWidget(tbOu);
-//    ui->tl->addWidget(tbProcess);
-//    ui->tl->addWidget(tbAssign);
-//    ui->tl->addWidget(tbIf);
-//    ui->tl->addWidget(tbFor);
-//    ui->tl->addWidget(tbWhilePre);
-//    ui->tl->addWidget(tbWhilePost);
-//    ui->tl->addWidget(tbForCStyle);
-//    ui->dock_tools->setWidget(toolsWidget);
-
     ui->actTools->setCheckable(true);
     ui->actTools->setChecked(ui->dock_tools->isVisible());
-//    connect(ui->actTools, SIGNAL(triggered(bool)), ui->dock_tools, SLOT(setVisible(bool)));
-//    connect(ui->dock_tools, SIGNAL(visibilityChanged(bool)), ui->actTools, SLOT(setChecked(bool)));
-
-
 }
 
 void MainWindow::retranslateUi()
@@ -368,74 +277,14 @@ void MainWindow::retranslateUi()
 
 }
 
-void MainWindow::createMenu()
+void MainWindow::createLanguageMenu()
 {
-//    menuFile = menuBar()->addMenu("");
-//    menuFile->addAction(ui->actNew);
-//    menuFile->addAction(ui->actOpen);
-//    menuFile->addSeparator();
-//    menuFile->addAction(ui->actSave);
-//    menuFile->addAction(ui->actSaveAs);
-//    menuFile->addSeparator();
-//    menuFile->addAction(ui->actExport);
-//    menuFile->addAction(ui->actExportSVG);
-//    menuFile->addSeparator();
-//    menuFile->addAction(ui->actPrint);
-//    menuFile->addSeparator();
-//    menuFile->addSeparator();
-//    menuFile->addAction(ui->actExit);
-    ui->actAbout->isChecked();
-
-//    menuEdit = menuBar()->addMenu("");
-//    menuEdit->addAction(ui->actUndo);
-//    menuEdit->addAction(ui->actRedo);
-//    menuEdit->addSeparator();
-//    menuEdit->addAction(ui->actCut);
-//    menuEdit->addAction(ui->actCopy);
-//    menuEdit->addAction(ui->actPaste);
-//    menuEdit->addSeparator();
-//    menuEdit->addAction(ui->actDelete);
-
-//    menuWindow = menuBar()->addMenu("");
-//    menuWindow->addAction(ui->actTools);
-//    menuWindow->addAction(ui->actCode);
-//    menuWindow->addSeparator();
     menuLanguage = ui->menu_View->addMenu(tr("&Language"));
     for (int i = 0; i < actLanguages.size(); ++i) {
         menuLanguage->addAction(actLanguages[i]);
     }
 
-//    menuHelp = menuBar()->addMenu("");
-//    menuHelp->addAction(ui->actHelp);
-//    menuHelp->addSeparator();
-//    menuHelp->addAction(ui->actAbout);
-//    menuHelp->addAction(ui->actAboutQt);
 }
-
-void MainWindow::createToolBar()
-{
-//    toolBar = addToolBar("");
-//    toolBar->setObjectName("standard_toolbar");
-//    toolBar->setIconSize(QSize(32,32));
-//    toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-
-//    toolBar->addAction(ui->actNew);
-//    toolBar->addAction(ui->actOpen);
-//    toolBar->addAction(ui->actSave);
-//    toolBar->addSeparator();
-//    toolBar->addAction(ui->actUndo);
-//    toolBar->addAction(ui->actRedo);
-//    toolBar->addSeparator();
-//    toolBar->addAction(ui->actCut);
-//    toolBar->addAction(ui->actCopy);
-//    toolBar->addAction(ui->actPaste);
-//    toolBar->addSeparator();
-//    toolBar->addAction(ui->actHelp);
-//    toolBar->addSeparator();
-//    toolBar->addAction(ui->actTools);
-//    toolBar->addAction(ui->actCode);
-}
-
 
 void MainWindow::docToolsVisibilityChanged(bool visible)
 {
@@ -447,49 +296,8 @@ void MainWindow::docCodeVisibilityChanged(bool visible)
     ui->actCode->setChecked(visible);
 }
 
-void MainWindow::createActions()
+void MainWindow::createLanguageActions()
 {
-//    actExit = new QAction(QIcon(":/images/exit.png"), "", this);
-//    actOpen = new QAction(QIcon(":/images/open_document_32_h.png"), "", this);
-//    actNew = new QAction(QIcon(":/images/new_document_32_h.png"), "", this);
-//    actSave = new QAction(QIcon(":/images/save_32_h.png"), "", this);
-//    actSaveAs = new QAction(this);
-//    actUndo = new QAction(QIcon(":/images/restart-3.png"), "", this);
-//    actRedo = new QAction(QIcon(":/images/restart-4.png"), "", this);
-//    actCut = new QAction(QIcon(":/images/cut_clipboard_32_h.png"), "", this);
-//    actCopy = new QAction(QIcon(":/images/copy_clipboard_32_h.png"), "", this);
-//    actPaste = new QAction(QIcon(":/images/paste_clipboard_32_h.png"), "", this);
-//    actDelete = new QAction(QIcon(":/images/delete_x_32_h.png"), "", this);
-//    actExport = new QAction(this);
-//    actExportSVG = new QAction(this);
-//    actHelp = new QAction(QIcon(":/images/help-icon.png"), "", this);
-//    actAbout = new QAction(this);
-//    actAboutQt = new QAction(this);
-//    actPrint = new QAction(QIcon(":/images/print_32_h.png"), "", this);
-//    actTools = new QAction(QIcon(":/images/toolbar.png"), "", this);
-//    actCode = new QAction(QIcon(":/images/source-code.png"), "", this);
-
-
-    //connect(ui->actExit, SIGNAL(triggered()), this, SLOT(close()));
-//    connect(ui->actNew, SIGNAL(triggered()), this, SLOT(on_actNew_triggered()));
-//    connect(ui->actOpen, SIGNAL(triggered()), this, SLOT(on_actOpen_triggered()));
-//    connect(ui->actSave, SIGNAL(triggered()), this, SLOT(on_actSave_triggered()));
-//    connect(ui->actSaveAs, SIGNAL(triggered()), this, SLOT(on_actSaveAs_triggered()));
-//    connect(actExport, SIGNAL(triggered()), this, SLOT(on_actExport_triggered()));
-//    connect(actExportSVG, SIGNAL(triggered()), this, SLOT(on_actExportSVG_triggered()));
-//    connect(actPrint, SIGNAL(triggered()), this, SLOT(on_actPrint_triggered()));
-//    connect(actCut, SIGNAL(triggered()), this, SLOT(slotEditCut()));
-//    connect(actCopy, SIGNAL(triggered()), this, SLOT(slotEditCopy()));
-//    connect(actPaste, SIGNAL(triggered()), this, SLOT(slotEditPaste()));
-//    connect(actDelete, SIGNAL(triggered()), this, SLOT(slotEditDelete()));
-
-//    connect(actHelp, SIGNAL(triggered()), this, SLOT(slotHelpHelp()));
-//    connect(actAbout, SIGNAL(triggered()), this, SLOT(slotHelpAbout()));
-//    connect(actAboutQt, SIGNAL(triggered()), this, SLOT(slotHelpAboutQt()));
-
-    /* ... */
-//    connect(actTools, SIGNAL(triggered()), this, SLOT(slotTools()));
-
 
     QHash<QString, QString> avlLangs = enumLanguages();
     QList<QString> locales = avlLangs.keys();

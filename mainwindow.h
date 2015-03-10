@@ -43,66 +43,14 @@ class MainWindow : public QMainWindow
 signals:
     void rootChanged();
 private:
-//  TAlgorithmBlock *fRoot;
   QFlowChart *fDocument;
   Ui::MainWindow *ui;
   bool isSaved;
-  QVBoxLayout *fVLayout;
-  QHBoxLayout *fHLayout;
   AfcScrollArea *saScheme;
-//  QDockWidget *dock_tools;
-//  QDockWidget *dock_code;
-//  QFrame *toolsWidget;
-//  QFrame *codeWidget;
-//  QToolButton *tbArrow;
-//  QToolButton *tbProcess;
-//  QToolButton *tbIf;
-//  QToolButton *tbFor;
-//  QToolButton *tbWhilePre;
-//  QToolButton *tbWhilePost;
-//  QToolButton *tbIo;
-//  QToolButton *tbOu;
-//  QToolButton *tbForCStyle;
-//  QToolButton *tbAssign;
-
-//  QComboBox *codeLanguage;
-//  QTextEdit *codeText;
-
-//  QAction *actNew;
-//  QAction *actOpen;
-//  QAction *actSave;
-//  QAction *actSaveAs;
-//  QAction *actExit;
-//  QAction *actUndo;
-//  QAction *actRedo;
-//  QAction *actCut;
-//  QAction *actCopy;
-//  QAction *actPaste;
-//  QAction *actDelete;
-//  QAction *actHelp;
-//  QAction *actAbout;
-//  QAction *actAboutQt;
-//  QAction *actExport;
-//  QAction *actExportSVG;
-//  QAction *actPrint;
-//  QAction *actTools;
-//  QAction *actCode;
-//  QAction *acteng;
-//  QAction *actrus;
   QList<QAction *> actLanguages;
-
-//  QMenu *menuFile;
-//  QMenu *menuEdit;
-//  QMenu *menuHelp;
-//  QMenu *menuWindow;
   QMenu *menuLanguage;
   QString fileName;
-//  QToolBar *toolBar;
-//  QLabel *codeLabel;
-//  QLabel *zoomLabel;
   QLabel *labelMenu;
-//  QSlider *zoomSlider;
-
   THelpWindow *helpWindow;
 
   QStack<QString> undoStack;
@@ -111,11 +59,9 @@ private:
   void setupUi();
   void readSettings();
   void writeSettings();
-  void createMenu();
-  void createActions();
+  void createLanguageMenu();
+  void createLanguageActions();
   void createToolbox();
-  void createToolBar();
- //void closeEvent(QCloseEvent *event);
   bool okToContinue();
 protected:
 
