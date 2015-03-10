@@ -221,58 +221,51 @@ QToolButton * createToolButton(const QString & fileName)
 
 void MainWindow::createToolbox()
 {
-    dockTools = new QDockWidget(this);
-    dockTools->setObjectName("dock_tools");
-    dockTools->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    dockTools->setMinimumWidth(150);
-    addDockWidget(Qt::LeftDockWidgetArea, dockTools);
-    connect(dockTools, SIGNAL(visibilityChanged(bool)), this, SLOT(docToolsVisibilityChanged(bool)));
 
-    tbArrow = createToolButton(":/images/arrow.png");
-    tbArrow->setChecked(true);
-    tbProcess = createToolButton(":/images/simple.png");
-    tbAssign = createToolButton(":/images/assign.png");
-    tbIf = createToolButton(":/images/if.png");
-    tbFor = createToolButton(":/images/for.png");
-    tbWhilePre = createToolButton(":/images/while.png");
-    tbWhilePost = createToolButton(":/images/until.png");
-    tbIo = createToolButton(":/images/io.png");
-    tbOu = createToolButton(":/images/ou.png");
-    tbForCStyle = createToolButton(":/images/forc.png");
+    connect(ui->dock_tools, SIGNAL(visibilityChanged(bool)), this, SLOT(docToolsVisibilityChanged(bool)));
 
-    connect(tbArrow, SIGNAL(pressed()), this, SLOT(slotToolArrow()));
-    connect(tbProcess, SIGNAL(pressed()), this, SLOT(slotToolProcess()));
-    connect(tbAssign, SIGNAL(pressed()), this, SLOT(slotToolAssign()));
-    connect(tbIf, SIGNAL(pressed()), this, SLOT(slotToolIf()));
-    connect(tbFor, SIGNAL(pressed()), this, SLOT(slotToolFor()));
-    connect(tbWhilePre, SIGNAL(pressed()), this, SLOT(slotToolWhilePre()));
-    connect(tbWhilePost, SIGNAL(pressed()), this, SLOT(slotToolWhilePost()));
-    connect(tbIo, SIGNAL(pressed()), this, SLOT(slotToolIo()));
-    connect(tbOu, SIGNAL(pressed()), this, SLOT(slotToolOu()));
-    connect(tbForCStyle, SIGNAL(pressed()), this, SLOT(slotToolForCStyle()));
+//    tbArrow = createToolButton(":/images/arrow.png");
+//    tbArrow->setChecked(true);
+//    tbProcess = createToolButton(":/images/simple.png");
+//    tbAssign = createToolButton(":/images/assign.png");
+//    tbIf = createToolButton(":/images/if.png");
+//    tbFor = createToolButton(":/images/for.png");
+//    tbWhilePre = createToolButton(":/images/while.png");
+//    tbWhilePost = createToolButton(":/images/until.png");
+//    tbIo = createToolButton(":/images/io.png");
+//    tbOu = createToolButton(":/images/ou.png");
+//    tbForCStyle = createToolButton(":/images/forc.png");
 
-    toolsWidget = new QFrame;
-    toolsWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-    QVBoxLayout *tl = new QVBoxLayout;
-    tl->setSpacing(2);
-    tl->addWidget(tbArrow);
-    tl->addWidget(tbIo);
-    tl->addWidget(tbOu);
-    tl->addWidget(tbProcess);
-    tl->addWidget(tbAssign);
-    tl->addWidget(tbIf);
-    tl->addWidget(tbFor);
-    tl->addWidget(tbWhilePre);
-    tl->addWidget(tbWhilePost);
-    tl->addWidget(tbForCStyle);
-    tl->addStretch();
-    toolsWidget->setLayout(tl);
-    dockTools->setWidget(toolsWidget);
+//    connect(tbArrow, SIGNAL(pressed()), this, SLOT(on_tbArrow_pressed()));
+//    connect(tbProcess, SIGNAL(pressed()), this, SLOT(on_tbProcess_pressed()));
+//    connect(tbAssign, SIGNAL(pressed()), this, SLOT(on_tbAssign_pressed()));
+//    connect(tbIf, SIGNAL(pressed()), this, SLOT(on_tbIf_pressed()));
+//    connect(tbFor, SIGNAL(pressed()), this, SLOT(on_tbFor_pressed()));
+//    connect(tbWhilePre, SIGNAL(pressed()), this, SLOT(on_tbWhilePre_pressed()));
+//    connect(tbWhilePost, SIGNAL(pressed()), this, SLOT(on_tbWhilePost_pressed()));
+//    connect(tbIo, SIGNAL(pressed()), this, SLOT(on_tbIo_pressed()));
+//    connect(tbOu, SIGNAL(pressed()), this, SLOT(on_tbOu_pressed()));
+//    connect(tbForCStyle, SIGNAL(pressed()), this, SLOT(on_tbForCStyle_pressed()));
+
+//    toolsWidget = new QFrame;
+//    toolsWidget->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+//    QVBoxLayout *tl = new QVBoxLayout;
+//    ui->tl->addWidget(tbArrow);
+//    ui->tl->addWidget(tbIo);
+//    ui->tl->addWidget(tbOu);
+//    ui->tl->addWidget(tbProcess);
+//    ui->tl->addWidget(tbAssign);
+//    ui->tl->addWidget(tbIf);
+//    ui->tl->addWidget(tbFor);
+//    ui->tl->addWidget(tbWhilePre);
+//    ui->tl->addWidget(tbWhilePost);
+//    ui->tl->addWidget(tbForCStyle);
+//    ui->dock_tools->setWidget(toolsWidget);
 
     ui->actTools->setCheckable(true);
-    ui->actTools->setChecked(dockTools->isVisible());
-    connect(ui->actTools, SIGNAL(triggered(bool)), dockTools, SLOT(setVisible(bool)));
-    connect(dockTools, SIGNAL(visibilityChanged(bool)), ui->actTools, SLOT(setChecked(bool)));
+    ui->actTools->setChecked(ui->dock_tools->isVisible());
+//    connect(ui->actTools, SIGNAL(triggered(bool)), ui->dock_tools, SLOT(setVisible(bool)));
+//    connect(ui->dock_tools, SIGNAL(visibilityChanged(bool)), ui->actTools, SLOT(setChecked(bool)));
 
 
 }
@@ -280,17 +273,17 @@ void MainWindow::createToolbox()
 void MainWindow::retranslateUi()
 {
     ui->retranslateUi(this);
-    dockTools->setWindowTitle(tr("Tools"));
-    tbArrow->setText(tr("Select"));
-    tbProcess->setText(tr("Process"));
-    tbAssign->setText(tr("Assign"));
-    tbIf->setText(tr("If...then...else"));
-    tbFor->setText(tr("FOR loop"));
-    tbWhilePre->setText(tr("loop with pre-condition"));
-    tbWhilePost->setText(tr("loop with post-condition"));
-    tbIo->setText(tr("Input"));
-    tbOu->setText(tr("Output"));
-    tbForCStyle->setText(tr("FOR loop (C/C++)"));
+//    dock_tools->setWindowTitle(tr("Tools"));
+//    tbArrow->setText(tr("Select"));
+//    tbProcess->setText(tr("Process"));
+//    tbAssign->setText(tr("Assign"));
+//    tbIf->setText(tr("If...then...else"));
+//    tbFor->setText(tr("FOR loop"));
+//    tbWhilePre->setText(tr("loop with pre-condition"));
+//    tbWhilePost->setText(tr("loop with post-condition"));
+//    tbIo->setText(tr("Input"));
+//    tbOu->setText(tr("Output"));
+//    tbForCStyle->setText(tr("FOR loop (C/C++)"));
 //    actExit->setText(tr("E&xit"));
 //    actExit->setStatusTip(tr("Exit from program"));
 //    actOpen->setText(tr("&Open..."));
@@ -863,7 +856,7 @@ void MainWindow::slotStatusChanged()
     {
         if(document()->status() == QFlowChart::Selectable)
         {
-            tbArrow->setChecked(true);
+            ui->tbArrow->setChecked(true);
         }
     }
 }
@@ -1098,7 +1091,7 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
     }
 }
 
-void MainWindow::slotToolAssign()
+void MainWindow::on_tbAssign_pressed()
 {
     if(document())
     {
@@ -1111,7 +1104,7 @@ void MainWindow::slotToolAssign()
     }
 }
 
-void MainWindow::slotToolArrow()
+void MainWindow::on_tbArrow_pressed()
 {
     if(document())
     {
@@ -1119,7 +1112,7 @@ void MainWindow::slotToolArrow()
         document()->update();
     }
 }
-void MainWindow::slotToolProcess()
+void MainWindow::on_tbProcess_pressed()
 {
     if(document())
     {
@@ -1132,7 +1125,7 @@ void MainWindow::slotToolProcess()
     }
 }
 
-void MainWindow::slotToolIf()
+void MainWindow::on_tbIf_pressed()
 {
     if(document())
     {
@@ -1145,7 +1138,7 @@ void MainWindow::slotToolIf()
     }
 }
 
-void MainWindow::slotToolFor()
+void MainWindow::on_tbFor_pressed()
 {
     if(document())
     {
@@ -1158,7 +1151,7 @@ void MainWindow::slotToolFor()
     }
 }
 
-void MainWindow::slotToolWhilePre()
+void MainWindow::on_tbWhilePre_pressed()
 {
     if(document())
     {
@@ -1171,7 +1164,7 @@ void MainWindow::slotToolWhilePre()
     }
 }
 
-void MainWindow::slotToolWhilePost()
+void MainWindow::on_tbWhilePost_pressed()
 {
     if(document())
     {
@@ -1185,7 +1178,7 @@ void MainWindow::slotToolWhilePost()
 
 }
 
-void MainWindow::slotToolIo()
+void MainWindow::on_tbIo_pressed()
 {
     if(document())
     {
@@ -1202,7 +1195,7 @@ void MainWindow::slotToolIo()
 
 
 
-void MainWindow::slotToolOu()
+void MainWindow::on_tbOu_pressed()
 {
     if(document())
     {
@@ -1230,7 +1223,7 @@ void MainWindow::slotToolCase()
 
 }
 
-void MainWindow::slotToolForCStyle()
+void MainWindow::on_tbForCStyle_pressed()
 {
     if(document())
     {
