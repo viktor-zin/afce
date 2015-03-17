@@ -82,11 +82,11 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(document(), SIGNAL(modified()), SLOT(slotDocumentChanged()));
     connect(this, SIGNAL(documentLoaded()), SLOT(slotDocumentLoaded()));
     connect(this, SIGNAL(documentSaved()), SLOT(slotDocumentSaved()));
-
-    if (qApp->arguments().size() > 1) {
-        QFile test(qApp->arguments().at(1));
+    QStringList args = qApp->arguments();
+    if (args.size() > 1) {
+        QFile test(args.at(1));
         if(test.exists()) {
-            slotOpenDocument(qApp->arguments().at(1));
+            slotOpenDocument(args.at(1));
         }
         else {
             QMessageBox::critical(this, tr("Failed to open a file"), tr("Unable to open file '%1'.").arg(qApp->arguments().at(1)));
@@ -428,7 +428,7 @@ void MainWindow::on_actSaveAs_triggered()
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to save"), "", tr("Algorithm flowcharts (*.afc)"));
     if (!fn.isEmpty())
     {
-        if(fn.right(4).toLower() != ".afc") fn += ".afc";
+        if(!fn.endsWith(".afc", Qt::CaseInsensitive)) fn += ".afc";
         fileName = fn;
         setWindowTitle(tr("%1 - Algorithm Flowchart Editor").arg(fileName));
         on_actSave_triggered();
@@ -541,11 +541,11 @@ void MainWindow::on_actExport_triggered()
 
 void MainWindow::on_actExportSVG_triggered()
 {
-    QString filter = getWriteFormatFilter();
+//    QString filter = getWriteFormatFilter();
     QString fn = QFileDialog::getSaveFileName(this, tr("Select a file to export"), "", getFilterFor("svg"));
     if(!fn.isEmpty())
     {
-        if(fn.right(4).toLower() != ".svg") fn += ".svg";
+        if(!fn.endsWith(".svg", Qt::CaseInsensitive)) fn += ".svg";
         double oldZoom = document()->zoom();
         document()->setZoom(1);
         document()->setStatus(QFlowChart::Display);
@@ -778,15 +778,15 @@ void MainWindow::slotEditBlock(QBlock *aBlock)
             box->addWidget(text);
             mainLayout->addLayout(box);
             mainLayout->addLayout(buttonLayout);
-
+            QFlowChart *flowchart = aBlock->flowChart();
             if (dlg.exec() == QDialog::Accepted)
             {
-                if(aBlock->flowChart())
+                if(flowchart)
                 {
-                    aBlock->flowChart()->makeUndo();
+                    flowchart->makeUndo();
                     aBlock->attributes[attr] = text->text();
-                    aBlock->flowChart()->update();
-                    aBlock->flowChart()->makeChanged();
+                    flowchart->update();
+                    flowchart->makeChanged();
                 }
             }
         }

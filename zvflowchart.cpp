@@ -546,7 +546,7 @@ void QBlock::makeBackwardCompatibility() {
         QStringList sl;
         for(int i = 1; i <= 8; ++i) {
             QString attr = QString("t%1").arg(i);
-            if(attributes.value(attr, "") != "")
+            if(!attributes.value(attr, "").isEmpty())
                 sl << attributes.value(attr, "");
             attributes.remove(attr);
         }
@@ -625,10 +625,10 @@ void QBlock::append(QBlock *aBlock)
 void QBlock::deleteObject(int aIndex)
 {
   QBlock *tmp = item(aIndex);
-  if(tmp)
-  {
+//  if(tmp)
+//  {
     delete tmp;
-  }
+//  }
 }
 
 

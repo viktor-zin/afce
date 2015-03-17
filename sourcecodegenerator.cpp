@@ -40,10 +40,11 @@ QString SourceCodeGenerator::processElement(const QDomNode &element, int level) 
     QJsonObject obj = rule.object().value(element.nodeName()).toObject();
     QString tpl = sp+obj.value("template").toString();
     for(int i = 0; i < element.attributes().size(); ++i) {
+        QDomNode attr = element.attributes().item(i);
        if(obj.contains("list")) {
            QJsonArray list = obj["list"].toArray();
-           if (list.contains(QJsonValue(element.attributes().item(i).nodeName()))) {
-                QStringList sl = element.attributes().item(i).nodeValue().split(obj["separator"].toString(), QString::SkipEmptyParts);
+           if (list.contains(QJsonValue(attr.nodeName()))) {
+                QStringList sl = attr.nodeValue().split(obj["separator"].toString(), QString::SkipEmptyParts);
                 QString prefix = obj["prefix"].toString();
                 QString suffix = obj["suffix"].toString();
                 for(int k=0; k < sl.size(); ++k) {
@@ -52,12 +53,12 @@ QString SourceCodeGenerator::processElement(const QDomNode &element, int level) 
                     s.replace("%$%", sl[k]);
                     sl[k] = s;
                 }
-                tpl.replace("%"+element.attributes().item(i).nodeName() + "%", sl.join(obj["glue"].toString()));
+                tpl.replace("%"+attr.nodeName() + "%", sl.join(obj["glue"].toString()));
            }
-           tpl.replace("%"+element.attributes().item(i).nodeName() + "%", element.attributes().item(i).nodeValue());
+           tpl.replace("%"+attr.nodeName() + "%", attr.nodeValue());
        }
        else
-           tpl.replace("%"+element.attributes().item(i).nodeName() + "%", element.attributes().item(i).nodeValue());
+           tpl.replace("%"+attr.nodeName() + "%", attr.nodeValue());
 
     }
     tpl.replace("\n","\n" + sp);
