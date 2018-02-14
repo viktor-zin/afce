@@ -43,7 +43,10 @@ void AfcScrollArea::wheelEvent(QWheelEvent *event)
         event->ignore();
         emit zoomStepped(event->delta() / 120);
     }
-    else event->accept();
+    else {
+        event->ignore();
+        emit scrollStepped(event->delta() / 5);
+    }
 }
 
 
@@ -167,6 +170,7 @@ void MainWindow::setupUi()
     connect(zoomSlider, SIGNAL(valueChanged(int)),this, SLOT(setZoom(int)));
     zoomSlider->setValue(4);
     connect(saScheme, SIGNAL(zoomStepped(int)), this, SLOT(shiftZoom(int)));
+    connect(saScheme, SIGNAL(scrollStepped(int)), this, SLOT(shiftScrollY(int)));
 
     createToolbox();
 
@@ -1319,6 +1323,10 @@ void MainWindow::shiftZoom(int step)
     zoomSlider->setValue(z + step);
 }
 
+void MainWindow::shiftScrollY(int step)
+{
+    saScheme->viewport()->scroll(0, step);
+}
 
 void setApplicationLocale(const QString &localeName)
 {
