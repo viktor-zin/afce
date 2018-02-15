@@ -36,8 +36,19 @@ QString SourceCodeGenerator::applyRule(const QDomDocument &xml) {
 }
 
 QString SourceCodeGenerator::processElement(const QDomNode &element, int level) {
-    QString sp = QString("  ").repeated(level);
     QJsonObject obj = rule.object().value(element.nodeName()).toObject();
+    QString sp;
+    if (rule.object().contains("additional_settings")) {
+        /* if json specified indentation string it will use */
+        sp = rule.object().value("additional_settings").toObject()["indentation_preference"].toString();
+    }
+    else {
+        /* otherwise use default */
+        sp = QString("  ");
+    }
+    sp = sp.repeated(level);
+
+
     QString tpl = sp+obj.value("template").toString();
     for(int i = 0; i < element.attributes().size(); ++i) {
        if(obj.contains("list")) {
