@@ -40,6 +40,7 @@ class AfcScrollArea : public QScrollArea
   signals:
     void mouseDown();
     void zoomStepped(int);
+    void scrollStepped(int);
   public:
      explicit AfcScrollArea(QWidget* parent=0) : QScrollArea(parent) { }
     ~AfcScrollArea() { }
@@ -178,6 +179,7 @@ public slots:
 
   void setZoom(int quarts);
   void shiftZoom(int step);
+  void shiftScrollY(int step);
   void slotStatusChanged();
   void slotEditBlock(QBlock *aBlock);
   void updateActions();
