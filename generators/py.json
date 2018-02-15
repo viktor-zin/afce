@@ -3,13 +3,14 @@
         "en_US":"Python"
     },
 	"algorithm" : {
-		"template" : "def main():%branch1%\n"
+		"template" : "def main():%branch1%\nmain()"
 	},
 	"if": {
-		"template":"if %cond%:%branch1%\nelse: %branch2%\n"
+		"template":"if %cond%:%branch1%\nelse: %branch2%",
+        "template_shortened":"if %cond%:%branch1%"
 	},
 	"for": {
-		"template":"for %var% in xrange(%from%, %to%):%branch1%\n"
+		"template":"for %var% in range(%from%, %to%):%branch1%\n"
 	},
 	"pre": {
 		"template":"while %cond%:%branch1%\n"
@@ -18,10 +19,10 @@
 		"template":"while True:%branch1%\n\tif %cond%:\n\t\tbreak"
 	},
 	"assign": {
-		"template":"%dest% = %src%;"
+		"template":"%dest% = %src%"
 	},
 	"process": {
-		"template": "%text%;"
+		"template": "%text%"
 	},
 	"io": {
 		"template": "%vars%",
@@ -36,6 +37,9 @@
 		"list": ["vars"],
 		"separator": ",",
 		"glue": ", "
-
-	}
+	},
+    
+    "additional_settings": {
+    	"indentation_preference": "    "
+    }
 }

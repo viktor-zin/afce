@@ -36,9 +36,34 @@ QString SourceCodeGenerator::applyRule(const QDomDocument &xml) {
 }
 
 QString SourceCodeGenerator::processElement(const QDomNode &element, int level) {
-    QString sp = QString("  ").repeated(level);
     QJsonObject obj = rule.object().value(element.nodeName()).toObject();
-    QString tpl = sp+obj.value("template").toString();
+    QString sp;
+    if (rule.object().contains("additional_settings")) {
+        /* if json specified indentation string it will use */
+        sp = rule.object().value("additional_settings").toObject()["indentation_preference"].toString();
+    }
+    else {
+        /* otherwise use default */
+        sp = QString("  ");
+    }
+    sp = sp.repeated(level);
+
+    bool else_present = false;
+    /* if element is "if" AND second item (number 1) is branch AND it is NOT empty mean "else" is present */
+    if (element.nodeName() == "if" && element.childNodes().item(1).nodeName() == "branch") {
+        if (element.childNodes().item(1).childNodes().size() > 0) {
+            else_present = true;
+        }
+    }
+
+    QString tpl;
+    if (obj.contains("template_shortened") && else_present == false) {
+        tpl = sp+obj.value("template_shortened").toString();
+    }
+    else {
+        tpl = sp+obj.value("template").toString();
+    }
+
     for(int i = 0; i < element.attributes().size(); ++i) {
        if(obj.contains("list")) {
            QJsonArray list = obj["list"].toArray();

@@ -44,8 +44,21 @@ void AfcScrollArea::wheelEvent(QWheelEvent *event)
         emit zoomStepped(event->delta() / 120);
     }
     else {
-        event->ignore();
-        emit scrollStepped(event->delta() / 5);
+        if((event->modifiers() & Qt::ShiftModifier) == 0) {
+            QScrollBar * vsb = verticalScrollBar();
+            if (vsb != NULL) {
+                /* scroll vertically */
+                vsb->setValue(vsb->value() - event->delta());
+            }
+        }
+        else {
+            QScrollBar * gsb = horizontalScrollBar();
+            if (gsb != NULL) {
+                /* scroll horizontally */
+                gsb->setValue(gsb->value() - event->delta());
+            }
+        }
+        event->accept();
     }
 }
 
