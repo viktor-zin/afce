@@ -1,0 +1,31 @@
+function stats(s: String; c: Char; x: Real; n: Integer): Real;
+var
+  k, sum, done, t: Integer;
+  avg, half: Real;
+begin
+  WriteLn(s, '|', c, '|', x, '|', n);
+  ReadLn(k);
+  sum := 0;
+  while k <> 0 do
+  begin
+    sum := sum + k mod 10;
+    k := k div 10;
+  end;
+  done := 0;
+  repeat
+    done := 1;
+  until not ((done = 0) and (n mod 2 = 0));
+  avg := sum / n;
+  half := x / 2;
+  t := Trunc(avg * 10) mod 7 * 2;
+  if n <> 0 then
+  begin
+    WriteLn(avg, ' ', half, ' ', t);
+  end;
+  case sum mod 3 of
+    0: begin
+      WriteLn('divisible');
+    end;
+  end;
+  Exit(avg / 2);
+end;

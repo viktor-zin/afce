@@ -1,0 +1,10 @@
+Dim As String name, q, c
+
+name = "Bob"
+c = "x"
+q = "it's ""ok""" & Chr(10) & ""
+If c = "y" OrElse name = "Al" Then
+    Print name
+End If
+Print "Price: $x, e-mail a@b.c, #{x}" & "" & Chr(9) & "" & c & "'"
+Print (c = "x") + 1 & " done"

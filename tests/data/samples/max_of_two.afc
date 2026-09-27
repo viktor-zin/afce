@@ -1,0 +1,14 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="a,b"/>
+    <if cond="a &gt; b">
+      <branch>
+        <ou vars="a"/>
+      </branch>
+      <branch>
+        <ou vars="b"/>
+      </branch>
+    </if>
+  </branch>
+</algorithm>

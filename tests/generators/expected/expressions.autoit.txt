@@ -1,0 +1,15 @@
+Main()
+
+Func Main()
+    Local $ok, $i, $finished
+    $ok = $a > 0 And $b <> 0 Or Not $done
+    If (Mod($x, 2) = 0 And $y < 10) Or $flag = True Then
+        ConsoleWrite("yes && !no" & ($x <> $y) & @CRLF)
+    EndIf
+    While Not ($i >= $n) And $p <> NULL
+        $i = $i + 1
+    WEnd
+    Do
+        $finished = False
+    Until $finished
+EndFunc

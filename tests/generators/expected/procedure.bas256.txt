@@ -1,0 +1,6 @@
+subroutine greet(n)
+    if n < 1 then
+        return
+    end if
+    print "Hello, "; n
+end subroutine

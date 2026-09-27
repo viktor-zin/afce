@@ -1,0 +1,12 @@
+def main():
+    name = "Bob"
+    c = 'x'
+    q = "it's \"ok\"\n"
+    if c == 'y' or name == "Al":
+        print(name)
+    print("Price: $x, e-mail a@b.c, #{x}", '\t', c, '\'', sep="")
+    print((c == 'x') + 1, " done", sep="")
+
+
+if __name__ == "__main__":
+    main()

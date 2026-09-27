@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- C semantics: integer division, "%", truthiness, casts, typed output of declared parameters -->
+<algorithm version="1.3" name="stats" params="const char *s, char c, double x, int n" returns="double">
+  <branch>
+    <ou vars="s, &quot;|&quot;, c, &quot;|&quot;, x, &quot;|&quot;, n"/>
+    <io vars="k"/>
+    <assign dest="sum" src="0"/>
+    <pre cond="k">
+      <branch>
+        <assign dest="sum" src="sum + k % 10"/>
+        <assign dest="k" src="k / 10"/>
+      </branch>
+    </pre>
+    <assign dest="done" src="0"/>
+    <post cond="!done &amp;&amp; n % 2 == 0">
+      <branch>
+        <assign dest="done" src="1"/>
+      </branch>
+    </post>
+    <assign dest="avg" src="(double) sum / n"/>
+    <assign dest="half" src="x / 2"/>
+    <assign dest="t" src="(int) (avg * 10) % 7 * 2"/>
+    <if cond="n">
+      <branch>
+        <ou vars="avg, &quot; &quot;, half, &quot; &quot;, t"/>
+      </branch>
+      <branch/>
+    </if>
+    <case expr="sum % 3">
+      <branch value="0">
+        <ou vars="&quot;divisible&quot;"/>
+      </branch>
+      <branch/>
+    </case>
+    <return value="avg / 2"/>
+  </branch>
+</algorithm>

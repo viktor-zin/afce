@@ -1,0 +1,41 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <ou vars="&quot;n = &quot;"/>
+    <io vars="n"/>
+    <forc cond="i &lt; n" init="int i = 0" step="i++">
+      <branch>
+        <io vars="a[i]"/>
+      </branch>
+    </forc>
+    <forc cond="i &lt; n - 1" init="int i = 0" step="i++">
+      <branch>
+        <assign dest="swapped" src="0"/>
+        <forc cond="j &lt; n - 1 - i" init="int j = 0" step="j++">
+          <branch>
+            <if cond="a[j] > a[j + 1]">
+              <branch>
+                <assign dest="t" src="a[j]"/>
+                <assign dest="a[j]" src="a[j + 1]"/>
+                <assign dest="a[j + 1]" src="t"/>
+                <assign dest="swapped" src="1"/>
+              </branch>
+              <branch/>
+            </if>
+          </branch>
+        </forc>
+        <if cond="!swapped">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+      </branch>
+    </forc>
+    <forc cond="i &lt; n" init="int i = 0" step="i++">
+      <branch>
+        <ou vars="a[i],&quot; &quot;"/>
+      </branch>
+    </forc>
+  </branch>
+</algorithm>

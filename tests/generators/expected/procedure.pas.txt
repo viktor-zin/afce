@@ -1,0 +1,8 @@
+procedure greet(n: Integer);
+begin
+  if n < 1 then
+  begin
+    Exit;
+  end;
+  WriteLn('Hello, ', n);
+end;

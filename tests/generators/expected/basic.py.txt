@@ -1,0 +1,26 @@
+def main():
+    a = int(input())
+    b = int(input())
+    s = a + b
+    d = a - b
+    print("Sum = ", s, sep="")
+    print(s)
+    print("Hello, world!")
+    print(a, " - ", b, " = ", d, sep="")
+    print("100% \"done\"", 'x', sep="")
+    print()
+    report(a, b)
+    if s > 10:
+        print("big")
+    else:
+        print("small")
+    if a < b:
+        d = 0
+    if a >= b + 1:
+        print("not less")
+    if done:
+        pass
+
+
+if __name__ == "__main__":
+    main()

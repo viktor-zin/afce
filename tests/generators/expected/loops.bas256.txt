@@ -1,0 +1,29 @@
+n = 10
+while n > 0
+    n = n - 3
+end while
+do
+    n = n + 1
+until n >= 5
+for i = 1 to 10
+    print i
+next i
+for j = 0 to n - 1
+    print j
+next j
+k = 0
+while k < n
+    print k
+    k = k + 2
+end while
+while true
+    call work()
+    exit while
+end while
+for x_i = 0 to items[?] - 1
+    x = items[x_i]
+    print x
+next x_i
+while n > 100
+end while
+end

@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($name, $c, $q);
+    $name = "Bob";
+    $c = 'x';
+    $q = "it's \"ok\"\n";
+    if ($c == 'y' || $name == "Al") {
+        print($name, "\n");
+    }
+    print("Price: \$x, e-mail a\@b.c, #{x}", "\t", $c, "'", "\n");
+    print(($c == 'x') + 1, " done", "\n");
+}
+
+main();

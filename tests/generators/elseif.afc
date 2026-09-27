@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <if cond="x &lt; 0">
+      <branch>
+        <ou vars="&quot;negative&quot;"/>
+      </branch>
+      <branch>
+        <if cond="x &lt; 10">
+          <branch>
+            <ou vars="&quot;small&quot;"/>
+          </branch>
+          <branch>
+            <if cond="x &lt; 100">
+              <branch>
+                <ou vars="&quot;medium&quot;"/>
+              </branch>
+              <branch>
+                <ou vars="&quot;large&quot;"/>
+              </branch>
+            </if>
+          </branch>
+        </if>
+      </branch>
+    </if>
+    <if cond="y &lt; 0">
+      <branch>
+        <ou vars="&quot;neg&quot;"/>
+      </branch>
+      <branch>
+        <if cond="y &gt; 0">
+          <branch>
+            <ou vars="&quot;pos&quot;"/>
+          </branch>
+          <branch/>
+        </if>
+      </branch>
+    </if>
+  </branch>
+</algorithm>

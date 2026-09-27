@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="n"/>
+    <assign dest="s" src="0"/>
+    <process text="count = 0"/>
+    <for var="i" from="1" to="n">
+      <branch>
+        <if cond="i &lt; 5">
+          <branch>
+            <forc init="j = 0" cond="j &lt; i" step="j = j + 1">
+              <branch>
+                <case expr="j">
+                  <branch value="0">
+                    <continue/>
+                  </branch>
+                  <branch value="1, 2">
+                    <pre cond="s &lt; 100">
+                      <branch>
+                        <assign dest="s" src="s + j"/>
+                        <if cond="s &gt; 50">
+                          <branch>
+                            <break/>
+                          </branch>
+                          <branch/>
+                        </if>
+                      </branch>
+                    </pre>
+                  </branch>
+                  <branch>
+                    <post cond="s &gt; 0">
+                      <branch>
+                        <assign dest="s" src="s - 1"/>
+                        <if cond="s &lt; 10">
+                          <branch>
+                            <continue/>
+                          </branch>
+                          <branch/>
+                        </if>
+                        <ou vars="&quot;s = &quot;, s"/>
+                      </branch>
+                    </post>
+                  </branch>
+                </case>
+              </branch>
+            </forc>
+          </branch>
+          <branch>
+            <foreach var="x" range="items">
+              <branch>
+                <call text="show(x)"/>
+                <if cond="x &gt; i">
+                  <branch>
+                    <return value="x"/>
+                  </branch>
+                  <branch/>
+                </if>
+              </branch>
+            </foreach>
+          </branch>
+        </if>
+      </branch>
+    </for>
+    <ou vars="&quot;s = &quot;, s, &quot;, count = &quot;, count"/>
+  </branch>
+</algorithm>

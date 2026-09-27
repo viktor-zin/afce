@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="сумма" src="0"/>
+    <for var="и" from="1" to="4">
+      <branch>
+        <assign dest="сумма" src="сумма + и"/>
+      </branch>
+    </for>
+    <ou vars="&quot;Сумма = &quot;, сумма"/>
+  </branch>
+</algorithm>

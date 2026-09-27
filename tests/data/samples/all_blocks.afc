@@ -1,0 +1,39 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="n,x"/>
+    <assign dest="s" src="0"/>
+    <process text="k = 0"/>
+    <for var="i" from="1" to="n">
+      <branch>
+        <assign dest="s" src="s + i"/>
+      </branch>
+    </for>
+    <if cond="s &gt; x">
+      <branch>
+        <ou vars="&quot;s is greater than x: &quot;,s"/>
+      </branch>
+      <branch>
+        <ou vars="&quot;s is not greater than x: &quot;,s"/>
+      </branch>
+    </if>
+    <if cond="s % 2 == 0">
+      <branch>
+        <ou vars="&quot;s is even&quot;"/>
+      </branch>
+      <branch/>
+    </if>
+    <pre cond="x &gt; 0">
+      <branch>
+        <assign dest="x" src="x - 3"/>
+        <assign dest="k" src="k + 1"/>
+      </branch>
+    </pre>
+    <post cond="k &gt; 0">
+      <branch>
+        <assign dest="k" src="k - 1"/>
+      </branch>
+    </post>
+    <ou vars="&quot;k = &quot;,k,&quot;, x = &quot;,x"/>
+  </branch>
+</algorithm>

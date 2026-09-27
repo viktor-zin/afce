@@ -1,0 +1,21 @@
+if x < 0 then
+    print "negative"
+else
+    if x < 10 then
+        print "small"
+    else
+        if x < 100 then
+            print "medium"
+        else
+            print "large"
+        end if
+    end if
+end if
+if y < 0 then
+    print "neg"
+else
+    if y > 0 then
+        print "pos"
+    end if
+end if
+end

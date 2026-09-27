@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- case blocks without regular branches (hand-made files) -->
+<algorithm version="1.3">
+  <branch>
+    <for var="i" from="1" to="3">
+      <branch>
+        <case expr="i">
+          <branch>
+            <if cond="i == 2">
+              <branch>
+                <continue/>
+              </branch>
+              <branch/>
+            </if>
+          </branch>
+        </case>
+        <ou vars="i"/>
+      </branch>
+    </for>
+    <case expr="a">
+      <branch/>
+    </case>
+  </branch>
+</algorithm>

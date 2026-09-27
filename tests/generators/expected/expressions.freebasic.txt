@@ -1,0 +1,13 @@
+Dim As Integer i
+Dim As Boolean ok, finished
+
+ok = a > 0 AndAlso b <> 0 OrElse Not done
+If (x Mod 2 = 0 AndAlso y < 10) OrElse flag = True Then
+    Print "yes && !no" & (x <> y)
+End If
+While Not (i >= n) AndAlso p <> NULL
+    i = i + 1
+Wend
+Do
+    finished = False
+Loop While Not finished

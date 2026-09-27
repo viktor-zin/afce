@@ -1,0 +1,18 @@
+def main
+  if x < 0
+    puts "negative"
+  elsif x < 10
+    puts "small"
+  elsif x < 100
+    puts "medium"
+  else
+    puts "large"
+  end
+  if y < 0
+    puts "neg"
+  elsif y > 0
+    puts "pos"
+  end
+end
+
+main

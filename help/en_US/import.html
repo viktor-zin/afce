@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<TITLE>Building a flowchart from source code</TITLE>
+</HEAD>
+<BODY>
+<h2>Building a flowchart from source code</h2>
+<p><b>File → Import from Source Code</b> (Ctrl+I) opens a window where you paste C or C++ code or open a file
+(.c, .cpp, .h ...). You can also drop a source file onto the main window.</p>
+<p>The flowchart of the selected function is shown on the right. <b>Import</b> opens it in a new tab,
+<b>Import All Functions</b> opens every function in its own tab.</p>
+<p>Recognized: if/else, switch, while, do-while, for (including range-for), return, break, continue, assignments,
+input/output (scanf, printf, puts, gets, cin, cout, getline) and function calls. Functions are also found inside classes and namespaces.</p>
+<p>Options: how for loops are shown (C-style block, while loop or counting loop), keeping variable declarations,
+recognizing input/output, calls as subroutine blocks, expanding compound assignments (x += 2 → x := x + 2).</p>
+<p>What cannot be shown in a flowchart (goto, exception handlers, preprocessor directives) is listed in the messages;
+double-click a message to see the code line.</p>
+<p>Command line: <tt>afce --import prog.c --function main</tt> or <tt>afce-cli import prog.c --output prog.afc</tt>.</p>
+<p><IMG src="import.png"></p>
+</BODY>
+</HTML>

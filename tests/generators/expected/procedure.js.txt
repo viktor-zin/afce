@@ -1,0 +1,6 @@
+function greet(n) {
+    if (n < 1) {
+        return;
+    }
+    console.log(`Hello, ${n}`);
+}

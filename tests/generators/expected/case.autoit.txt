@@ -1,0 +1,19 @@
+Main()
+
+Func Main()
+    Local $n
+    Switch $x
+        Case 1
+            ConsoleWrite("one" & @CRLF)
+        Case 2, 3
+            ConsoleWrite("two or three" & @CRLF)
+        Case Else
+            ConsoleWrite("other" & @CRLF)
+    EndSwitch
+    Switch $c
+        Case "a"
+            $n = 1
+        Case "b", "c"
+            $n = 2
+    EndSwitch
+EndFunc

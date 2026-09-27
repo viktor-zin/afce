@@ -16,7 +16,11 @@
 #ifndef QFLOWCHARTSTYLE_H
 #define QFLOWCHARTSTYLE_H
 
-#include <QtGui>
+#include <QColor>
+#include <QMetaType>
+#include <QString>
+
+class QPalette;
 
 class QFlowChartStyle
 {
@@ -29,10 +33,26 @@ class QFlowChartStyle
     QColor fNormalMarker;
     QColor fSelectedMarker;
     double fFontSize;
+    bool fMonochrome;
+
+  public:
+    // Fill colour categories of blocks.
+    enum Category { Terminator, Action, InputOutput, Decision, Loop, Jump, CategoryCount };
+
+  private:
+    QString fAssignSymbol;
+    QString fFontFamily;
+    QColor fCanvasColor;
+    QColor fFill[CategoryCount];
 
   public:
     QFlowChartStyle();
-    ~QFlowChartStyle() {}
+
+    // Light "document" style (black lines and text on white) used for export and printing,
+    // independent of the UI palette.
+    static QFlowChartStyle documentStyle(bool monochrome = false);
+    // Style for the editor derived from the widget palette (follows dark mode).
+    static QFlowChartStyle uiStyle(const QPalette &palette, bool monochrome = false);
 
     QColor normalBackground() const { return fNormalBackground; }
     QColor normalForeground() const { return fNormalForeground; }
@@ -42,6 +62,13 @@ class QFlowChartStyle
     QColor normalMarker() const { return fNormalMarker; }
     QColor selectedMarker() const { return fSelectedMarker; }
     double fontSize() const { return fFontSize; }
+    bool monochrome() const { return fMonochrome; }
+    // Symbol shown between dest and src of assign blocks (":=", "=", "\u2190").
+    QString assignSymbol() const { return fAssignSymbol; }
+    // Font family of block texts (empty = application default font).
+    QString fontFamily() const { return fFontFamily; }
+    QColor canvasColor() const { return fCanvasColor; }
+    QColor fillColor(Category aCategory) const { return fFill[aCategory]; }
 
     void setNormalBackground(const QColor & aValue) { fNormalBackground = aValue; }
     void setNormalForeground(const QColor & aValue) { fNormalForeground = aValue; }
@@ -51,8 +78,13 @@ class QFlowChartStyle
     void setNormalMarker(const QColor & aValue) { fNormalMarker = aValue; }
     void setSelectedMarker(const QColor & aValue) { fSelectedMarker = aValue; }
     void setFontSize(const double aValue) { fFontSize = aValue; }
+    void setMonochrome(bool aValue) { fMonochrome = aValue; }
+    void setAssignSymbol(const QString &aValue) { fAssignSymbol = aValue; }
+    void setFontFamily(const QString &aValue) { fFontFamily = aValue; }
+    void setCanvasColor(const QColor &aValue) { fCanvasColor = aValue; }
+    void setFillColor(Category aCategory, const QColor &aValue) { fFill[aCategory] = aValue; }
 };
 
-Q_DECLARE_TYPEINFO(QFlowChartStyle, Q_MOVABLE_TYPE);
+Q_DECLARE_TYPEINFO(QFlowChartStyle, Q_RELOCATABLE_TYPE);
 
 #endif // QFLOWCHARTSTYLE_H

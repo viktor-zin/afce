@@ -1,0 +1,13 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub greet {
+    my ($n) = @_;
+    if ($n < 1) {
+        return;
+    }
+    print("Hello, ", $n, "\n");
+}

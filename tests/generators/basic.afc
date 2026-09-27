@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="a, b"/>
+    <assign dest="s" src="a + b"/>
+    <process text="d = a - b"/>
+    <ou vars="&quot;Sum = &quot;, s"/>
+    <ou vars="s"/>
+    <ou vars="&quot;Hello, world!&quot;"/>
+    <ou vars="a, &quot; - &quot;, b, &quot; = &quot;, d"/>
+    <ou vars="&quot;100% \&quot;done\&quot;&quot;, 'x'"/>
+    <ou vars=""/>
+    <call text="report(a, b)"/>
+    <if cond="s &gt; 10">
+      <branch>
+        <ou vars="&quot;big&quot;"/>
+      </branch>
+      <branch>
+        <ou vars="&quot;small&quot;"/>
+      </branch>
+    </if>
+    <if cond="a &lt; b">
+      <branch>
+        <assign dest="d" src="0"/>
+      </branch>
+      <branch/>
+    </if>
+    <if cond="a &lt; b + 1">
+      <branch/>
+      <branch>
+        <ou vars="&quot;not less&quot;"/>
+      </branch>
+    </if>
+    <if cond="done">
+      <branch/>
+      <branch/>
+    </if>
+  </branch>
+</algorithm>

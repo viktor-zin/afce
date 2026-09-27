@@ -1,0 +1,18 @@
+#include <iostream>
+
+int main() {
+    if (x < 0) {
+        std::cout << "negative" << std::endl;
+    } else if (x < 10) {
+        std::cout << "small" << std::endl;
+    } else if (x < 100) {
+        std::cout << "medium" << std::endl;
+    } else {
+        std::cout << "large" << std::endl;
+    }
+    if (y < 0) {
+        std::cout << "neg" << std::endl;
+    } else if (y > 0) {
+        std::cout << "pos" << std::endl;
+    }
+}

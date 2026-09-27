@@ -1,0 +1,32 @@
+Sub Main()
+    Dim n, i, j, k, x
+    n = 10
+    Do While n > 0
+        n = n - 3
+    Loop
+    Do
+        n = n + 1
+    Loop While n < 5
+    For i = 1 To 10
+        WScript.Echo i
+    Next
+    For j = 0 To n - 1
+        WScript.Echo j
+    Next
+    k = 0
+    Do While k < n
+        WScript.Echo k
+        k = k + 2
+    Loop
+    Do While True
+        Call work()
+        Exit Do
+    Loop
+    For Each x In items
+        WScript.Echo x
+    Next
+    Do While n > 100
+    Loop
+End Sub
+
+Main

@@ -1,0 +1,6 @@
+def greet(n)
+  if n < 1
+    return
+  end
+  puts "Hello, #{n}"
+end

@@ -1,0 +1,5 @@
+Function sum(a As Integer, b As Integer) As Integer
+    Dim As Integer s
+    s = a + b
+    Return s
+End Function

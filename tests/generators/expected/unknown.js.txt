@@ -1,0 +1,8 @@
+function main() {
+    let a;
+    a = 1;
+    // unsupported block "frobnicate"
+    console.log(a);
+}
+
+main();

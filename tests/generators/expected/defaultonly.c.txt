@@ -1,0 +1,17 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    for (int i = 1; i <= 3; i++) {
+        switch (i) {
+            default: {
+                if (i == 2) {
+                    continue;
+                }
+            }
+        }
+        printf("%d\n", i);
+    }
+    switch (a) {
+    }
+}

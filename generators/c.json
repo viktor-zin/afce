@@ -1,42 +1,261 @@
 {
     "name": {
-        "en_US":"C"
+        "en_US": "C",
+        "ru_RU": "C",
+        "uk_UA": "C"
     },
-	"if": {
-		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
-	},
-	"for": {
-		"template":"for(int %var% = %from%; %var% < %to%; ++%var%) {%branch1%\n}"
-	},
-	"pre": {
-		"template":"while (%cond%) {%branch1%\n}"
-	},
-	"post": {
-		"template":"do {%branch1%\n}\nwhile (%cond%)"
-	},
-	"assign": {
-		"template":"%dest% = %src%;"
-	},
-	"process": {
-		"template": "%text%;"
-	},
-	"algorithm" : {
-		"template" : "void main(void) {%branch1%\n}"
-	},
-	"io": {
-		"template": "scanf(%vars%);",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", ",
-		"prefix": "&"
-	},
-
-	"ou": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix": "printf(\"%d\", ",
-		"suffix": ");"
-	}
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "keywords": ["void"]
+    },
+    "comment": {
+        "template": "/* %text% */"
+    },
+    "algorithm": {
+        "template": [
+            "#include <stdbool.h>",
+            "#include <stdio.h>",
+            "",
+            "%returns% %name%(%args%) {",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_returns": [
+            "#include <stdbool.h>",
+            "#include <stdio.h>",
+            "",
+            "void %name%(%args%) {",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_name": [
+            "#include <stdbool.h>",
+            "#include <stdio.h>",
+            "",
+            "int main(void) {",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "}"
+        ],
+        "defaults": {
+            "params": "void"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$|deftype:int%",
+                "glue": ", "
+            },
+            "decl_int": {
+                "source": "undeclared_int",
+                "head": "int ",
+                "glue": ", ",
+                "tail": ";"
+            },
+            "decl_real": {
+                "source": "undeclared_real",
+                "head": "double ",
+                "glue": ", ",
+                "tail": ";"
+            },
+            "decl_bool": {
+                "source": "undeclared_bool",
+                "head": "bool ",
+                "glue": ", ",
+                "tail": ";"
+            },
+            "decl_char": {
+                "source": "undeclared_char",
+                "head": "char ",
+                "glue": ", ",
+                "tail": ";"
+            },
+            "decl_string": {
+                "source": "undeclared_string",
+                "head": "const char *",
+                "glue": ", *",
+                "tail": ";"
+            }
+        }
+    },
+    "process": {
+        "template": "%text|semicolon%"
+    },
+    "assign": {
+        "template": "%dest% = %src%;"
+    },
+    "call": {
+        "template": "%text|nosemi|callparens%;"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "scanf(\"%d\", &%$%);",
+                "item_real": "scanf(\"%lf\", &%$%);",
+                "item_char": "scanf(\" %c\", &%$%);",
+                "item_string": "scanf(\"%s\", %$%);",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "printf(\"%format%\\n\"%args%);",
+        "template_empty_vars": "printf(\"\\n\");",
+        "list": {
+            "format": {
+                "source": "vars",
+                "item": "%d",
+                "item_real": "%g",
+                "item_char": "%c",
+                "item_string": "%s",
+                "literal_item": "%$text%",
+                "text_escape": {
+                    "%": "%%",
+                    "\"": "\\\"",
+                    "\\\"": "\\\"",
+                    "\\\\": "\\\\"
+                }
+            },
+            "args": {
+                "source": "vars",
+                "item": ", %$%",
+                "literal_item": ""
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "} else {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch2": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_branch1": [
+            "if (%cond|negate%) {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch1+branch2": [
+            "if (%cond%) {",
+            "}"
+        ],
+        "chain": {
+            "head": [
+                "if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "} else if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else": [
+                "} else {",
+                "\t%branch2%"
+            ],
+            "end": "}"
+        }
+    },
+    "case": {
+        "template": [
+            "switch (%expr%) {",
+            "%branches%",
+            "}"
+        ],
+        "case_branch": [
+            "\t%value% {",
+            "\t\t%body%",
+            "\t\tbreak;",
+            "\t}"
+        ],
+        "case_branch_terminated": [
+            "\t%value% {",
+            "\t\t%body%",
+            "\t}"
+        ],
+        "default_branch": [
+            "\tdefault: {",
+            "\t\t%body%",
+            "\t}"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "item": "case %$%:",
+                "glue": "\n"
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "post": {
+        "template": [
+            "do {",
+            "\t%branch1%",
+            "} while (%cond%);"
+        ]
+    },
+    "for": {
+        "template": [
+            "for (%var|deftype:int% = %from%; %var|lvalue% <= %to%; %var|lvalue%++) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "forc": {
+        "template": [
+            "for (%init%; %cond%; %step%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_init+cond+step": [
+            "for (;;) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "foreach": {
+        "template": [
+            "for (size_t %var|name%_i = 0; %var|name%_i < sizeof(%range%) / sizeof(%range%[0]); %var|name%_i++) {",
+            "\t%var|deftype:int% = %range%[%var|name%_i];",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "return": {
+        "template": "return %value%;",
+        "template_empty_value": "return;",
+        "template_empty_algorithm.name+value": "return 0;"
+    },
+    "break": {
+        "template": "break;"
+    },
+    "continue": {
+        "template": "continue;"
+    }
 }

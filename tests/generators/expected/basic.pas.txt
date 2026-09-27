@@ -1,0 +1,36 @@
+program Algorithm;
+
+var
+  a, b, s, d: Integer;
+
+begin
+  ReadLn(a, b);
+  s := a + b;
+  d = a - b;
+  WriteLn('Sum = ', s);
+  WriteLn(s);
+  WriteLn('Hello, world!');
+  WriteLn(a, ' - ', b, ' = ', d);
+  WriteLn('100% "done"', 'x');
+  WriteLn;
+  report(a, b);
+  if s > 10 then
+  begin
+    WriteLn('big');
+  end
+  else
+  begin
+    WriteLn('small');
+  end;
+  if a < b then
+  begin
+    d := 0;
+  end;
+  if a >= b + 1 then
+  begin
+    WriteLn('not less');
+  end;
+  if done then
+  begin
+  end;
+end.

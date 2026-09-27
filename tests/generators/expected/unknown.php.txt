@@ -1,0 +1,10 @@
+<?php
+
+function main()
+{
+    $a = 1;
+    // unsupported block "frobnicate"
+    echo $a, PHP_EOL;
+}
+
+main();

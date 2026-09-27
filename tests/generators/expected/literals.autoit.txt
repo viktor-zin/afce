@@ -1,0 +1,13 @@
+Main()
+
+Func Main()
+    Local $name, $c, $q
+    $name = "Bob"
+    $c = "x"
+    $q = "it's ""ok""" & @LF & ""
+    If $c = "y" Or $name = "Al" Then
+        ConsoleWrite($name & @CRLF)
+    EndIf
+    ConsoleWrite("Price: $x, e-mail a@b.c, #{x}" & "" & @TAB & "" & $c & "'" & @CRLF)
+    ConsoleWrite(($c = "x") + 1 & " done" & @CRLF)
+EndFunc

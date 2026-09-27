@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="arr" src="[3, 1, 2]"/>
+    <assign dest="s" src="0"/>
+    <foreach var="x" range="arr">
+      <branch>
+        <assign dest="s" src="s + x"/>
+      </branch>
+    </foreach>
+    <assign dest="arr[1]" src="10"/>
+    <ou vars="s, &quot; &quot;, arr[0], &quot; &quot;, arr[1]"/>
+  </branch>
+</algorithm>

@@ -1,0 +1,25 @@
+input a
+input b
+s = a + b
+d = a - b
+print "Sum = "; s
+print s
+print "Hello, world!"
+print a; " - "; b; " = "; d
+print "100% " + chr(34) + "done" + chr(34) + ""; "x"
+print
+call report(a, b)
+if s > 10 then
+    print "big"
+else
+    print "small"
+end if
+if a < b then
+    d = 0
+end if
+if a >= b + 1 then
+    print "not less"
+end if
+if done then
+end if
+end

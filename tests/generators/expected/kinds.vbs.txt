@@ -1,0 +1,26 @@
+Function stats(s, c, x, n)
+    Dim k, sum, done, avg, half, t
+    WScript.Echo s & "|" & c & "|" & x & "|" & n
+    k = CLng(InputBox("k"))
+    sum = 0
+    Do While k <> 0
+        sum = sum + k Mod 10
+        k = k \ 10
+    Loop
+    done = 0
+    Do
+        done = 1
+    Loop While done = 0 And n Mod 2 = 0
+    avg = CDbl(sum) / n
+    half = x / 2
+    t = (Fix(avg * 10) Mod 7) * 2
+    If n <> 0 Then
+        WScript.Echo avg & " " & half & " " & t
+    End If
+    Select Case sum Mod 3
+        Case 0
+            WScript.Echo "divisible"
+    End Select
+    stats = avg / 2
+    Exit Function
+End Function

@@ -1,0 +1,65 @@
+Dim As Integer a, i, x, j
+
+While a < b
+    If a > 100 Then
+        Exit While
+    End If
+    If a < 0 Then
+        Continue While
+    End If
+    a = a + 1
+Wend
+Do
+    a = a + 1
+    If a > 5 Then
+        Continue Do
+    End If
+    If a > 50 Then
+        Exit Do
+    End If
+Loop While a < b
+For i = 1 To 10
+    If i > 5 Then
+        Exit For
+    Else
+        Continue For
+    End If
+Next
+i = 0
+While i < 10
+    If i > 8 Then
+        Exit While
+    End If
+    If i > 5 Then
+        i = i + 1
+        Continue While
+    End If
+    Print i
+    i = i + 1
+Wend
+For x_i As Integer = LBound(items) To UBound(items)
+    x = items(x_i)
+    If x < 0 Then
+        Continue For
+    Else
+        Exit For
+    End If
+Next
+j = 0
+While j < 3
+    Select Case j
+        Case 0
+            j = j + 1
+            Continue While
+        Case 1
+            Print "one"
+        Case Else
+            Print j
+    End Select
+    j = j + 1
+Wend
+If a > b Then
+    End a
+Else
+    End
+End If

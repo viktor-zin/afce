@@ -1,0 +1,31 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    switch (x) {
+        case 1: {
+            printf("one\n");
+            break;
+        }
+        case 2:
+        case 3: {
+            printf("two or three\n");
+            break;
+        }
+        default: {
+            printf("other\n");
+        }
+    }
+    switch (c) {
+        case 'a': {
+            n = 1;
+            break;
+        }
+        case 'b':
+        case 'c': {
+            n = 2;
+            break;
+        }
+    }
+}

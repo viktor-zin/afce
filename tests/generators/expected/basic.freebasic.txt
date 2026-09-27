@@ -1,0 +1,26 @@
+Dim As Integer a, b, s, d
+
+Input "", a
+Input "", b
+s = a + b
+d = a - b
+Print "Sum = " & s
+Print s
+Print "Hello, world!"
+Print a & " - " & b & " = " & d
+Print "100% ""done""" & "x"
+Print
+report(a, b)
+If s > 10 Then
+    Print "big"
+Else
+    Print "small"
+End If
+If a < b Then
+    d = 0
+End If
+If a >= b + 1 Then
+    Print "not less"
+End If
+If done Then
+End If

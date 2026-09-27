@@ -1,0 +1,6 @@
+def main(argc, argv)
+  puts "argc = #{argc}"
+  return 0
+end
+
+main(ARGV.size + 1, [$0] + ARGV)

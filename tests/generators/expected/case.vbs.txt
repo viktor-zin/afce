@@ -1,0 +1,19 @@
+Sub Main()
+    Dim n
+    Select Case x
+        Case 1
+            WScript.Echo "one"
+        Case 2, 3
+            WScript.Echo "two or three"
+        Case Else
+            WScript.Echo "other"
+    End Select
+    Select Case c
+        Case "a"
+            n = 1
+        Case "b", "c"
+            n = 2
+    End Select
+End Sub
+
+Main

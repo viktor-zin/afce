@@ -1,0 +1,4 @@
+Main()
+
+Func Main()
+EndFunc

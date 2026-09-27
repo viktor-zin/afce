@@ -1,0 +1,31 @@
+<?php
+
+function main()
+{
+    $a = (int) trim(fgets(STDIN));
+    $b = (int) trim(fgets(STDIN));
+    $s = $a + $b;
+    $d = $a - $b;
+    echo "Sum = ", $s, PHP_EOL;
+    echo $s, PHP_EOL;
+    echo "Hello, world!", PHP_EOL;
+    echo $a, " - ", $b, " = ", $d, PHP_EOL;
+    echo "100% \"done\"", "x", PHP_EOL;
+    echo PHP_EOL;
+    report($a, $b);
+    if ($s > 10) {
+        echo "big", PHP_EOL;
+    } else {
+        echo "small", PHP_EOL;
+    }
+    if ($a < $b) {
+        $d = 0;
+    }
+    if ($a >= $b + 1) {
+        echo "not less", PHP_EOL;
+    }
+    if ($done) {
+    }
+}
+
+main();

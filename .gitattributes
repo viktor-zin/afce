@@ -1,5 +1,9 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Auto detect text files; always LF in the working tree (the tests compare
+# generated code with golden files and check exact source offsets)
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.icns binary
 
 # Custom for Visual Studio
 *.cs     diff=csharp

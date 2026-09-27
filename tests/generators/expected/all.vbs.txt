@@ -1,0 +1,43 @@
+Sub Main()
+    Dim n, s, count, i, j, x
+    n = CLng(InputBox("n"))
+    s = 0
+    count = 0
+    For i = 1 To n
+        If i < 5 Then
+            j = 0
+            Do While j < i
+                Select Case j
+                    Case 0
+                        ' continue: not supported in VBScript
+                    Case 1, 2
+                        Do While s < 100
+                            s = s + j
+                            If s > 50 Then
+                                Exit Do
+                            End If
+                        Loop
+                    Case Else
+                        Do
+                            s = s - 1
+                            If s < 10 Then
+                                ' continue: not supported in VBScript
+                            End If
+                            WScript.Echo "s = " & s
+                        Loop While s > 0
+                End Select
+                j = j + 1
+            Loop
+        Else
+            For Each x In items
+                Call show(x)
+                If x > i Then
+                    Exit Sub
+                End If
+            Next
+        End If
+    Next
+    WScript.Echo "s = " & s & ", count = " & count
+End Sub
+
+Main

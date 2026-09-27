@@ -1,0 +1,6 @@
+def beep
+  puts "beep"
+  return
+end
+
+beep

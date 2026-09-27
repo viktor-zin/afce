@@ -1,0 +1,5 @@
+function main(argc: Integer; argv: char **): Integer;
+begin
+  WriteLn('argc = ', argc);
+  Exit(0);
+end;

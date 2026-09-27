@@ -1,0 +1,17 @@
+def main():
+    if x < 0:
+        print("negative")
+    elif x < 10:
+        print("small")
+    elif x < 100:
+        print("medium")
+    else:
+        print("large")
+    if y < 0:
+        print("neg")
+    elif y > 0:
+        print("pos")
+
+
+if __name__ == "__main__":
+    main()

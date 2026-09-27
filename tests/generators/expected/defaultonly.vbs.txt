@@ -1,0 +1,16 @@
+Sub Main()
+    Dim i
+    For i = 1 To 3
+        Select Case i
+            Case Else
+                If i = 2 Then
+                    ' continue: not supported in VBScript
+                End If
+        End Select
+        WScript.Echo i
+    Next
+    Select Case a
+    End Select
+End Sub
+
+Main

@@ -1,41 +1,220 @@
 {
     "name": {
-        "en_US":"Ruby"
+        "en_US": "Ruby",
+        "ru_RU": "Ruby",
+        "uk_UA": "Ruby"
     },
-	"algorithm" : {
-		"template" : "def main%branch1%\nend"
-	},
-	"if": {
-		"template":"if %cond% then%branch1%\nelse%branch2%\nend"
-	},
-	"for": {
-		"template":"for %var% in %from%..%to%%branch1%\nend"
-	},
-	"pre": {
-		"template":"while %cond%%branch1%\nend"
-	},
-	"post": {
-		"template":"begin%branch1%\nend while %cond%"
-	},
-	"assign": {
-		"template":"%dest% = %src%"
-	},
-	"process": {
-		"template": "%text%"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"suffix": " = gets"
-	},
-
-	"ou": {
-		"template": "puts [%vars%]",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-
-	}
+    "additional_settings": {
+        "indentation_preference": "  ",
+        "operators": {
+            "NULL": "nil", "nullptr": "nil"
+        },
+        "casts": {
+            "int": "%1.to_i", "real": "%1.to_f", "char": "%1.chr", "*": "%1"
+        }
+    },
+    "comment": {
+        "template": "# %text%"
+    },
+    "algorithm": {
+        "template": [
+            "def %name%(%args%)",
+            "\t%branch1%",
+            "end",
+            "%entry%"
+        ],
+        "template_empty_params": [
+            "def %name%",
+            "\t%branch1%",
+            "end",
+            "",
+            "%name%"
+        ],
+        "defaults": {
+            "name": "main"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", "
+            },
+            "entry": {
+                "source": "main_params",
+                "item": "\n%name%(ARGV.size + 1, [$0] + ARGV)",
+                "limit": 1
+            }
+        }
+    },
+    "process": {
+        "template": "%text%"
+    },
+    "assign": {
+        "template": "%dest% = %src%"
+    },
+    "call": {
+        "template": "%text%"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "%$% = gets.to_i",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "puts \"%text%\"",
+        "template_single_vars": "puts %vars%",
+        "template_empty_vars": "puts",
+        "list": {
+            "text": {
+                "source": "vars",
+                "item": "#{%$%}",
+                "literal_item": "%$text%",
+                "char_item": "%$text%",
+                "text_escape": {
+                    "\"": "\\\"",
+                    "\\\"": "\\\"",
+                    "\\\\": "\\\\",
+                    "\\'": "'",
+                    "#{": "\\#{",
+                    "#$": "\\#$",
+                    "#@": "\\#@"
+                }
+            },
+            "vars": {
+                "literal_item": "\"%$text%\"",
+                "char_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\\\"",
+                    "\\\"": "\\\"",
+                    "\\\\": "\\\\",
+                    "\\'": "'",
+                    "#{": "\\#{",
+                    "#$": "\\#$",
+                    "#@": "\\#@"
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if %cond|truthy%",
+            "\t%branch1%",
+            "else",
+            "\t%branch2%",
+            "end"
+        ],
+        "template_empty_branch2": [
+            "if %cond|truthy%",
+            "\t%branch1%",
+            "end"
+        ],
+        "template_empty_branch1": [
+            "unless %cond|truthy%",
+            "\t%branch2%",
+            "end"
+        ],
+        "template_empty_branch1+branch2": [
+            "if %cond|truthy%",
+            "end"
+        ],
+        "chain": {
+            "head": [
+                "if %cond|truthy%",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "elsif %cond|truthy%",
+                "\t%branch1%"
+            ],
+            "else": [
+                "else",
+                "\t%branch2%"
+            ],
+            "end": "end"
+        }
+    },
+    "case": {
+        "template": [
+            "case %expr%",
+            "%branches%",
+            "end"
+        ],
+        "template_empty_cases": "%branches%",
+        "default_branch_only": "%body%",
+        "case_branch": [
+            "when %value%",
+            "\t%body%"
+        ],
+        "default_branch": [
+            "else",
+            "\t%body%"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "glue": ", "
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while %cond|truthy%",
+            "\t%branch1%",
+            "end"
+        ]
+    },
+    "post": {
+        "template": [
+            "begin",
+            "\t%branch1%",
+            "end while %cond|truthy%"
+        ]
+    },
+    "for": {
+        "template": [
+            "for %var|lvalue% in %from%..%to%",
+            "\t%branch1%",
+            "end"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt%",
+            "while %cond|truthy%",
+            "\t%branch1%",
+            "\t%step|cstmt%",
+            "end"
+        ],
+        "defaults": {
+            "cond": "true"
+        }
+    },
+    "foreach": {
+        "template": [
+            "for %var|name% in %range%",
+            "\t%branch1%",
+            "end"
+        ]
+    },
+    "return": {
+        "template": "return %value%",
+        "template_empty_value": "return"
+    },
+    "break": {
+        "template": "break",
+        "template_in_case": "# break out of the case: not supported",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "next",
+        "template_in_forc": [
+            "%loop.step|cstmt%",
+            "next"
+        ],
+        "template_in_forc_last": ""
+    }
 }

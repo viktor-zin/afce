@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($i, $s, $lo, $hi, $k);
+    init();
+    for ($i = 0; $i < $n; $i++) {
+        if ($a->[$i] == 0) {
+            next;
+        }
+        $s = $s + $a->[$i];
+    }
+    for ($lo = 0, $hi = $n - 1; $lo < $hi; $lo++, $hi--) {
+        swap($a, $lo, $hi);
+    }
+    for ($k = 1; $k <= $n; $k *= 2) {
+        print($k, "\n");
+    }
+}
+
+main();

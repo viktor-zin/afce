@@ -1,0 +1,7 @@
+алг Алгоритм
+нач
+  цел a
+  a := 1
+  | unsupported block "frobnicate"
+  вывод a, нс
+кон

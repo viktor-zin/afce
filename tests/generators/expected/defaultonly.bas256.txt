@@ -1,0 +1,12 @@
+for i = 1 to 3
+    begin case
+        else
+            if i = 2 then
+                continue for
+            end if
+    end case
+    print i
+next i
+begin case
+end case
+end

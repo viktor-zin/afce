@@ -1,0 +1,27 @@
+def main():
+    n = 10
+    while n > 0:
+        n = n - 3
+    while True:
+        n = n + 1
+        if n >= 5:
+            break
+    for i in range(1, 11):
+        print(i)
+    for j in range(0, n):
+        print(j)
+    k = 0
+    while k < n:
+        print(k)
+        k = k + 2
+    while True:
+        work()
+        break
+    for x in items:
+        print(x)
+    while n > 100:
+        pass
+
+
+if __name__ == "__main__":
+    main()

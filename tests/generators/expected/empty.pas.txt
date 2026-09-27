@@ -1,0 +1,4 @@
+program Algorithm;
+
+begin
+end.

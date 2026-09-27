@@ -1,0 +1,66 @@
+def main
+  while a < b
+    if a > 100
+      break
+    end
+    if a < 0
+      next
+    end
+    a = a + 1
+  end
+  begin
+    a = a + 1
+    if a > 5
+      next
+    end
+    if a > 50
+      break
+    end
+  end while a < b
+  for i in 1..10
+    if i > 5
+      break
+    else
+      next
+    end
+  end
+  i = 0
+  while i < 10
+    if i > 8
+      break
+    end
+    if i > 5
+      i = i + 1
+      next
+    end
+    puts i
+    i = i + 1
+  end
+  for x in items
+    if x < 0
+      next
+    else
+      break
+    end
+  end
+  j = 0
+  while j < 3
+    case j
+    when 0
+      j = j + 1
+      next
+    when 1
+      puts "one"
+    else
+      puts j
+    end
+    j = j + 1
+  end
+  if a > b
+    return a
+  else
+    return
+  end
+end
+
+main

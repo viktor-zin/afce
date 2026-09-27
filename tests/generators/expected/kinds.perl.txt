@@ -1,0 +1,32 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub stats {
+    my ($s, $c, $x, $n) = @_;
+    my ($k, $sum, $done, $avg, $half, $t);
+    print($s, "|", $c, "|", $x, "|", $n, "\n");
+    chomp($k = <STDIN>);
+    $sum = 0;
+    while ($k) {
+        $sum = $sum + $k % 10;
+        $k = int($k / 10);
+    }
+    $done = 0;
+    while (1) {
+        $done = 1;
+        last unless !$done && $n % 2 == 0;
+    }
+    $avg = $sum / $n;
+    $half = $x / 2;
+    $t = int($avg * 10) % 7 * 2;
+    if ($n) {
+        print($avg, " ", $half, " ", $t, "\n");
+    }
+    if ($sum % 3 == 0) {
+        print("divisible", "\n");
+    }
+    return $avg / 2;
+}

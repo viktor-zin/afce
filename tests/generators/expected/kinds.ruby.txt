@@ -1,0 +1,24 @@
+def stats(s, c, x, n)
+  puts "#{s}|#{c}|#{x}|#{n}"
+  k = gets.to_i
+  sum = 0
+  while k != 0
+    sum = sum + k % 10
+    k = k / 10
+  end
+  done = 0
+  begin
+    done = 1
+  end while done == 0 && n % 2 == 0
+  avg = sum.to_f / n
+  half = x / 2
+  t = (avg * 10).to_i % 7 * 2
+  if n != 0
+    puts "#{avg} #{half} #{t}"
+  end
+  case sum % 3
+  when 0
+    puts "divisible"
+  end
+  return avg / 2
+end

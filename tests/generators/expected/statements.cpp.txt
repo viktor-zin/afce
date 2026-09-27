@@ -1,0 +1,14 @@
+#include <iostream>
+
+int main() {
+    int s, x;
+    s = 0;
+    for (long k = 0; k <= 2; k++) {
+        s = s + k;
+        s = s + 1;
+    }
+    x = 1 + 2;
+    if (x > 1 && x < 5) {
+        std::cout << s << x << std::endl;
+    }
+}

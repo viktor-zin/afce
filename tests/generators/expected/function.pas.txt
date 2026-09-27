@@ -1,0 +1,7 @@
+function sum(a: Integer; b: Integer): Integer;
+var
+  s: Integer;
+begin
+  s := a + b;
+  Exit(s);
+end;

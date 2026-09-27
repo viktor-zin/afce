@@ -1,0 +1,67 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int a, i, j;
+    while (a < b) {
+        if (a > 100) {
+            break;
+        }
+        if (a < 0) {
+            continue;
+        }
+        a = a + 1;
+    }
+    do {
+        a = a + 1;
+        if (a > 5) {
+            continue;
+        }
+        if (a > 50) {
+            break;
+        }
+    } while (a < b);
+    for (int i = 1; i <= 10; i++) {
+        if (i > 5) {
+            break;
+        } else {
+            continue;
+        }
+    }
+    for (i = 0; i < 10; i = i + 1) {
+        if (i > 8) {
+            break;
+        }
+        if (i > 5) {
+            continue;
+        }
+        printf("%d\n", i);
+    }
+    for (size_t x_i = 0; x_i < sizeof(items) / sizeof(items[0]); x_i++) {
+        int x = items[x_i];
+        if (x < 0) {
+            continue;
+        } else {
+            break;
+        }
+    }
+    for (j = 0; j < 3; j = j + 1) {
+        switch (j) {
+            case 0: {
+                continue;
+            }
+            case 1: {
+                printf("one\n");
+                break;
+            }
+            default: {
+                printf("%d\n", j);
+            }
+        }
+    }
+    if (a > b) {
+        return a;
+    } else {
+        return 0;
+    }
+}

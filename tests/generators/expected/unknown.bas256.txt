@@ -1,0 +1,4 @@
+a = 1
+# unsupported block "frobnicate"
+print a
+end

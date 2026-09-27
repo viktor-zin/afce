@@ -1,0 +1,18 @@
+Main()
+
+Func Main()
+    If $x < 0 Then
+        ConsoleWrite("negative" & @CRLF)
+    ElseIf $x < 10 Then
+        ConsoleWrite("small" & @CRLF)
+    ElseIf $x < 100 Then
+        ConsoleWrite("medium" & @CRLF)
+    Else
+        ConsoleWrite("large" & @CRLF)
+    EndIf
+    If $y < 0 Then
+        ConsoleWrite("neg" & @CRLF)
+    ElseIf $y > 0 Then
+        ConsoleWrite("pos" & @CRLF)
+    EndIf
+EndFunc

@@ -1,0 +1,28 @@
+алг вещ stats(арг лит s, арг сим c, арг вещ x, арг цел n)
+нач
+  цел k, sum, done, t
+  вещ avg, half
+  вывод s, "|", c, "|", x, "|", n, нс
+  ввод k
+  sum := 0
+  нц пока k <> 0
+    sum := sum + mod(k, 10)
+    k := div(k, 10)
+  кц
+  done := 0
+  нц
+    done := 1
+  кц при не (done = 0 и mod(n, 2) = 0)
+  avg := sum / n
+  half := x / 2
+  t := mod(int(avg * 10), 7) * 2
+  если n <> 0 то
+    вывод avg, " ", half, " ", t, нс
+  все
+  выбор
+    при mod(sum, 3) = 0:
+      вывод "divisible", нс
+  все
+  знач := avg / 2
+  выход
+кон

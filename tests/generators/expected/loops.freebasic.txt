@@ -1,0 +1,30 @@
+Dim As Integer n, i, j, k, x
+
+n = 10
+While n > 0
+    n = n - 3
+Wend
+Do
+    n = n + 1
+Loop While n < 5
+For i = 1 To 10
+    Print i
+Next
+For j = 0 To n - 1
+    Print j
+Next
+k = 0
+While k < n
+    Print k
+    k = k + 2
+Wend
+While True
+    work()
+    Exit While
+Wend
+For x_i As Integer = LBound(items) To UBound(items)
+    x = items(x_i)
+    Print x
+Next
+While n > 100
+Wend

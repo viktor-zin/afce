@@ -1,0 +1,18 @@
+function main() {
+    if (x < 0) {
+        console.log("negative");
+    } else if (x < 10) {
+        console.log("small");
+    } else if (x < 100) {
+        console.log("medium");
+    } else {
+        console.log("large");
+    }
+    if (y < 0) {
+        console.log("neg");
+    } else if (y > 0) {
+        console.log("pos");
+    }
+}
+
+main();

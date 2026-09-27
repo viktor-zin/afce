@@ -1,0 +1,30 @@
+function main() {
+    let n;
+    switch (x) {
+        case 1: {
+            console.log("one");
+            break;
+        }
+        case 2:
+        case 3: {
+            console.log("two or three");
+            break;
+        }
+        default: {
+            console.log("other");
+        }
+    }
+    switch (c) {
+        case 'a': {
+            n = 1;
+            break;
+        }
+        case 'b':
+        case 'c': {
+            n = 2;
+            break;
+        }
+    }
+}
+
+main();

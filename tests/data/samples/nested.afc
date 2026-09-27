@@ -1,0 +1,46 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="n"/>
+    <assign dest="count" src="0"/>
+    <for var="i" from="1" to="n">
+      <branch>
+        <for var="j" from="1" to="n">
+          <branch>
+            <if cond="(i + j) % 2 == 0">
+              <branch>
+                <assign dest="k" src="i"/>
+                <pre cond="k &gt; 0">
+                  <branch>
+                    <if cond="k % 3 == 0">
+                      <branch>
+                        <post cond="k % 3 == 0 &amp;&amp; k &gt; 0">
+                          <branch>
+                            <assign dest="count" src="count + 1"/>
+                            <assign dest="k" src="k - 1"/>
+                          </branch>
+                        </post>
+                      </branch>
+                      <branch>
+                        <assign dest="k" src="k - 1"/>
+                      </branch>
+                    </if>
+                  </branch>
+                </pre>
+              </branch>
+              <branch>
+                <if cond="i &gt; j">
+                  <branch>
+                    <assign dest="count" src="count + 2"/>
+                  </branch>
+                  <branch/>
+                </if>
+              </branch>
+            </if>
+          </branch>
+        </for>
+      </branch>
+    </for>
+    <ou vars="&quot;count = &quot;,count"/>
+  </branch>
+</algorithm>

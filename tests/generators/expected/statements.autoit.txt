@@ -1,0 +1,14 @@
+Main()
+
+Func Main()
+    Local $s, $k, $x
+    $s = 0
+    For $k = 0 To 2
+        $s = $s + $k
+        $s = $s + 1
+    Next
+    $x = 1 + 2
+    If $x > 1 And $x < 5 Then
+        ConsoleWrite($s & $x & @CRLF)
+    EndIf
+EndFunc

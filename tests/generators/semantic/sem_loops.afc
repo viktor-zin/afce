@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="s" src="0"/>
+    <for var="i" from="1" to="5">
+      <branch>
+        <assign dest="s" src="s + i"/>
+      </branch>
+    </for>
+    <ou vars="&quot;sum = &quot;, s"/>
+    <forc init="i = 0" cond="i &lt; 10" step="i = i + 1">
+      <branch>
+        <if cond="i % 2 == 0">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <if cond="i &gt; 7">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+        <ou vars="&quot;odd &quot;, i"/>
+      </branch>
+    </forc>
+    <ou vars="&quot;after forc i = &quot;, i"/>
+    <assign dest="n" src="0"/>
+    <post cond="n &lt; 6">
+      <branch>
+        <assign dest="n" src="n + 1"/>
+        <if cond="n == 3">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <ou vars="&quot;n = &quot;, n"/>
+      </branch>
+    </post>
+    <assign dest="m" src="10"/>
+    <pre cond="m &gt; 0">
+      <branch>
+        <assign dest="m" src="m - 3"/>
+        <if cond="m &lt; 2">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+        <ou vars="&quot;m = &quot;, m"/>
+      </branch>
+    </pre>
+    <ou vars="&quot;m final = &quot;, m"/>
+    <for var="u" from="1" to="3">
+      <branch>
+        <for var="w" from="1" to="3">
+          <branch>
+            <if cond="w &gt; u">
+              <branch>
+                <break/>
+              </branch>
+              <branch/>
+            </if>
+            <ou vars="u, &quot;*&quot;, w, &quot;=&quot;, u * w"/>
+          </branch>
+        </for>
+      </branch>
+    </for>
+    <assign dest="t" src="0"/>
+    <for var="i" from="1" to="t">
+      <branch>
+        <ou vars="&quot;never&quot;"/>
+      </branch>
+    </for>
+    <for var="i" from="t + 1" to="t + 2">
+      <branch>
+        <ou vars="&quot;range &quot;, i"/>
+      </branch>
+    </for>
+    <forc init="x = 0" cond="x &lt; 3" step="x = x + 1">
+      <branch>
+        <for var="y" from="1" to="3">
+          <branch>
+            <if cond="y == 2">
+              <branch>
+                <continue/>
+              </branch>
+              <branch/>
+            </if>
+            <ou vars="x, &quot;:&quot;, y"/>
+          </branch>
+        </for>
+      </branch>
+    </forc>
+    <forc init="p = 0" cond="p &lt; 2" step="p = p + 1">
+      <branch>
+        <assign dest="q" src="0"/>
+        <post cond="q &lt; 3">
+          <branch>
+            <assign dest="q" src="q + 1"/>
+            <if cond="q == 2">
+              <branch>
+                <continue/>
+              </branch>
+              <branch/>
+            </if>
+            <ou vars="p, &quot;-&quot;, q"/>
+          </branch>
+        </post>
+      </branch>
+    </forc>
+    <assign dest="r" src="0"/>
+    <post cond="r &lt; 2">
+      <branch>
+        <assign dest="r" src="r + 1"/>
+        <forc init="z = 0" cond="z &lt; 4" step="z = z + 1">
+          <branch>
+            <if cond="z == 1">
+              <branch>
+                <continue/>
+              </branch>
+              <branch/>
+            </if>
+            <if cond="z == 3">
+              <branch>
+                <break/>
+              </branch>
+              <branch/>
+            </if>
+            <ou vars="r, &quot;/&quot;, z"/>
+          </branch>
+        </forc>
+      </branch>
+    </post>
+    <forc init="e = 0" cond="" step="e = e + 1">
+      <branch>
+        <if cond="e &gt; 2">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+        <ou vars="&quot;e&quot;, e"/>
+      </branch>
+    </forc>
+    <ou vars="&quot;done&quot;"/>
+  </branch>
+</algorithm>

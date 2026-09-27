@@ -1,0 +1,20 @@
+def stats(s, c, x, n):
+    print(s, "|", c, "|", x, "|", n, sep="")
+    k = int(input())
+    sum = 0
+    while k:
+        sum = sum + k % 10
+        k = k // 10
+    done = 0
+    while True:
+        done = 1
+        if not (not done and n % 2 == 0):
+            break
+    avg = float(sum) / n
+    half = x / 2
+    t = int(avg * 10) % 7 * 2
+    if n:
+        print(avg, " ", half, " ", t, sep="")
+    if sum % 3 == 0:
+        print("divisible")
+    return avg / 2

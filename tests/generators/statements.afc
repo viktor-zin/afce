@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- typed / lvalue loop variables, multi-line process text, line breaks inside expressions -->
+<algorithm version="1.3">
+  <branch>
+    <assign dest="s" src="0"/>
+    <for var="long k" from="0" to="2">
+      <branch>
+        <process text="s = s + k&#10;s = s + 1"/>
+      </branch>
+    </for>
+    <assign dest="x" src="1 +&#10;2"/>
+    <if cond="x &gt; 1 &amp;&amp;&#10;x &lt; 5">
+      <branch>
+        <ou vars="s,&#10;x"/>
+      </branch>
+      <branch/>
+    </if>
+  </branch>
+</algorithm>

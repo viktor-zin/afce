@@ -1,0 +1,6 @@
+Function sum(a, b)
+    Dim s
+    s = a + b
+    sum = s
+    Exit Function
+End Function

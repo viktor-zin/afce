@@ -1,0 +1,6 @@
+Sub greet(n)
+    If n < 1 Then
+        Exit Sub
+    End If
+    WScript.Echo "Hello, " & n
+End Sub

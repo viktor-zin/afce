@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3" name="greet" params="n">
+  <branch>
+    <if cond="n &lt; 1">
+      <branch>
+        <return/>
+      </branch>
+      <branch/>
+    </if>
+    <ou vars="&quot;Hello, &quot;, n"/>
+  </branch>
+</algorithm>

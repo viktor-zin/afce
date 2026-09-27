@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- a case with nothing but the default branch (hand-made files) -->
+<algorithm version="1.3">
+  <branch>
+    <for var="i" from="1" to="3">
+      <branch>
+        <case expr="i">
+          <branch>
+            <if cond="i == 2">
+              <branch>
+                <continue/>
+              </branch>
+              <branch/>
+            </if>
+          </branch>
+        </case>
+        <ou vars="i"/>
+      </branch>
+    </for>
+    <assign dest="n" src="7"/>
+    <case expr="n">
+      <branch/>
+    </case>
+    <ou vars="&quot;end&quot;"/>
+  </branch>
+</algorithm>

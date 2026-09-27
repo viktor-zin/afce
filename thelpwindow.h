@@ -16,13 +16,13 @@
 #ifndef THELPWINDOW_H
 #define THELPWINDOW_H
 
-//#include <QtGui>
-#include <QFrame>
 #include <QDockWidget>
-#include <QToolBar>
-#include <QTextBrowser>
-#include <QVBoxLayout>
-#include <QIcon>
+#include <QStringList>
+
+class QAction;
+class QFrame;
+class QTextBrowser;
+class QToolBar;
 
 class THelpWindow : public QDockWidget
 {
@@ -33,16 +33,26 @@ signals:
 public:
     QTextBrowser *textBrowser;
 
-    THelpWindow();
+    explicit THelpWindow(QWidget *parent = nullptr);
+
+    // Help directories for a locale: <dir>/<locale> then <dir>/en_US for
+    // every directory of the "help:" search path (see afce::setupSearchPaths()).
+    static QStringList helpSearchPaths(const QString &localeName);
 
 private:
     QFrame *fWidget;
     QToolBar *toolBar;
+    QAction *actBack;
+    QAction *actForward;
+    QAction *actHome;
 
-    void hideEvent(QHideEvent *);
+    void hideEvent(QHideEvent *) override;
+    void changeEvent(QEvent *event) override;
 
 public slots:
     void home();
+    // Re-reads the help pages for the current default locale.
+    void retranslateUi();
 };
 
 #endif // THELPWINDOW_H

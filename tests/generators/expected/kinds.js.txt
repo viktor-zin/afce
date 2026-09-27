@@ -1,0 +1,27 @@
+function stats(s, c, x, n) {
+    let k, sum, done, avg, half, t;
+    console.log(`${s}|${c}|${x}|${n}`);
+    k = Number(prompt("k"));
+    sum = 0;
+    while (k) {
+        sum = sum + k % 10;
+        k = Math.trunc(k / 10);
+    }
+    done = 0;
+    do {
+        done = 1;
+    } while (!done && n % 2 == 0);
+    avg = sum / n;
+    half = x / 2;
+    t = Math.trunc(avg * 10) % 7 * 2;
+    if (n) {
+        console.log(`${avg} ${half} ${t}`);
+    }
+    switch (sum % 3) {
+        case 0: {
+            console.log("divisible");
+            break;
+        }
+    }
+    return avg / 2;
+}

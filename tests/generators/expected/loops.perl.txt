@@ -1,0 +1,37 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($n, $i, $j, $k);
+    $n = 10;
+    while ($n > 0) {
+        $n = $n - 3;
+    }
+    while (1) {
+        $n = $n + 1;
+        last unless $n < 5;
+    }
+    for my $i (1..10) {
+        print($i, "\n");
+    }
+    for my $j (0..$n - 1) {
+        print($j, "\n");
+    }
+    for ($k = 0; $k < $n; $k = $k + 2) {
+        print($k, "\n");
+    }
+    for (;;) {
+        work();
+        last;
+    }
+    foreach my $x (@$items) {
+        print($x, "\n");
+    }
+    while ($n > 100) {
+    }
+}
+
+main();

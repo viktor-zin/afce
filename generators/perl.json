@@ -1,44 +1,243 @@
 {
     "name": {
-        "en_US":"Perl"
+        "en_US": "Perl",
+        "ru_RU": "Perl",
+        "uk_UA": "Perl"
     },
-    "algorithm" : {
-        "template" : "sub main {%branch1%\n}"
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "variable_prefix": "$",
+        "keywords": [
+            "my", "our", "local", "and", "or", "not", "xor", "eq", "ne", "lt", "gt", "le", "ge", "cmp",
+            "if", "unless", "else", "elsif", "while", "until", "for", "foreach", "do", "sub", "return",
+            "last", "next", "redo", "undef", "qw", "qq", "use", "no", "require", "STDIN", "STDOUT",
+            "STDERR", "__FILE__", "__LINE__"
+        ],
+        "operators": {
+            "true": "1", "false": "0", "NULL": "undef", "nullptr": "undef",
+            "/": {"binary": "int(%1 / %2)", "when": "int"}
+        },
+        "casts": {
+            "int": "int(%1)", "char": "chr(%1)", "*": "%1"
+        },
+        "prefix_subscript": "->"
     },
-    "if": {
-        "template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
+    "comment": {
+        "template": "# %text%"
     },
-    "for": {
-        "template":"for($%var% = %from%; $%var% < %to%; ++$%var%) {%branch1%\n}"
-    },
-    "pre": {
-        "template":"while (%cond%) {%branch1%\n}"
-    },
-    "post": {
-        "template":"do {%branch1%\n} while (%cond%);"
-    },
-    "assign": {
-        "template":"$%dest% = $%src%;"
+    "algorithm": {
+        "template": [
+            "#!/usr/bin/env perl",
+            "use strict;",
+            "use warnings;",
+            "use utf8;",
+            "use open qw(:std :encoding(UTF-8));",
+            "",
+            "sub %name% {",
+            "\t%args%",
+            "\t%decl%",
+            "\t%branch1%",
+            "}",
+            "%entry%"
+        ],
+        "template_empty_params": [
+            "#!/usr/bin/env perl",
+            "use strict;",
+            "use warnings;",
+            "use utf8;",
+            "use open qw(:std :encoding(UTF-8));",
+            "",
+            "sub %name% {",
+            "\t%decl%",
+            "\t%branch1%",
+            "}",
+            "",
+            "%name%();"
+        ],
+        "defaults": {
+            "name": "main"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", ",
+                "head": "my (",
+                "tail": ") = @_;"
+            },
+            "decl": {
+                "source": "variables",
+                "glue": ", ",
+                "head": "my (",
+                "tail": ");"
+            },
+            "entry": {
+                "source": "main_params",
+                "item": "\n%name%(scalar(@ARGV) + 1, [$0, @ARGV]);",
+                "limit": 1
+            }
+        }
     },
     "process": {
-        "template": "%text%;"
+        "template": "%text|semicolon%"
+    },
+    "assign": {
+        "template": "%dest% = %src%;"
+    },
+    "call": {
+        "template": "%text|nosemi|callparens%;"
     },
     "io": {
         "template": "%vars%",
-        "list": ["vars"],
-        "separator": ",",
-        "glue": "\n",
-        "prefix" : "$",
-        "suffix": " =  <STDIN>;"
+        "list": {
+            "vars": {
+                "item": "chomp(%$% = <STDIN>);",
+                "glue": "\n"
+            }
+        }
     },
-
     "ou": {
-        "template": "%vars%",
-        "list": ["vars"],
-        "separator": ",",
-        "glue": "\n",
-        "prefix": "print $",
-        "suffix":" . PERL_EOL;"
-
+        "template": "print(%vars%, \"\\n\");",
+        "template_empty_vars": "print(\"\\n\");",
+        "list": {
+            "vars": {
+                "glue": ", ",
+                "literal_item": "\"%$text%\"",
+                "char_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\\\"",
+                    "\\\"": "\\\"",
+                    "\\\\": "\\\\",
+                    "\\'": "'",
+                    "$": "\\$",
+                    "@": "\\@"
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "} else {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch2": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_branch1": [
+            "unless (%cond%) {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch1+branch2": [
+            "if (%cond%) {",
+            "}"
+        ],
+        "chain": {
+            "head": [
+                "if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "} elsif (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else": [
+                "} else {",
+                "\t%branch2%"
+            ],
+            "end": "}"
+        }
+    },
+    "case": {
+        "template": [
+            "%branches%",
+            "}"
+        ],
+        "first_case_branch": [
+            "if (%value%) {",
+            "\t%body%"
+        ],
+        "case_branch": [
+            "} elsif (%value%) {",
+            "\t%body%"
+        ],
+        "default_branch": [
+            "} else {",
+            "\t%body%"
+        ],
+        "default_branch_empty": "",
+        "template_empty_cases": "%branches%",
+        "default_branch_only": "%body%",
+        "list": {
+            "value": {
+                "item": "%expr|operand% == %$%",
+                "literal_item": "%expr|operand% eq %$%",
+                "glue": " || "
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "post": {
+        "template": [
+            "while (1) {",
+            "\t%branch1%",
+            "\tlast unless %cond%;",
+            "}"
+        ]
+    },
+    "for": {
+        "template": [
+            "for my %var|lvalue% (%from%..%to%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "forc": {
+        "template": [
+            "for (%init|cstmt:decl%; %cond%; %step|cstmt:decl%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_init+cond+step": [
+            "for (;;) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "foreach": {
+        "template": [
+            "foreach my %var|name% (%range|array:ref%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "declares": []
+    },
+    "return": {
+        "template": "return %value%;",
+        "template_empty_value": "return;"
+    },
+    "break": {
+        "template": "last;",
+        "template_in_case": "# break out of the case: not supported",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "next;",
+        "template_in_post": [
+            "last unless %loop.cond%;",
+            "next;"
+        ],
+        "template_in_post_last": ""
     }
 }

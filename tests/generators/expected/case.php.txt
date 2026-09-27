@@ -1,0 +1,27 @@
+<?php
+
+function main()
+{
+    switch ($x) {
+        case 1:
+            echo "one", PHP_EOL;
+            break;
+        case 2:
+        case 3:
+            echo "two or three", PHP_EOL;
+            break;
+        default:
+            echo "other", PHP_EOL;
+    }
+    switch ($c) {
+        case 'a':
+            $n = 1;
+            break;
+        case 'b':
+        case 'c':
+            $n = 2;
+            break;
+    }
+}
+
+main();

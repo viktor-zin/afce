@@ -1,0 +1,21 @@
+<?php
+
+function main()
+{
+    if ($x < 0) {
+        echo "negative", PHP_EOL;
+    } elseif ($x < 10) {
+        echo "small", PHP_EOL;
+    } elseif ($x < 100) {
+        echo "medium", PHP_EOL;
+    } else {
+        echo "large", PHP_EOL;
+    }
+    if ($y < 0) {
+        echo "neg", PHP_EOL;
+    } elseif ($y > 0) {
+        echo "pos", PHP_EOL;
+    }
+}
+
+main();

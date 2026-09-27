@@ -1,0 +1,9 @@
+<?php
+
+function greet($n)
+{
+    if ($n < 1) {
+        return;
+    }
+    echo "Hello, ", $n, PHP_EOL;
+}

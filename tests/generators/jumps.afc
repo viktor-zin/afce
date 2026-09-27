@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <pre cond="a &lt; b">
+      <branch>
+        <if cond="a &gt; 100">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+        <if cond="a &lt; 0">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <assign dest="a" src="a + 1"/>
+      </branch>
+    </pre>
+    <post cond="a &lt; b">
+      <branch>
+        <assign dest="a" src="a + 1"/>
+        <if cond="a &gt; 5">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <if cond="a &gt; 50">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+      </branch>
+    </post>
+    <for var="i" from="1" to="10">
+      <branch>
+        <if cond="i &gt; 5">
+          <branch>
+            <break/>
+          </branch>
+          <branch>
+            <continue/>
+          </branch>
+        </if>
+      </branch>
+    </for>
+    <forc init="i = 0" cond="i &lt; 10" step="i = i + 1">
+      <branch>
+        <if cond="i &gt; 8">
+          <branch>
+            <break/>
+          </branch>
+          <branch/>
+        </if>
+        <if cond="i &gt; 5">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <ou vars="i"/>
+      </branch>
+    </forc>
+    <foreach var="x" range="items">
+      <branch>
+        <if cond="x &lt; 0">
+          <branch>
+            <continue/>
+          </branch>
+          <branch>
+            <break/>
+          </branch>
+        </if>
+      </branch>
+    </foreach>
+    <forc init="j = 0" cond="j &lt; 3" step="j = j + 1">
+      <branch>
+        <case expr="j">
+          <branch value="0">
+            <continue/>
+          </branch>
+          <branch value="1">
+            <ou vars="&quot;one&quot;"/>
+            <break/>
+          </branch>
+          <branch>
+            <ou vars="j"/>
+          </branch>
+        </case>
+      </branch>
+    </forc>
+    <if cond="a &gt; b">
+      <branch>
+        <return value="a"/>
+      </branch>
+      <branch>
+        <return/>
+      </branch>
+    </if>
+  </branch>
+</algorithm>

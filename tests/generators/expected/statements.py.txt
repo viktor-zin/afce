@@ -1,0 +1,12 @@
+def main():
+    s = 0
+    for k in range(0, 3):
+        s = s + k
+        s = s + 1
+    x = 1 + 2
+    if x > 1 and x < 5:
+        print(s, x, sep="")
+
+
+if __name__ == "__main__":
+    main()

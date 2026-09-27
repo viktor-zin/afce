@@ -1,0 +1,46 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3" name="ОбработкаДанных" params="const std::vector&lt;int&gt; &amp;values, int threshold" returns="void">
+  <branch>
+    <io vars="количество,порог,максимальное_значение_элемента"/>
+    <process text="very_long_function_name_without_any_spaces_that_must_be_wrapped_anywhere_because_it_is_too_long(argument1, argument2)"/>
+    <assign dest="сумма_элементов_массива" src="сумма_элементов_массива + значения[индекс] * коэффициент_масштабирования / делитель"/>
+    <if cond="(количество &gt; порог &amp;&amp; порог != 0) || (максимальное_значение_элемента &lt; 100 &amp;&amp; флаг_проверки)">
+      <branch>
+        <ou vars="&quot;Результат вычисления: &quot;,сумма_элементов_массива,&quot; (превышен порог)&quot;"/>
+      </branch>
+      <branch>
+        <call text="ЗаписатьВЖурнал(&quot;порог не превышен&quot;, количество)"/>
+      </branch>
+    </if>
+    <case expr="режим_работы_программы_после_инициализации">
+      <branch value="РЕЖИМ_ЧТЕНИЯ,РЕЖИМ_ЗАПИСИ,РЕЖИМ_ЧТЕНИЯ_И_ЗАПИСИ">
+        <process text="открыть()"/>
+      </branch>
+      <branch value="&quot;a, b&quot;">
+        <process text="x = 1"/>
+      </branch>
+      <branch>
+        <return value="ошибка"/>
+      </branch>
+    </case>
+    <forc cond="index &lt; last &amp;&amp; values[index] &gt;= threshold" init="std::size_t index = 0, last = values.size()" step="++index, --last">
+      <branch>
+        <continue/>
+      </branch>
+    </forc>
+    <foreach range="словарь_соответствия_имён_и_значений" var="const auto &amp;[ключ, значение]">
+      <branch>
+        <ou vars="ключ,&quot; = &quot;,значение"/>
+      </branch>
+    </foreach>
+    <pre cond="очень длинное условие продолжения цикла, которое не помещается в одну строку ромба">
+      <branch/>
+    </pre>
+    <post cond="x">
+      <branch>
+        <break/>
+      </branch>
+    </post>
+    <return/>
+  </branch>
+</algorithm>

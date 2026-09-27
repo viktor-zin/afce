@@ -1,0 +1,8 @@
+Main()
+
+Func Main()
+    Local $a
+    $a = 1
+    ; unsupported block "frobnicate"
+    ConsoleWrite($a & @CRLF)
+EndFunc

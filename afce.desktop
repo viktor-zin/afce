@@ -11,4 +11,6 @@ Icon=afce
 Terminal=false
 Type=Application
 Categories=Education;
+Keywords=flowchart;algorithm;diagram;
+Keywords[ru]=блок-схема;алгоритм;
 MimeType=application/x-afce;

@@ -1,0 +1,15 @@
+<?php
+
+function main()
+{
+    $name = "Bob";
+    $c = 'x';
+    $q = "it's \"ok\"\n";
+    if ($c == 'y' || $name == "Al") {
+        echo $name, PHP_EOL;
+    }
+    echo "Price: \$x, e-mail a@b.c, #{x}", "\t", $c, "'", PHP_EOL;
+    echo ($c == 'x') + 1, " done", PHP_EOL;
+}
+
+main();

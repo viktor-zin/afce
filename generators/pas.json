@@ -1,39 +1,322 @@
 {
     "name": {
-        "en_US":"Pascal"
+        "en_US": "Pascal",
+        "ru_RU": "Паскаль",
+        "uk_UA": "Паскаль"
     },
-	"algorithm" : {
-		"template" : "program algorithm;\nbegin%branch1%\nend."
-	},
-	"if": {
-		"template":"if %cond% then\nbegin%branch1%\nend\nelse\nbegin%branch2%\nend;"
-	},
-	"for": {
-		"template":"for %var% := %from% to %to% do\nbegin%branch1%\nend;"
-	},
-	"pre": {
-		"template":"while %cond% do\nbegin%branch1%\nend;"
-	},
-	"post": {
-		"template":"repeat%branch1%\nuntil not (%cond%);"
-	},
-	"assign": {
-		"template":"%dest% := %src%;"
-	},
-	"process": {
-		"template": "%text%;"
-	},
-	"io": {
-		"template": "ReadLn(%vars%);",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	},
-
-	"ou": {
-		"template": "WriteLn(%vars%);",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	}
+    "additional_settings": {
+        "indentation_preference": "  ",
+        "case_insensitive": true,
+        "keywords": [
+            "and", "or", "not", "xor", "div", "mod", "shl", "shr", "in", "true", "false", "nil",
+            "begin", "end", "var", "const", "integer", "real", "boolean", "string", "char", "result"
+        ],
+        "types": {
+            "": "Integer", "int": "Integer", "long": "Int64", "long long": "Int64", "short": "SmallInt",
+            "unsigned": "Cardinal", "unsigned int": "Cardinal", "float": "Real", "double": "Real",
+            "char": "Char", "bool": "Boolean", "char*": "String", "string": "String", "std::string": "String"
+        },
+        "operators": {
+            "==": "=", "!=": "<>", "&&": "and", "||": "or", "!": "not", "%": "mod", "true": "True",
+            "false": "False", "NULL": "nil", "nullptr": "nil",
+            "/": {"binary": "%1 div %2", "when": "int"}
+        },
+        "casts": {
+            "int": "Trunc(%1)", "real": "%1", "char": "Chr(%1)", "bool": "Boolean(%1)", "*": "%1"
+        },
+        "literals": {
+            "string": {
+                "item": "'%$text%'",
+                "text_escape": {
+                    "'": "''",
+                    "\\\"": "\"",
+                    "\\'": "''",
+                    "\\\\": "\\",
+                    "\\n": "'#10'",
+                    "\\t": "'#9'",
+                    "\\0": "'#0'"
+                }
+            }
+        },
+        "logical_parens": true
+    },
+    "comment": {
+        "template": "{ %text% }"
+    },
+    "algorithm": {
+        "template": [
+            "function %name%%args%: %returns|maptype%;",
+            "var",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ],
+        "template_empty_variables": [
+            "function %name%%args%: %returns|maptype%;",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ],
+        "template_empty_returns": [
+            "procedure %name%%args%;",
+            "var",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ],
+        "template_empty_returns+variables": [
+            "procedure %name%%args%;",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ],
+        "template_empty_name": [
+            "program %name%;",
+            "",
+            "var",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "",
+            "begin",
+            "\t%branch1%",
+            "end."
+        ],
+        "template_empty_name+variables": [
+            "program %name%;",
+            "",
+            "begin",
+            "\t%branch1%",
+            "end."
+        ],
+        "defaults": {
+            "name": "Algorithm"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%: %$type|maptype%",
+                "glue": "; ",
+                "head": "(",
+                "tail": ")"
+            },
+            "decl_int": {
+                "source": "variables_int",
+                "glue": ", ",
+                "tail": ": Integer;"
+            },
+            "decl_real": {
+                "source": "variables_real",
+                "glue": ", ",
+                "tail": ": Real;"
+            },
+            "decl_bool": {
+                "source": "variables_bool",
+                "glue": ", ",
+                "tail": ": Boolean;"
+            },
+            "decl_char": {
+                "source": "variables_char",
+                "glue": ", ",
+                "tail": ": Char;"
+            },
+            "decl_string": {
+                "source": "variables_string",
+                "glue": ", ",
+                "tail": ": String;"
+            }
+        }
+    },
+    "process": {
+        "template": "%text|semicolon%"
+    },
+    "assign": {
+        "template": "%dest% := %src%;"
+    },
+    "call": {
+        "template": "%text|nosemi%;"
+    },
+    "io": {
+        "template": "ReadLn(%vars%);",
+        "template_empty_vars": "ReadLn;",
+        "list": {
+            "vars": {
+                "glue": ", "
+            }
+        }
+    },
+    "ou": {
+        "template": "WriteLn(%vars%);",
+        "template_empty_vars": "WriteLn;",
+        "list": {
+            "vars": {
+                "glue": ", ",
+                "literal_item": "'%$text%'",
+                "text_escape": {
+                    "'": "''",
+                    "\\\"": "\"",
+                    "\\'": "''",
+                    "\\\\": "\\",
+                    "\\n": "'#10'",
+                    "\\t": "'#9'"
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if %cond|truthy% then",
+            "begin",
+            "\t%branch1%",
+            "end",
+            "else",
+            "begin",
+            "\t%branch2%",
+            "end;"
+        ],
+        "template_empty_branch2": [
+            "if %cond|truthy% then",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ],
+        "template_empty_branch1": [
+            "if %cond|truthy|negate% then",
+            "begin",
+            "\t%branch2%",
+            "end;"
+        ],
+        "template_empty_branch1+branch2": [
+            "if %cond|truthy% then",
+            "begin",
+            "end;"
+        ],
+        "chain": {
+            "head": [
+                "if %cond|truthy% then",
+                "begin",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "end",
+                "else if %cond|truthy% then",
+                "begin",
+                "\t%branch1%"
+            ],
+            "else": [
+                "end",
+                "else",
+                "begin",
+                "\t%branch2%"
+            ],
+            "end": "end;"
+        }
+    },
+    "case": {
+        "template": [
+            "case %expr% of",
+            "%branches%",
+            "end;"
+        ],
+        "template_empty_cases": "%branches%",
+        "default_branch_only": "%body%",
+        "case_branch": [
+            "\t%value%: begin",
+            "\t\t%body%",
+            "\tend;"
+        ],
+        "default_branch": [
+            "\telse begin",
+            "\t\t%body%",
+            "\tend;"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "glue": ", ",
+                "literal_item": "'%$text%'",
+                "text_escape": {
+                    "'": "''",
+                    "\\\"": "\"",
+                    "\\'": "''",
+                    "\\\\": "\\"
+                }
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while %cond|truthy% do",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ]
+    },
+    "post": {
+        "template": [
+            "repeat",
+            "\t%branch1%",
+            "until %cond|truthy|negate%;"
+        ]
+    },
+    "for": {
+        "template": [
+            "for %var|lvalue% := %from% to %to% do",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt:pascal%;",
+            "while %cond|truthy% do",
+            "begin",
+            "\t%branch1%",
+            "\t%step|cstmt:pascal%;",
+            "end;"
+        ],
+        "defaults": {
+            "cond": "True"
+        }
+    },
+    "foreach": {
+        "template": [
+            "for %var|name% in %range% do",
+            "begin",
+            "\t%branch1%",
+            "end;"
+        ]
+    },
+    "return": {
+        "template": "Exit(%value%);",
+        "template_empty_value": "Exit;",
+        "template_empty_algorithm.name": "Halt(%value%);",
+        "template_empty_algorithm.name+value": "Exit;"
+    },
+    "break": {
+        "template": "Break;",
+        "template_in_case": "{ break out of the case: not supported }",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "Continue;",
+        "template_in_forc": [
+            "%loop.step|cstmt:pascal%;",
+            "Continue;"
+        ],
+        "template_in_forc_last": ""
+    }
 }

@@ -1,0 +1,20 @@
+<?php
+
+function main()
+{
+    init();
+    for ($i = 0; $i < $n; $i++) {
+        if ($a[$i] == 0) {
+            continue;
+        }
+        $s = $s + $a[$i];
+    }
+    for ($lo = 0, $hi = $n - 1; $lo < $hi; $lo++, $hi--) {
+        swap($a, $lo, $hi);
+    }
+    for ($k = 1; $k <= $n; $k *= 2) {
+        echo $k, PHP_EOL;
+    }
+}
+
+main();

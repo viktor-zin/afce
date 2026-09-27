@@ -1,0 +1,17 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($i);
+    for my $i (1..3) {
+        if ($i == 2) {
+            next;
+        }
+        print($i, "\n");
+    }
+}
+
+main();

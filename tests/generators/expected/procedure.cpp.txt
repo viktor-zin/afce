@@ -1,0 +1,8 @@
+#include <iostream>
+
+void greet(int n) {
+    if (n < 1) {
+        return;
+    }
+    std::cout << "Hello, " << n << std::endl;
+}

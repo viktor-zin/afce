@@ -1,0 +1,13 @@
+Sub Main()
+    Dim name, c, q
+    name = "Bob"
+    c = "x"
+    q = "it's ""ok""" & vbLf & ""
+    If c = "y" Or name = "Al" Then
+        WScript.Echo name
+    End If
+    WScript.Echo "Price: $x, e-mail a@b.c, #{x}" & "" & vbTab & "" & c & "'"
+    WScript.Echo (c = "x") + 1 & " done"
+End Sub
+
+Main

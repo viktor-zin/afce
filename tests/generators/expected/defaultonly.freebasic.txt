@@ -1,0 +1,13 @@
+Dim As Integer i
+
+For i = 1 To 3
+    Select Case i
+        Case Else
+            If i = 2 Then
+                Continue For
+            End If
+    End Select
+    Print i
+Next
+Select Case a
+End Select

@@ -1,0 +1,15 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    char c;
+    const char *name, *q;
+    name = "Bob";
+    c = 'x';
+    q = "it's \"ok\"\n";
+    if (c == 'y' || name == "Al") {
+        printf("%s\n", name);
+    }
+    printf("Price: $x, e-mail a@b.c, #{x}\t%c\'\n", c);
+    printf("%d done\n", (c == 'x') + 1);
+}

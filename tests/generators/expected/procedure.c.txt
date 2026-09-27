@@ -1,0 +1,9 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+void greet(int n) {
+    if (n < 1) {
+        return;
+    }
+    printf("Hello, %d\n", n);
+}

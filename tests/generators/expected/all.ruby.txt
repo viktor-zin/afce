@@ -1,0 +1,43 @@
+def main
+  n = gets.to_i
+  s = 0
+  count = 0
+  for i in 1..n
+    if i < 5
+      j = 0
+      while j < i
+        case j
+        when 0
+          j = j + 1
+          next
+        when 1, 2
+          while s < 100
+            s = s + j
+            if s > 50
+              break
+            end
+          end
+        else
+          begin
+            s = s - 1
+            if s < 10
+              next
+            end
+            puts "s = #{s}"
+          end while s > 0
+        end
+        j = j + 1
+      end
+    else
+      for x in items
+        show(x)
+        if x > i
+          return x
+        end
+      end
+    end
+  end
+  puts "s = #{s}, count = #{count}"
+end
+
+main

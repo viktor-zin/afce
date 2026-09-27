@@ -1,0 +1,27 @@
+Main()
+
+Func Main()
+    Local $i, $s, $lo, $hi, $k
+    init()
+    $i = 0
+    While $i < $n
+        If $a[$i] = 0 Then
+            $i = $i + 1
+            ContinueLoop
+        EndIf
+        $s = $s + $a[$i]
+        $i = $i + 1
+    WEnd
+    $lo = 0
+    $hi = $n - 1
+    While $lo < $hi
+        swap($a, $lo, $hi)
+        $lo = $lo + 1
+        $hi = $hi - 1
+    WEnd
+    $k = 1
+    While $k <= $n
+        ConsoleWrite($k & @CRLF)
+        $k = $k * 2
+    WEnd
+EndFunc

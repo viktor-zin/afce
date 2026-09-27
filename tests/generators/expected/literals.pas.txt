@@ -1,0 +1,17 @@
+program Algorithm;
+
+var
+  c: Char;
+  name, q: String;
+
+begin
+  name := 'Bob';
+  c := 'x';
+  q := 'it''s "ok"'#10'';
+  if (c = 'y') or (name = 'Al') then
+  begin
+    WriteLn(name);
+  end;
+  WriteLn('Price: $x, e-mail a@b.c, #{x}', ''#9'', c, '''');
+  WriteLn((c = 'x') + 1, ' done');
+end.

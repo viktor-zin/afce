@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($n);
+    if ($x == 1) {
+        print("one", "\n");
+    } elsif ($x == 2 || $x == 3) {
+        print("two or three", "\n");
+    } else {
+        print("other", "\n");
+    }
+    if ($c eq 'a') {
+        $n = 1;
+    } elsif ($c eq 'b' || $c eq 'c') {
+        $n = 2;
+    }
+}
+
+main();

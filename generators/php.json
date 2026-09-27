@@ -1,44 +1,216 @@
 {
     "name": {
-        "en_US":"PHP"
+        "en_US": "PHP",
+        "ru_RU": "PHP",
+        "uk_UA": "PHP"
     },
-	"algorithm" : {
-		"template" : "function main() {%branch1%\n}"
-	},
-	"if": {
-		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
-	},
-	"for": {
-		"template":"for($%var% = %from%; $%var% < %to%; ++$%var%) {%branch1%\n}"
-	},
-	"pre": {
-		"template":"while (%cond%) {%branch1%\n}"
-	},
-	"post": {
-		"template":"do {%branch1%\n} while (%cond%);"
-	},
-	"assign": {
-		"template":"$%dest% = $%src%;"
-	},
-	"process": {
-		"template": "%text%;"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix" : "$",
-		"suffix": " = $_GET[\"%$%\"];"
-	},
-
-	"ou": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix": "echo $",
-		"suffix":" . PHP_EOL;"
-
-	}
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "variable_prefix": "$",
+        "keywords": [
+            "true", "false", "null", "TRUE", "FALSE", "NULL", "True", "False", "Null",
+            "and", "or", "xor", "new", "clone", "instanceof", "return", "as", "function", "fn", "use",
+            "global", "static", "const", "self", "parent", "PHP_EOL", "PHP_INT_MAX", "PHP_INT_MIN",
+            "PHP_FLOAT_EPSILON", "M_PI", "M_E", "STDIN", "STDOUT", "STDERR", "INF", "NAN", "E_ALL"
+        ],
+        "operators": {
+            "nullptr": "null",
+            "/": {"binary": "intdiv(%1, %2)", "when": "int"}
+        },
+        "casts": {
+            "int": "(int) %1", "real": "(float) %1", "bool": "(bool) %1", "string": "(string) %1",
+            "char": "chr(%1)", "*": "%1"
+        }
+    },
+    "comment": {
+        "template": "// %text%"
+    },
+    "algorithm": {
+        "template": [
+            "<?php",
+            "",
+            "function %name%(%args%)",
+            "{",
+            "\t%branch1%",
+            "}",
+            "%entry%"
+        ],
+        "template_empty_params": [
+            "<?php",
+            "",
+            "function %name%()",
+            "{",
+            "\t%branch1%",
+            "}",
+            "",
+            "%name%();"
+        ],
+        "defaults": {
+            "name": "main"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", "
+            },
+            "entry": {
+                "source": "main_params",
+                "item": "\n%name%($argc, $argv);",
+                "limit": 1
+            }
+        }
+    },
+    "process": {
+        "template": "%text|semicolon%"
+    },
+    "assign": {
+        "template": "%dest% = %src%;"
+    },
+    "call": {
+        "template": "%text|nosemi|callparens%;"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "%$% = (int) trim(fgets(STDIN));",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "echo %vars%, PHP_EOL;",
+        "template_empty_vars": "echo PHP_EOL;",
+        "list": {
+            "vars": {
+                "glue": ", ",
+                "literal_item": "\"%$text%\"",
+                "char_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\\\"",
+                    "\\\"": "\\\"",
+                    "\\\\": "\\\\",
+                    "\\'": "'",
+                    "$": "\\$"
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "} else {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch2": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_branch1": [
+            "if (%cond|negate%) {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch1+branch2": [
+            "if (%cond%) {",
+            "}"
+        ],
+        "chain": {
+            "head": [
+                "if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "} elseif (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else": [
+                "} else {",
+                "\t%branch2%"
+            ],
+            "end": "}"
+        }
+    },
+    "case": {
+        "template": [
+            "switch (%expr%) {",
+            "%branches%",
+            "}"
+        ],
+        "case_branch": [
+            "\t%value%",
+            "\t\t%body%",
+            "\t\tbreak;"
+        ],
+        "case_branch_terminated": [
+            "\t%value%",
+            "\t\t%body%"
+        ],
+        "default_branch": [
+            "\tdefault:",
+            "\t\t%body%"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "item": "case %$%:",
+                "glue": "\n"
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "post": {
+        "template": [
+            "do {",
+            "\t%branch1%",
+            "} while (%cond%);"
+        ]
+    },
+    "for": {
+        "template": [
+            "for (%var|lvalue% = %from%; %var|lvalue% <= %to%; %var|lvalue%++) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "forc": {
+        "template": [
+            "for (%init|cstmt:decl%; %cond%; %step|cstmt:decl%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_init+cond+step": [
+            "for (;;) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "foreach": {
+        "template": [
+            "foreach (%range% as %var|name%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "return": {
+        "template": "return %value%;",
+        "template_empty_value": "return;"
+    },
+    "break": {
+        "template": "break;"
+    },
+    "continue": {
+        "template": "continue;",
+        "template_through_case": "continue %levels%;"
+    }
 }

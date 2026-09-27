@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    if ($x < 0) {
+        print("negative", "\n");
+    } elsif ($x < 10) {
+        print("small", "\n");
+    } elsif ($x < 100) {
+        print("medium", "\n");
+    } else {
+        print("large", "\n");
+    }
+    if ($y < 0) {
+        print("neg", "\n");
+    } elsif ($y > 0) {
+        print("pos", "\n");
+    }
+}
+
+main();

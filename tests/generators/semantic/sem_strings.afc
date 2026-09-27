@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- literals: char items with escapes, interpolation characters, quotes, print(...) -->
+<algorithm version="1.3">
+  <branch>
+    <assign dest="n" src="5"/>
+    <ou vars="n, '\t', n"/>
+    <assign dest="x" src="1"/>
+    <ou vars="&quot;Price: $x, e-mail a@b.c, #{x} #$x #@x&quot;"/>
+    <ou vars="&quot;it's \&quot;ok\&quot;&quot;, '\''"/>
+    <assign dest="a" src="2"/>
+    <ou vars="(a + 1) * 2, &quot; done&quot;"/>
+    <assign dest="c" src="'z'"/>
+    <ou vars="&quot;c = &quot;, c, '!'"/>
+    <assign dest="w" src="&quot;two  spaces&quot;"/>
+    <ou vars="w"/>
+  </branch>
+</algorithm>

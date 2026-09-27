@@ -1,0 +1,4 @@
+function main(argc, argv)
+    print "argc = "; argc
+    return 0
+end function

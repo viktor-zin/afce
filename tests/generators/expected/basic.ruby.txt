@@ -1,0 +1,28 @@
+def main
+  a = gets.to_i
+  b = gets.to_i
+  s = a + b
+  d = a - b
+  puts "Sum = #{s}"
+  puts s
+  puts "Hello, world!"
+  puts "#{a} - #{b} = #{d}"
+  puts "100% \"done\"x"
+  puts
+  report(a, b)
+  if s > 10
+    puts "big"
+  else
+    puts "small"
+  end
+  if a < b
+    d = 0
+  end
+  unless a < b + 1
+    puts "not less"
+  end
+  if done
+  end
+end
+
+main

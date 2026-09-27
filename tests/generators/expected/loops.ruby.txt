@@ -1,0 +1,31 @@
+def main
+  n = 10
+  while n > 0
+    n = n - 3
+  end
+  begin
+    n = n + 1
+  end while n < 5
+  for i in 1..10
+    puts i
+  end
+  for j in 0..n - 1
+    puts j
+  end
+  k = 0
+  while k < n
+    puts k
+    k = k + 2
+  end
+  while true
+    work()
+    break
+  end
+  for x in items
+    puts x
+  end
+  while n > 100
+  end
+end
+
+main

@@ -1,0 +1,30 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int a, b, s, d;
+    scanf("%d", &a);
+    scanf("%d", &b);
+    s = a + b;
+    d = a - b;
+    printf("Sum = %d\n", s);
+    printf("%d\n", s);
+    printf("Hello, world!\n");
+    printf("%d - %d = %d\n", a, b, d);
+    printf("100%% \"done\"x\n");
+    printf("\n");
+    report(a, b);
+    if (s > 10) {
+        printf("big\n");
+    } else {
+        printf("small\n");
+    }
+    if (a < b) {
+        d = 0;
+    }
+    if (a >= b + 1) {
+        printf("not less\n");
+    }
+    if (done) {
+    }
+}

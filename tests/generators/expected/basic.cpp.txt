@@ -1,0 +1,28 @@
+#include <iostream>
+
+int main() {
+    int a, b, s, d;
+    std::cin >> a >> b;
+    s = a + b;
+    d = a - b;
+    std::cout << "Sum = " << s << std::endl;
+    std::cout << s << std::endl;
+    std::cout << "Hello, world!" << std::endl;
+    std::cout << a << " - " << b << " = " << d << std::endl;
+    std::cout << "100% \"done\"" << 'x' << std::endl;
+    std::cout << std::endl;
+    report(a, b);
+    if (s > 10) {
+        std::cout << "big" << std::endl;
+    } else {
+        std::cout << "small" << std::endl;
+    }
+    if (a < b) {
+        d = 0;
+    }
+    if (a >= b + 1) {
+        std::cout << "not less" << std::endl;
+    }
+    if (done) {
+    }
+}

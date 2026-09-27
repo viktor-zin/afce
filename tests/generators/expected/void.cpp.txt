@@ -1,0 +1,6 @@
+#include <iostream>
+
+void beep() {
+    std::cout << "beep" << std::endl;
+    return;
+}

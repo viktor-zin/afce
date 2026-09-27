@@ -1,0 +1,8 @@
+Sub Main()
+    Dim a
+    a = 1
+    ' unsupported block "frobnicate"
+    WScript.Echo a
+End Sub
+
+Main

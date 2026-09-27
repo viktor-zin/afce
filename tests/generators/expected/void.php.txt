@@ -1,0 +1,9 @@
+<?php
+
+function beep()
+{
+    echo "beep", PHP_EOL;
+    return;
+}
+
+beep();

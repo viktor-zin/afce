@@ -1,0 +1,22 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($ok, $i, $finished);
+    $ok = $a > 0 && $b != 0 || !$done;
+    if (($x % 2 == 0 && $y < 10) || $flag == 1) {
+        print("yes && !no", $x != $y, "\n");
+    }
+    while (!($i >= $n) && $p != undef) {
+        $i = $i + 1;
+    }
+    while (1) {
+        $finished = 0;
+        last unless !$finished;
+    }
+}
+
+main();

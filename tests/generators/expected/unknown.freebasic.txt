@@ -1,0 +1,5 @@
+Dim As Integer a
+
+a = 1
+' unsupported block "frobnicate"
+Print a

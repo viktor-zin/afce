@@ -1,0 +1,14 @@
+def main():
+    ok = a > 0 and b != 0 or not done
+    if (x % 2 == 0 and y < 10) or flag == True:
+        print("yes && !no", x != y, sep="")
+    while not (i >= n) and p != None:
+        i = i + 1
+    while True:
+        finished = False
+        if finished:
+            break
+
+
+if __name__ == "__main__":
+    main()

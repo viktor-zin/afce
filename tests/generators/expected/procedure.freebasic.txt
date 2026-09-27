@@ -1,0 +1,6 @@
+Sub greet(n As Integer)
+    If n < 1 Then
+        Return
+    End If
+    Print "Hello, " & n
+End Sub

@@ -1,0 +1,37 @@
+def main():
+    n = int(input())
+    s = 0
+    count = 0
+    for i in range(1, n + 1):
+        if i < 5:
+            j = 0
+            while j < i:
+                if j == 0:
+                    j = j + 1
+                    continue
+                elif j == 1 or j == 2:
+                    while s < 100:
+                        s = s + j
+                        if s > 50:
+                            break
+                else:
+                    while True:
+                        s = s - 1
+                        if s < 10:
+                            if s <= 0:
+                                break
+                            continue
+                        print("s = ", s, sep="")
+                        if s <= 0:
+                            break
+                j = j + 1
+        else:
+            for x in items:
+                show(x)
+                if x > i:
+                    return x
+    print("s = ", s, ", count = ", count, sep="")
+
+
+if __name__ == "__main__":
+    main()

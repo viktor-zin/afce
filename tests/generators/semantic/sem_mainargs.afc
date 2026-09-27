@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- an imported int main(int argc, char **argv) must still be run -->
+<algorithm version="1.3" name="main" params="int argc, char **argv" returns="int">
+  <branch>
+    <ou vars="&quot;argc = &quot;, argc"/>
+    <return value="0"/>
+  </branch>
+</algorithm>

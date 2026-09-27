@@ -1,0 +1,19 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    if (x < 0) {
+        printf("negative\n");
+    } else if (x < 10) {
+        printf("small\n");
+    } else if (x < 100) {
+        printf("medium\n");
+    } else {
+        printf("large\n");
+    }
+    if (y < 0) {
+        printf("neg\n");
+    } else if (y > 0) {
+        printf("pos\n");
+    }
+}

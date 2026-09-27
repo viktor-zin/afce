@@ -1,0 +1,6 @@
+Func main($argc, $argv)
+    ConsoleWrite("argc = " & $argc & @CRLF)
+    Return 0
+EndFunc
+
+main($CmdLine[0] + 1, $CmdLine)

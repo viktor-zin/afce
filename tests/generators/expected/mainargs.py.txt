@@ -1,0 +1,10 @@
+import sys
+
+
+def main(argc, argv):
+    print("argc = ", argc, sep="")
+    return 0
+
+
+if __name__ == "__main__":
+    main(len(sys.argv), sys.argv)

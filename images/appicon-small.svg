@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AFCE application icon, simplified for small sizes (16 and 32 px). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5B8CFF"/>
+      <stop offset="1" stop-color="#2B44C8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="228" ry="228" fill="url(#bg)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="70" stroke-linecap="butt">
+    <path d="M250 360 V 648"/>
+    <path d="M774 360 V 648"/>
+  </g>
+  <path d="M512 170 L 792 340 L 512 510 L 232 340 Z" fill="#F7D061"/>
+  <rect x="110" y="628" width="280" height="252" rx="52" ry="52" fill="#ffffff"/>
+  <rect x="634" y="628" width="280" height="252" rx="52" ry="52" fill="#D9C7F5"/>
+</svg>

@@ -1,0 +1,4 @@
+Function main(argc As Integer, argv As char **) As Integer
+    Print "argc = " & argc
+    Return 0
+End Function

@@ -1,0 +1,5 @@
+Func sum($a, $b)
+    Local $s
+    $s = $a + $b
+    Return $s
+EndFunc

@@ -1,0 +1,14 @@
+def main
+  ok = a > 0 && b != 0 || !done
+  if (x % 2 == 0 && y < 10) || flag == true
+    puts "yes && !no#{x != y}"
+  end
+  while !(i >= n) && p != nil
+    i = i + 1
+  end
+  begin
+    finished = false
+  end while !finished
+end
+
+main

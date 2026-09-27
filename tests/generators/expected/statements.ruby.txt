@@ -1,0 +1,13 @@
+def main
+  s = 0
+  for k in 0..2
+    s = s + k
+    s = s + 1
+  end
+  x = 1 + 2
+  if x > 1 && x < 5
+    puts "#{s}#{x}"
+  end
+end
+
+main

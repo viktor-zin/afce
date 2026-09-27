@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- f(void) and void functions as the importer writes them -->
+<algorithm version="1.3" name="beep" params="void" returns="void">
+  <branch>
+    <ou vars="&quot;beep&quot;"/>
+    <return/>
+  </branch>
+</algorithm>

@@ -1,40 +1,213 @@
 {
     "name": {
-        "en_US":"ECMAScript (JavaScript, ActionScript)"
+        "en_US": "JavaScript",
+        "ru_RU": "JavaScript",
+        "uk_UA": "JavaScript"
     },
-	"algorithm" : {
-		"template" : "function main() {%branch1%\n}"
-	},
-	"if": {
-		"template":"if (%cond%) {%branch1%\n}\nelse {%branch2%\n}"
-	},
-	"for": {
-		"template":"for(int %var% = %from%; %var% < %to%; ++%var%) {%branch1%\n}"
-	},
-	"pre": {
-		"template":"while (%cond%) {%branch1%\n}"
-	},
-	"post": {
-		"template":"do {%branch1%\n} while (%cond%);"
-	},
-	"assign": {
-		"template":"%dest% = %src%;"
-	},
-	"process": {
-		"template": "%text%;"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"suffix": " = prompt();"
-	},
-
-	"ou": {
-		"template": "console.log(%vars%)",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	}
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "operators": {
+            "NULL": "null", "nullptr": "null",
+            "/": {"binary": "Math.trunc(%1 / %2)", "when": "int"}
+        },
+        "casts": {
+            "int": "Math.trunc(%1)", "char": "String.fromCharCode(%1)", "bool": "Boolean(%1)", "*": "%1"
+        }
+    },
+    "comment": {
+        "template": "// %text%"
+    },
+    "algorithm": {
+        "template": [
+            "function %name%(%args%) {",
+            "\t%decl%",
+            "\t%branch1%",
+            "}",
+            "%entry%"
+        ],
+        "template_empty_params": [
+            "function %name%() {",
+            "\t%decl%",
+            "\t%branch1%",
+            "}",
+            "",
+            "%name%();"
+        ],
+        "defaults": {
+            "name": "main"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", "
+            },
+            "decl": {
+                "source": "variables",
+                "head": "let ",
+                "glue": ", ",
+                "tail": ";"
+            },
+            "entry": {
+                "source": "main_params",
+                "item": "\n%name%(process.argv.length - 1, process.argv.slice(1));",
+                "limit": 1
+            }
+        }
+    },
+    "process": {
+        "template": "%text|semicolon%"
+    },
+    "assign": {
+        "template": "%dest% = %src%;"
+    },
+    "call": {
+        "template": "%text|nosemi|callparens%;"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "%$% = Number(prompt(\"%$|raw%\"));",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "console.log(`%text%`);",
+        "template_single_vars": "console.log(%vars%);",
+        "template_empty_vars": "console.log();",
+        "list": {
+            "text": {
+                "source": "vars",
+                "item": "${%$%}",
+                "literal_item": "%$text%",
+                "text_escape": {
+                    "`": "\\`",
+                    "${": "\\${",
+                    "\\`": "\\`"
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "} else {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch2": [
+            "if (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_branch1": [
+            "if (%cond|negate%) {",
+            "\t%branch2%",
+            "}"
+        ],
+        "template_empty_branch1+branch2": [
+            "if (%cond%) {",
+            "}"
+        ],
+        "chain": {
+            "head": [
+                "if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "} else if (%cond%) {",
+                "\t%branch1%"
+            ],
+            "else": [
+                "} else {",
+                "\t%branch2%"
+            ],
+            "end": "}"
+        }
+    },
+    "case": {
+        "template": [
+            "switch (%expr%) {",
+            "%branches%",
+            "}"
+        ],
+        "case_branch": [
+            "\t%value% {",
+            "\t\t%body%",
+            "\t\tbreak;",
+            "\t}"
+        ],
+        "case_branch_terminated": [
+            "\t%value% {",
+            "\t\t%body%",
+            "\t}"
+        ],
+        "default_branch": [
+            "\tdefault: {",
+            "\t\t%body%",
+            "\t}"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "item": "case %$%:",
+                "glue": "\n"
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while (%cond%) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "post": {
+        "template": [
+            "do {",
+            "\t%branch1%",
+            "} while (%cond%);"
+        ]
+    },
+    "for": {
+        "template": [
+            "for (%var|lvalue|deftype:let% = %from%; %var|lvalue% <= %to%; %var|lvalue%++) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "declares": []
+    },
+    "forc": {
+        "template": [
+            "for (%init|cstmt:decl%; %cond%; %step|cstmt:decl%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "template_empty_init+cond+step": [
+            "for (;;) {",
+            "\t%branch1%",
+            "}"
+        ]
+    },
+    "foreach": {
+        "template": [
+            "for (const %var|name% of %range%) {",
+            "\t%branch1%",
+            "}"
+        ],
+        "declares": []
+    },
+    "return": {
+        "template": "return %value%;",
+        "template_empty_value": "return;"
+    },
+    "break": {
+        "template": "break;"
+    },
+    "continue": {
+        "template": "continue;"
+    }
 }

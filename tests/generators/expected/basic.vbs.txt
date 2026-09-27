@@ -1,0 +1,29 @@
+Sub Main()
+    Dim a, b, s, d
+    a = CLng(InputBox("a"))
+    b = CLng(InputBox("b"))
+    s = a + b
+    d = a - b
+    WScript.Echo "Sum = " & s
+    WScript.Echo s
+    WScript.Echo "Hello, world!"
+    WScript.Echo a & " - " & b & " = " & d
+    WScript.Echo "100% ""done""" & "x"
+    WScript.Echo
+    Call report(a, b)
+    If s > 10 Then
+        WScript.Echo "big"
+    Else
+        WScript.Echo "small"
+    End If
+    If a < b Then
+        d = 0
+    End If
+    If a >= b + 1 Then
+        WScript.Echo "not less"
+    End If
+    If done Then
+    End If
+End Sub
+
+Main

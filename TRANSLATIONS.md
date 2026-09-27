@@ -1,7 +1,9 @@
 How to translate AFCE?
 ======================
 
-Everyone can translate AFCE to another language. Before translating you should to define the name of the locale. For example, for German it will be "de_DE". Now you can copy afce_en_US.ts and rename it to afce_de_DE.ts. This file has text format (XML). You can open it in any plain text editor and translate the strings to other language. Instead of direct editing you can use Qt Linguist tool for more convinient work.
+Everyone can translate AFCE to another language. Before translating you should to define the name of the locale. For example, for German it will be "de_DE". Now you can copy afce_en_US.ts and rename it to afce_de_DE.ts. This file has text format (XML). You can open it in any plain text editor and translate the strings to other language. Instead of direct editing you can use Qt Linguist tool for more convinient work. Add the new file to `AFCE_TS_FILES` in `CMakeLists.txt`; it is compiled and embedded into the program automatically.
+
+After changing the sources, refresh all `.ts` files with `cmake --build build --target update_translations` (runs `lupdate` over every target).
 
 To translate help files you should to translate all files from the help directory. As you can see there are a subfolders in the help folder. Each subfolder is for certain language.
 
@@ -9,7 +11,6 @@ There are another files to translate. These are:
 * afce.desktop
 * afce.xml
 * generators/*.json
-* afce.nsi
 
 Generators
 ----------------

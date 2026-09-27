@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- C semantics of "/" (integer division), "%" and truthiness of integers -->
+<algorithm version="1.3">
+  <branch>
+    <assign dest="n" src="123"/>
+    <assign dest="s" src="0"/>
+    <pre cond="n">
+      <branch>
+        <assign dest="s" src="s + n % 10"/>
+        <assign dest="n" src="n / 10"/>
+      </branch>
+    </pre>
+    <ou vars="&quot;digit sum = &quot;, s"/>
+    <assign dest="done" src="0"/>
+    <assign dest="k" src="0"/>
+    <post cond="!done">
+      <branch>
+        <assign dest="k" src="k + 1"/>
+        <if cond="k &gt;= 3">
+          <branch>
+            <assign dest="done" src="1"/>
+          </branch>
+          <branch/>
+        </if>
+      </branch>
+    </post>
+    <ou vars="&quot;k = &quot;, k"/>
+    <assign dest="q" src="7 / 2"/>
+    <assign dest="avg" src="(double) 7 / 2"/>
+    <assign dest="t" src="(int) (avg * 10) % 8"/>
+    <assign dest="x" src="2.5"/>
+    <assign dest="y" src="x / 2"/>
+    <assign dest="z" src="q * 10 / 4 % 5"/>
+    <ou vars="q, &quot; &quot;, avg, &quot; &quot;, t, &quot; &quot;, y, &quot; &quot;, z"/>
+    <if cond="q &amp;&amp; !(q - 3)">
+      <branch>
+        <ou vars="&quot;q is three&quot;"/>
+      </branch>
+      <branch>
+        <ou vars="&quot;wrong&quot;"/>
+      </branch>
+    </if>
+  </branch>
+</algorithm>

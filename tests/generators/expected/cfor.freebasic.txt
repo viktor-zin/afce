@@ -1,0 +1,24 @@
+Dim As Integer i, s, lo, hi, k
+
+init
+i = 0
+While i < n
+    If a(i) = 0 Then
+        i = i + 1
+        Continue While
+    End If
+    s = s + a(i)
+    i = i + 1
+Wend
+lo = 0
+hi = n - 1
+While lo < hi
+    swap(a, lo, hi)
+    lo = lo + 1
+    hi = hi - 1
+Wend
+k = 1
+While k <= n
+    Print k
+    k = k * 2
+Wend

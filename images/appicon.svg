@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AFCE application icon: a branching flowchart in the colours of the editor. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5B8CFF"/>
+      <stop offset="1" stop-color="#2B44C8"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="1024" rx="228" ry="228" fill="url(#bg)"/>
+  <rect width="1024" height="1024" rx="228" ry="228" fill="url(#gloss)"/>
+
+  <!-- connectors -->
+  <g fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="butt">
+    <path d="M512 140 V 244"/>
+    <path d="M270 396 V 616"/>
+    <path d="M754 396 V 616"/>
+  </g>
+  <g fill="#ffffff">
+    <path d="M512 296 l -52 -78 h 104 z"/>
+    <path d="M270 672 l -52 -78 h 104 z"/>
+    <path d="M754 672 l -52 -78 h 104 z"/>
+  </g>
+
+  <!-- decision -->
+  <path d="M512 252 L 760 396 L 512 540 L 264 396 Z" fill="#F7D061" stroke="#ffffff" stroke-width="20" stroke-linejoin="round"/>
+  <!-- process -->
+  <rect x="120" y="680" width="300" height="196" rx="40" ry="40" fill="#BFD8F9" stroke="#ffffff" stroke-width="20"/>
+  <!-- input / output -->
+  <path d="M652 680 H 952 L 904 876 H 604 Z" fill="#D9C7F5" stroke="#ffffff" stroke-width="20" stroke-linejoin="round"/>
+</svg>

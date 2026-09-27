@@ -1,0 +1,7 @@
+Function main(argc, argv)
+    WScript.Echo "argc = " & argc
+    main = 0
+    Exit Function
+End Function
+
+main WScript.Arguments.Count + 1, WScript.Arguments

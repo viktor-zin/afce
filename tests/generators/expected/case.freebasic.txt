@@ -1,0 +1,16 @@
+Dim As Integer n
+
+Select Case x
+    Case 1
+        Print "one"
+    Case 2, 3
+        Print "two or three"
+    Case Else
+        Print "other"
+End Select
+Select Case c
+    Case "a"
+        n = 1
+    Case "b", "c"
+        n = 2
+End Select

@@ -1,0 +1,15 @@
+def main():
+    if x == 1:
+        print("one")
+    elif x == 2 or x == 3:
+        print("two or three")
+    else:
+        print("other")
+    if c == 'a':
+        n = 1
+    elif c == 'b' or c == 'c':
+        n = 2
+
+
+if __name__ == "__main__":
+    main()

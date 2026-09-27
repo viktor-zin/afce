@@ -11,6 +11,8 @@
         <file>images/forward_16_h.png</file>
         <file>images/home_16_h.png</file>
         <file>images/icon.png</file>
+        <file>images/appicon.svg</file>
+        <file>images/appicon-small.svg</file>
         <file>images/if.png</file>
         <file>images/io.png</file>
         <file>images/new_document_32_h.png</file>
@@ -37,5 +39,33 @@
         <file>images/source-code.png</file>
         <file>images/toolbar.png</file>
         <file>images/help-icon.png</file>
+        <file>images/icons/about.svg</file>
+        <file>images/icons/back.svg</file>
+        <file>images/icons/close.svg</file>
+        <file>images/icons/code-panel.svg</file>
+        <file>images/icons/copy-image.svg</file>
+        <file>images/icons/copy.svg</file>
+        <file>images/icons/cut.svg</file>
+        <file>images/icons/delete.svg</file>
+        <file>images/icons/export.svg</file>
+        <file>images/icons/forward.svg</file>
+        <file>images/icons/help.svg</file>
+        <file>images/icons/home.svg</file>
+        <file>images/icons/import-code.svg</file>
+        <file>images/icons/new.svg</file>
+        <file>images/icons/open.svg</file>
+        <file>images/icons/paste.svg</file>
+        <file>images/icons/print.svg</file>
+        <file>images/icons/recent.svg</file>
+        <file>images/icons/redo.svg</file>
+        <file>images/icons/save-as.svg</file>
+        <file>images/icons/save.svg</file>
+        <file>images/icons/select.svg</file>
+        <file>images/icons/tools-panel.svg</file>
+        <file>images/icons/undo.svg</file>
+        <file>images/icons/zoom-fit.svg</file>
+        <file>images/icons/zoom-in.svg</file>
+        <file>images/icons/zoom-out.svg</file>
+        <file>images/icons/zoom-reset.svg</file>
     </qresource>
 </RCC>

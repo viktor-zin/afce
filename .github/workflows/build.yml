@@ -1,0 +1,177 @@
+name: Build
+
+on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  QT_VERSION: '6.8.3'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Linux x86_64 (AppImage)
+            os: ubuntu-22.04
+            qt_arch: linux_gcc_64
+          - name: macOS universal (dmg)
+            os: macos-14
+            qt_arch: clang_64
+          - name: Windows x64 (zip)
+            os: windows-2022
+            qt_arch: win64_msvc2022_64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version
+        run: echo "AFCE_VERSION=$(tr -d '[:space:]' < version.txt)" >> "$GITHUB_ENV"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          arch: ${{ matrix.qt_arch }}
+          cache: true
+
+      - name: Install Linux packages
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build libgl1-mesa-dev libegl1 libfuse2 file \
+            libxkbcommon-x11-0 libxcb-cursor0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 \
+            libxcb-randr0 libxcb-render-util0 libxcb-shape0 libxcb-xinerama0 libxcb-xkb1
+
+      - name: Set up MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Configure
+        run: |
+          args=(-DCMAKE_BUILD_TYPE=Release)
+          case "$RUNNER_OS" in
+            Linux)   args+=(-G Ninja -DCMAKE_INSTALL_PREFIX=/usr) ;;
+            macOS)   args+=(-DAFCE_DEPLOY_QT=ON "-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0) ;;
+            Windows) args+=(-G "Visual Studio 17 2022" -A x64 -DAFCE_DEPLOY_QT=ON) ;;
+          esac
+          cmake -S . -B build "${args[@]}"
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Test
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: ctest --test-dir build -C Release --output-on-failure --timeout 600
+
+      - name: Test details
+        if: failure()
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          set -x
+          ctest --test-dir build -C Release --rerun-failed --verbose --timeout 600 || true
+          # the captured output of the failing tests, as a file (artifact below)
+          mkdir -p testlogs
+          cp -r build/Testing/Temporary/*.log testlogs/ 2>/dev/null || true
+          for t in tst_generator tst_flowchart tst_mainwindow tst_importdialog; do
+            exe=$(find build -type f \( -name "$t" -o -name "$t.exe" \) | head -1)
+            [ -n "$exe" ] || continue
+            exe=$(cd "$(dirname "$exe")" && pwd)/$(basename "$exe")
+            (cd build/tests && "$exe" -o "$GITHUB_WORKSPACE/testlogs/$t.txt,txt" -o -,txt) || true
+          done
+          ls -la testlogs || true
+          tail -n 120 testlogs/tst_generator.txt || true
+
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs-${{ runner.os }}
+          path: testlogs
+          if-no-files-found: warn
+
+      # ---- packages ------------------------------------------------------------------------
+      - name: Package (Linux AppImage)
+        if: runner.os == 'Linux'
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: '1'
+          NO_STRIP: '1'
+        run: |
+          DESTDIR="$PWD/AppDir" cmake --install build
+          base=https://github.com/linuxdeploy
+          curl -fsSLo linuxdeploy "$base/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+          curl -fsSLo linuxdeploy-plugin-qt "$base/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
+          chmod +x linuxdeploy linuxdeploy-plugin-qt
+          export QMAKE="$QT_ROOT_DIR/bin/qmake"
+          export LD_LIBRARY_PATH="$QT_ROOT_DIR/lib:${LD_LIBRARY_PATH:-}"
+          export OUTPUT="afce-$AFCE_VERSION-linux-x86_64.AppImage"
+          ./linuxdeploy --appdir AppDir --plugin qt --output appimage \
+            -e AppDir/usr/bin/afce -e AppDir/usr/bin/afce-cli \
+            -d AppDir/usr/share/applications/afce.desktop \
+            -i AppDir/usr/share/icons/hicolor/32x32/apps/afce.png
+          mkdir -p dist && mv "$OUTPUT" dist/
+          # smoke test of the packaged program
+          dist/"$OUTPUT" --appimage-extract-and-run --version
+
+      - name: Package (macOS dmg)
+        if: runner.os == 'macOS'
+        run: |
+          cmake --install build --config Release --prefix "$PWD/stage"
+          codesign --force --deep --sign - stage/afce.app
+          codesign --verify --deep --strict stage/afce.app
+          stage/afce.app/Contents/MacOS/afce --version
+          lipo -info stage/afce.app/Contents/MacOS/afce
+          ln -s /Applications stage/Applications
+          mkdir -p dist
+          for i in 1 2 3; do
+            hdiutil create -volname "AFCE $AFCE_VERSION" -srcfolder stage -ov -format UDZO \
+              "dist/afce-$AFCE_VERSION-macos-universal.dmg" && break
+            sleep 10
+          done
+          test -f "dist/afce-$AFCE_VERSION-macos-universal.dmg"
+
+      - name: Package (Windows zip)
+        if: runner.os == 'Windows'
+        run: |
+          cmake --install build --config Release --prefix "$PWD/stage/afce"
+          stage/afce/bin/afce-cli.exe languages
+          mkdir -p dist
+          (cd stage && 7z a -tzip "../dist/afce-$AFCE_VERSION-windows-x64.zip" afce > /dev/null)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: afce-${{ runner.os }}
+          path: dist/*
+          if-no-files-found: error
+
+  release:
+    name: GitHub release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

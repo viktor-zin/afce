@@ -1,0 +1,25 @@
+Func stats($s, $c, $x, $n)
+    Local $k, $sum, $done, $avg, $half, $t
+    ConsoleWrite($s & "|" & $c & "|" & $x & "|" & $n & @CRLF)
+    $k = Number(InputBox("Input", "k"))
+    $sum = 0
+    While $k
+        $sum = $sum + Mod($k, 10)
+        $k = Int($k / 10)
+    WEnd
+    $done = 0
+    Do
+        $done = 1
+    Until Not (Not $done And Mod($n, 2) = 0)
+    $avg = Number($sum) / $n
+    $half = $x / 2
+    $t = Mod(Int($avg * 10), 7) * 2
+    If $n Then
+        ConsoleWrite($avg & " " & $half & " " & $t & @CRLF)
+    EndIf
+    Switch Mod($sum, 3)
+        Case 0
+            ConsoleWrite("divisible" & @CRLF)
+    EndSwitch
+    Return $avg / 2
+EndFunc

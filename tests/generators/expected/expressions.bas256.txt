@@ -1,0 +1,11 @@
+ok = a > 0 and b <> 0 or not done
+if (x % 2 = 0 and y < 10) or flag = true then
+    print "yes && !no"; x <> y
+end if
+while not (i >= n) and p <> NULL
+    i = i + 1
+end while
+do
+    finished = false
+until finished
+end

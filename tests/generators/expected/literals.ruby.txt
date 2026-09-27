@@ -1,0 +1,12 @@
+def main
+  name = "Bob"
+  c = 'x'
+  q = "it's \"ok\"\n"
+  if c == 'y' || name == "Al"
+    puts name
+  end
+  puts "Price: $x, e-mail a@b.c, \#{x}\t#{c}'"
+  puts "#{(c == 'x') + 1} done"
+end
+
+main

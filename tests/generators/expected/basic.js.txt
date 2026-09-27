@@ -1,0 +1,29 @@
+function main() {
+    let a, b, s, d;
+    a = Number(prompt("a"));
+    b = Number(prompt("b"));
+    s = a + b;
+    d = a - b;
+    console.log(`Sum = ${s}`);
+    console.log(s);
+    console.log("Hello, world!");
+    console.log(`${a} - ${b} = ${d}`);
+    console.log(`100% \"done\"x`);
+    console.log();
+    report(a, b);
+    if (s > 10) {
+        console.log("big");
+    } else {
+        console.log("small");
+    }
+    if (a < b) {
+        d = 0;
+    }
+    if (a >= b + 1) {
+        console.log("not less");
+    }
+    if (done) {
+    }
+}
+
+main();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="i" src="0"/>
+    <pre cond="i &lt; 100">
+      <branch>
+        <assign dest="i" src="i + 1"/>
+        <for var="k" from="1" to="2">
+          <branch>
+            <if cond="i == 4">
+              <branch>
+                <ou vars="&quot;returning at &quot;, i, &quot;, &quot;, k"/>
+                <return/>
+              </branch>
+              <branch/>
+            </if>
+          </branch>
+        </for>
+        <ou vars="&quot;i = &quot;, i"/>
+      </branch>
+    </pre>
+    <ou vars="&quot;not reached&quot;"/>
+  </branch>
+</algorithm>

@@ -1,0 +1,65 @@
+Sub Main()
+    Dim a, i, x, j
+    Do While a < b
+        If a > 100 Then
+            Exit Do
+        End If
+        If a < 0 Then
+            ' continue: not supported in VBScript
+        End If
+        a = a + 1
+    Loop
+    Do
+        a = a + 1
+        If a > 5 Then
+            ' continue: not supported in VBScript
+        End If
+        If a > 50 Then
+            Exit Do
+        End If
+    Loop While a < b
+    For i = 1 To 10
+        If i > 5 Then
+            Exit For
+        Else
+            ' continue: not supported in VBScript
+        End If
+    Next
+    i = 0
+    Do While i < 10
+        If i > 8 Then
+            Exit Do
+        End If
+        If i > 5 Then
+            ' continue: not supported in VBScript
+        End If
+        WScript.Echo i
+        i = i + 1
+    Loop
+    For Each x In items
+        If x < 0 Then
+            ' continue: not supported in VBScript
+        Else
+            Exit For
+        End If
+    Next
+    j = 0
+    Do While j < 3
+        Select Case j
+            Case 0
+                ' continue: not supported in VBScript
+            Case 1
+                WScript.Echo "one"
+            Case Else
+                WScript.Echo j
+        End Select
+        j = j + 1
+    Loop
+    If a > b Then
+        Exit Sub
+    Else
+        Exit Sub
+    End If
+End Sub
+
+Main

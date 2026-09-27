@@ -1,0 +1,8 @@
+#include <iostream>
+
+int main() {
+    int a;
+    a = 1;
+    // unsupported block "frobnicate"
+    std::cout << a << std::endl;
+}

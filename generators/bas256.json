@@ -1,42 +1,215 @@
 {
     "name": {
-        "en_US":"BASIC-256"
+        "en_US": "BASIC-256",
+        "ru_RU": "BASIC-256",
+        "uk_UA": "BASIC-256"
     },
-	"algorithm" : {
-		"template" : "main:%branch1%\nend"
-	},
-	"if": {
-		"template":"if %cond% then%branch1%\nelse%branch2%\nend if"
-	},
-	"for": {
-		"template":"for %var% = %from% to %to%%branch1%\nnext %var%"
-	},
-	"pre": {
-		"template":"while %cond%%branch1%\nend while"
-	},
-	"post": {
-		"template":"do%branch1%\nuntil not (%cond%)"
-	},
-	"assign": {
-		"template":"%dest% = %src%"
-	},
-	"process": {
-		"template": "%text%"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix" : "input "
-	},
-
-	"ou": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix" : "print "
-
-	}
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "case_insensitive": true,
+        "operators": {
+            "==": "=", "!=": "<>", "&&": "and", "||": "or", "!": "not",
+            "/": {"binary": "%1 \\ %2", "when": "int"}
+        },
+        "casts": {
+            "int": "int(%1)", "real": "float(%1)", "char": "chr(%1)", "*": "%1"
+        },
+        "literals": {
+            "string": {
+                "item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\" + chr(34) + \"",
+                    "\\\"": "\" + chr(34) + \"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" + chr(10) + \"",
+                    "\\t": "\" + chr(9) + \""
+                }
+            }
+        }
+    },
+    "comment": {
+        "template": "# %text%"
+    },
+    "algorithm": {
+        "template": [
+            "function %name%(%args%)",
+            "\t%branch1%",
+            "end function"
+        ],
+        "template_empty_returns": [
+            "subroutine %name%(%args%)",
+            "\t%branch1%",
+            "end subroutine"
+        ],
+        "template_empty_name": [
+            "%branch1%",
+            "end"
+        ],
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", "
+            }
+        }
+    },
+    "process": {
+        "template": "%text%"
+    },
+    "assign": {
+        "template": "%dest% = %src%"
+    },
+    "call": {
+        "template": "call %text|callparens%"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "input %$%",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "print %vars%",
+        "template_empty_vars": "print",
+        "list": {
+            "vars": {
+                "glue": "; ",
+                "literal_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\" + chr(34) + \"",
+                    "\\\"": "\" + chr(34) + \"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" + chr(10) + \"",
+                    "\\t": "\" + chr(9) + \""
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if %cond|truthy% then",
+            "\t%branch1%",
+            "else",
+            "\t%branch2%",
+            "end if"
+        ],
+        "template_empty_branch2": [
+            "if %cond|truthy% then",
+            "\t%branch1%",
+            "end if"
+        ],
+        "template_empty_branch1": [
+            "if %cond|truthy|negate% then",
+            "\t%branch2%",
+            "end if"
+        ],
+        "template_empty_branch1+branch2": [
+            "if %cond|truthy% then",
+            "end if"
+        ]
+    },
+    "case": {
+        "template": [
+            "begin case",
+            "%branches%",
+            "end case"
+        ],
+        "case_branch": [
+            "\tcase %value%",
+            "\t\t%body%"
+        ],
+        "default_branch": [
+            "\telse",
+            "\t\t%body%"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "item": "%expr|operand% = %$%",
+                "literal_item": "%expr|operand% = \"%$text%\"",
+                "glue": " or ",
+                "text_escape": {
+                    "\"": "\" + chr(34) + \"",
+                    "\\\"": "\" + chr(34) + \"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" + chr(10) + \"",
+                    "\\t": "\" + chr(9) + \""
+                }
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while %cond|truthy%",
+            "\t%branch1%",
+            "end while"
+        ]
+    },
+    "post": {
+        "template": [
+            "do",
+            "\t%branch1%",
+            "until %cond|truthy|negate%"
+        ]
+    },
+    "for": {
+        "template": [
+            "for %var|lvalue% = %from% to %to%",
+            "\t%branch1%",
+            "next %var|lvalue%"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt%",
+            "while %cond|truthy%",
+            "\t%branch1%",
+            "\t%step|cstmt%",
+            "end while"
+        ],
+        "defaults": {
+            "cond": "true"
+        }
+    },
+    "foreach": {
+        "template": [
+            "for %var|name%_i = 0 to %range%[?] - 1",
+            "\t%var|name% = %range%[%var|name%_i]",
+            "\t%branch1%",
+            "next %var|name%_i"
+        ]
+    },
+    "return": {
+        "template": "return %value%",
+        "template_empty_value": "return",
+        "template_empty_algorithm.name": "end"
+    },
+    "break": {
+        "template": "exit while",
+        "template_in_pre": "exit while",
+        "template_in_forc": "exit while",
+        "template_in_post": "exit do",
+        "template_in_for": "exit for",
+        "template_in_foreach": "exit for",
+        "template_in_case": "# break out of the case: not supported",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "continue while",
+        "template_in_pre": "continue while",
+        "template_in_forc": [
+            "%loop.step|cstmt%",
+            "continue while"
+        ],
+        "template_in_forc_last": "",
+        "template_in_post": "continue do",
+        "template_in_for": "continue for",
+        "template_in_foreach": "continue for"
+    }
 }

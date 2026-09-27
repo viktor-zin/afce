@@ -1,0 +1,9 @@
+<?php
+
+function main($argc, $argv)
+{
+    echo "argc = ", $argc, PHP_EOL;
+    return 0;
+}
+
+main($argc, $argv);

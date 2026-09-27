@@ -1,42 +1,276 @@
 {
     "name": {
-        "en_US":"FreeBASIC"
+        "en_US": "FreeBASIC",
+        "ru_RU": "FreeBASIC",
+        "uk_UA": "FreeBASIC"
     },
-	"algorithm" : {
-		"template" : "%branch1%\n"
-	},
-	"if": {
-		"template":"If %cond% Then%branch1%\nElse%branch2%\nEnd If"
-	},
-	"for": {
-		"template":"For %var% = %from% To %to%%branch1%\nNext %var%"
-	},
-	"pre": {
-		"template":"While %cond%%branch1%\nWend"
-	},
-	"post": {
-		"template":"Do%branch1%\nLoop While %cond%"
-	},
-	"assign": {
-		"template":"%dest% = %src%"
-	},
-	"process": {
-		"template": "%text%"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix" : "Input "
-	},
-
-	"ou": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"prefix" : "Print "
-
-	}
+    "additional_settings": {
+        "indentation_preference": "    ",
+        "case_insensitive": true,
+        "keywords": [
+            "and", "or", "not", "xor", "mod", "andalso", "orelse", "shl", "shr", "true", "false"
+        ],
+        "types": {
+            "": "Integer", "int": "Integer", "long": "Long", "long long": "LongInt", "short": "Short",
+            "unsigned": "UInteger", "unsigned int": "UInteger", "float": "Single", "double": "Double",
+            "char": "UByte", "bool": "Boolean", "char*": "String", "string": "String", "std::string": "String"
+        },
+        "operators": {
+            "==": "=", "!=": "<>", "&&": "AndAlso", "||": "OrElse", "!": "Not",
+            "true": "True", "false": "False",
+            "[": "(", "]": ")",
+            "%": {"binary": "%1 Mod %2"},
+            "/": {"binary": "%1 \\ %2", "when": "int"}
+        },
+        "casts": {
+            "int": "Fix(%1)", "real": "CDbl(%1)", "char": "Chr(%1)", "*": "%1"
+        },
+        "literals": {
+            "string": {
+                "item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\"\"",
+                    "\\\"": "\"\"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" & Chr(10) & \"",
+                    "\\t": "\" & Chr(9) & \""
+                }
+            }
+        }
+    },
+    "comment": {
+        "template": "' %text%"
+    },
+    "algorithm": {
+        "template": [
+            "Function %name%(%args%) As %returns|maptype%",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "End Function"
+        ],
+        "template_empty_returns": [
+            "Sub %name%(%args%)",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "End Sub"
+        ],
+        "template_empty_name": [
+            "%decl_int%",
+            "%decl_real%",
+            "%decl_bool%",
+            "%decl_string%",
+            "",
+            "%branch1%"
+        ],
+        "template_empty_name+variables": [
+            "%branch1%"
+        ],
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name% As %$type|maptype%",
+                "glue": ", "
+            },
+            "decl_int": {
+                "source": "variables_int",
+                "head": "Dim As Integer ",
+                "glue": ", "
+            },
+            "decl_real": {
+                "source": "variables_real",
+                "head": "Dim As Double ",
+                "glue": ", "
+            },
+            "decl_bool": {
+                "source": "variables_bool",
+                "head": "Dim As Boolean ",
+                "glue": ", "
+            },
+            "decl_string": {
+                "source": "variables_string,variables_char",
+                "head": "Dim As String ",
+                "glue": ", "
+            }
+        }
+    },
+    "process": {
+        "template": "%text%"
+    },
+    "assign": {
+        "template": "%dest% = %src%"
+    },
+    "call": {
+        "template": "%text%"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "Input \"\", %$%",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "Print %vars%",
+        "template_empty_vars": "Print",
+        "list": {
+            "vars": {
+                "item": "%$|operand%",
+                "glue": " & ",
+                "literal_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\"\"",
+                    "\\\"": "\"\"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" & Chr(10) & \"",
+                    "\\t": "\" & Chr(9) & \""
+                }
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "If %cond|truthy% Then",
+            "\t%branch1%",
+            "Else",
+            "\t%branch2%",
+            "End If"
+        ],
+        "template_empty_branch2": [
+            "If %cond|truthy% Then",
+            "\t%branch1%",
+            "End If"
+        ],
+        "template_empty_branch1": [
+            "If %cond|truthy|negate% Then",
+            "\t%branch2%",
+            "End If"
+        ],
+        "template_empty_branch1+branch2": [
+            "If %cond|truthy% Then",
+            "End If"
+        ],
+        "chain": {
+            "head": [
+                "If %cond|truthy% Then",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "ElseIf %cond|truthy% Then",
+                "\t%branch1%"
+            ],
+            "else": [
+                "Else",
+                "\t%branch2%"
+            ],
+            "end": "End If"
+        }
+    },
+    "case": {
+        "template": [
+            "Select Case %expr%",
+            "%branches%",
+            "End Select"
+        ],
+        "case_branch": [
+            "\tCase %value%",
+            "\t\t%body%"
+        ],
+        "default_branch": [
+            "\tCase Else",
+            "\t\t%body%"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "glue": ", ",
+                "literal_item": "\"%$text%\"",
+                "text_escape": {
+                    "\"": "\"\"",
+                    "\\\"": "\"\"",
+                    "\\'": "'",
+                    "\\\\": "\\",
+                    "\\n": "\" & Chr(10) & \"",
+                    "\\t": "\" & Chr(9) & \""
+                }
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "While %cond|truthy%",
+            "\t%branch1%",
+            "Wend"
+        ]
+    },
+    "post": {
+        "template": [
+            "Do",
+            "\t%branch1%",
+            "Loop While %cond|truthy%"
+        ]
+    },
+    "for": {
+        "template": [
+            "For %var|lvalue% = %from% To %to%",
+            "\t%branch1%",
+            "Next"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt%",
+            "While %cond|truthy%",
+            "\t%branch1%",
+            "\t%step|cstmt%",
+            "Wend"
+        ],
+        "defaults": {
+            "cond": "True"
+        }
+    },
+    "foreach": {
+        "template": [
+            "For %var|name%_i As Integer = LBound(%range%) To UBound(%range%)",
+            "\t%var|name% = %range%(%var|name%_i)",
+            "\t%branch1%",
+            "Next"
+        ]
+    },
+    "return": {
+        "template": "Return %value%",
+        "template_empty_value": "Return",
+        "template_empty_algorithm.name": "End %value%"
+    },
+    "break": {
+        "template": "Exit Do",
+        "template_in_pre": "Exit While",
+        "template_in_forc": "Exit While",
+        "template_in_post": "Exit Do",
+        "template_in_for": "Exit For",
+        "template_in_foreach": "Exit For",
+        "template_in_case": "Exit Select",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "Continue Do",
+        "template_in_pre": "Continue While",
+        "template_in_forc": [
+            "%loop.step|cstmt%",
+            "Continue While"
+        ],
+        "template_in_forc_last": "",
+        "template_in_post": "Continue Do",
+        "template_in_for": "Continue For",
+        "template_in_foreach": "Continue For"
+    }
 }

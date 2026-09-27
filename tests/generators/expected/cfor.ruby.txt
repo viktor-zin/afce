@@ -1,0 +1,26 @@
+def main
+  init
+  i = 0
+  while i < n
+    if a[i] == 0
+      i = i + 1
+      next
+    end
+    s = s + a[i]
+    i = i + 1
+  end
+  lo = 0
+  hi = n - 1
+  while lo < hi
+    swap(a, lo, hi)
+    lo = lo + 1
+    hi = hi - 1
+  end
+  k = 1
+  while k <= n
+    puts k
+    k = k * 2
+  end
+end
+
+main

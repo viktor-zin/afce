@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<!-- several statements in one process block, line breaks inside expressions -->
+<algorithm version="1.3">
+  <branch>
+    <assign dest="s" src="0"/>
+    <process text="s = s + 1&#10;s = s + 2"/>
+    <assign dest="x" src="1 +&#10;2"/>
+    <if cond="x &gt; 1 &amp;&amp;&#10;x &lt; 5">
+      <branch>
+        <ou vars="s,&#10;&quot; &quot;, x"/>
+      </branch>
+      <branch/>
+    </if>
+  </branch>
+</algorithm>

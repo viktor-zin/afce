@@ -1,0 +1,26 @@
+program Algorithm;
+
+var
+  n: Integer;
+
+begin
+  case x of
+    1: begin
+      WriteLn('one');
+    end;
+    2, 3: begin
+      WriteLn('two or three');
+    end;
+    else begin
+      WriteLn('other');
+    end;
+  end;
+  case c of
+    'a': begin
+      n := 1;
+    end;
+    'b', 'c': begin
+      n := 2;
+    end;
+  end;
+end.

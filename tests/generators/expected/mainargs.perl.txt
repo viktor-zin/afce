@@ -1,0 +1,13 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($argc, $argv) = @_;
+    print("argc = ", $argc, "\n");
+    return 0;
+}
+
+main(scalar(@ARGV) + 1, [$0, @ARGV]);

@@ -1,0 +1,15 @@
+program Algorithm;
+
+var
+  i: Integer;
+
+begin
+  for i := 1 to 3 do
+  begin
+    if i = 2 then
+    begin
+      Continue;
+    end;
+    WriteLn(i);
+  end;
+end.

@@ -1,0 +1,22 @@
+<!DOCTYPE AFC>
+<algorithm version="9.9" name="future">
+  <branch>
+    <frobnicate text="something new"/>
+    <process text="x = 1"/>
+    <mystery expr="x">
+      <branch value="1">
+        <process text="one"/>
+      </branch>
+      <branch>
+        <process text="other"/>
+        <gizmo/>
+      </branch>
+    </mystery>
+    <if cond="x &gt; 0">
+      <branch>
+        <whatever a="1" b="2"/>
+      </branch>
+      <branch/>
+    </if>
+  </branch>
+</algorithm>

@@ -1,0 +1,6 @@
+Func greet($n)
+    If $n < 1 Then
+        Return
+    EndIf
+    ConsoleWrite("Hello, " & $n & @CRLF)
+EndFunc

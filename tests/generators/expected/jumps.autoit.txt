@@ -1,0 +1,67 @@
+Main()
+
+Func Main()
+    Local $a, $i, $x, $j
+    While $a < $b
+        If $a > 100 Then
+            ExitLoop
+        EndIf
+        If $a < 0 Then
+            ContinueLoop
+        EndIf
+        $a = $a + 1
+    WEnd
+    Do
+        $a = $a + 1
+        If $a > 5 Then
+            ContinueLoop
+        EndIf
+        If $a > 50 Then
+            ExitLoop
+        EndIf
+    Until $a >= $b
+    For $i = 1 To 10
+        If $i > 5 Then
+            ExitLoop
+        Else
+            ContinueLoop
+        EndIf
+    Next
+    $i = 0
+    While $i < 10
+        If $i > 8 Then
+            ExitLoop
+        EndIf
+        If $i > 5 Then
+            $i = $i + 1
+            ContinueLoop
+        EndIf
+        ConsoleWrite($i & @CRLF)
+        $i = $i + 1
+    WEnd
+    For $x In $items
+        If $x < 0 Then
+            ContinueLoop
+        Else
+            ExitLoop
+        EndIf
+    Next
+    $j = 0
+    While $j < 3
+        Switch $j
+            Case 0
+                $j = $j + 1
+                ContinueLoop
+            Case 1
+                ConsoleWrite("one" & @CRLF)
+            Case Else
+                ConsoleWrite($j & @CRLF)
+        EndSwitch
+        $j = $j + 1
+    WEnd
+    If $a > $b Then
+        Return $a
+    Else
+        Return
+    EndIf
+EndFunc

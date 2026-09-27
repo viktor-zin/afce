@@ -1,0 +1,59 @@
+program Algorithm;
+
+var
+  n, s, count, i, j, x: Integer;
+
+begin
+  ReadLn(n);
+  s := 0;
+  count = 0;
+  for i := 1 to n do
+  begin
+    if i < 5 then
+    begin
+      j := 0;
+      while j < i do
+      begin
+        case j of
+          0: begin
+            j := j + 1;
+            Continue;
+          end;
+          1, 2: begin
+            while s < 100 do
+            begin
+              s := s + j;
+              if s > 50 then
+              begin
+                Break;
+              end;
+            end;
+          end;
+          else begin
+            repeat
+              s := s - 1;
+              if s < 10 then
+              begin
+                Continue;
+              end;
+              WriteLn('s = ', s);
+            until s <= 0;
+          end;
+        end;
+        j := j + 1;
+      end;
+    end
+    else
+    begin
+      for x in items do
+      begin
+        show(x);
+        if x > i then
+        begin
+          Halt(x);
+        end;
+      end;
+    end;
+  end;
+  WriteLn('s = ', s, ', count = ', count);
+end.

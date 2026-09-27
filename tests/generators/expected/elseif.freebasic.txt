@@ -1,0 +1,14 @@
+If x < 0 Then
+    Print "negative"
+ElseIf x < 10 Then
+    Print "small"
+ElseIf x < 100 Then
+    Print "medium"
+Else
+    Print "large"
+End If
+If y < 0 Then
+    Print "neg"
+ElseIf y > 0 Then
+    Print "pos"
+End If

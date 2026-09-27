@@ -1,0 +1,23 @@
+<!DOCTYPE AFC>
+<algorithm>
+  <branch>
+    <if cond="only one branch">
+      <branch>
+        <process text="yes"/>
+      </branch>
+    </if>
+    <if cond="no branches"/>
+    <pre cond="no body"/>
+    <post cond="no body"/>
+    <for var="i" from="1" to="3"/>
+    <branch>
+      <process text="nested branch"/>
+    </branch>
+    <io/>
+    <ou vars=""/>
+    <assign/>
+  </branch>
+  <branch>
+    <process text="second algorithm body"/>
+  </branch>
+</algorithm>

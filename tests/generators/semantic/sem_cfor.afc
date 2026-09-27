@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="s" src="0"/>
+    <forc init="int i = 0" cond="i &lt; 5" step="i++">
+      <branch>
+        <if cond="i == 2">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <assign dest="s" src="s + i"/>
+      </branch>
+    </forc>
+    <ou vars="&quot;s = &quot;, s"/>
+    <forc init="int a = 0, b = 10" cond="a &lt; b" step="a += 2, b -= 1">
+      <branch>
+        <ou vars="a, &quot; &quot;, b"/>
+      </branch>
+    </forc>
+    <forc init="int k = 1" cond="k &lt;= 100" step="k *= 3">
+      <branch>
+        <ou vars="k"/>
+      </branch>
+    </forc>
+  </branch>
+</algorithm>

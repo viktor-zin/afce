@@ -1,0 +1,15 @@
+<!DOCTYPE AFC>
+<algorithm>
+  <branch>
+    <io t1="a" t2="b" t3="" t4="" t5="" t6="" t7="" t8=""/>
+    <if cond="a &gt; b">
+      <branch>
+        <ou t1="a" t2="" t3="" t4="" t5="" t6="" t7="" t8=""/>
+      </branch>
+      <branch>
+        <ou t1="b" t2="" t3="" t4="" t5="" t6="" t7="" t8=""/>
+      </branch>
+    </if>
+    <ou t1="a" t2="b" t3="a + b" t4="" t5="" t6="" t7="" t8=""/>
+  </branch>
+</algorithm>

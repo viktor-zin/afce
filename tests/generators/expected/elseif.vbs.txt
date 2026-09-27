@@ -1,0 +1,18 @@
+Sub Main()
+    If x < 0 Then
+        WScript.Echo "negative"
+    ElseIf x < 10 Then
+        WScript.Echo "small"
+    ElseIf x < 100 Then
+        WScript.Echo "medium"
+    Else
+        WScript.Echo "large"
+    End If
+    If y < 0 Then
+        WScript.Echo "neg"
+    ElseIf y > 0 Then
+        WScript.Echo "pos"
+    End If
+End Sub
+
+Main

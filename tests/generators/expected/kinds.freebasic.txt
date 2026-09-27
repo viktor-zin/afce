@@ -1,0 +1,26 @@
+Function stats(s As String, c As UByte, x As Double, n As Integer) As Double
+    Dim As Integer k, sum, done, t
+    Dim As Double avg, half
+    Print s & "|" & c & "|" & x & "|" & n
+    Input "", k
+    sum = 0
+    While k <> 0
+        sum = sum + k Mod 10
+        k = k \ 10
+    Wend
+    done = 0
+    Do
+        done = 1
+    Loop While done = 0 AndAlso n Mod 2 = 0
+    avg = CDbl(sum) / n
+    half = x / 2
+    t = (Fix(avg * 10) Mod 7) * 2
+    If n <> 0 Then
+        Print avg & " " & half & " " & t
+    End If
+    Select Case sum Mod 3
+        Case 0
+            Print "divisible"
+    End Select
+    Return avg / 2
+End Function

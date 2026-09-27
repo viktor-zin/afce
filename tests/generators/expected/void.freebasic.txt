@@ -1,0 +1,4 @@
+Sub beep()
+    Print "beep"
+    Return
+End Sub

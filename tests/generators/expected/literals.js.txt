@@ -1,0 +1,13 @@
+function main() {
+    let name, c, q;
+    name = "Bob";
+    c = 'x';
+    q = "it's \"ok\"\n";
+    if (c == 'y' || name == "Al") {
+        console.log(name);
+    }
+    console.log(`Price: $x, e-mail a@b.c, #{x}\t${c}\'`);
+    console.log(`${(c == 'x') + 1} done`);
+}
+
+main();

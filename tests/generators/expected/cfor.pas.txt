@@ -1,0 +1,33 @@
+program Algorithm;
+
+var
+  i, s, lo, hi, k: Integer;
+
+begin
+  init;
+  i := 0;
+  while i < n do
+  begin
+    if a[i] = 0 then
+    begin
+      i := i + 1;
+      Continue;
+    end;
+    s := s + a[i];
+    i := i + 1;
+  end;
+  lo := 0;
+  hi := n - 1;
+  while lo < hi do
+  begin
+    swap(a, lo, hi);
+    lo := lo + 1;
+    hi := hi - 1;
+  end;
+  k := 1;
+  while k <= n do
+  begin
+    WriteLn(k);
+    k := k * 2;
+  end;
+end.

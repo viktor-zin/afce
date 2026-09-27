@@ -1,0 +1,10 @@
+s = 0
+for k = 0 to 2
+    s = s + k
+    s = s + 1
+next k
+x = 1 + 2
+if x > 1 and x < 5 then
+    print s; x
+end if
+end

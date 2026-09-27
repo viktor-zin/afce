@@ -1,0 +1,10 @@
+program Algorithm;
+
+var
+  a: Integer;
+
+begin
+  a := 1;
+  { unsupported block "frobnicate" }
+  WriteLn(a);
+end.

@@ -14,31 +14,89 @@
 ****************************************************************************/
 
 #include "thelpwindow.h"
+
+#include "appicons.h"
+
+#include <QAction>
+#include <QDir>
+#include <QEvent>
+#include <QFileInfo>
+#include <QFrame>
+#include <QIcon>
 #include <QLocale>
-#include <QApplication>
+#include <QTextBrowser>
+#include <QToolBar>
+#include <QVBoxLayout>
 
 
-THelpWindow::THelpWindow()
+THelpWindow::THelpWindow(QWidget *parent)
+  : QDockWidget(parent)
 {
   fWidget = new QFrame(this);
   setWidget(fWidget);
   toolBar = new QToolBar;
   toolBar->setObjectName("help_toolbar");
   textBrowser = new QTextBrowser;
+  textBrowser->setOpenExternalLinks(true);
   QVBoxLayout *vl = new QVBoxLayout;
   vl->addWidget(toolBar);
   vl->addWidget(textBrowser);
   widget()->setLayout(vl);
-  textBrowser->setSearchPaths(QStringList() << qApp->applicationDirPath() + "/help/"+QLocale().name() << qApp->applicationDirPath() + "/help/en_US");
-#if defined(Q_WS_X11) or defined(Q_OS_LINUX)
-  textBrowser->setSearchPaths(QStringList() << QString(PROGRAM_DATA_DIR) + "help/"+QLocale().name() << QString(PROGRAM_DATA_DIR) + "help/en_US");
-#endif
 
-  home();
-  toolBar->addAction(QIcon(":/images/back_16_h.png"), tr("Back"), textBrowser, SLOT(backward()));
-  toolBar->addAction(QIcon(":/images/forward_16_h.png"), tr("Forward"), textBrowser, SLOT(forward()));
+  toolBar->setIconSize(QSize(16, 16));
+  vl->setContentsMargins(4, 2, 4, 4);
+  vl->setSpacing(2);
+  textBrowser->setFrameShape(QFrame::NoFrame);
+  actBack = toolBar->addAction(afce::uiIcon(QStringLiteral("back")), QString());
+  actForward = toolBar->addAction(afce::uiIcon(QStringLiteral("forward")), QString());
   toolBar->addSeparator();
-  toolBar->addAction(QIcon(":/images/home_16_h.png"), tr("Home"), this, SLOT(home()));
+  actHome = toolBar->addAction(afce::uiIcon(QStringLiteral("home")), QString());
+  actBack->setEnabled(false);
+  actForward->setEnabled(false);
+  connect(actBack, &QAction::triggered, textBrowser, &QTextBrowser::backward);
+  connect(actForward, &QAction::triggered, textBrowser, &QTextBrowser::forward);
+  connect(actHome, &QAction::triggered, this, &THelpWindow::home);
+  connect(textBrowser, &QTextBrowser::backwardAvailable, actBack, &QAction::setEnabled);
+  connect(textBrowser, &QTextBrowser::forwardAvailable, actForward, &QAction::setEnabled);
+
+  retranslateUi();
+}
+
+QStringList THelpWindow::helpSearchPaths(const QString &localeName)
+{
+  QStringList result;
+  const QStringList dirs = QDir::searchPaths(QStringLiteral("help"));
+  for (const QString &dir : dirs)
+  {
+    const QDir base(dir);
+    const QString localized = base.filePath(localeName);
+    if (!localeName.isEmpty() && QFileInfo::exists(localized) && !result.contains(localized))
+      result << localized;
+    const QString english = base.filePath(QStringLiteral("en_US"));
+    if (QFileInfo::exists(english) && !result.contains(english))
+      result << english;
+  }
+  return result;
+}
+
+void THelpWindow::retranslateUi()
+{
+  actBack->setText(tr("Back"));
+  actForward->setText(tr("Forward"));
+  actHome->setText(tr("Home"));
+  textBrowser->setSearchPaths(helpSearchPaths(QLocale().name()));
+  // show the current page in the new language
+  if (textBrowser->source().isEmpty())
+    home();
+  else
+    textBrowser->reload();
+}
+
+void THelpWindow::changeEvent(QEvent *event)
+{
+  if (event->type() == QEvent::LanguageChange)
+    retranslateUi();
+  QDockWidget::changeEvent(event);
 }
 
 void THelpWindow::hideEvent(QHideEvent *)
@@ -48,5 +106,9 @@ void THelpWindow::hideEvent(QHideEvent *)
 
 void THelpWindow::home()
 {
-  textBrowser->setSource(QUrl("index.html"));
+  const QUrl index(QStringLiteral("index.html"));
+  if (textBrowser->source() == index)
+    textBrowser->reload();
+  else
+    textBrowser->setSource(index);
 }

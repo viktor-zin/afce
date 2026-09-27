@@ -1,0 +1,17 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    bool ok, finished;
+    ok = a > 0 && b != 0 || !done;
+    if ((x % 2 == 0 && y < 10) || flag == true) {
+        printf("yes && !no%d\n", x != y);
+    }
+    while (!(i >= n) && p != NULL) {
+        i = i + 1;
+    }
+    do {
+        finished = false;
+    } while (!finished);
+}

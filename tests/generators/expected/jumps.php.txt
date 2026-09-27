@@ -1,0 +1,64 @@
+<?php
+
+function main()
+{
+    while ($a < $b) {
+        if ($a > 100) {
+            break;
+        }
+        if ($a < 0) {
+            continue;
+        }
+        $a = $a + 1;
+    }
+    do {
+        $a = $a + 1;
+        if ($a > 5) {
+            continue;
+        }
+        if ($a > 50) {
+            break;
+        }
+    } while ($a < $b);
+    for ($i = 1; $i <= 10; $i++) {
+        if ($i > 5) {
+            break;
+        } else {
+            continue;
+        }
+    }
+    for ($i = 0; $i < 10; $i = $i + 1) {
+        if ($i > 8) {
+            break;
+        }
+        if ($i > 5) {
+            continue;
+        }
+        echo $i, PHP_EOL;
+    }
+    foreach ($items as $x) {
+        if ($x < 0) {
+            continue;
+        } else {
+            break;
+        }
+    }
+    for ($j = 0; $j < 3; $j = $j + 1) {
+        switch ($j) {
+            case 0:
+                continue 2;
+            case 1:
+                echo "one", PHP_EOL;
+                break;
+            default:
+                echo $j, PHP_EOL;
+        }
+    }
+    if ($a > $b) {
+        return $a;
+    } else {
+        return;
+    }
+}
+
+main();

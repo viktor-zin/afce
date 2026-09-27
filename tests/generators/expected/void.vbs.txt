@@ -1,0 +1,6 @@
+Sub beep()
+    WScript.Echo "beep"
+    Exit Sub
+End Sub
+
+beep

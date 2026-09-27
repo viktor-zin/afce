@@ -1,0 +1,28 @@
+program Algorithm;
+
+begin
+  if x < 0 then
+  begin
+    WriteLn('negative');
+  end
+  else if x < 10 then
+  begin
+    WriteLn('small');
+  end
+  else if x < 100 then
+  begin
+    WriteLn('medium');
+  end
+  else
+  begin
+    WriteLn('large');
+  end;
+  if y < 0 then
+  begin
+    WriteLn('neg');
+  end
+  else if y > 0 then
+  begin
+    WriteLn('pos');
+  end;
+end.

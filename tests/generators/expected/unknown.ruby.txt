@@ -1,0 +1,7 @@
+def main
+  a = 1
+  # unsupported block "frobnicate"
+  puts a
+end
+
+main

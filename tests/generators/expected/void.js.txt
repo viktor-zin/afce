@@ -1,0 +1,6 @@
+function beep() {
+    console.log("beep");
+    return;
+}
+
+beep();

@@ -1,0 +1,35 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($a, $b, $s, $d);
+    chomp($a = <STDIN>);
+    chomp($b = <STDIN>);
+    $s = $a + $b;
+    $d = $a - $b;
+    print("Sum = ", $s, "\n");
+    print($s, "\n");
+    print("Hello, world!", "\n");
+    print($a, " - ", $b, " = ", $d, "\n");
+    print("100% \"done\"", "x", "\n");
+    print("\n");
+    report($a, $b);
+    if ($s > 10) {
+        print("big", "\n");
+    } else {
+        print("small", "\n");
+    }
+    if ($a < $b) {
+        $d = 0;
+    }
+    unless ($a < $b + 1) {
+        print("not less", "\n");
+    }
+    if ($done) {
+    }
+}
+
+main();

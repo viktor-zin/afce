@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($a);
+    $a = 1;
+    # unsupported block "frobnicate"
+    print($a, "\n");
+}
+
+main();

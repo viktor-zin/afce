@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="n" src="10"/>
+    <pre cond="n &gt; 0">
+      <branch>
+        <assign dest="n" src="n - 3"/>
+      </branch>
+    </pre>
+    <post cond="n &lt; 5">
+      <branch>
+        <assign dest="n" src="n + 1"/>
+      </branch>
+    </post>
+    <for var="i" from="1" to="10">
+      <branch>
+        <ou vars="i"/>
+      </branch>
+    </for>
+    <for var="j" from="0" to="n - 1">
+      <branch>
+        <ou vars="j"/>
+      </branch>
+    </for>
+    <forc init="k = 0" cond="k &lt; n" step="k = k + 2">
+      <branch>
+        <ou vars="k"/>
+      </branch>
+    </forc>
+    <forc init="" cond="" step="">
+      <branch>
+        <call text="work()"/>
+        <break/>
+      </branch>
+    </forc>
+    <foreach var="x" range="items">
+      <branch>
+        <ou vars="x"/>
+      </branch>
+    </foreach>
+    <pre cond="n &gt; 100">
+      <branch/>
+    </pre>
+  </branch>
+</algorithm>

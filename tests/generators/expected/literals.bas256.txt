@@ -1,0 +1,9 @@
+name = "Bob"
+c = "x"
+q = "it's " + chr(34) + "ok" + chr(34) + "" + chr(10) + ""
+if c = "y" or name = "Al" then
+    print name
+end if
+print "Price: $x, e-mail a@b.c, #{x}"; "" + chr(9) + ""; c; "'"
+print (c = "x") + 1; " done"
+end

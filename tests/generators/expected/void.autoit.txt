@@ -1,0 +1,6 @@
+beep()
+
+Func beep()
+    ConsoleWrite("beep" & @CRLF)
+    Return
+EndFunc

@@ -1,4 +1,10 @@
-afce.pro.user
+# build trees (build/, build-release/, build-<name>/ ...)
+build*/
+CMakeUserPresets.json
+CMakeLists.txt.user*
+.qtcreator/
+*.autosave
 *.qm
 *.bak
 *.orig
+.DS_Store

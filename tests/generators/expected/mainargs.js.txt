@@ -1,0 +1,6 @@
+function main(argc, argv) {
+    console.log(`argc = ${argc}`);
+    return 0;
+}
+
+main(process.argv.length - 1, process.argv.slice(1));

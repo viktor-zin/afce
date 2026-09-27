@@ -1,0 +1,54 @@
+def main():
+    while a < b:
+        if a > 100:
+            break
+        if a < 0:
+            continue
+        a = a + 1
+    while True:
+        a = a + 1
+        if a > 5:
+            if a >= b:
+                break
+            continue
+        if a > 50:
+            break
+        if a >= b:
+            break
+    for i in range(1, 11):
+        if i > 5:
+            break
+        else:
+            continue
+    i = 0
+    while i < 10:
+        if i > 8:
+            break
+        if i > 5:
+            i = i + 1
+            continue
+        print(i)
+        i = i + 1
+    for x in items:
+        if x < 0:
+            continue
+        else:
+            break
+    j = 0
+    while j < 3:
+        if j == 0:
+            j = j + 1
+            continue
+        elif j == 1:
+            print("one")
+        else:
+            print(j)
+        j = j + 1
+    if a > b:
+        return a
+    else:
+        return
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,7 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+void beep(void) {
+    printf("beep\n");
+    return;
+}

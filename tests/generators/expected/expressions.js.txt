@@ -1,0 +1,15 @@
+function main() {
+    let ok, i, finished;
+    ok = a > 0 && b != 0 || !done;
+    if ((x % 2 == 0 && y < 10) || flag == true) {
+        console.log(`yes && !no${x != y}`);
+    }
+    while (!(i >= n) && p != null) {
+        i = i + 1;
+    }
+    do {
+        finished = false;
+    } while (!finished);
+}
+
+main();

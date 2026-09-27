@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+
+int main() {
+    char c;
+    std::string name, q;
+    name = "Bob";
+    c = 'x';
+    q = "it's \"ok\"\n";
+    if (c == 'y' || name == "Al") {
+        std::cout << name << std::endl;
+    }
+    std::cout << "Price: $x, e-mail a@b.c, #{x}" << '\t' << c << '\'' << std::endl;
+    std::cout << (c == 'x') + 1 << " done" << std::endl;
+}

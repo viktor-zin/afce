@@ -1,0 +1,16 @@
+Main()
+
+Func Main()
+    Local $i
+    For $i = 1 To 3
+        Switch $i
+            Case Else
+                If $i = 2 Then
+                    ContinueLoop
+                EndIf
+        EndSwitch
+        ConsoleWrite($i & @CRLF)
+    Next
+    Switch $a
+    EndSwitch
+EndFunc

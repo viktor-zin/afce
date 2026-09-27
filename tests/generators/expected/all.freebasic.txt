@@ -1,0 +1,42 @@
+Dim As Integer n, s, count, i, j, x
+
+Input "", n
+s = 0
+count = 0
+For i = 1 To n
+    If i < 5 Then
+        j = 0
+        While j < i
+            Select Case j
+                Case 0
+                    j = j + 1
+                    Continue While
+                Case 1, 2
+                    While s < 100
+                        s = s + j
+                        If s > 50 Then
+                            Exit While
+                        End If
+                    Wend
+                Case Else
+                    Do
+                        s = s - 1
+                        If s < 10 Then
+                            Continue Do
+                        End If
+                        Print "s = " & s
+                    Loop While s > 0
+            End Select
+            j = j + 1
+        Wend
+    Else
+        For x_i As Integer = LBound(items) To UBound(items)
+            x = items(x_i)
+            show(x)
+            If x > i Then
+                End x
+            End If
+        Next
+    End If
+Next
+Print "s = " & s & ", count = " & count

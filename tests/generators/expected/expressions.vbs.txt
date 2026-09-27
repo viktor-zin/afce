@@ -1,0 +1,15 @@
+Sub Main()
+    Dim ok, i, finished
+    ok = a > 0 And b <> 0 Or Not done
+    If (x Mod 2 = 0 And y < 10) Or flag = True Then
+        WScript.Echo "yes && !no" & (x <> y)
+    End If
+    Do While Not (i >= n) And p <> NULL
+        i = i + 1
+    Loop
+    Do
+        finished = False
+    Loop While Not finished
+End Sub
+
+Main

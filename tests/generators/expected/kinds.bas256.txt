@@ -1,0 +1,24 @@
+function stats(s, c, x, n)
+    print s; "|"; c; "|"; x; "|"; n
+    input k
+    sum = 0
+    while k <> 0
+        sum = sum + k % 10
+        k = k \ 10
+    end while
+    done = 0
+    do
+        done = 1
+    until not (done = 0 and n % 2 = 0)
+    avg = float(sum) / n
+    half = x / 2
+    t = int(avg * 10) % 7 * 2
+    if n <> 0 then
+        print avg; " "; half; " "; t
+    end if
+    begin case
+        case sum % 3 = 0
+            print "divisible"
+    end case
+    return avg / 2
+end function

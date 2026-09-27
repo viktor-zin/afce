@@ -1,42 +1,229 @@
 {
-	"name": {
-		"ru_RU": "\u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u044F\u0437\u044B\u043A \u0415\u0440\u0448\u043E\u0432\u0430",
-		"en_US": "Ershov's algorithmic language",
-		"uk_UA": "\u0410\u043b\u0433\u043e\u0440\u0438\u0442\u043c\u0456\u0447\u043d\u0430 \u043c\u043e\u0432\u0430 \u0404\u0440\u0448\u043e\u0432\u0430"
-	},
-
-	"algorithm" : {
-		"template" : "\u0430\u043B\u0433 \u0410\u043B\u0433\u043E\u0440\u0438\u0442\u043C\n\u043D\u0430\u0447%branch1%\n\u043A\u043E\u043D"
-		},
-	"if": {
-		"template":"\u0435\u0441\u043B\u0438 %cond%\n\u0442\u043E%branch1%\n\u0438\u043D\u0430\u0447\u0435%branch2%\n\u0432\u0441\u0435"
-		},
-	"for": {
-		"template":"\u043D\u0446 \u0434\u043B\u044F %var% \u043E\u0442 %from% \u0434\u043E %to%%branch1%\n\u043A\u0446"
-	},
-		"pre": {
-			"template":"\u043D\u0446 \u043F\u043E\u043A\u0430 %cond%%branch1%\n\u043A\u0446"
-		},
-		"post": {
-			"template":"%branch1%\n\u043D\u0446 \u043F\u043E\u043A\u0430 %cond%%branch1%\n\u043A\u0446"
-		},
-		"assign": {
-			"template":"%dest% := %src%"
-		},
-		"process": {
-			"template": "%text%"
-
-		},
-		"io": {
-			"template": "\u0432\u0432\u043E\u0434 %vars%",
-			"list": ["vars"],
-			"separator": ",",
-			"glue": ", "
-		},
-		"ou": {
-			"template": "\u0432\u044B\u0432\u043E\u0434 %vars%",
-			"list": ["vars"],
-			"separator": ",",
-			"glue": ", "
-			}
-		}
+    "name": {
+        "ru_RU": "Алгоритмический язык Ершова",
+        "en_US": "Ershov's algorithmic language",
+        "uk_UA": "Алгоритмічна мова Єршова"
+    },
+    "additional_settings": {
+        "indentation_preference": "  ",
+        "keywords": [
+            "и", "или", "не", "да", "нет", "div", "mod", "нс"
+        ],
+        "types": {
+            "": "цел", "int": "цел", "long": "цел", "long long": "цел", "short": "цел", "unsigned": "цел",
+            "float": "вещ", "double": "вещ", "char": "сим", "bool": "лог", "char*": "лит", "string": "лит",
+            "std::string": "лит"
+        },
+        "operators": {
+            "==": "=", "!=": "<>", "&&": "и", "||": "или", "!": "не", "true": "да", "false": "нет",
+            "%": {"binary": "mod(%1, %2)"},
+            "/": {"binary": "div(%1, %2)", "when": "int"}
+        },
+        "casts": {
+            "int": "int(%1)", "*": "%1"
+        }
+    },
+    "comment": {
+        "template": "| %text%"
+    },
+    "algorithm": {
+        "template": [
+            "алг %returns|maptype% %name%%args%",
+            "нач",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "кон"
+        ],
+        "template_empty_returns": [
+            "алг %name%%args%",
+            "нач",
+            "\t%decl_int%",
+            "\t%decl_real%",
+            "\t%decl_bool%",
+            "\t%decl_char%",
+            "\t%decl_string%",
+            "\t%branch1%",
+            "кон"
+        ],
+        "defaults": {
+            "name": "Алгоритм"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "арг %$type|maptype% %$name%",
+                "glue": ", ",
+                "head": "(",
+                "tail": ")"
+            },
+            "decl_int": {
+                "source": "variables_int",
+                "head": "цел ",
+                "glue": ", "
+            },
+            "decl_real": {
+                "source": "variables_real",
+                "head": "вещ ",
+                "glue": ", "
+            },
+            "decl_bool": {
+                "source": "variables_bool",
+                "head": "лог ",
+                "glue": ", "
+            },
+            "decl_char": {
+                "source": "variables_char",
+                "head": "сим ",
+                "glue": ", "
+            },
+            "decl_string": {
+                "source": "variables_string",
+                "head": "лит ",
+                "glue": ", "
+            }
+        }
+    },
+    "process": {
+        "template": "%text%"
+    },
+    "assign": {
+        "template": "%dest% := %src%"
+    },
+    "call": {
+        "template": "%text%"
+    },
+    "io": {
+        "template": "ввод %vars%",
+        "list": {
+            "vars": {
+                "glue": ", "
+            }
+        }
+    },
+    "ou": {
+        "template": "вывод %vars%, нс",
+        "template_empty_vars": "вывод нс",
+        "list": {
+            "vars": {
+                "glue": ", "
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "если %cond|truthy% то",
+            "\t%branch1%",
+            "иначе",
+            "\t%branch2%",
+            "все"
+        ],
+        "template_empty_branch2": [
+            "если %cond|truthy% то",
+            "\t%branch1%",
+            "все"
+        ],
+        "template_empty_branch1": [
+            "если %cond|truthy|negate% то",
+            "\t%branch2%",
+            "все"
+        ],
+        "template_empty_branch1+branch2": [
+            "если %cond|truthy% то",
+            "все"
+        ]
+    },
+    "case": {
+        "template": [
+            "выбор",
+            "%branches%",
+            "все"
+        ],
+        "template_empty_cases": "%branches%",
+        "default_branch_only": "%body%",
+        "case_branch": [
+            "\tпри %value%:",
+            "\t\t%body%"
+        ],
+        "default_branch": [
+            "\tиначе",
+            "\t\t%body%"
+        ],
+        "default_branch_empty": "",
+        "list": {
+            "value": {
+                "item": "%expr|operand% = %$%",
+                "glue": " или "
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "нц пока %cond|truthy%",
+            "\t%branch1%",
+            "кц"
+        ]
+    },
+    "post": {
+        "template": [
+            "нц",
+            "\t%branch1%",
+            "кц при %cond|truthy|negate%"
+        ]
+    },
+    "for": {
+        "template": [
+            "нц для %var|lvalue% от %from% до %to%",
+            "\t%branch1%",
+            "кц"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt:colon%",
+            "нц пока %cond|truthy%",
+            "\t%branch1%",
+            "\t%step|cstmt:colon%",
+            "кц"
+        ],
+        "defaults": {
+            "cond": "да"
+        }
+    },
+    "foreach": {
+        "template": [
+            "нц для %var|name%_i от 1 до длин(%range%)",
+            "\t%var|name% := %range%[%var|name%_i]",
+            "\t%branch1%",
+            "кц"
+        ],
+        "declares": [
+            "%var|name%",
+            "%var|name%_i"
+        ]
+    },
+    "return": {
+        "template": [
+            "знач := %value%",
+            "выход"
+        ],
+        "template_empty_value": "выход",
+        "template_empty_algorithm.returns": "выход"
+    },
+    "break": {
+        "template": "выход",
+        "template_in_case": "| break: выход из выбора (не поддерживается)",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "| continue: переход к следующему шагу цикла (не поддерживается)",
+        "template_in_pre_last": "",
+        "template_in_post_last": "",
+        "template_in_for_last": "",
+        "template_in_forc_last": "",
+        "template_in_foreach_last": ""
+    }
+}

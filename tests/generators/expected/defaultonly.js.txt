@@ -1,0 +1,16 @@
+function main() {
+    for (let i = 1; i <= 3; i++) {
+        switch (i) {
+            default: {
+                if (i == 2) {
+                    continue;
+                }
+            }
+        }
+        console.log(i);
+    }
+    switch (a) {
+    }
+}
+
+main();

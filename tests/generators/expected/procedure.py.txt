@@ -1,0 +1,4 @@
+def greet(n):
+    if n < 1:
+        return
+    print("Hello, ", n, sep="")

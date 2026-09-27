@@ -1,0 +1,14 @@
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <io vars="a,b"/>
+    <pre cond="b != 0">
+      <branch>
+        <assign dest="t" src="a % b"/>
+        <assign dest="a" src="b"/>
+        <assign dest="b" src="t"/>
+      </branch>
+    </pre>
+    <ou vars="&quot;gcd = &quot;,a"/>
+  </branch>
+</algorithm>

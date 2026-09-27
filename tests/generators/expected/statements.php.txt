@@ -1,0 +1,16 @@
+<?php
+
+function main()
+{
+    $s = 0;
+    for ($k = 0; $k <= 2; $k++) {
+        $s = $s + $k;
+        $s = $s + 1;
+    }
+    $x = 1 + 2;
+    if ($x > 1 && $x < 5) {
+        echo $s, $x, PHP_EOL;
+    }
+}
+
+main();

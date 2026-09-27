@@ -1,45 +1,204 @@
 {
     "name": {
-        "en_US":"Python"
+        "en_US": "Python 3",
+        "ru_RU": "Python 3",
+        "uk_UA": "Python 3"
     },
-	"algorithm" : {
-		"template" : "def main():%branch1%\nmain()"
-	},
-	"if": {
-		"template":"if %cond%:%branch1%\nelse: %branch2%",
-        "template_shortened":"if %cond%:%branch1%"
-	},
-	"for": {
-		"template":"for %var% in range(%from%, %to%):%branch1%\n"
-	},
-	"pre": {
-		"template":"while %cond%:%branch1%\n"
-	},
-	"post": {
-		"template":"while True:%branch1%\n\tif %cond%:\n\t\tbreak"
-	},
-	"assign": {
-		"template":"%dest% = %src%"
-	},
-	"process": {
-		"template": "%text%"
-	},
-	"io": {
-		"template": "%vars%",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": "\n",
-		"suffix": " = input()"
-	},
-
-	"ou": {
-		"template": "print(%vars%)",
-		"list": ["vars"],
-		"separator": ",",
-		"glue": ", "
-	},
-    
     "additional_settings": {
-    	"indentation_preference": "    "
+        "indentation_preference": "    ",
+        "empty_body": "pass",
+        "operators": {
+            "&&": "and", "||": "or", "!=": "!=", "!": "not", "true": "True", "false": "False",
+            "NULL": "None", "nullptr": "None",
+            "/": {"binary": "%1 // %2", "when": "int"}
+        },
+        "casts": {
+            "int": "int(%1)", "real": "float(%1)", "char": "chr(%1)", "bool": "bool(%1)", "*": "%1"
+        }
+    },
+    "comment": {
+        "template": "# %text%"
+    },
+    "algorithm": {
+        "template": [
+            "%import_sys%",
+            "",
+            "def %name%(%args%):",
+            "\t%branch1%",
+            "%entry%"
+        ],
+        "template_empty_params": [
+            "def %name%():",
+            "\t%branch1%",
+            "",
+            "",
+            "if __name__ == \"__main__\":",
+            "\t%name%()"
+        ],
+        "defaults": {
+            "name": "main"
+        },
+        "list": {
+            "args": {
+                "source": "params",
+                "item": "%$name%",
+                "glue": ", "
+            },
+            "import_sys": {
+                "source": "main_params",
+                "item": "import sys\n",
+                "limit": 1
+            },
+            "entry": {
+                "source": "main_params",
+                "item": "\n\nif __name__ == \"__main__\":\n\t%name%(len(sys.argv), sys.argv)",
+                "limit": 1
+            }
+        }
+    },
+    "process": {
+        "template": "%text%"
+    },
+    "assign": {
+        "template": "%dest% = %src%"
+    },
+    "call": {
+        "template": "%text|callparens%"
+    },
+    "io": {
+        "template": "%vars%",
+        "list": {
+            "vars": {
+                "item": "%$% = int(input())",
+                "glue": "\n"
+            }
+        }
+    },
+    "ou": {
+        "template": "print(%vars%, sep=\"\")",
+        "template_single_vars": "print(%vars%)",
+        "template_empty_vars": "print()",
+        "list": {
+            "vars": {
+                "glue": ", "
+            }
+        }
+    },
+    "if": {
+        "template": [
+            "if %cond%:",
+            "\t%branch1%",
+            "else:",
+            "\t%branch2%"
+        ],
+        "template_empty_branch2": [
+            "if %cond%:",
+            "\t%branch1%"
+        ],
+        "template_empty_branch1": [
+            "if %cond|negate%:",
+            "\t%branch2%"
+        ],
+        "template_empty_branch1+branch2": [
+            "if %cond%:",
+            "\t%branch1%"
+        ],
+        "chain": {
+            "head": [
+                "if %cond%:",
+                "\t%branch1%"
+            ],
+            "else_if": [
+                "elif %cond%:",
+                "\t%branch1%"
+            ],
+            "else": [
+                "else:",
+                "\t%branch2%"
+            ]
+        }
+    },
+    "case": {
+        "template": "%branches%",
+        "first_case_branch": [
+            "if %value%:",
+            "\t%body%"
+        ],
+        "case_branch": [
+            "elif %value%:",
+            "\t%body%"
+        ],
+        "default_branch": [
+            "else:",
+            "\t%body%"
+        ],
+        "default_branch_empty": "",
+        "default_branch_only": "%body%",
+        "list": {
+            "value": {
+                "item": "%expr|operand% == %$%",
+                "glue": " or "
+            }
+        }
+    },
+    "pre": {
+        "template": [
+            "while %cond%:",
+            "\t%branch1%"
+        ]
+    },
+    "post": {
+        "template": [
+            "while True:",
+            "\t%branch1%",
+            "\tif %cond|negate%:",
+            "\t\tbreak"
+        ]
+    },
+    "for": {
+        "template": [
+            "for %var|lvalue% in range(%from%, %to|inc%):",
+            "\t%branch1%"
+        ]
+    },
+    "forc": {
+        "template": [
+            "%init|cstmt%",
+            "while %cond%:",
+            "\t%branch1%",
+            "\t%step|cstmt%"
+        ],
+        "defaults": {
+            "cond": "True"
+        }
+    },
+    "foreach": {
+        "template": [
+            "for %var|name% in %range%:",
+            "\t%branch1%"
+        ]
+    },
+    "return": {
+        "template": "return %value%",
+        "template_empty_value": "return"
+    },
+    "break": {
+        "template": "break",
+        "template_in_case": "pass  # break out of the case: not supported",
+        "template_in_case_last": ""
+    },
+    "continue": {
+        "template": "continue",
+        "template_in_forc": [
+            "%loop.step|cstmt%",
+            "continue"
+        ],
+        "template_in_forc_last": "",
+        "template_in_post": [
+            "if %loop.cond|negate%:",
+            "\tbreak",
+            "continue"
+        ],
+        "template_in_post_last": ""
     }
 }

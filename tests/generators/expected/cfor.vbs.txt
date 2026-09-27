@@ -1,0 +1,26 @@
+Sub Main()
+    Dim i, s, lo, hi, k
+    Call init
+    i = 0
+    Do While i < n
+        If a(i) = 0 Then
+            ' continue: not supported in VBScript
+        End If
+        s = s + a(i)
+        i = i + 1
+    Loop
+    lo = 0
+    hi = n - 1
+    Do While lo < hi
+        Call swap(a, lo, hi)
+        lo = lo + 1
+        hi = hi - 1
+    Loop
+    k = 1
+    Do While k <= n
+        WScript.Echo k
+        k = k * 2
+    Loop
+End Sub
+
+Main

@@ -1,0 +1,29 @@
+Main()
+
+Func Main()
+    Local $a, $b, $s, $d
+    $a = Number(InputBox("Input", "a"))
+    $b = Number(InputBox("Input", "b"))
+    $s = $a + $b
+    $d = $a - $b
+    ConsoleWrite("Sum = " & $s & @CRLF)
+    ConsoleWrite($s & @CRLF)
+    ConsoleWrite("Hello, world!" & @CRLF)
+    ConsoleWrite($a & " - " & $b & " = " & $d & @CRLF)
+    ConsoleWrite("100% ""done""" & "x" & @CRLF)
+    ConsoleWrite(@CRLF)
+    report($a, $b)
+    If $s > 10 Then
+        ConsoleWrite("big" & @CRLF)
+    Else
+        ConsoleWrite("small" & @CRLF)
+    EndIf
+    If $a < $b Then
+        $d = 0
+    EndIf
+    If $a >= $b + 1 Then
+        ConsoleWrite("not less" & @CRLF)
+    EndIf
+    If $done Then
+    EndIf
+EndFunc

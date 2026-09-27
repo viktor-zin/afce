@@ -1,0 +1,19 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int s, k;
+    init();
+    for (int i = 0; i < n; i++) {
+        if (a[i] == 0) {
+            continue;
+        }
+        s = s + a[i];
+    }
+    for (int lo = 0, hi = n - 1; lo < hi; lo++, hi--) {
+        swap(a, lo, hi);
+    }
+    for (k = 1; k <= n; k *= 2) {
+        printf("%d\n", k);
+    }
+}

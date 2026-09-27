@@ -1,0 +1,16 @@
+#include <iostream>
+
+int main() {
+    for (int i = 1; i <= 3; i++) {
+        switch (i) {
+            default: {
+                if (i == 2) {
+                    continue;
+                }
+            }
+        }
+        std::cout << i << std::endl;
+    }
+    switch (a) {
+    }
+}

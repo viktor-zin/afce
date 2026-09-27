@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use open qw(:std :encoding(UTF-8));
+
+sub main {
+    my ($n, $s, $count, $i, $j);
+    chomp($n = <STDIN>);
+    $s = 0;
+    $count = 0;
+    for my $i (1..$n) {
+        if ($i < 5) {
+            for ($j = 0; $j < $i; $j = $j + 1) {
+                if ($j == 0) {
+                    next;
+                } elsif ($j == 1 || $j == 2) {
+                    while ($s < 100) {
+                        $s = $s + $j;
+                        if ($s > 50) {
+                            last;
+                        }
+                    }
+                } else {
+                    while (1) {
+                        $s = $s - 1;
+                        if ($s < 10) {
+                            last unless $s > 0;
+                            next;
+                        }
+                        print("s = ", $s, "\n");
+                        last unless $s > 0;
+                    }
+                }
+            }
+        } else {
+            foreach my $x (@$items) {
+                show($x);
+                if ($x > $i) {
+                    return $x;
+                }
+            }
+        }
+    }
+    print("s = ", $s, ", count = ", $count, "\n");
+}
+
+main();

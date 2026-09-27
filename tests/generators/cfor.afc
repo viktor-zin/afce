@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <call text="init"/>
+    <forc init="int i = 0" cond="i &lt; n" step="i++">
+      <branch>
+        <if cond="a[i] == 0">
+          <branch>
+            <continue/>
+          </branch>
+          <branch/>
+        </if>
+        <assign dest="s" src="s + a[i]"/>
+      </branch>
+    </forc>
+    <forc init="int lo = 0, hi = n - 1" cond="lo &lt; hi" step="lo++, hi--">
+      <branch>
+        <call text="swap(a, lo, hi)"/>
+      </branch>
+    </forc>
+    <forc init="k = 1" cond="k &lt;= n" step="k *= 2">
+      <branch>
+        <ou vars="k"/>
+      </branch>
+    </forc>
+  </branch>
+</algorithm>

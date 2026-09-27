@@ -1,0 +1,20 @@
+program Algorithm;
+
+var
+  i: Integer;
+  ok, finished: Boolean;
+
+begin
+  ok := (a > 0) and (b <> 0) or not done;
+  if ((x mod 2 = 0) and (y < 10)) or (flag = True) then
+  begin
+    WriteLn('yes && !no', x <> y);
+  end;
+  while not (i >= n) and (p <> nil) do
+  begin
+    i := i + 1;
+  end;
+  repeat
+    finished := False;
+  until finished;
+end.

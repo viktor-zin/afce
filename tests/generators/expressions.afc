@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AFC>
+<algorithm version="1.3">
+  <branch>
+    <assign dest="ok" src="a &gt; 0 &amp;&amp; b != 0 || !done"/>
+    <if cond="(x % 2 == 0 &amp;&amp; y &lt; 10) || flag == true">
+      <branch>
+        <ou vars="&quot;yes &amp;&amp; !no&quot;, x != y"/>
+      </branch>
+      <branch/>
+    </if>
+    <pre cond="!(i &gt;= n) &amp;&amp; p != NULL">
+      <branch>
+        <assign dest="i" src="i + 1"/>
+      </branch>
+    </pre>
+    <post cond="!finished">
+      <branch>
+        <assign dest="finished" src="false"/>
+      </branch>
+    </post>
+  </branch>
+</algorithm>

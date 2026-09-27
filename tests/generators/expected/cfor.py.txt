@@ -1,0 +1,23 @@
+def main():
+    init()
+    i = 0
+    while i < n:
+        if a[i] == 0:
+            i = i + 1
+            continue
+        s = s + a[i]
+        i = i + 1
+    lo = 0
+    hi = n - 1
+    while lo < hi:
+        swap(a, lo, hi)
+        lo = lo + 1
+        hi = hi - 1
+    k = 1
+    while k <= n:
+        print(k)
+        k = k * 2
+
+
+if __name__ == "__main__":
+    main()

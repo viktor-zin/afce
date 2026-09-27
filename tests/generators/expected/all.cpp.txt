@@ -1,0 +1,46 @@
+#include <iostream>
+
+int main() {
+    int n, s, count, j;
+    std::cin >> n;
+    s = 0;
+    count = 0;
+    for (int i = 1; i <= n; i++) {
+        if (i < 5) {
+            for (j = 0; j < i; j = j + 1) {
+                switch (j) {
+                    case 0: {
+                        continue;
+                    }
+                    case 1:
+                    case 2: {
+                        while (s < 100) {
+                            s = s + j;
+                            if (s > 50) {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    default: {
+                        do {
+                            s = s - 1;
+                            if (s < 10) {
+                                continue;
+                            }
+                            std::cout << "s = " << s << std::endl;
+                        } while (s > 0);
+                    }
+                }
+            }
+        } else {
+            for (auto x : items) {
+                show(x);
+                if (x > i) {
+                    return x;
+                }
+            }
+        }
+    }
+    std::cout << "s = " << s << ", count = " << count << std::endl;
+}

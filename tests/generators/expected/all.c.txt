@@ -1,0 +1,48 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+int main(void) {
+    int n, s, count, j;
+    scanf("%d", &n);
+    s = 0;
+    count = 0;
+    for (int i = 1; i <= n; i++) {
+        if (i < 5) {
+            for (j = 0; j < i; j = j + 1) {
+                switch (j) {
+                    case 0: {
+                        continue;
+                    }
+                    case 1:
+                    case 2: {
+                        while (s < 100) {
+                            s = s + j;
+                            if (s > 50) {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    default: {
+                        do {
+                            s = s - 1;
+                            if (s < 10) {
+                                continue;
+                            }
+                            printf("s = %d\n", s);
+                        } while (s > 0);
+                    }
+                }
+            }
+        } else {
+            for (size_t x_i = 0; x_i < sizeof(items) / sizeof(items[0]); x_i++) {
+                int x = items[x_i];
+                show(x);
+                if (x > i) {
+                    return x;
+                }
+            }
+        }
+    }
+    printf("s = %d, count = %d\n", s, count);
+}

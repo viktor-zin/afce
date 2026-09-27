@@ -1,0 +1,5 @@
+function sum(a, b) {
+    let s;
+    s = a + b;
+    return s;
+}
